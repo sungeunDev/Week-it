@@ -1,0 +1,22 @@
+PODS:
+  - Realm (3.3.0):
+    - Realm/Headers (= 3.3.0)
+  - Realm/Headers (3.3.0)
+  - RealmSwift (3.3.0):
+    - Realm (= 3.3.0)
+
+DEPENDENCIES:
+  - RealmSwift (= 3.3.0)
+
+SPEC REPOS:
+  https://github.com/CocoaPods/Specs.git:
+    - Realm
+    - RealmSwift
+
+SPEC CHECKSUMS:
+  Realm: 7d74ad6c5020432f58fe5e1df90bb6d97b2c7fef
+  RealmSwift: b2fa31a09c22e246026766557405505eeaad2b01
+
+PODFILE CHECKSUM: f687160202ec3ad6056bf850ba4fdee791ec13c7
+
+COCOAPODS: 1.5.0.beta.1
