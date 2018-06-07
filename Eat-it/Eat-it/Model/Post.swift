@@ -9,9 +9,24 @@
 import Foundation
 import RealmSwift
 
-class Post: Object {
+class Post2: Object {
     @objc dynamic var date: Date!
     @objc dynamic var rating: Int = 0
     @objc dynamic var mealTime: Int = 0
     @objc dynamic var mealTitle: String = ""
+}
+
+
+class Post {
+    var date: Date!
+    var rating: Int = 0
+    var mealTime: Int = 0
+    var mealTitle = ""
+    
+    init(date: Date, rating: Int, mealTime: Int, mealTitle: String) {
+        self.date = date
+        self.rating = rating
+        self.mealTime = mealTime
+        self.mealTitle = mealTitle
+    }
 }

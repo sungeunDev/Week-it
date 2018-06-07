@@ -17,6 +17,7 @@
 		6FC46E3420C66B2A00DAA40D /* DayCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FC46E3320C66B2A00DAA40D /* DayCell.swift */; };
 		6FC46E3620C66B3100DAA40D /* PostCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FC46E3520C66B3100DAA40D /* PostCell.swift */; };
 		6FC46E3820C6722700DAA40D /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FC46E3720C6722700DAA40D /* Extension.swift */; };
+		6FC46E3A20C8F76300DAA40D /* PostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FC46E3920C8F76300DAA40D /* PostViewController.swift */; };
 		C3D20FAAD8122A683D3B0DFC /* Pods_Eat_it.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C50A0A2E30E78B17C3D300BE /* Pods_Eat_it.framework */; };
 /* End PBXBuildFile section */
 
@@ -47,6 +48,7 @@
 		6FC46E3320C66B2A00DAA40D /* DayCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayCell.swift; sourceTree = "<group>"; };
 		6FC46E3520C66B3100DAA40D /* PostCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostCell.swift; sourceTree = "<group>"; };
 		6FC46E3720C6722700DAA40D /* Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extension.swift; sourceTree = "<group>"; };
+		6FC46E3920C8F76300DAA40D /* PostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostViewController.swift; sourceTree = "<group>"; };
 		9598529702C10E91B2A8E8A8 /* Pods-Eat-it.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Eat-it.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Eat-it/Pods-Eat-it.debug.xcconfig"; sourceTree = "<group>"; };
 		C50A0A2E30E78B17C3D300BE /* Pods_Eat_it.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Eat_it.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -108,6 +110,7 @@
 			isa = PBXGroup;
 			children = (
 				6FC46E1420C64DF800DAA40D /* MainViewController.swift */,
+				6FC46E3920C8F76300DAA40D /* PostViewController.swift */,
 				6FC46E3120C66B1E00DAA40D /* MealCell.swift */,
 				6FC46E3320C66B2A00DAA40D /* DayCell.swift */,
 				6FC46E3520C66B3100DAA40D /* PostCell.swift */,
@@ -263,6 +266,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6FC46E3A20C8F76300DAA40D /* PostViewController.swift in Sources */,
 				6FC46E3220C66B1E00DAA40D /* MealCell.swift in Sources */,
 				6FC46E2D20C6565300DAA40D /* Post.swift in Sources */,
 				6FC46E3820C6722700DAA40D /* Extension.swift in Sources */,

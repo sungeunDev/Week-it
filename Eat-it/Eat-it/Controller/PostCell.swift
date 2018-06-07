@@ -10,11 +10,14 @@ import UIKit
 
 class PostCell: UICollectionViewCell {
     @IBOutlet private weak var postLabel: UILabel!
+    
     public var postData: Int = 0 {
         didSet {
             postLabel.text = String(postData)
         }
     }
+    
+    public var data: Post!
     
     override func awakeFromNib() {
     
