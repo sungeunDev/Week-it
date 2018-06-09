@@ -9,24 +9,69 @@
 import Foundation
 import RealmSwift
 
-class Post2: Object {
+class Post: Object {
+    
+    @objc dynamic var taskId = NSUUID().uuidString
+    
     @objc dynamic var date: Date!
+    @objc dynamic var dateText: Int = 0
+    
+    
     @objc dynamic var rating: Int = 0
     @objc dynamic var mealTime: Int = 0
     @objc dynamic var mealTitle: String = ""
-}
-
-
-class Post {
-    var date: Date!
-    var rating: Int = 0
-    var mealTime: Int = 0
-    var mealTitle = ""
     
-    init(date: Date, rating: Int, mealTime: Int, mealTitle: String) {
+    
+    override class func primaryKey() -> String? {
+        return "taskId"
+    }
+    
+    convenience init(date: Date, rating: Int, mealTime: Int, mealTitle: String) {
+        self.init()
         self.date = date
         self.rating = rating
         self.mealTime = mealTime
         self.mealTitle = mealTitle
+        
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyyMMdd"
+        self.dateText = Int(formatter.string(from: date))!
     }
+}
+
+extension Post {
+    var ratingText: String {
+        switch rating {
+        case 0:
+            return "Good"
+        case 1:
+            return "Soso"
+        default:
+            return "Bad"
+        }
+    }
+    
+    var ratingColor: UIColor {
+        switch rating {
+        case 0:
+            return UIColor.red
+        case 1:
+            return UIColor.yellow
+        default:
+            return UIColor.blue
+        }
+    }
+    
+    var mealTimeText: String {
+        switch mealTime {
+        case 0:
+            return "아침"
+        case 1:
+            return "점심"
+        default:
+            return "저녁"
+        }
+    }
+    
+
 }

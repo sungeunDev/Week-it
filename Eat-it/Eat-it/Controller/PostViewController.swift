@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import RealmSwift
 
 class PostViewController: UIViewController {
 
@@ -18,9 +19,7 @@ class PostViewController: UIViewController {
     
     @IBOutlet private weak var menuTextField: UITextField!
     
-    @IBOutlet private weak var red: UIButton!
-    @IBOutlet private weak var yellow: UIButton!
-    @IBOutlet private weak var green: UIButton!
+    @IBOutlet private weak var seg: UISegmentedControl!
 
     
     override func viewDidLoad() {
@@ -35,6 +34,19 @@ class PostViewController: UIViewController {
             
             dateLabel.text = format.string(from: postdata.date)
         }
+    }
+    
+    @IBAction private func saveBtn() {
+        let realm = try! Realm()
+        
+        let post = Post(date: postData!.date, rating: seg.selectedSegmentIndex, mealTime: postData!.mealTime, mealTitle: menuTextField.text!)
+        
+        try! realm.write {
+            realm.add(post)
+        }
+        
+        
+        
     }
     
 }

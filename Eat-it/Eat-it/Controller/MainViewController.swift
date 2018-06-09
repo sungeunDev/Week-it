@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import RealmSwift
 
 class MainViewController: UIViewController {
 
@@ -29,9 +30,14 @@ class MainViewController: UIViewController {
     private var date: Date = Date()
     private var calendar: Calendar = Calendar.current
     
+    
+    var posts: Results<Post>!
+    
     // MARK: - LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        print(NSHomeDirectory())
         
         // CollectionView Tag
         mealTimeCollectionView.tag = 0
@@ -43,9 +49,64 @@ class MainViewController: UIViewController {
         
         sampleData = Post(date: date, rating: 0, mealTime: 1, mealTitle: "this")
         postData = Array(repeating: sampleData, count: post.count)
+        
+        
+        if let realm = try? Realm() {
+            posts = realm.objects(Post.self)
+            
+        }
+        
+
+
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        postCollectionView.reloadData()
+        
+        getPosts()
 
     }
 
+    
+    func getPosts() -> Results<Post> {
+        
+        let realm = try! Realm()
+        posts = realm.objects(Post.self)
+        
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyyMMdd"
+        
+        let minDateInt = Int(formatter.string(from: self.date))!
+        let minDatestr = formatter.string(from: self.date)
+        let minDate = formatter.date(from: minDatestr)!
+        
+
+        var dateComponent = DateComponents()
+        let timeIntervalDay = 7
+        dateComponent.day = timeIntervalDay
+        
+        let maxDate = Calendar.current.date(byAdding: dateComponent, to: minDate)!
+//        let maxDatestr   = formatter.string(from: maxDate)
+        let maxDateInt = Int(formatter.string(from: maxDate))!
+        
+//        print("\n---------- [ min: \(minDate), max: \(maxDate) ] -----------\n")
+//        posts = posts.filter("date >= %@", minDate).filter("date < %@", maxDate)
+        posts = posts.filter("dateText >= %@", minDateInt).filter("dateText < %@", maxDateInt)
+        
+//        print(posts)
+        
+        let postsSorted = posts.sorted(by: [
+            SortDescriptor(keyPath: "dateText", ascending: true),
+            SortDescriptor(keyPath: "mealTime", ascending: true),
+            ])
+        
+        print(postsSorted)
+        
+        return postsSorted
+    }
+    
+    
 }
 
 
@@ -64,7 +125,7 @@ extension MainViewController: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-    
+        
         switch collectionView.tag {
         case 0:
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "mealCell", for: indexPath) as! MealCell
@@ -77,6 +138,12 @@ extension MainViewController: UICollectionViewDataSource {
         default:
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "postCell", for: indexPath) as! PostCell
             cell.postData = post[indexPath.item]
+            
+            if indexPath.item % 3 == 0 {
+                cell.backgroundColor = UIColor.blue
+            } else if indexPath.item % 3 == 1 {
+                cell.backgroundColor = UIColor.yellow
+            }
 //            cell.data = postData[indexPath.item]
             
             return cell
@@ -98,12 +165,15 @@ extension MainViewController: UICollectionViewDelegateFlowLayout {
         if collectionView.tag == 2 {
             
             nextVC.postData = postData[indexPath.item]
-            
             nextVC.postData?.mealTime = indexPath.item % meal.count
             
-//            let timeInterval = 
+            var dateComponent = DateComponents()
+            let timeIntervalDay = indexPath.item / 3
+            dateComponent.day = timeIntervalDay
             
-            nextVC.postData?.date = date
+            let adjustDate = Calendar.current.date(byAdding: dateComponent, to: date)!
+            
+            nextVC.postData?.date = adjustDate
             
             self.navigationController?.pushViewController(nextVC, animated: true)
         }
@@ -162,7 +232,7 @@ extension MainViewController {
     
     @discardableResult
     func changeToMonday(of date: Date) -> Date {
-        var calendar = Calendar.current
+        let calendar = Calendar.current
         let monday = 2
         
         if calendar.component(.weekday, from: date) != monday {
@@ -171,8 +241,10 @@ extension MainViewController {
             dateComponent.day = adjustDayCount
             
             let adjustDate = Calendar.current.date(byAdding: dateComponent, to: date)!
+            
             return adjustDate
         } else {
+            
             return date
         }
     }
