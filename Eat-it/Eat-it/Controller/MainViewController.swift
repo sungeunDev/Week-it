@@ -19,93 +19,102 @@ class MainViewController: UIViewController {
     
     @IBOutlet private weak var dateLabel: UILabel!
     
-    // Sample Data
+    // Data
     let meal = ["아침", "점심", "저녁"]
-    let day = ["Mon", "Tue", "Wed", "Thu", "Fri"] //, "Sat", "Sun"]
-    let post = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15] //, 16, 17, 18, 19, 20, 21]
+    let day = ["Mon", "Tue", "Wed", "Thu", "Fri"]
     
-    var sampleData: Post!
-    var postData: [Post] = []
+    var posts: Array<Post?> = []
     
+    // Date Calculation Properties
     private var date: Date = Date()
     private var calendar: Calendar = Calendar.current
     
     
-    var posts: Results<Post>!
-    
     // MARK: - LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         print(NSHomeDirectory())
+        
+        mealMatrixView.layer.cornerRadius = 7
         
         // CollectionView Tag
         mealTimeCollectionView.tag = 0
         dayCollectionView.tag = 1
         postCollectionView.tag = 2
-        
-        date = changeToMonday(of: date)
-        currentDateLabel(input: date)
-        
-        sampleData = Post(date: date, rating: 0, mealTime: 1, mealTitle: "this")
-        postData = Array(repeating: sampleData, count: post.count)
-        
-        
-        if let realm = try? Realm() {
-            posts = realm.objects(Post.self)
-            
-        }
-        
-
-
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        postCollectionView.reloadData()
         
-        getPosts()
-
+        // this week of monday date & label setting
+        date = changeToMonday(of: date)
+        currentDateLabel(input: date)
+        
+        // fetch this week post data & sort
+        posts = makePostMatrix()
     }
 
     
-    func getPosts() -> Results<Post> {
+    // current date에 해당하는 주의 데이터만 fetch
+    func fetchThisWeekPosts() -> Results<Post> {
         
+        // 전체 Post Data fetch
         let realm = try! Realm()
-        posts = realm.objects(Post.self)
+        var posts = realm.objects(Post.self)
         
+        // 이번주 (월 ~ 일)에 해당하는 Post만 filtering
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyyMMdd"
         
-        let minDateInt = Int(formatter.string(from: self.date))!
+        let minDateInt = date.trasformInt(from: self.date)
+
         let minDatestr = formatter.string(from: self.date)
         let minDate = formatter.date(from: minDatestr)!
         
-
         var dateComponent = DateComponents()
         let timeIntervalDay = 7
         dateComponent.day = timeIntervalDay
         
         let maxDate = Calendar.current.date(byAdding: dateComponent, to: minDate)!
-//        let maxDatestr   = formatter.string(from: maxDate)
-        let maxDateInt = Int(formatter.string(from: maxDate))!
+        let maxDateInt = maxDate.trasformInt(from: maxDate)
         
-//        print("\n---------- [ min: \(minDate), max: \(maxDate) ] -----------\n")
-//        posts = posts.filter("date >= %@", minDate).filter("date < %@", maxDate)
         posts = posts.filter("dateText >= %@", minDateInt).filter("dateText < %@", maxDateInt)
         
-//        print(posts)
-        
+        // date(월 ~ 금), mealTime(아침 ~ 저녁) 순으로 sort
         let postsSorted = posts.sorted(by: [
             SortDescriptor(keyPath: "dateText", ascending: true),
             SortDescriptor(keyPath: "mealTime", ascending: true),
             ])
         
-        print(postsSorted)
-        
         return postsSorted
     }
     
+    
+    // 3 * 5 개의 배열로 Post 생성
+    func makePostMatrix() -> Array<Post?> {
+        
+        // 빈 배열 생성
+        var postArray = Array<Post?>(repeating: nil, count: meal.count * day.count)
+        
+        // 금주의 Post data fetch
+        let thisWeekPosts = fetchThisWeekPosts()
+        
+        // 알맞은 위치에 포스트 삽입
+        let currentDate = self.date.trasformInt(from: self.date)
+        
+        for post in thisWeekPosts {
+            let dateDiff = post.dateText - currentDate
+            let mealTime = post.mealTime
+        
+            let idx = dateDiff * 3 + mealTime
+            postArray[idx] = post
+        }
+        
+        // Reload Post CollectionView
+        postCollectionView.reloadData()
+    
+        return postArray
+    }
     
 }
 
@@ -120,7 +129,7 @@ extension MainViewController: UICollectionViewDataSource {
         case 1:
             return day.count
         default:
-            return meal.count * day.count
+            return posts.count
         }
     }
     
@@ -137,15 +146,16 @@ extension MainViewController: UICollectionViewDataSource {
             return cell
         default:
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "postCell", for: indexPath) as! PostCell
-            cell.postData = post[indexPath.item]
+            cell.postData = posts[indexPath.item]
             
-            if indexPath.item % 3 == 0 {
-                cell.backgroundColor = UIColor.blue
-            } else if indexPath.item % 3 == 1 {
-                cell.backgroundColor = UIColor.yellow
-            }
-//            cell.data = postData[indexPath.item]
-            
+            // shadow
+            cell.layer.shadowColor = UIColor.lightGray.cgColor
+            cell.layer.shadowOffset = CGSize(width:0,height: 2.0)
+            cell.layer.shadowRadius = 2.0
+            cell.layer.shadowOpacity = 1.0
+            cell.layer.masksToBounds = false
+            cell.layer.shadowPath = UIBezierPath(roundedRect:cell.bounds, cornerRadius:cell.contentView.layer.cornerRadius).cgPath
+
             return cell
         }
     }
@@ -158,22 +168,21 @@ extension MainViewController: UICollectionViewDelegateFlowLayout {
     // didSelect
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
     
+        // move Post View Controller
         let storyBoard = UIStoryboard(name: "Main", bundle: nil)
         let nextVC = storyBoard.instantiateViewController(withIdentifier: "PostViewController") as! PostViewController
         
-        
         if collectionView.tag == 2 {
             
-            nextVC.postData = postData[indexPath.item]
-            nextVC.postData?.mealTime = indexPath.item % meal.count
+            // Send Info of mealTime, date
+            nextVC.mealTime = indexPath.item % meal.count
             
             var dateComponent = DateComponents()
             let timeIntervalDay = indexPath.item / 3
             dateComponent.day = timeIntervalDay
-            
             let adjustDate = Calendar.current.date(byAdding: dateComponent, to: date)!
             
-            nextVC.postData?.date = adjustDate
+            nextVC.date = adjustDate
             
             self.navigationController?.pushViewController(nextVC, animated: true)
         }
@@ -236,10 +245,17 @@ extension MainViewController {
         let monday = 2
         
         if calendar.component(.weekday, from: date) != monday {
-            var dateComponent = DateComponents()
-            let adjustDayCount = (calendar.component(.weekday, from: date) - monday) * (-1)
-            dateComponent.day = adjustDayCount
             
+            var dateComponent = DateComponents()
+            
+            var adjustDayCount = (calendar.component(.weekday, from: date) - monday) * (-1)
+            
+            // 일요일 보정
+            if adjustDayCount == 1 {
+                adjustDayCount = -6
+            }
+    
+            dateComponent.day = adjustDayCount
             let adjustDate = Calendar.current.date(byAdding: dateComponent, to: date)!
             
             return adjustDate
@@ -284,12 +300,16 @@ extension MainViewController {
         
         self.date = Calendar.current.date(byAdding: dateComponent, to: date)!
         currentDateLabel(input: self.date)
+        
+        posts = makePostMatrix()
     }
     
     @IBAction private func rightBtn() {
         let nextWeek = 60 * 60 * 24 * 7
         date = Date(timeInterval: TimeInterval(nextWeek), since: date)
         currentDateLabel(input: date)
+        
+        posts = makePostMatrix()
     }
     
 }

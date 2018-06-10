@@ -33,9 +33,7 @@ class Post: Object {
         self.mealTime = mealTime
         self.mealTitle = mealTitle
         
-        let formatter = DateFormatter()
-        formatter.dateFormat = "yyyyMMdd"
-        self.dateText = Int(formatter.string(from: date))!
+        self.dateText = date.trasformInt(from: date)
     }
 }
 
