@@ -138,6 +138,7 @@
                                         <connections>
                                             <outlet property="dataSource" destination="BYZ-38-t0r" id="Knk-oc-ufk"/>
                                             <outlet property="delegate" destination="BYZ-38-t0r" id="19n-Eb-0aW"/>
+                                            <outletCollection property="gestureRecognizers" destination="dWW-Iy-aWm" appends="YES" id="mI1-3x-uKm"/>
                                         </connections>
                                     </collectionView>
                                     <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="kg1-6m-X6X">
@@ -221,6 +222,7 @@
                                     </collectionView>
                                 </subviews>
                                 <color key="backgroundColor" red="0.96078431372549022" green="0.96078431372549022" blue="0.96078431372549022" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <gestureRecognizers/>
                                 <constraints>
                                     <constraint firstAttribute="trailing" secondItem="evu-6c-PhI" secondAttribute="trailing" id="781-9Y-3bJ"/>
                                     <constraint firstItem="evu-6c-PhI" firstAttribute="top" secondItem="6W0-V9-IVj" secondAttribute="bottom" id="Dab-0o-ks8"/>
@@ -238,6 +240,7 @@
                             </view>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <gestureRecognizers/>
                         <constraints>
                             <constraint firstItem="5tF-ep-BJw" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="CRT-0X-7ZT"/>
                             <constraint firstItem="DTO-6d-Uba" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="60" id="Or4-pW-3ju"/>
@@ -250,6 +253,9 @@
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="5tF-ep-BJw" secondAttribute="trailing" constant="25" id="n1H-uo-ppc"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="C64-QJ-QUy" appends="YES" id="M2U-BW-eh5"/>
+                        </connections>
                     </view>
                     <navigationItem key="navigationItem" title="Eat-It!" id="dfw-Rl-Fre">
                         <barButtonItem key="backBarButtonItem" title=" " id="Oy6-6h-nl9"/>
@@ -263,6 +269,16 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+                <pongPressGestureRecognizer allowableMovement="10" minimumPressDuration="0.5" id="dWW-Iy-aWm">
+                    <connections>
+                        <action selector="pressGesture:" destination="BYZ-38-t0r" id="Cva-oy-UIa"/>
+                    </connections>
+                </pongPressGestureRecognizer>
+                <swipeGestureRecognizer direction="right" id="C64-QJ-QUy">
+                    <connections>
+                        <action selector="swipeGesture:" destination="BYZ-38-t0r" id="IvP-l4-Mw7"/>
+                    </connections>
+                </swipeGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="1056.8" y="118.29085457271366"/>
         </scene>

@@ -24,7 +24,11 @@ class MainViewController: UIViewController {
     let meal = ["아침", "점심", "저녁"]
     let day = ["Mon", "Tue", "Wed", "Thu", "Fri"]
     
-    var posts: Array<Post?> = []
+    var posts: Array<Post?> = [] {
+        didSet {
+            self.postCollectionView.reloadData()
+        }
+    }
     
     // Date Calculation Properties
     private var date: Date = Date()
@@ -58,7 +62,10 @@ class MainViewController: UIViewController {
         // fetch this week post data & sort
         posts = makePostMatrix()
     }
+}
 
+// MARK: - Method
+extension MainViewController {
     
     // current date에 해당하는 주의 데이터만 fetch
     func fetchThisWeekPosts() -> Results<Post> {
@@ -72,7 +79,6 @@ class MainViewController: UIViewController {
         formatter.dateFormat = "yyyyMMdd"
         
         let minDateInt = date.trasformInt(from: self.date)
-
         let minDatestr = formatter.string(from: self.date)
         let minDate = formatter.date(from: minDatestr)!
         
@@ -98,29 +104,39 @@ class MainViewController: UIViewController {
     // 3 * 5 개의 배열로 Post 생성
     func makePostMatrix() -> Array<Post?> {
         
-        // 빈 배열 생성
-        var postArray = Array<Post?>(repeating: nil, count: meal.count * day.count)
-        
-        // 금주의 Post data fetch
-        let thisWeekPosts = fetchThisWeekPosts()
-        
-        // 알맞은 위치에 포스트 삽입
+        var postArray = Array<Post?>(repeating: nil, count: meal.count * day.count) // 빈 배열 생성
+        let thisWeekPosts = fetchThisWeekPosts() // 금주의 Post data fetch
         let currentDate = self.date.trasformInt(from: self.date)
-        
+        // 알맞은 위치에 포스트 삽입
         for post in thisWeekPosts {
             let dateDiff = post.dateText - currentDate
             let mealTime = post.mealTime
-        
+            
             let idx = dateDiff * 3 + mealTime
             postArray[idx] = post
         }
-        
-        // Reload Post CollectionView
-        postCollectionView.reloadData()
-    
         return postArray
     }
     
+    // MARK: - Gesture
+    @IBAction private func pressGesture(_ sender: UILongPressGestureRecognizer) {
+        let location = sender.location(in: postCollectionView)
+        switch sender.state {
+        case .began:
+            guard let itemIndexPath = postCollectionView.indexPathForItem(at: location) else { break }
+            postCollectionView.beginInteractiveMovementForItem(at: itemIndexPath)
+        case .changed:
+            postCollectionView.updateInteractiveMovementTargetPosition(location)
+        case .ended:
+            postCollectionView.endInteractiveMovement()
+        default:
+            postCollectionView.cancelInteractiveMovement()
+        }
+    }
+    
+    @IBAction private func swipeGesture(_ sender: UISwipeGestureRecognizer) {
+        
+    }
 }
 
 
@@ -164,6 +180,37 @@ extension MainViewController: UICollectionViewDataSource {
             return cell
         }
     }
+    
+    // MARK: - move collectionView cell
+    func collectionView(_ collectionView: UICollectionView,
+                        moveItemAt sourceIndexPath: IndexPath,
+                        to destinationIndexPath: IndexPath) {
+        guard sourceIndexPath != destinationIndexPath else { return }
+        
+        if posts[destinationIndexPath.row] == nil {
+            let temp = posts[sourceIndexPath.row]
+            posts[destinationIndexPath.row] = temp
+            posts[sourceIndexPath.row] = temp
+        } else {
+            let temp = posts[sourceIndexPath.row]
+            posts[sourceIndexPath.row] = posts[destinationIndexPath.row]
+            posts[destinationIndexPath.row] = temp
+        }
+    }
+    
+//    func collectionView(_ collectionView: UICollectionView,
+//                        targetIndexPathForMoveFromItemAt originalIndexPath: IndexPath,
+//                        toProposedIndexPath proposedIndexPath: IndexPath) -> IndexPath {
+//        if posts[proposedIndexPath.item] == nil {
+//            defer {
+//                posts[proposedIndexPath.item] = posts[originalIndexPath.item]
+//            }
+//                return originalIndexPath
+//        } else {
+//            return proposedIndexPath
+//        }
+//    }
+    
 }
 
 
