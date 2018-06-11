@@ -43,7 +43,9 @@ class MainViewController: UIViewController {
         dayCollectionView.tag = 1
         postCollectionView.tag = 2
         
-        naviBarItemSetting()
+        // Navigation Bar UI
+        naviBarTitleLayout()
+        naviBarItemLayout()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -176,6 +178,11 @@ extension MainViewController: UICollectionViewDelegateFlowLayout {
         let nextVC = storyBoard.instantiateViewController(withIdentifier: "PostViewController") as! PostViewController
         
         if collectionView.tag == 2 {
+
+            // 이전에 포스트를 입력해 놓은 경우, 해당 포스트를 불러옴
+            if let post = posts[indexPath.item] {
+                nextVC.postData = post
+            }
             
             // Send Info of mealTime, date
             nextVC.mealTime = indexPath.item % meal.count
@@ -321,24 +328,68 @@ extension MainViewController {
 // MARK: - Navigation Bar Button Setting
 extension MainViewController {
     
-    func naviBarItemSetting() {
+    // BarItem - left, right Button
+    func naviBarItemLayout() {
         
-        let leftBtn = UIButton()
-        leftBtn.setImage(UIImage(named: "graph"), for: .normal)
+        let iconSize = 24
+        
+        // left Btn
+        let leftBtn = UIButton(type: .custom)
+        leftBtn.setImage(UIImage(named: "graph.png"), for: .normal)
         leftBtn.addTarget(self, action: #selector(moveGraphVC(_:)), for: .touchUpInside)
-
+        let leftBarItem = UIBarButtonItem(customView: leftBtn)
         
+        leftBarItem.customView?.snp.makeConstraints({ (make) in
+            make.width.equalTo(iconSize)
+            make.height.equalTo(iconSize)
+        })
         
-        let leftImageView = UIImageView(image: UIImage(named: "graph"))
-        let barItem = UIBarButtonItem(customView: leftImageView)
+        // right Btn
+        let rightBtn = UIButton(type: .custom)
+        rightBtn.setImage(UIImage(named: "setting.png"), for: .normal)
+        rightBtn.addTarget(self, action: #selector(moveSettingVC(_:)), for: .touchUpInside)
+        let rightBarItem = UIBarButtonItem(customView: rightBtn)
         
-//        let width
+        rightBarItem.customView?.snp.makeConstraints({ (make) in
+            make.width.equalTo(iconSize)
+            make.height.equalTo(iconSize)
+        })
         
-        self.navigationItem.leftBarButtonItem = barItem
+        self.navigationItem.leftBarButtonItem = leftBarItem
+        self.navigationItem.rightBarButtonItem = rightBarItem
     }
     
     @objc func moveGraphVC(_ : UIButton) {
+        let graphVC = self.storyboard?.instantiateViewController(withIdentifier: "GraphViewController") as! GraphViewController
+        self.navigationController?.pushViewController(graphVC, animated: true)
+    }
+    
+    @objc func moveSettingVC(_ : UIButton) {
+        let settingVC = self.storyboard?.instantiateViewController(withIdentifier: "SettingViewController") as! SettingViewController
+        self.navigationController?.pushViewController(settingVC, animated: true)
+    }
+    
+    
+    // BarItem - Title
+    func naviBarTitleLayout() {
         
+        let width: CGFloat = 65
+        let height: CGFloat = 26
+        
+        let containerButton = UIButton(frame: CGRect(x: 0, y: 0, width: width, height: height))
+        let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: width, height: height))
+        imageView.image = UIImage(named: "logo.png")
+        
+        containerButton.addTarget(self, action: #selector(moveCalendarToday(_:)), for: .touchUpInside)
+        containerButton.addSubview(imageView)
+        self.navigationItem.titleView = containerButton
+    }
+    
+    // Title 누르면 현재 날짜로 돌아옴
+    @objc func moveCalendarToday(_ : UIButton) {
+        self.date = Date()
+        currentDateLabel(input: self.date)
+        posts = makePostMatrix()
     }
     
 }

@@ -11,7 +11,7 @@ import RealmSwift
 
 class Post: Object {
     
-    @objc dynamic var taskId = NSUUID().uuidString
+    @objc dynamic var postId = NSUUID().uuidString
     
     @objc dynamic var date: Date!
     @objc dynamic var dateText: Int = 0
@@ -23,7 +23,7 @@ class Post: Object {
     
     
     override class func primaryKey() -> String? {
-        return "taskId"
+        return "postId"
     }
     
     convenience init(date: Date, rating: Int, mealTime: Int, mealTitle: String) {
