@@ -8,6 +8,7 @@
 
 import UIKit
 import RealmSwift
+import SnapKit
 
 class MainViewController: UIViewController {
 
@@ -41,6 +42,8 @@ class MainViewController: UIViewController {
         mealTimeCollectionView.tag = 0
         dayCollectionView.tag = 1
         postCollectionView.tag = 2
+        
+        naviBarItemSetting()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -310,6 +313,32 @@ extension MainViewController {
         currentDateLabel(input: date)
         
         posts = makePostMatrix()
+    }
+    
+}
+
+
+// MARK: - Navigation Bar Button Setting
+extension MainViewController {
+    
+    func naviBarItemSetting() {
+        
+        let leftBtn = UIButton()
+        leftBtn.setImage(UIImage(named: "graph"), for: .normal)
+        leftBtn.addTarget(self, action: #selector(moveGraphVC(_:)), for: .touchUpInside)
+
+        
+        
+        let leftImageView = UIImageView(image: UIImage(named: "graph"))
+        let barItem = UIBarButtonItem(customView: leftImageView)
+        
+//        let width
+        
+        self.navigationItem.leftBarButtonItem = barItem
+    }
+    
+    @objc func moveGraphVC(_ : UIButton) {
+        
     }
     
 }

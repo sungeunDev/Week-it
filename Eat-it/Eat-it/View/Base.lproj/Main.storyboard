@@ -251,7 +251,9 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <navigationItem key="navigationItem" title="Eat-It!" id="dfw-Rl-Fre">
-                        <barButtonItem key="leftBarButtonItem" title="Analysis" id="1zc-W5-lx1"/>
+                        <barButtonItem key="leftBarButtonItem" title="Item" id="1zc-W5-lx1">
+                            <color key="tintColor" red="0.61960784310000006" green="0.61960784310000006" blue="0.61960784310000006" alpha="1" colorSpace="calibratedRGB"/>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="Setting" id="QVW-sv-ddM"/>
                     </navigationItem>
                     <connections>
