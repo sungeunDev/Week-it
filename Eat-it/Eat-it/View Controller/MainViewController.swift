@@ -187,6 +187,10 @@ extension MainViewController: UICollectionViewDataSource {
                         to destinationIndexPath: IndexPath) {
         guard sourceIndexPath != destinationIndexPath else { return }
         
+//        collectionView.performBatchUpdates({
+//            collectionView.moveItem(at: sourceIndexPath, to: destinationIndexPath)
+//        }, completion: nil)
+        
         if posts[destinationIndexPath.row] == nil {
             let temp = posts[sourceIndexPath.row]
             posts[destinationIndexPath.row] = temp
