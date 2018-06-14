@@ -43,15 +43,9 @@ class PostCell: UICollectionViewCell {
         let themeKey = "ThemeNameRawValue"
         let currentTheme = UserDefaults.standard.value(forKey: themeKey) as? Int ?? 0
         
-        switch idx {
-        case 0:
-            return UIColor.Custom.good
-        case 1:
-            return UIColor.Custom.soso
-        case 2:
-            return UIColor.Custom.bad
-        default:
-            return UIColor.black
-        }
+        let colorSet = [ColorSet.basic, ColorSet.helsinki, ColorSet.marseille, ColorSet.newyork, ColorSet.horizon, ColorSet.orange, ColorSet.heaven]
+        let currentColor = colorSet[currentTheme].colors
+        
+        return currentColor[idx]
     }
 }
