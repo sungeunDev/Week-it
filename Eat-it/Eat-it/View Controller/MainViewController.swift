@@ -39,8 +39,7 @@ class MainViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         print(NSHomeDirectory())
-        
-        // mealMatrixView.layer.cornerRadius = 7
+
         
         // CollectionView Tag
         mealTimeCollectionView.tag = 0
@@ -54,6 +53,9 @@ class MainViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        
+        // mealMatrix background color accroing to theme
+        mealMatrixView.backgroundColor = mealMatrixViewBackgroundColor()
         
         // this week of monday date & label setting
         date = changeToMonday(of: date)
@@ -144,6 +146,15 @@ extension MainViewController {
     }
     
     
+    
+    // MARK: - UI
+    func mealMatrixViewBackgroundColor() -> UIColor {
+        let themeKey = "ThemeNameRawValue"
+        let currentTheme = UserDefaults.standard.value(forKey: themeKey) as? Int ?? 0
+        
+        let colorSet = [ColorSet.basic, ColorSet.helsinki, ColorSet.marseille, ColorSet.newyork, ColorSet.horizon, ColorSet.orange, ColorSet.heaven]
+        return colorSet[currentTheme].background
+    }
 }
 
 
