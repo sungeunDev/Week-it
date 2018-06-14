@@ -14,6 +14,14 @@ class CustomTableViewCell: UITableViewCell {
     @IBOutlet weak var themeImageView: UIImageView!
     @IBOutlet weak var themeTitleLabel: UILabel!
     
+    //graphCell
+    @IBOutlet weak var graphDateLabel: UILabel!
+    @IBOutlet weak var graphCountLabel: UILabel!
+    
+    //graphMonthlyCell
+    @IBOutlet weak var graphMonthlyDateLabel: UILabel!
+    @IBOutlet weak var graphMonthlyCountLabel: UILabel!
+    
     
     override func awakeFromNib() {
         super.awakeFromNib()

@@ -53,6 +53,8 @@ class PostViewController: UITableViewController {
     }
     
     @IBAction private func saveBtn() {
+        menuTextField.resignFirstResponder()
+        
         savePost()
         popVC()
     }

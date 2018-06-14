@@ -138,9 +138,9 @@
 			children = (
 				6FC46E1420C64DF800DAA40D /* MainViewController.swift */,
 				6FC46E3920C8F76300DAA40D /* PostViewController.swift */,
-				6FABA5DC20CE59B2009DC835 /* GraphViewController.swift */,
 				6FABA5D820CE4297009DC835 /* SettingViewController.swift */,
 				6F1AF1CF20D0C5FC00147898 /* ThemeTableViewController.swift */,
+				6FABA5DC20CE59B2009DC835 /* GraphViewController.swift */,
 				6F1AF1D120D0D6C800147898 /* CustomTableViewCell.swift */,
 			);
 			path = "View Controller";

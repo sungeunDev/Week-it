@@ -25,7 +25,6 @@ enum ThemeName: Int {
 
 class ThemeTableViewController: UITableViewController {
 
-    
     let cellTitleData: [String] = ["BASIC", "HELSINKI", "MARSEILLE", "NEWYORK", "HORIZON", "ORANGE", "HEAVEN"]
     let cellImageData: [UIImage] = [#imageLiteral(resourceName: "basic"), #imageLiteral(resourceName: "helsinki"), #imageLiteral(resourceName: "marseille"), #imageLiteral(resourceName: "newyork"), #imageLiteral(resourceName: "horizon"), #imageLiteral(resourceName: "orange"), #imageLiteral(resourceName: "heaven")]
     
@@ -62,8 +61,7 @@ class ThemeTableViewController: UITableViewController {
             themeCell.themeImageView.image = self.cellImageData[indexPath.row]
             themeCell.themeTitleLabel.text = self.cellTitleData[indexPath.row].uppercased()
             themeCell.setNeedsLayout()
-        }
-    
+        }    
 
         return themeCell
     }
