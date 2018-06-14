@@ -29,6 +29,11 @@ class MainViewController: UIViewController {
             self.postCollectionView.reloadData()
         }
     }
+  
+    // data for animations
+    var selectedCellRect: CGRect!
+    var selectedCellImg: UIView!
+    let transition = TransitionCoordinator()
     
     // Date Calculation Properties
     private var date: Date = Date()
@@ -39,8 +44,10 @@ class MainViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         print(NSHomeDirectory())
-
         
+        // mealMatrixView.layer.cornerRadius = 7
+        navigationController?.delegate = transition
+      
         // CollectionView Tag
         mealTimeCollectionView.tag = 0
         dayCollectionView.tag = 1
@@ -245,8 +252,17 @@ extension MainViewController: UICollectionViewDelegateFlowLayout {
         // move Post View Controller
         let storyBoard = UIStoryboard(name: "Main", bundle: nil)
         let nextVC = storyBoard.instantiateViewController(withIdentifier: "PostViewController") as! PostViewController
-        
+      
         if collectionView.tag == 2 {
+          
+            // save selectedCell's frame to MainViewController.selectedCellRect
+            let attb = collectionView.layoutAttributesForItem(at: indexPath)
+            let frameWithinCollection = attb?.frame
+            let onScreenPos = collectionView.convert(frameWithinCollection!, to: self.view)
+            selectedCellRect = onScreenPos
+          
+            let cell = collectionView.cellForItem(at: indexPath)
+            selectedCellImg = (cell?.snapshotView(afterScreenUpdates: false))!
 
             // 이전에 포스트를 입력해 놓은 경우, 해당 포스트를 불러옴
             if let post = posts[indexPath.item] {
@@ -465,4 +481,3 @@ extension MainViewController {
     }
     
 }
-
