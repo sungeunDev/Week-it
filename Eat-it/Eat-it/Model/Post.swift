@@ -9,18 +9,15 @@
 import Foundation
 import RealmSwift
 
+// realm model
 class Post: Object {
     
     @objc dynamic var postId = NSUUID().uuidString
-    
     @objc dynamic var date: Date!
     @objc dynamic var dateText: Int = 0
-    
-    
     @objc dynamic var rating: Int = 0
     @objc dynamic var mealTime: Int = 0
     @objc dynamic var mealTitle: String = ""
-    
     
     override class func primaryKey() -> String? {
         return "postId"
@@ -37,6 +34,8 @@ class Post: Object {
     }
 }
 
+
+// support
 extension Post {
     var ratingText: String {
         switch rating {

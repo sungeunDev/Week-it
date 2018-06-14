@@ -40,7 +40,7 @@ class MainViewController: UIViewController {
         super.viewDidLoad()
         print(NSHomeDirectory())
         
-        mealMatrixView.layer.cornerRadius = 7
+        // mealMatrixView.layer.cornerRadius = 7
         
         // CollectionView Tag
         mealTimeCollectionView.tag = 0
@@ -107,6 +107,7 @@ extension MainViewController {
         var postArray = Array<Post?>(repeating: nil, count: meal.count * day.count) // 빈 배열 생성
         let thisWeekPosts = fetchThisWeekPosts() // 금주의 Post data fetch
         let currentDate = self.date.trasformInt(from: self.date)
+        
         // 알맞은 위치에 포스트 삽입
         for post in thisWeekPosts {
             let dateDiff = post.dateText - currentDate
@@ -134,9 +135,15 @@ extension MainViewController {
         }
     }
     
-    @IBAction private func swipeGesture(_ sender: UISwipeGestureRecognizer) {
-        
+    @IBAction private func leftSwipe(_ sender: UISwipeGestureRecognizer) {
+        rightBtn()
     }
+    
+    @IBAction private func rightSwipe(_ sender: UISwipeGestureRecognizer) {
+        leftBtn()
+    }
+    
+    
 }
 
 
@@ -439,8 +446,11 @@ extension MainViewController {
     // Title 누르면 현재 날짜로 돌아옴
     @objc func moveCalendarToday(_ : UIButton) {
         self.date = Date()
+        
+        date = changeToMonday(of: date)
         currentDateLabel(input: self.date)
-        posts = makePostMatrix()
+        
+        self.posts = makePostMatrix()
     }
     
 }
