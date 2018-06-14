@@ -136,11 +136,11 @@ extension MainViewController {
     }
     
     @IBAction private func leftSwipe(_ sender: UISwipeGestureRecognizer) {
-        leftBtn()
+        rightBtn()
     }
     
     @IBAction private func rightSwipe(_ sender: UISwipeGestureRecognizer) {
-        rightBtn()
+        leftBtn()
     }
     
     

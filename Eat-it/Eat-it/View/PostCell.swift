@@ -39,6 +39,10 @@ class PostCell: UICollectionViewCell {
     
     
     func cellBackgroundColor(of idx: Int) -> UIColor {
+        
+        let themeKey = "ThemeNameRawValue"
+        let currentTheme = UserDefaults.standard.value(forKey: themeKey) as? Int ?? 0
+        
         switch idx {
         case 0:
             return UIColor.Custom.good

@@ -350,22 +350,43 @@
             </objects>
             <point key="canvasLocation" x="1057" y="1616"/>
         </scene>
-        <!--Table View Controller-->
+        <!--Theme-->
         <scene sceneID="yZY-DT-fqm">
             <objects>
-                <tableViewController id="PQS-PP-dv1" sceneMemberID="viewController">
+                <tableViewController title="Theme" id="PQS-PP-dv1" customClass="ThemeTableViewController" customModule="Eat_it" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="rL2-Ku-fEn">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="ndx-6p-BkQ">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="themeCell" id="ndx-6p-BkQ" customClass="CustomTableViewCell" customModule="Eat_it" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="ndx-6p-BkQ" id="Lgc-GH-dMm">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="basic" translatesAutoresizingMaskIntoConstraints="NO" id="aOG-1Z-dE6">
+                                            <rect key="frame" x="12" y="8" width="123" height="29"/>
+                                        </imageView>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ColorSetName" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HQj-ew-a6c">
+                                            <rect key="frame" x="150" y="11" width="112" height="21"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="aOG-1Z-dE6" firstAttribute="centerY" secondItem="Lgc-GH-dMm" secondAttribute="centerY" id="Vlc-wX-XYz"/>
+                                        <constraint firstItem="HQj-ew-a6c" firstAttribute="centerY" secondItem="Lgc-GH-dMm" secondAttribute="centerY" id="YPH-uU-Kwo"/>
+                                        <constraint firstItem="aOG-1Z-dE6" firstAttribute="leading" secondItem="Lgc-GH-dMm" secondAttribute="leading" constant="12" id="g1t-CF-9NP"/>
+                                        <constraint firstItem="HQj-ew-a6c" firstAttribute="leading" secondItem="aOG-1Z-dE6" secondAttribute="trailing" constant="15" id="udG-u9-zQA"/>
+                                    </constraints>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="themeImageView" destination="aOG-1Z-dE6" id="NVP-qa-nrf"/>
+                                    <outlet property="themeTitleLabel" destination="HQj-ew-a6c" id="RtY-Fy-Tmb"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -635,7 +656,8 @@
         </scene>
     </scenes>
     <resources>
-        <image name="left" width="30" height="30"/>
-        <image name="right" width="30" height="30"/>
+        <image name="basic" width="123" height="29"/>
+        <image name="left" width="12" height="12"/>
+        <image name="right" width="12" height="12"/>
     </resources>
 </document>
