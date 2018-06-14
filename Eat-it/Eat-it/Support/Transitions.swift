@@ -19,13 +19,12 @@ final class MainToPostAnimator: NSObject, UIViewControllerAnimatedTransitioning 
   }
   
   func transitionDuration(using transitionContext: UIViewControllerContextTransitioning?) -> TimeInterval {
-    return 1.0
+    return 0.8
   }
   
   func animateTransition(using transitionContext: UIViewControllerContextTransitioning) {
     guard
       let toVC = transitionContext.viewController(forKey: .to) as? PostViewController
-//      let toSnap = toVC.view.snapshotView(afterScreenUpdates: true)
     else { return }
     
     let containerView = transitionContext.containerView
@@ -34,27 +33,68 @@ final class MainToPostAnimator: NSObject, UIViewControllerAnimatedTransitioning 
     
     // initial setup
     cellImg.frame = cellFrame
-    
+
+//    containerView.addSubview(cellImg)
     containerView.addSubview(toVC.view)
-    containerView.addSubview(cellImg)
     
-    toVC.view.isHidden = true
+    let backView = containerView.subviews[0]
+//    toVC.view.isHidden = true
+    toVC.view.transform = CGAffineTransform(scaleX: 0.2, y: 0.2)
+    toVC.view.alpha = 0.0
+    toVC.view.frame = cellFrame
+//    toVC.view.layer.masksToBounds = true
     
-    UIView.animate(
+    UIView.animateKeyframes(
       withDuration: duration,
       delay: 0.0,
-      options: [.curveEaseInOut],
+      options: .calculationModeCubic,
       animations: {
-        self.cellImg.frame = finalFrame
-//        self.cellImg.layer.transform = CATransform3DMakeRotation(.pi, 0.0, 1.0, 0.0)
-        self.cellImg.alpha = 0.0
+        UIView.addKeyframe(withRelativeStartTime: 0.0, relativeDuration: 0.1, animations: {
+          backView.layer.zPosition = -100.0
+          toVC.view.alpha = 0.5
+        })
+        
+        UIView.addKeyframe(withRelativeStartTime: 0.1, relativeDuration: 0.9, animations: {
+          backView.transform = CGAffineTransform(scaleX: 0.96, y: 0.96)
+//          self.cellImg.frame = finalFrame
+//          self.cellImg.layer.transform = CATransform3DMakeRotation(.pi, 0.0, 1.0, 0.0)
+//          self.cellImg.alpha = 0.0
+          toVC.view.transform = CGAffineTransform.identity
+          toVC.view.alpha = 1.0
+          toVC.view.frame = finalFrame
+        })
+        
+//        UIView.addKeyframe(withRelativeStartTime: 0.9, relativeDuration: 0.1, animations: {
+//          toSnap.alpha = 1.0
+//        })
+        
       },
       completion: { _ in
         toVC.view.isHidden = false
+        toVC.view.transform = CGAffineTransform.identity
+        backView.transform = CGAffineTransform.identity
         self.cellImg.removeFromSuperview()
         transitionContext.completeTransition(!transitionContext.transitionWasCancelled)
       }
     )
+    
+//    UIView.animate(
+//      withDuration: duration,
+//      delay: 0.0,
+//      options: [.curveEaseInOut],
+//      animations: {
+//        backView.transform = CGAffineTransform(scaleX: 0.95, y: 0.95)
+//        self.cellImg.frame = finalFrame
+//        self.cellImg.layer.transform = CATransform3DMakeRotation(.pi, 0.0, 1.0, 0.0)
+////        self.cellImg.alpha = 0.0
+//      },
+//      completion: { _ in
+//        toVC.view.isHidden = false
+//        backView.transform = CGAffineTransform.identity
+//        self.cellImg.removeFromSuperview()
+//        transitionContext.completeTransition(!transitionContext.transitionWasCancelled)
+//      }
+//    )
     
   }
   
