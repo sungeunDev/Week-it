@@ -32,14 +32,13 @@ class ThemeTableViewController: UITableViewController {
     var currentTheme = ThemeName(rawValue: (UserDefaults.standard.value(forKey: "ThemeNameRawValue") as? Int) ?? 0) {
         willSet {
             self.tableView.reloadData()
-            print("현재 테마: \(String(describing: newValue))")
+            self.navigationController?.popToRootViewController(animated: true)
             }
         }
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        print("this")
     }
     
     
