@@ -25,8 +25,8 @@ final class MainToPostAnimator: NSObject, UIViewControllerAnimatedTransitioning 
   func animateTransition(using transitionContext: UIViewControllerContextTransitioning) {
     guard
       let toVC = transitionContext.viewController(forKey: .to) as? PostViewController
-//      let toSnap = toVC.view.snapshotView(afterScreenUpdates: true)
-    else { return }
+      //      let toSnap = toVC.view.snapshotView(afterScreenUpdates: true)
+      else { return }
     
     let containerView = transitionContext.containerView
     let duration = transitionDuration(using: transitionContext)
@@ -46,14 +46,14 @@ final class MainToPostAnimator: NSObject, UIViewControllerAnimatedTransitioning 
       options: [.curveEaseInOut],
       animations: {
         self.cellImg.frame = finalFrame
-//        self.cellImg.layer.transform = CATransform3DMakeRotation(.pi, 0.0, 1.0, 0.0)
+        //        self.cellImg.layer.transform = CATransform3DMakeRotation(.pi, 0.0, 1.0, 0.0)
         self.cellImg.alpha = 0.0
-      },
+    },
       completion: { _ in
         toVC.view.isHidden = false
         self.cellImg.removeFromSuperview()
         transitionContext.completeTransition(!transitionContext.transitionWasCancelled)
-      }
+    }
     )
     
   }
@@ -76,7 +76,7 @@ final class PostToMainAnimator: NSObject, UIViewControllerAnimatedTransitioning 
     guard
       let fromVC = transitionContext.viewController(forKey: .from) as? PostViewController,
       let toVC = transitionContext.viewController(forKey: .to) as? MainViewController
-    else { return }
+      else { return }
   }
   
 }

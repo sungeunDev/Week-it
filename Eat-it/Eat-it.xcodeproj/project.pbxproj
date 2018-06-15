@@ -12,8 +12,8 @@
 		6F1AF1D020D0C5FC00147898 /* ThemeTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F1AF1CF20D0C5FC00147898 /* ThemeTableViewController.swift */; };
 		6F1AF1D220D0D6C800147898 /* CustomTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F1AF1D120D0D6C800147898 /* CustomTableViewCell.swift */; };
 		6F1AF1D420D0E1BC00147898 /* ThemeData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F1AF1D320D0E1BC00147898 /* ThemeData.swift */; };
+		6F1AF1D620D23DB500147898 /* GraphTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F1AF1D520D23DB500147898 /* GraphTableViewController.swift */; };
 		6FABA5D920CE4297009DC835 /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FABA5D820CE4297009DC835 /* SettingViewController.swift */; };
-		6FABA5DD20CE59B2009DC835 /* GraphViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FABA5DC20CE59B2009DC835 /* GraphViewController.swift */; };
 		6FC46E1320C64DF800DAA40D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FC46E1220C64DF800DAA40D /* AppDelegate.swift */; };
 		6FC46E1520C64DF800DAA40D /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FC46E1420C64DF800DAA40D /* MainViewController.swift */; };
 		6FC46E1820C64DF800DAA40D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6FC46E1620C64DF800DAA40D /* Main.storyboard */; };
@@ -48,8 +48,8 @@
 		6F1AF1CF20D0C5FC00147898 /* ThemeTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeTableViewController.swift; sourceTree = "<group>"; };
 		6F1AF1D120D0D6C800147898 /* CustomTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CustomTableViewCell.swift; path = "Eat-it/View/CustomTableViewCell.swift"; sourceTree = SOURCE_ROOT; };
 		6F1AF1D320D0E1BC00147898 /* ThemeData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeData.swift; sourceTree = "<group>"; };
+		6F1AF1D520D23DB500147898 /* GraphTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphTableViewController.swift; sourceTree = "<group>"; };
 		6FABA5D820CE4297009DC835 /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
-		6FABA5DC20CE59B2009DC835 /* GraphViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GraphViewController.swift; sourceTree = "<group>"; };
 		6FC46E0F20C64DF800DAA40D /* Eat-it.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Eat-it.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		6FC46E1220C64DF800DAA40D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		6FC46E1420C64DF800DAA40D /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
@@ -144,7 +144,7 @@
 				6FC46E3920C8F76300DAA40D /* PostViewController.swift */,
 				6FABA5D820CE4297009DC835 /* SettingViewController.swift */,
 				6F1AF1CF20D0C5FC00147898 /* ThemeTableViewController.swift */,
-				6FABA5DC20CE59B2009DC835 /* GraphViewController.swift */,
+				6F1AF1D520D23DB500147898 /* GraphTableViewController.swift */,
 				6F1AF1D120D0D6C800147898 /* CustomTableViewCell.swift */,
 			);
 			path = "View Controller";
@@ -307,6 +307,7 @@
 			files = (
 				6FC46E3A20C8F76300DAA40D /* PostViewController.swift in Sources */,
 				6F1AF1D420D0E1BC00147898 /* ThemeData.swift in Sources */,
+				6F1AF1D620D23DB500147898 /* GraphTableViewController.swift in Sources */,
 				6FC46E3220C66B1E00DAA40D /* MealCell.swift in Sources */,
 				6FC46E2D20C6565300DAA40D /* Post.swift in Sources */,
 				1EB2D74C20D2140900933CAF /* Transitions.swift in Sources */,
@@ -317,7 +318,6 @@
 				6F1AF1D220D0D6C800147898 /* CustomTableViewCell.swift in Sources */,
 				6FC46E1520C64DF800DAA40D /* MainViewController.swift in Sources */,
 				6F1AF1D020D0C5FC00147898 /* ThemeTableViewController.swift in Sources */,
-				6FABA5DD20CE59B2009DC835 /* GraphViewController.swift in Sources */,
 				6FC46E1320C64DF800DAA40D /* AppDelegate.swift in Sources */,
 				6FC46E3620C66B3100DAA40D /* PostCell.swift in Sources */,
 			);
@@ -465,12 +465,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = G4MM77V7NH;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = "$(SRCROOT)/Eat-it/Assets/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -488,12 +489,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = G4MM77V7NH;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = "$(SRCROOT)/Eat-it/Assets/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

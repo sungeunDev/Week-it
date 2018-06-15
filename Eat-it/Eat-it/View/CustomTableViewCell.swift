@@ -9,29 +9,29 @@
 import UIKit
 
 class CustomTableViewCell: UITableViewCell {
-
-    //themeCell
-    @IBOutlet weak var themeImageView: UIImageView!
-    @IBOutlet weak var themeTitleLabel: UILabel!
+  
+  //themeCell
+  @IBOutlet weak var themeImageView: UIImageView!
+  @IBOutlet weak var themeTitleLabel: UILabel!
+  
+  //graphCell
+  @IBOutlet weak var graphDateLabel: UILabel!
+  @IBOutlet weak var graphCountLabel: UILabel!
+  
+  //graphMonthlyCell
+  @IBOutlet weak var graphMonthlyDateLabel: UILabel!
+  @IBOutlet weak var graphMonthlyCountLabel: UILabel!
+  
+  
+  override func awakeFromNib() {
+    super.awakeFromNib()
+    // Initialization code
+  }
+  
+  override func setSelected(_ selected: Bool, animated: Bool) {
+    super.setSelected(selected, animated: animated)
     
-    //graphCell
-    @IBOutlet weak var graphDateLabel: UILabel!
-    @IBOutlet weak var graphCountLabel: UILabel!
-    
-    //graphMonthlyCell
-    @IBOutlet weak var graphMonthlyDateLabel: UILabel!
-    @IBOutlet weak var graphMonthlyCountLabel: UILabel!
-    
-    
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
-    }
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
-    }
-
+    // Configure the view for the selected state
+  }
+  
 }

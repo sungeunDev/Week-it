@@ -9,15 +9,15 @@
 import UIKit
 
 class DayCell: UICollectionViewCell {
-    @IBOutlet private weak var dayLabel: UILabel!
-    public var dayData: String = "" {
-        didSet {
-            dayLabel.text = dayData
-        }
+  @IBOutlet private weak var dayLabel: UILabel!
+  public var dayData: String = "" {
+    didSet {
+      dayLabel.text = dayData
     }
+  }
+  
+  override func awakeFromNib() {
     
-    override func awakeFromNib() {
-        
-    }
-    
+  }
+  
 }

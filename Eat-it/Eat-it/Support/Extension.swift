@@ -58,4 +58,13 @@ extension Date {
         
         return Int(str)!
     }
+  
+  public func transformIntOnlyMonth(from date: Date) -> Int {
+    let dateFormatter = DateFormatter()
+    
+    dateFormatter.dateFormat = "yyyyMM00"
+    let str = dateFormatter.string(from: date)
+    
+    return Int(str)!
+  }
 }

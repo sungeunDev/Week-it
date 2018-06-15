@@ -9,15 +9,15 @@
 import UIKit
 
 class MealCell: UICollectionViewCell {
-    
-    @IBOutlet var mealLabel: UILabel!
-    public var mealData: String? {
-        didSet {
-            mealLabel.text = mealData!
-        }
+  
+  @IBOutlet var mealLabel: UILabel!
+  public var mealData: String? {
+    didSet {
+      mealLabel.text = mealData!
     }
+  }
+  
+  override func awakeFromNib() {
     
-    override func awakeFromNib() {
-        
-    }
+  }
 }
