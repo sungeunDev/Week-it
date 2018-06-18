@@ -46,6 +46,6 @@ class PostCell: UICollectionViewCell {
     let colorSet = [ColorSet.basic, ColorSet.helsinki, ColorSet.marseille, ColorSet.newyork, ColorSet.horizon, ColorSet.orange, ColorSet.heaven]
     let currentColor = colorSet[currentTheme].colors
     
-    return currentColor[idx]
+    return currentColor[idx] // 0 - Good, 1 - Soso, 2 - Bad , 3 - BackgroundColor
   }
 }

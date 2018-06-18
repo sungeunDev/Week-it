@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import RealmSwift
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -15,11 +16,29 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
   //    let transitionCoordinator = TransitionCoordinator()
   
   func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+      
     // Override point for customization after application launch.
     //        let board = UIStoryboard(name: "Main", bundle: nil)
     //        let main = board.instantiateInitialViewController()
     //        let nav = main?.navigationController
     //        nav?.delegate = transitionCoordinator
+    
+    
+    /***************************************************
+      REALM CONFIGULATION
+     ***************************************************/
+    
+//    let fileURL = Bundle.main.url(forResource: "MyBundleData", withExtension: "realm")
+//    let config = Realm.Configuration(fileURL: fileURL, readOnly: true)
+//
+//    // Open the Realm with the configuration
+//    let realm = try! Realm(configuration: config)
+//
+//    let date = Date().trasformInt(from: Date())
+//
+//
+//    // Read some data from the bundled Realm
+//    let results = realm.objects(Post.self).filter("dataText == %@", date)
     
     return true
   }
@@ -32,6 +51,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
   func applicationDidEnterBackground(_ application: UIApplication) {
     // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
     // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
+    
+//    let appIdentifier = "group.com.middd.TodayExtensionSharingDefaults"
+//    let fileManager = FileManager.default
+//    if let directory = fileManager.containerURL(forSecurityApplicationGroupIdentifier: appIdentifier) {
+//      let realmPath = directory.appendingPathComponent("db.realm")
+//      Realm.Configuration.defaultConfiguration = realmPath
+      
+    
+//    }
   }
   
   func applicationWillEnterForeground(_ application: UIApplication) {
@@ -45,7 +73,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
   func applicationWillTerminate(_ application: UIApplication) {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
   }
-  
-  
+
 }
 

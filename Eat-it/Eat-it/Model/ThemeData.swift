@@ -47,3 +47,17 @@ struct ColorSet {
   static var heaven = ColorSet(id: 6, name: "heaven", colors: ["b6e2e6", "9ddae3", "93cad6", "f5f5f5"])
   
 }
+
+extension ColorSet: CustomStringConvertible {
+  
+  public var description: String {
+    
+    var str = ""
+    let colors = self.colors
+    for color in colors {
+      str += color.description + "/"
+    }
+    
+    return str
+  }
+}

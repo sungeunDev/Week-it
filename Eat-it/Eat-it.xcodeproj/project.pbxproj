@@ -79,6 +79,9 @@
 		6F1B930B20D75F9B0011BA2A /* TodayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayViewController.swift; sourceTree = "<group>"; };
 		6F1B930E20D75F9B0011BA2A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainInterface.storyboard; sourceTree = "<group>"; };
 		6F1B931020D75F9B0011BA2A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		6F1B931B20D7BBC10011BA2A /* Pods_Eat_it.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Pods_Eat_it.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		6F1B931D20D7E5CE0011BA2A /* Eat-itTodayExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Eat-itTodayExtension.entitlements"; sourceTree = "<group>"; };
+		6F1B931E20D7E5D50011BA2A /* Eat-it.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Eat-it.entitlements"; sourceTree = "<group>"; };
 		6FABA5D820CE4297009DC835 /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
 		6FC46E0F20C64DF800DAA40D /* Eat-it.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Eat-it.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		6FC46E1220C64DF800DAA40D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -120,6 +123,7 @@
 		08CB7AC6DBCD8F09AE54AEDC /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				6F1B931B20D7BBC10011BA2A /* Pods_Eat_it.framework */,
 				C50A0A2E30E78B17C3D300BE /* Pods_Eat_it.framework */,
 				6F1B930820D75F9B0011BA2A /* NotificationCenter.framework */,
 			);
@@ -129,6 +133,7 @@
 		6F1B930A20D75F9B0011BA2A /* Eat-itTodayExtension */ = {
 			isa = PBXGroup;
 			children = (
+				6F1B931D20D7E5CE0011BA2A /* Eat-itTodayExtension.entitlements */,
 				6F1B930B20D75F9B0011BA2A /* TodayViewController.swift */,
 				6F1B930D20D75F9B0011BA2A /* MainInterface.storyboard */,
 				6F1B931020D75F9B0011BA2A /* Info.plist */,
@@ -179,6 +184,7 @@
 		6FC46E1120C64DF800DAA40D /* Eat-it */ = {
 			isa = PBXGroup;
 			children = (
+				6F1B931E20D7E5D50011BA2A /* Eat-it.entitlements */,
 				6FABA5DA20CE480E009DC835 /* Assets */,
 				6FC46E3020C6569600DAA40D /* Support */,
 				6FC46E2E20C6565C00DAA40D /* Model */,
@@ -293,9 +299,19 @@
 				TargetAttributes = {
 					6F1B930620D75F9A0011BA2A = {
 						CreatedOnToolsVersion = 9.4.1;
+						SystemCapabilities = {
+							com.apple.ApplicationGroups.iOS = {
+								enabled = 1;
+							};
+						};
 					};
 					6FC46E0E20C64DF800DAA40D = {
 						CreatedOnToolsVersion = 9.4;
+						SystemCapabilities = {
+							com.apple.ApplicationGroups.iOS = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -453,9 +469,11 @@
 /* Begin XCBuildConfiguration section */
 		6F1B931420D75F9B0011BA2A /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9598529702C10E91B2A8E8A8 /* Pods-Eat-it.debug.xcconfig */;
 			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = "Eat-itTodayExtension/Eat-itTodayExtension.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = G4MM77V7NH;
+				DEVELOPMENT_TEAM = WXH5CKM9TX;
 				INFOPLIST_FILE = "Eat-itTodayExtension/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -472,9 +490,11 @@
 		};
 		6F1B931520D75F9B0011BA2A /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 01509518E19B339B9E2064B1 /* Pods-Eat-it.release.xcconfig */;
 			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = "Eat-itTodayExtension/Eat-itTodayExtension.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = G4MM77V7NH;
+				DEVELOPMENT_TEAM = WXH5CKM9TX;
 				INFOPLIST_FILE = "Eat-itTodayExtension/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -609,8 +629,9 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = "Eat-it/Eat-it.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = G4MM77V7NH;
+				DEVELOPMENT_TEAM = WXH5CKM9TX;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -634,8 +655,9 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = "Eat-it/Eat-it.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = G4MM77V7NH;
+				DEVELOPMENT_TEAM = WXH5CKM9TX;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",

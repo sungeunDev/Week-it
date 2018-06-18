@@ -42,6 +42,8 @@ class MainViewController: UIViewController {
   
   // MARK: - LifeCycle
   override func viewDidLoad() {
+    print("이게 호출?")
+    
     super.viewDidLoad()
     print(NSHomeDirectory())
     
@@ -68,8 +70,10 @@ class MainViewController: UIViewController {
     print("\n---------- [ viewWillAppear ] -----------\n")
     
     // fetch this week post data & sort
-    posts = makePostMatrix()
+    posts = makePostMatrix(date: self.date)
   
+    // save UserDefault Today's Post
+    saveTodayExtensionData()
   }
 }
 
@@ -77,7 +81,7 @@ class MainViewController: UIViewController {
 extension MainViewController {
   
   // current date에 해당하는 주의 데이터만 fetch
-  func fetchThisWeekPosts() -> Results<Post> {
+  func fetchThisWeekPosts(date: Date) -> Results<Post> {
     
     // 전체 Post Data fetch
     let realm = try! Realm()
@@ -111,10 +115,10 @@ extension MainViewController {
   
   
   // 3 * 5 개의 배열로 Post 생성
-  func makePostMatrix() -> Array<Post?> {
+  func makePostMatrix(date: Date) -> Array<Post?> {
     
     var postArray = Array<Post?>(repeating: nil, count: meal.count * day.count) // 빈 배열 생성
-    let thisWeekPosts = fetchThisWeekPosts() // 금주의 Post data fetch
+    let thisWeekPosts = fetchThisWeekPosts(date: date) // 금주의 Post data fetch
     let currentDate = self.date.trasformInt(from: self.date)
     
     // 알맞은 위치에 포스트 삽입
@@ -127,6 +131,75 @@ extension MainViewController {
     }
     return postArray
   }
+  
+  
+  // MARK: - TodayExtension
+  func saveTodayExtensionData() {
+    let dateText = Date().trasformInt(from: Date())
+    let appIdentifier = "group.com.middd.TodayExtensionSharingDefaults"
+    
+    // 오늘의 포스트 데이터 (아침, 점심, 저녁)
+    guard let realm = try? Realm(),
+      let shareDefaults = UserDefaults(suiteName: appIdentifier) else { return }
+    let todayPosts = realm.objects(Post.self).filter("dateText == %@", dateText).sorted(byKeyPath: "mealTime", ascending: true)
+    
+    var array: [String] = Array<String>(repeating: "-", count: 3)
+    var dic: [[String:Int]] = [[:], [:], [:]]  // [[mealTitle : rating]]
+    
+    for post in todayPosts {
+      switch post.mealTime {
+      case 0:
+        array[0] = post.mealTitle
+        dic[0] = [array[0]:post.rating]
+      case 1:
+        array[1] = post.mealTitle
+        dic[1] = [array[1]:post.rating]
+      default:
+        array[2] = post.mealTitle
+        dic[2] = [array[2]:post.rating]
+      }
+    }
+    
+    
+    // 이번 주의 Good 개수, 비율 데이터
+    let thisWeekPosts = makePostMatrix(date: Date())
+    
+    var count = 0
+    var isNotEmpty = 0
+    
+    for post in thisWeekPosts {
+      if post?.rating == 0 {
+        count += 1
+      }
+      if post != nil {
+        isNotEmpty += 1
+      }
+    }
+    
+    let goodPercent = Int(Double(count)/Double(isNotEmpty)*100)
+    let ratingIsGood: [Int] = [count, isNotEmpty, goodPercent]
+    
+    
+    // 현재 테마 컬러셋 데이터
+    let themeKey = "ThemeNameRawValue"
+    let currentTheme = UserDefaults.standard.value(forKey: themeKey) as? Int ?? 0
+    
+    let colorSet = [ColorSet.basic, ColorSet.helsinki, ColorSet.marseille, ColorSet.newyork, ColorSet.horizon, ColorSet.orange, ColorSet.heaven]
+    let currentColor = colorSet[currentTheme]
+    
+    print("\n---------- [ color description ] -----------\n")
+    print(currentColor.description)
+//    print(currentColor)
+    
+    
+    // 공유 UserDefault에 저장
+    shareDefaults.set(dic, forKey: "todayPosts")
+    shareDefaults.set(ratingIsGood, forKey: "todayPostsRating")
+//    shareDefaults.set(currentColor, forKey: "themeColor")
+  }
+  
+  
+  
   
   // MARK: - Gesture
   @IBAction private func pressGesture(_ sender: UILongPressGestureRecognizer) {
@@ -396,7 +469,7 @@ extension MainViewController {
     self.date = Calendar.current.date(byAdding: dateComponent, to: date)!
     currentDateLabel(input: self.date)
     
-    posts = makePostMatrix()
+    posts = makePostMatrix(date: self.date)
   }
   
   @IBAction private func rightBtn() {
@@ -404,7 +477,7 @@ extension MainViewController {
     date = Date(timeInterval: TimeInterval(nextWeek), since: date)
     currentDateLabel(input: date)
     
-    posts = makePostMatrix()
+    posts = makePostMatrix(date: self.date)
   }
   
 }
@@ -477,7 +550,7 @@ extension MainViewController {
     date = changeToMonday(of: date)
     currentDateLabel(input: self.date)
     
-    self.posts = makePostMatrix()
+    self.posts = makePostMatrix(date: self.date)
   }
   
 }
