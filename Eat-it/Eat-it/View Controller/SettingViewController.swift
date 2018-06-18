@@ -12,21 +12,14 @@ class SettingViewController: UITableViewController {
   
   override func viewDidLoad() {
     super.viewDidLoad()
+  
+    
     
   }
-}
-
-
-extension SettingViewController {
   
-  //    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-  //        <#code#>
-  //    }
-  //    
-  //    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-  //        <#code#>
-  //    }
-  
+  override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    tableView.deselectRow(at: indexPath, animated: true)
+  }
   
 }
 

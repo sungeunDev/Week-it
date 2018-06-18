@@ -45,13 +45,17 @@ class MainViewController: UIViewController {
     super.viewDidLoad()
     print(NSHomeDirectory())
     
+    // mealMatrix background color accroing to theme
+    mealMatrixView.backgroundColor = mealMatrixViewBackgroundColor()
+    
+    // this week of monday date & label setting
+    date = changeToMonday(of: date)
+    currentDateLabel(input: date)
+    
+
+    
     // mealMatrixView.layer.cornerRadius = 7
     navigationController?.delegate = transition
-    
-    // CollectionView Tag
-    mealTimeCollectionView.tag = 0
-    dayCollectionView.tag = 1
-    postCollectionView.tag = 2
     
     // Navigation Bar UI
     naviBarTitleLayout()
@@ -61,15 +65,11 @@ class MainViewController: UIViewController {
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
     
-    // mealMatrix background color accroing to theme
-    mealMatrixView.backgroundColor = mealMatrixViewBackgroundColor()
-    
-    // this week of monday date & label setting
-    date = changeToMonday(of: date)
-    currentDateLabel(input: date)
+    print("\n---------- [ viewWillAppear ] -----------\n")
     
     // fetch this week post data & sort
     posts = makePostMatrix()
+  
   }
 }
 

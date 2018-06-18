@@ -21,19 +21,22 @@ class PostViewController: UITableViewController {
   @IBOutlet private weak var menuTextField: UITextField!
   @IBOutlet private weak var seg: UISegmentedControl!
   
+  // MARK: - LIFE CYCLE
   override func viewDidLoad() {
     super.viewDidLoad()
     
     configuration()
     
     menuTextField.delegate = self
+    menuTextField.becomeFirstResponder()
   }
   
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
-    menuTextField.becomeFirstResponder()
+    
   }
   
+  // MARK: - CONFIGURATION
   func configuration() {
     if let postData = postData {
       menuTextField.text = postData.mealTitle
@@ -52,6 +55,8 @@ class PostViewController: UITableViewController {
     }
   }
   
+  
+  // MARK: - SAVE ACTION
   @IBAction private func saveBtn() {
     menuTextField.resignFirstResponder()
     
@@ -60,15 +65,27 @@ class PostViewController: UITableViewController {
   }
   
   func savePost() {
-    if let _ = postData {
-      updateTask(title: menuTextField.text!, rating: seg.selectedSegmentIndex)
-    } else {
-      let realm = try! Realm()
-      let post = Post(date: date!, rating: seg.selectedSegmentIndex, mealTime: mealTime!, mealTitle: menuTextField.text!)
-      saveMonthlyNumOfPost(date: date!)
-      try! realm.write {
-        realm.add(post)
+    if menuTextField.text?.count != 0 {
+      if let _ = postData {
+        updateTask(title: menuTextField.text!, rating: seg.selectedSegmentIndex)
+      } else {
+        let realm = try! Realm()
+        let post = Post(date: date!, rating: seg.selectedSegmentIndex, mealTime: mealTime!, mealTitle: menuTextField.text!)
+        saveMonthlyNumOfPost(date: date!)
+        
+        try! realm.write {
+          realm.add(post)
+        }
       }
+      
+    } else {
+      let alert = UIAlertController(title: "Post fail", message:
+        """
+        메뉴를 적어주세요.
+        """, preferredStyle: .alert)
+      let action = UIAlertAction(title: "확인", style: .default, handler: nil)
+      alert.addAction(action)
+      self.present(alert, animated: true, completion: nil)
     }
   }
   
@@ -110,14 +127,47 @@ class PostViewController: UITableViewController {
     }
   }
   
-  
-  func popVC() {
-    self.navigationController?.popViewController(animated: true)
+  // MARK: - DELETE ACTION
+  @IBAction private func deleteBtn() {
+    
+    if let realm = try? Realm(),
+      let id = self.postData?.postId,
+      let post = realm.object(ofType: Post.self, forPrimaryKey: id),
+      let month = Int(String(post.dateText).dropLast(2) + "00"),
+      let numOfPost = realm.object(ofType: NumOfPost.self, forPrimaryKey: month) {
+      
+      try! realm.write {
+//        delete post
+        print("\n---------- [ 삭제 ] -----------\n")
+        realm.delete(post)
+        
+//        delete number of post
+        if numOfPost.numOfpost == 1 {
+          realm.delete(numOfPost)
+        } else {
+          numOfPost.numOfpost -= 1
+        }
+      }
+      popVC()
+    } else {
+      let alert = UIAlertController(title: "Delete fail", message:
+        """
+        삭제 할 포스트가 없습니다.
+        포스트를 등록해 주세요.
+        """, preferredStyle: .alert)
+      let action = UIAlertAction(title: "확인", style: .default, handler: nil)
+      alert.addAction(action)
+      self.present(alert, animated: true, completion: nil)
+    }
+    
   }
+  
+  
+  
   
 }
 
-
+// MARK: TextField Delegate
 extension PostViewController: UITextFieldDelegate {
   
   func textFieldShouldReturn(_ textField: UITextField) -> Bool {
@@ -127,5 +177,9 @@ extension PostViewController: UITextFieldDelegate {
     popVC()
     
     return true
+  }
+  
+  func popVC() {
+    self.navigationController?.popViewController(animated: true)
   }
 }

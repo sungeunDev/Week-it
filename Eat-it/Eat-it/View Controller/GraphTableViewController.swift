@@ -27,18 +27,13 @@ class GraphTableViewController: UITableViewController {
     
     let realm = try! Realm()
     let numOfPost = realm.objects(NumOfPost.self)
-
     var all = 0
-    
     for num in numOfPost {
-      
       all += num.numOfpost
     }
-    print(all)
     
     // date 순으로 sort
-    return numOfPost.sorted(byKeyPath: "dateInt", ascending: false
-    )
+    return numOfPost.sorted(byKeyPath: "dateInt", ascending: false)
   }
   
 
@@ -72,7 +67,7 @@ class GraphTableViewController: UITableViewController {
     
     if indexPath.section == 0 {
       guard let posts = numOfposts else { return graphCell }
-      graphCell.graphDateLabel.text = "All"
+      graphCell.graphDateLabel.text = "All Posts"
       
       var all = 0
       for num in posts {
@@ -83,10 +78,20 @@ class GraphTableViewController: UITableViewController {
       return graphCell
     } else {
       guard let posts = numOfposts else { return graphMonthlyCell }
-      graphMonthlyCell.graphMonthlyDateLabel.text = String(posts[indexPath.row].dateInt)
-      graphMonthlyCell.graphMonthlyCountLabel.text = String(posts[indexPath.row].numOfpost)
+      
+      let dateStr = String(posts[indexPath.row].dateInt)
+      let year = dateStr.dropLast(4)
+      let month = dateStr.dropFirst(4).dropLast(2)
+      
+      graphMonthlyCell.graphMonthlyDateLabel.text = "\(year)년 \(month)월"
+      graphMonthlyCell.graphMonthlyCountLabel.text = "\(String(posts[indexPath.row].numOfpost))개"
       return graphMonthlyCell
     }
+  }
+  
+  
+  override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+
   }
   
   
