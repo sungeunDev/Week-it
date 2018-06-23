@@ -16,16 +16,23 @@ class PostViewController: UITableViewController {
   
   public var postData: Post?
   
-  @IBOutlet private weak var mealLabel: UILabel!
   @IBOutlet private weak var dateLabel: UILabel!
+  
+  @IBOutlet weak var mealImageView: UIImageView!
+  @IBOutlet private weak var mealLabel: UILabel!
+  
   @IBOutlet private weak var menuTextField: UITextField!
   @IBOutlet private weak var seg: UISegmentedControl!
+  
+  let currentTheme: [UIColor] = UIColor().currentTheme()
+  
   
   // MARK: - LIFE CYCLE
   override func viewDidLoad() {
     super.viewDidLoad()
     
     configuration()
+    seg.tintColor = currentTheme[seg.selectedSegmentIndex]
     
     menuTextField.delegate = self
     menuTextField.becomeFirstResponder()
@@ -41,6 +48,7 @@ class PostViewController: UITableViewController {
     if let postData = postData {
       menuTextField.text = postData.mealTitle
       seg.selectedSegmentIndex = postData.rating
+      
     }
     
     let format = DateFormatter()
@@ -50,9 +58,13 @@ class PostViewController: UITableViewController {
       let date = date {
       
       let mealTime = ["아침", "점심", "저녁"]
+      let mealImage = [#imageLiteral(resourceName: "mealTime_morning"), #imageLiteral(resourceName: "mealTime_noon"), #imageLiteral(resourceName: "mealTime_night")]
       mealLabel.text = mealTime[mealIdx]
+      mealImageView.image = mealImage[mealIdx]
+      
       dateLabel.text = format.string(from: date)
     }
+    
   }
   
   
@@ -163,6 +175,10 @@ class PostViewController: UITableViewController {
   }
   
   
+  @IBAction func changeSegTintColor(_ sender: UISegmentedControl) {
+    
+    sender.tintColor = self.currentTheme[sender.selectedSegmentIndex]
+  }
   
   
 }
@@ -183,3 +199,4 @@ extension PostViewController: UITextFieldDelegate {
     self.navigationController?.popViewController(animated: true)
   }
 }
+

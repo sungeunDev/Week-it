@@ -13,16 +13,18 @@ import RealmSwift
 
 class TodayViewController: UIViewController, NCWidgetProviding {
   
+  @IBOutlet weak var viewMorning: UIView!
+  @IBOutlet weak var viewNoon: UIView!
+  @IBOutlet weak var viewNight: UIView!
   
-  @IBOutlet weak var testView: UIView!
-  @IBOutlet weak var testViewSub: UIView!
+  @IBOutlet weak var subViewMorning: UIView!
+  @IBOutlet weak var subViewNoon: UIView!
+  @IBOutlet weak var subViewNight: UIView!
   
-  // 아침, 점심, 저녁
-  @IBOutlet weak var meal1Label: UILabel!
-  @IBOutlet weak var meal2Label: UILabel!
-  @IBOutlet weak var meal3Label: UILabel!
+  @IBOutlet weak var labelMorning: UILabel!
+  @IBOutlet weak var labelNoon: UILabel!
+  @IBOutlet weak var labelNight: UILabel!
   
-  @IBOutlet weak var goodPercentLabel: UILabel!
   
   let date = Date()
   
@@ -42,23 +44,34 @@ class TodayViewController: UIViewController, NCWidgetProviding {
 //        meal2Label.text = todayPosts[1]
 //        meal3Label.text = todayPosts[2]
         
-        goodPercentLabel.text = String(ratingIsGood[2]) + "%"
-        print(ratingIsGood)
+//        goodPercentLabel.text = String(ratingIsGood[2]) + "%"
+//        print(ratingIsGood)
       }
       
       
       
       
-      testView.layer.cornerRadius = 7
-      testViewSub.layer.borderWidth = 1
-      testViewSub.layer.borderColor = UIColor.darkGray.cgColor
+//      deta.layer.cornerRadius = 7
 
-    }
+      
+  }
+  
+  
+  override func viewDidLayoutSubviews() {
+    super.viewDidLayoutSubviews()
     
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    let radius: CGFloat = 7
+    viewMorning.layer.cornerRadius = radius
+    viewNoon.layer.cornerRadius = radius
+    viewNight.layer.cornerRadius = radius
+    
+    subViewMorning.cornerRoundOnlyTop(radius: radius)
+    subViewNoon.cornerRoundOnlyTop(radius: radius)
+    subViewNight.cornerRoundOnlyTop(radius: radius)
     }
+  
+  
+
     
     func widgetPerformUpdate(completionHandler: (@escaping (NCUpdateResult) -> Void)) {
         // Perform any setup necessary in order to update the view.
@@ -66,11 +79,13 @@ class TodayViewController: UIViewController, NCWidgetProviding {
         // If an error is encountered, use NCUpdateResult.Failed
         // If there's no update required, use NCUpdateResult.NoData
         // If there's an update, use NCUpdateResult.NewData
-        
+  
+      
+
         completionHandler(NCUpdateResult.newData)
     }
-    
 }
+
 
 
 // MARK: - Fetch Realm Data
@@ -78,7 +93,7 @@ extension TodayViewController {
   
   
   func fetchTodayPost() {
-    let dateText = date.trasformInt(from: date)
+//    let dateText = date.trasformInt(from: date)
     
 //    if let realm = try? Realm() {
 //      var posts = realm.objects(Post.self)
@@ -103,5 +118,22 @@ extension Date {
     let str = dateFormatter.string(from: date)
     
     return Int(str)!
+  }
+}
+
+extension UIView {
+  
+  public func cornerRoundOnlyTop(radius: CGFloat) {
+    if #available(iOS 11.0, *){
+      self.clipsToBounds = false
+      self.layer.cornerRadius = radius
+      self.layer.maskedCorners = [.layerMaxXMinYCorner, .layerMinXMinYCorner]
+    }else{
+      let rectShape = CAShapeLayer()
+      rectShape.bounds = self.frame
+      rectShape.position = self.center
+      rectShape.path = UIBezierPath(roundedRect: self.bounds, byRoundingCorners: [.topLeft, .topRight], cornerRadii: CGSize(width: radius*2, height: radius*2)).cgPath
+      self.layer.mask = rectShape
+    }
   }
 }

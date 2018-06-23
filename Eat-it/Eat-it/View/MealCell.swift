@@ -10,10 +10,12 @@ import UIKit
 
 class MealCell: UICollectionViewCell {
   
-  @IBOutlet var mealLabel: UILabel!
-  public var mealData: String? {
-    didSet {
-      mealLabel.text = mealData!
+  @IBOutlet var mealTimeImageView: UIImageView!
+  let mealTimeImage = [#imageLiteral(resourceName: "mealTime_morning"), #imageLiteral(resourceName: "mealTime_noon"), #imageLiteral(resourceName: "mealTime_night")]
+  
+  public var mealData: Int? {
+    willSet {
+      mealTimeImageView.image = mealTimeImage[newValue!]
     }
   }
   

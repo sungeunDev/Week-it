@@ -16,7 +16,7 @@ final class TransitionCoordinator: NSObject, UINavigationControllerDelegate {
                             to toVC: UIViewController) -> UIViewControllerAnimatedTransitioning? {
     
     if let from = fromVC as? MainViewController, let cellFrame = from.selectedCellRect, let cellImg = from.selectedCellImg, let to = toVC as? PostViewController, operation == .push {
-      return MainToPostAnimator(startFrame: cellFrame, cellImage: cellImg)
+//      return MainToPostAnimator(startFrame: cellFrame, cellImage: cellImg)
     }
     
     return nil

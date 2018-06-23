@@ -17,6 +17,11 @@
 		6F1B930C20D75F9B0011BA2A /* TodayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F1B930B20D75F9B0011BA2A /* TodayViewController.swift */; };
 		6F1B930F20D75F9B0011BA2A /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6F1B930D20D75F9B0011BA2A /* MainInterface.storyboard */; };
 		6F1B931320D75F9B0011BA2A /* Eat-itTodayExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 6F1B930720D75F9A0011BA2A /* Eat-itTodayExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		6F1B932120D906CC0011BA2A /* Montserrat-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6F1B931F20D906CA0011BA2A /* Montserrat-SemiBold.ttf */; };
+		6F1B932220D906CC0011BA2A /* Montserrat-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6F1B932020D906CB0011BA2A /* Montserrat-Bold.ttf */; };
+		6F1B932C20DA07F40011BA2A /* mealTime_morning.png in Resources */ = {isa = PBXBuildFile; fileRef = 6F1B932920DA07F30011BA2A /* mealTime_morning.png */; };
+		6F1B932D20DA07F40011BA2A /* mealTime_noon.png in Resources */ = {isa = PBXBuildFile; fileRef = 6F1B932A20DA07F30011BA2A /* mealTime_noon.png */; };
+		6F1B932E20DA07F40011BA2A /* mealTime_night.png in Resources */ = {isa = PBXBuildFile; fileRef = 6F1B932B20DA07F40011BA2A /* mealTime_night.png */; };
 		6FABA5D920CE4297009DC835 /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FABA5D820CE4297009DC835 /* SettingViewController.swift */; };
 		6FC46E1320C64DF800DAA40D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FC46E1220C64DF800DAA40D /* AppDelegate.swift */; };
 		6FC46E1520C64DF800DAA40D /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FC46E1420C64DF800DAA40D /* MainViewController.swift */; };
@@ -82,6 +87,11 @@
 		6F1B931B20D7BBC10011BA2A /* Pods_Eat_it.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Pods_Eat_it.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6F1B931D20D7E5CE0011BA2A /* Eat-itTodayExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Eat-itTodayExtension.entitlements"; sourceTree = "<group>"; };
 		6F1B931E20D7E5D50011BA2A /* Eat-it.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Eat-it.entitlements"; sourceTree = "<group>"; };
+		6F1B931F20D906CA0011BA2A /* Montserrat-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-SemiBold.ttf"; sourceTree = "<group>"; };
+		6F1B932020D906CB0011BA2A /* Montserrat-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-Bold.ttf"; sourceTree = "<group>"; };
+		6F1B932920DA07F30011BA2A /* mealTime_morning.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mealTime_morning.png; sourceTree = "<group>"; };
+		6F1B932A20DA07F30011BA2A /* mealTime_noon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mealTime_noon.png; sourceTree = "<group>"; };
+		6F1B932B20DA07F40011BA2A /* mealTime_night.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mealTime_night.png; sourceTree = "<group>"; };
 		6FABA5D820CE4297009DC835 /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
 		6FC46E0F20C64DF800DAA40D /* Eat-it.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Eat-it.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		6FC46E1220C64DF800DAA40D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -133,6 +143,9 @@
 		6F1B930A20D75F9B0011BA2A /* Eat-itTodayExtension */ = {
 			isa = PBXGroup;
 			children = (
+				6F1B932A20DA07F30011BA2A /* mealTime_noon.png */,
+				6F1B932B20DA07F40011BA2A /* mealTime_night.png */,
+				6F1B932920DA07F30011BA2A /* mealTime_morning.png */,
 				6F1B931D20D7E5CE0011BA2A /* Eat-itTodayExtension.entitlements */,
 				6F1B930B20D75F9B0011BA2A /* TodayViewController.swift */,
 				6F1B930D20D75F9B0011BA2A /* MainInterface.storyboard */,
@@ -144,6 +157,8 @@
 		6FABA5DA20CE480E009DC835 /* Assets */ = {
 			isa = PBXGroup;
 			children = (
+				6F1B932020D906CB0011BA2A /* Montserrat-Bold.ttf */,
+				6F1B931F20D906CA0011BA2A /* Montserrat-SemiBold.ttf */,
 				6FC46E1920C64DF900DAA40D /* Assets.xcassets */,
 				6FC46E1620C64DF800DAA40D /* Main.storyboard */,
 				6FC46E1B20C64DF900DAA40D /* LaunchScreen.storyboard */,
@@ -339,7 +354,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6F1B932C20DA07F40011BA2A /* mealTime_morning.png in Resources */,
+				6F1B932E20DA07F40011BA2A /* mealTime_night.png in Resources */,
 				6F1B930F20D75F9B0011BA2A /* MainInterface.storyboard in Resources */,
+				6F1B932D20DA07F40011BA2A /* mealTime_noon.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -347,8 +365,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6F1B932220D906CC0011BA2A /* Montserrat-Bold.ttf in Resources */,
 				6FC46E1D20C64DF900DAA40D /* LaunchScreen.storyboard in Resources */,
 				6FC46E1A20C64DF900DAA40D /* Assets.xcassets in Resources */,
+				6F1B932120D906CC0011BA2A /* Montserrat-SemiBold.ttf in Resources */,
 				6FC46E1820C64DF800DAA40D /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -637,7 +657,7 @@
 					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = "$(SRCROOT)/Eat-it/Assets/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -663,7 +683,7 @@
 					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = "$(SRCROOT)/Eat-it/Assets/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

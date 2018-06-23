@@ -21,6 +21,7 @@ class MainViewController: UIViewController {
   @IBOutlet private weak var dateLabel: UILabel!
   
   // Data
+
   let meal = ["아침", "점심", "저녁"]
   let day = ["Mon", "Tue", "Wed", "Thu", "Fri"]
   
@@ -42,13 +43,10 @@ class MainViewController: UIViewController {
   
   // MARK: - LifeCycle
   override func viewDidLoad() {
-    print("이게 호출?")
-    
     super.viewDidLoad()
     print(NSHomeDirectory())
     
-    // mealMatrix background color accroing to theme
-    mealMatrixView.backgroundColor = mealMatrixViewBackgroundColor()
+    
     
     // this week of monday date & label setting
     date = changeToMonday(of: date)
@@ -74,6 +72,9 @@ class MainViewController: UIViewController {
   
     // save UserDefault Today's Post
     saveTodayExtensionData()
+    
+    // mealMatrix background color accroing to theme
+    mealMatrixView.backgroundColor = mealMatrixViewBackgroundColor()
   }
 }
 
@@ -161,6 +162,8 @@ extension MainViewController {
     }
     
     
+    
+    
     // 이번 주의 Good 개수, 비율 데이터
     let thisWeekPosts = makePostMatrix(date: Date())
     
@@ -176,8 +179,8 @@ extension MainViewController {
       }
     }
     
-    let goodPercent = Int(Double(count)/Double(isNotEmpty)*100)
-    let ratingIsGood: [Int] = [count, isNotEmpty, goodPercent]
+//    let goodPercent = Int(Double(count)/Double(isNotEmpty)*100)
+//    let ratingIsGood: [Int] = [count, isNotEmpty, goodPercent]
     
     
     // 현재 테마 컬러셋 데이터
@@ -194,7 +197,7 @@ extension MainViewController {
     
     // 공유 UserDefault에 저장
     shareDefaults.set(dic, forKey: "todayPosts")
-    shareDefaults.set(ratingIsGood, forKey: "todayPostsRating")
+//    shareDefaults.set(ratingIsGood, forKey: "todayPostsRating")
 //    shareDefaults.set(currentColor, forKey: "themeColor")
   }
   
@@ -257,11 +260,17 @@ extension MainViewController: UICollectionViewDataSource {
     switch collectionView.tag {
     case 0:
       let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "mealCell", for: indexPath) as! MealCell
-      cell.mealData = meal[indexPath.item]
+      cell.mealData = indexPath.item
       return cell
     case 1:
       let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "dayCell", for: indexPath) as! DayCell
       cell.dayData = day[indexPath.item]
+      
+      // font
+      cell.dayLabel.font = UIFont(name: "Montserrat-SemiBold", size: 14)
+      //      == Montserrat-Bold
+      //      == Montserrat-SemiBold
+      
       return cell
     default:
       let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "postCell", for: indexPath) as! PostCell
@@ -457,6 +466,7 @@ extension MainViewController {
     // 월 ~ 금 일자로 나타내기
     let txt = "\(year). \(month). \(day) ~ "
     dateLabel.text = txt
+    dateLabel.font = UIFont(name: "Montserrat-SemiBold", size: 16)
   }
   
   
@@ -531,8 +541,8 @@ extension MainViewController {
   // BarItem - Title
   func naviBarTitleLayout() {
     
-    let width: CGFloat = 65
-    let height: CGFloat = 26
+    let width: CGFloat = 90
+    let height: CGFloat = 40
     
     let containerButton = UIButton(frame: CGRect(x: 0, y: 0, width: width, height: height))
     let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: width, height: height))

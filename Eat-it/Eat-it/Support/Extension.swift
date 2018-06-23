@@ -10,54 +10,67 @@ import Foundation
 import UIKit
 
 extension UIColor {
+  
+  struct Custom {
     
-    struct Custom {
-        
-        static let backGroundColor = UIColor.rgb(red: 245, green: 245, blue: 245, alpha: 1)
-        
-        static let good = UIColor.rgb(red: 115, green: 202, blue: 196, alpha: 1)
-        static let soso = UIColor.rgb(red: 227, green: 229, blue: 70, alpha: 1)
-        static let bad = UIColor.rgb(red: 242, green: 120, blue: 143, alpha: 1)
-    }
+    static let backGroundColor = UIColor.rgb(red: 245, green: 245, blue: 245, alpha: 1)
     
+    static let good = UIColor.rgb(red: 115, green: 202, blue: 196, alpha: 1)
+    static let soso = UIColor.rgb(red: 227, green: 229, blue: 70, alpha: 1)
+    static let bad = UIColor.rgb(red: 242, green: 120, blue: 143, alpha: 1)
+  }
+  
+  
+  static func rgb(red: CGFloat, green: CGFloat, blue: CGFloat, alpha: CGFloat) -> UIColor {
+    return UIColor(red: red/255, green: green/255, blue: blue/255, alpha: alpha)
+  }
+  
+  
+   func currentTheme() -> [UIColor] {
     
-    static func rgb(red: CGFloat, green: CGFloat, blue: CGFloat, alpha: CGFloat) -> UIColor {
-        return UIColor(red: red/255, green: green/255, blue: blue/255, alpha: alpha)
-    }
+    let themeKey = "ThemeNameRawValue"
+    let currentTheme = UserDefaults.standard.value(forKey: themeKey) as? Int ?? 0
     
+    let colorSet = [ColorSet.basic, ColorSet.helsinki, ColorSet.marseille, ColorSet.newyork, ColorSet.horizon, ColorSet.orange, ColorSet.heaven]
     
-    convenience init(hex: String) {
-        
-        let scanner = Scanner(string: hex)
-        scanner.scanLocation = 0
-        
-        var rgbValue: UInt64 = 0
-        
-        scanner.scanHexInt64(&rgbValue)
-        
-        let r = (rgbValue & 0xff0000) >> 16
-        let g = (rgbValue & 0xff00) >> 8
-        let b = rgbValue & 0xff
-        
-        self.init(
-            red: CGFloat(r) / 0xff,
-            green: CGFloat(g) / 0xff,
-            blue: CGFloat(b) / 0xff, alpha: 1
-        )
-    }
+    // 0 - Good, 1 - Soso, 2 - Bad , 3 - BackgroundColor
+    return colorSet[currentTheme].colors
+  }
+  
+  
+  convenience init(hex: String) {
+    
+    let scanner = Scanner(string: hex)
+    scanner.scanLocation = 0
+    
+    var rgbValue: UInt64 = 0
+    
+    scanner.scanHexInt64(&rgbValue)
+    
+    let r = (rgbValue & 0xff0000) >> 16
+    let g = (rgbValue & 0xff00) >> 8
+    let b = rgbValue & 0xff
+    
+    self.init(
+      red: CGFloat(r) / 0xff,
+      green: CGFloat(g) / 0xff,
+      blue: CGFloat(b) / 0xff, alpha: 1
+    )
+  }
+  
 }
 
 
 extension Date {
+  
+  public func trasformInt(from date: Date) -> Int {
+    let dateFormatter = DateFormatter()
     
-    public func trasformInt(from date: Date) -> Int {
-        let dateFormatter = DateFormatter()
-        
-        dateFormatter.dateFormat = "yyyyMMdd"
-        let str = dateFormatter.string(from: date)
-        
-        return Int(str)!
-    }
+    dateFormatter.dateFormat = "yyyyMMdd"
+    let str = dateFormatter.string(from: date)
+    
+    return Int(str)!
+  }
   
   public func transformIntOnlyMonth(from date: Date) -> Int {
     let dateFormatter = DateFormatter()
