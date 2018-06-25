@@ -25,42 +25,25 @@ class TodayViewController: UIViewController, NCWidgetProviding {
   @IBOutlet weak var labelNoon: UILabel!
   @IBOutlet weak var labelNight: UILabel!
   
+  @IBOutlet weak var plusIconMorning: UIImageView!
+  @IBOutlet weak var plusIconNoon: UIImageView!
+  @IBOutlet weak var plusIconNight: UIImageView!
   
   let date = Date()
   
   
-    override func viewDidLoad() {
-        super.viewDidLoad()
-      
-      let appIdentifier = "group.com.middd.TodayExtensionSharingDefaults"
-      
-      if let shareDefaults = UserDefaults(suiteName: appIdentifier),
-        let todayPosts = shareDefaults.object(forKey: "todayPosts") as? [[String:Int]],
-        let ratingIsGood = shareDefaults.object(forKey: "todayPostsRating") as? [Int] {
-
-        print(todayPosts)
-        
-//        meal1Label.text = todayPosts[0]
-//        meal2Label.text = todayPosts[1]
-//        meal3Label.text = todayPosts[2]
-        
-//        goodPercentLabel.text = String(ratingIsGood[2]) + "%"
-//        print(ratingIsGood)
-      }
-      
-      
-      
-      
-//      deta.layer.cornerRadius = 7
-
-      
+  // MARK: - Life Cycle
+  override func viewDidLoad() {
+    super.viewDidLoad()
+    
+    updateLayout()
+    
   }
-  
   
   override func viewDidLayoutSubviews() {
     super.viewDidLayoutSubviews()
     
-    let radius: CGFloat = 7
+    let radius: CGFloat = 5
     viewMorning.layer.cornerRadius = radius
     viewNoon.layer.cornerRadius = radius
     viewNight.layer.cornerRadius = radius
@@ -68,72 +51,93 @@ class TodayViewController: UIViewController, NCWidgetProviding {
     subViewMorning.cornerRoundOnlyTop(radius: radius)
     subViewNoon.cornerRoundOnlyTop(radius: radius)
     subViewNight.cornerRoundOnlyTop(radius: radius)
-    }
+  }
   
   
-
+  // MARK: - Method
+  func updateLayout() {
+    let appIdentifier = "group.com.middd.TodayExtensionSharingDefaults"
     
-    func widgetPerformUpdate(completionHandler: (@escaping (NCUpdateResult) -> Void)) {
-        // Perform any setup necessary in order to update the view.
-        
-        // If an error is encountered, use NCUpdateResult.Failed
-        // If there's no update required, use NCUpdateResult.NoData
-        // If there's an update, use NCUpdateResult.NewData
-  
+    // fetch today's posts
+    if let shareDefaults = UserDefaults(suiteName: appIdentifier),
+      let titles = shareDefaults.array(forKey: "title") as? [String],
+      let ratings = shareDefaults.array(forKey: "rating") as? [Int],
       
-
-        completionHandler(NCUpdateResult.newData)
-    }
-}
-
-
-
-// MARK: - Fetch Realm Data
-extension TodayViewController {
-  
-  
-  func fetchTodayPost() {
-//    let dateText = date.trasformInt(from: date)
-    
-//    if let realm = try? Realm() {
-//      var posts = realm.objects(Post.self)
-//      posts = posts.filter("dateText == %@", dateText)
-//      print(posts)
-//    }
-    
-    
-    
-  }
-  
-}
-
-
-// MARK: - Support
-extension Date {
-  
-  public func trasformInt(from date: Date) -> Int {
-    let dateFormatter = DateFormatter()
-    
-    dateFormatter.dateFormat = "yyyyMMdd"
-    let str = dateFormatter.string(from: date)
-    
-    return Int(str)!
-  }
-}
-
-extension UIView {
-  
-  public func cornerRoundOnlyTop(radius: CGFloat) {
-    if #available(iOS 11.0, *){
-      self.clipsToBounds = false
-      self.layer.cornerRadius = radius
-      self.layer.maskedCorners = [.layerMaxXMinYCorner, .layerMinXMinYCorner]
-    }else{
-      let rectShape = CAShapeLayer()
-      rectShape.bounds = self.frame
-      rectShape.position = self.center
-      rectShape.path = UIBezierPath(roundedRect: self.bounds, byRoundingCorners: [.topLeft, .topRight], cornerRadii: CGSize(width: radius*2, height: radius*2)).cgPath
-      self.layer.mask = rectShape
+      let good = shareDefaults.colorForKey(key: "good"),
+      let soso = shareDefaults.colorForKey(key: "soso"),
+      let bad = shareDefaults.colorForKey(key: "bad") {
+      
+      // title update
+      for (idx, title) in titles.enumerated() {
+        if title.count != 0 {
+          switch idx {
+          case 0:
+            labelMorning.text = titles[0]
+          case 1:
+            labelNoon.text = titles[1]
+          default:
+            labelNight.text = titles[2]
+          }
+        } else {
+          let plusIconImage = #imageLiteral(resourceName: "plusIcon.png")
+          switch idx {
+          case 0:
+            plusIconMorning.image = plusIconImage
+          case 1:
+            plusIconNoon.image = plusIconImage
+          default:
+            plusIconNight.image = plusIconImage
+          }
+        }
+      }
+      
+      // rating update
+      let colors = [good, soso, bad]
+      ratingColorUIUpdate(rating: ratings[0], view: viewMorning, colors: colors)
+      ratingColorUIUpdate(rating: ratings[1], view: viewNoon, colors: colors)
+      ratingColorUIUpdate(rating: ratings[2], view: viewNight, colors: colors)
     }
   }
+  
+  func ratingColorUIUpdate(rating: Int, view: UIView, colors: [UIColor]) {
+    switch rating {
+    case 0:
+      view.backgroundColor = colors[0]
+    case 1:
+      view.backgroundColor = colors[1]
+    case 2:
+      view.backgroundColor = colors[2]
+    default:
+      view.backgroundColor = UIColor.lightGray
+      print("no posts")
+    }
+  }
+  
+  /********************************************/
+  //MARK:-       Methods | IBAction           //
+  /********************************************/
+  
+  //Widget을 한번 탭하면 GitGet App 이 열리도록 설정
+  @IBAction func toOpenApp(_ sender: UITapGestureRecognizer) {
+    let myApp = URL(string: "main-weekit:")!
+    extensionContext?.open(myApp, completionHandler: { (success) in
+      if (!success) {
+        print("ERROR: failed to open app from Today Extension")
+      }
+    })
+  }
+  
+  
+  func widgetPerformUpdate(completionHandler: (@escaping (NCUpdateResult) -> Void)) {
+    // Perform any setup necessary in order to update the view.
+    
+    // If an error is encountered, use NCUpdateResult.Failed
+    // If there's no update required, use NCUpdateResult.NoData
+    // If there's an update, use NCUpdateResult.NewData
+    
+    
+    
+    completionHandler(NCUpdateResult.newData)
+  }
 }
+

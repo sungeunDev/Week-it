@@ -4,7 +4,6 @@
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
@@ -594,24 +593,24 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="내용" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4p1-bX-8Rq">
-                                                    <rect key="frame" x="15" y="13" width="26" height="18"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
                                                 <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="메뉴이름" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="wgB-1Y-jkZ">
                                                     <rect key="frame" x="70" y="12" width="289" height="18"/>
                                                     <nil key="textColor"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                     <textInputTraits key="textInputTraits"/>
                                                 </textField>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="내용" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4p1-bX-8Rq">
+                                                    <rect key="frame" x="16" y="13" width="26" height="18"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="wgB-1Y-jkZ" firstAttribute="leading" secondItem="325-ft-daP" secondAttribute="leading" constant="70" id="7Iv-xU-Tqr"/>
                                                 <constraint firstAttribute="trailingMargin" secondItem="wgB-1Y-jkZ" secondAttribute="trailing" id="EZ0-0W-AgN"/>
                                                 <constraint firstItem="wgB-1Y-jkZ" firstAttribute="centerY" secondItem="325-ft-daP" secondAttribute="centerY" id="NyT-xL-NeW"/>
-                                                <constraint firstItem="4p1-bX-8Rq" firstAttribute="leading" secondItem="325-ft-daP" secondAttribute="leading" constant="15" id="QfX-lA-CQz"/>
+                                                <constraint firstItem="4p1-bX-8Rq" firstAttribute="leading" secondItem="325-ft-daP" secondAttribute="leadingMargin" id="TkO-Pg-MBI"/>
                                                 <constraint firstItem="4p1-bX-8Rq" firstAttribute="centerY" secondItem="325-ft-daP" secondAttribute="centerY" id="yHD-Ve-WMD"/>
                                             </constraints>
                                         </tableViewCellContentView>
@@ -624,7 +623,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="평가" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YeT-9n-H4U">
-                                                    <rect key="frame" x="15" y="13" width="26" height="18"/>
+                                                    <rect key="frame" x="16" y="13" width="26" height="18"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -646,7 +645,7 @@
                                                 <constraint firstItem="kL0-3t-33w" firstAttribute="centerY" secondItem="lDI-ev-FYf" secondAttribute="centerY" id="2Yg-2y-mUu"/>
                                                 <constraint firstAttribute="trailing" secondItem="kL0-3t-33w" secondAttribute="trailing" constant="40" id="MOG-0h-drt"/>
                                                 <constraint firstItem="kL0-3t-33w" firstAttribute="leading" secondItem="lDI-ev-FYf" secondAttribute="leading" constant="70" id="Oit-XH-4Qq"/>
-                                                <constraint firstItem="YeT-9n-H4U" firstAttribute="leading" secondItem="lDI-ev-FYf" secondAttribute="leading" constant="15" id="Qxj-SH-6sn"/>
+                                                <constraint firstItem="YeT-9n-H4U" firstAttribute="leading" secondItem="lDI-ev-FYf" secondAttribute="leadingMargin" id="Qxj-SH-6sn"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>

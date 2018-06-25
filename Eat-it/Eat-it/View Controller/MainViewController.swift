@@ -21,7 +21,7 @@ class MainViewController: UIViewController {
   @IBOutlet private weak var dateLabel: UILabel!
   
   // Data
-
+  
   let meal = ["아침", "점심", "저녁"]
   let day = ["Mon", "Tue", "Wed", "Thu", "Fri"]
   
@@ -52,7 +52,7 @@ class MainViewController: UIViewController {
     date = changeToMonday(of: date)
     currentDateLabel(input: date)
     
-
+    
     
     // mealMatrixView.layer.cornerRadius = 7
     navigationController?.delegate = transition
@@ -69,7 +69,7 @@ class MainViewController: UIViewController {
     
     // fetch this week post data & sort
     posts = makePostMatrix(date: self.date)
-  
+    
     // save UserDefault Today's Post
     saveTodayExtensionData()
     
@@ -139,66 +139,51 @@ extension MainViewController {
     let dateText = Date().trasformInt(from: Date())
     let appIdentifier = "group.com.middd.TodayExtensionSharingDefaults"
     
-    // 오늘의 포스트 데이터 (아침, 점심, 저녁)
+    // 오늘의 포스트 데이터 저장 - mealTitle, mealTime, rating, color set
     guard let realm = try? Realm(),
       let shareDefaults = UserDefaults(suiteName: appIdentifier) else { return }
     let todayPosts = realm.objects(Post.self).filter("dateText == %@", dateText).sorted(byKeyPath: "mealTime", ascending: true)
     
-    var array: [String] = Array<String>(repeating: "-", count: 3)
-    var dic: [[String:Int]] = [[:], [:], [:]]  // [[mealTitle : rating]]
+    // 1차 시도. 튜플 타입으로 저장하기 (mealTime: Int, mealTitle: String, rating: Int)
+    // But, Tuple은 User Default로 보내기에 non-property-list라 전달 안됨.
+    // *** Terminating app due to uncaught exception 'NSInvalidArgumentException', reason: 'Attempt to insert non-property list object'
+    
+    // 2차 시도. 3개의 빈 Array 생성. 아침, 점심, 저녁으로 순서를 정해두고 title, rating 배열을 각각 생성해서 저장.
+    var postsTitle: Array<String> = Array.init(repeating: "", count: 3)
+    var postsRating: Array<Int> = Array.init(repeating: 3, count: 3)
     
     for post in todayPosts {
       switch post.mealTime {
       case 0:
-        array[0] = post.mealTitle
-        dic[0] = [array[0]:post.rating]
+        postsTitle[0] = post.mealTitle
+        postsRating[0] = post.rating
       case 1:
-        array[1] = post.mealTitle
-        dic[1] = [array[1]:post.rating]
+        postsTitle[1] = post.mealTitle
+        postsRating[1] = post.rating
       default:
-        array[2] = post.mealTitle
-        dic[2] = [array[2]:post.rating]
+        postsTitle[2] = post.mealTitle
+        postsRating[2] = post.rating
       }
     }
-    
-    
-    
-    
-    // 이번 주의 Good 개수, 비율 데이터
-    let thisWeekPosts = makePostMatrix(date: Date())
-    
-    var count = 0
-    var isNotEmpty = 0
-    
-    for post in thisWeekPosts {
-      if post?.rating == 0 {
-        count += 1
-      }
-      if post != nil {
-        isNotEmpty += 1
-      }
-    }
-    
-//    let goodPercent = Int(Double(count)/Double(isNotEmpty)*100)
-//    let ratingIsGood: [Int] = [count, isNotEmpty, goodPercent]
+    // 공유 UserDefault에 저장
+    shareDefaults.set(postsTitle, forKey: "title")
+    shareDefaults.set(postsRating, forKey: "rating")
     
     
     // 현재 테마 컬러셋 데이터
     let themeKey = "ThemeNameRawValue"
-    let currentTheme = UserDefaults.standard.value(forKey: themeKey) as? Int ?? 0
+    let currentTheme = shareDefaults.value(forKey: themeKey) as? Int ?? 0
     
     let colorSet = [ColorSet.basic, ColorSet.helsinki, ColorSet.marseille, ColorSet.newyork, ColorSet.horizon, ColorSet.orange, ColorSet.heaven]
     let currentColor = colorSet[currentTheme]
     
-    print("\n---------- [ color description ] -----------\n")
-    print(currentColor.description)
-//    print(currentColor)
-    
-    
     // 공유 UserDefault에 저장
-    shareDefaults.set(dic, forKey: "todayPosts")
-//    shareDefaults.set(ratingIsGood, forKey: "todayPostsRating")
-//    shareDefaults.set(currentColor, forKey: "themeColor")
+    shareDefaults.setColor(currentColor.good, forkey: "good")
+    shareDefaults.setColor(currentColor.soso, forkey: "soso")
+    shareDefaults.setColor(currentColor.bad, forkey: "bad")
+  
+    
+
   }
   
   

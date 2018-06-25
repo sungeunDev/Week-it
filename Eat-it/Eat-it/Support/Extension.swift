@@ -9,6 +9,7 @@
 import Foundation
 import UIKit
 
+// MARK: - UIColor
 extension UIColor {
   
   struct Custom {
@@ -61,6 +62,7 @@ extension UIColor {
 }
 
 
+// MARK: - Date
 extension Date {
   
   public func trasformInt(from date: Date) -> Int {
@@ -79,5 +81,26 @@ extension Date {
     let str = dateFormatter.string(from: date)
     
     return Int(str)!
+  }
+}
+
+
+// MARK: - UserDefault
+extension UserDefaults {
+  
+  func setColor(_ color: UIColor?, forkey defaultName: String) {
+    var colorData: NSData?
+    if let color = color {
+      colorData = NSKeyedArchiver.archivedData(withRootObject: color) as NSData?
+    }
+    set(colorData, forKey: defaultName)
+  }
+  
+  func colorForKey(key: String) -> UIColor? {
+    var color: UIColor?
+    if let colorData = data(forKey: key) {
+     color = NSKeyedUnarchiver.unarchiveObject(with: colorData) as? UIColor
+    }
+    return color
   }
 }
