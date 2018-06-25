@@ -67,7 +67,7 @@ class GraphTableViewController: UITableViewController {
     
     if indexPath.section == 0 {
       guard let posts = numOfposts else { return graphCell }
-      graphCell.graphDateLabel.text = "All Posts"
+      graphCell.graphDateLabel.text = "모든 포스트"
       
       var all = 0
       for num in posts {
