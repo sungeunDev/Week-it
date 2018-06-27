@@ -9,24 +9,24 @@
 import UIKit
 
 enum ThemeName: Int {
-  
   case basic
-  case helsinki
-  case marseille
-  case newyork
-  // ref : https://www.post-it.com/3M/en_US/post-it/ideas/color/
+  case sunset
+  case macaron
+  case redblue
+  case jejuOcean
   
-  case horizon
+  case cherryBlossom
   case orange
   case heaven
-  // ref : https://www.design-seeds.com/?s=pink
+  case cookieCream
 }
 
 
 class ThemeTableViewController: UITableViewController {
   
-  let cellTitleData: [String] = ["BASIC", "HELSINKI", "MARSEILLE", "NEWYORK", "HORIZON", "ORANGE", "HEAVEN"]
-  let cellImageData: [UIImage] = [#imageLiteral(resourceName: "basic"), #imageLiteral(resourceName: "helsinki"), #imageLiteral(resourceName: "marseille"), #imageLiteral(resourceName: "newyork"), #imageLiteral(resourceName: "horizon"), #imageLiteral(resourceName: "orange"), #imageLiteral(resourceName: "heaven")]
+
+  
+  let cellTitleData: [String] = ["BASIC", "SUNSET", "MACARON", "RED & BLUE", "JEJU OCEAN", "CHERRY BLOSSOM", "ORANGE", "HEAVEN", "COOKIE & CREAM"]
   
   var currentTheme = ThemeName(rawValue: (UserDefaults.standard.value(forKey: "ThemeNameRawValue") as? Int) ?? 0) {
     willSet {
@@ -57,8 +57,16 @@ class ThemeTableViewController: UITableViewController {
       themeCell.accessoryType = .none
     }
     
+    let currentThemeColor = [ColorSet.basic, ColorSet.sunset, ColorSet.macaron, ColorSet.redblue, ColorSet.jejuOcean, ColorSet.cherryBlossom, ColorSet.orange, ColorSet.heaven, ColorSet.cookieCream]
+    
+    
     DispatchQueue.main.async {
-      themeCell.themeImageView.image = self.cellImageData[indexPath.row]
+      
+      themeCell.colorGood.backgroundColor = currentThemeColor[indexPath.row].good
+      themeCell.colorSoso.backgroundColor = currentThemeColor[indexPath.row].soso
+      themeCell.colorBad.backgroundColor = currentThemeColor[indexPath.row].bad
+      
+//      themeCell.themeImageView.image = self.cellImageData[indexPath.row]
       themeCell.themeTitleLabel.text = self.cellTitleData[indexPath.row].uppercased()
       themeCell.setNeedsLayout()
     }    

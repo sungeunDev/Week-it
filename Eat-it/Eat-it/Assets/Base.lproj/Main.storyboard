@@ -627,32 +627,59 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="themeCell" id="ndx-6p-BkQ" customClass="CustomTableViewCell" customModule="Eat_it" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="themeCell" rowHeight="66" id="ndx-6p-BkQ" customClass="CustomTableViewCell" customModule="Eat_it" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="28" width="375" height="66"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="ndx-6p-BkQ" id="Lgc-GH-dMm">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="65.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="basic" translatesAutoresizingMaskIntoConstraints="NO" id="aOG-1Z-dE6">
-                                            <rect key="frame" x="16" y="8" width="123" height="29"/>
-                                        </imageView>
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6Gx-LO-IBT">
+                                            <rect key="frame" x="16" y="17" width="30" height="30"/>
+                                            <color key="backgroundColor" red="0.0" green="0.56904578210000001" blue="0.57461684940000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="30" id="UWA-NU-Rhg"/>
+                                                <constraint firstAttribute="width" constant="30" id="qJz-Q4-ZD7"/>
+                                            </constraints>
+                                        </view>
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wsS-p5-H4x">
+                                            <rect key="frame" x="54" y="18" width="30" height="30"/>
+                                            <color key="backgroundColor" red="0.0" green="0.56904578210000001" blue="0.57461684940000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="30" id="6sC-U6-gbS"/>
+                                                <constraint firstAttribute="height" constant="30" id="l26-yK-liE"/>
+                                            </constraints>
+                                        </view>
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gT6-Ng-Xra">
+                                            <rect key="frame" x="92" y="18" width="30" height="30"/>
+                                            <color key="backgroundColor" red="0.0" green="0.56904578210000001" blue="0.57461684940000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="30" id="f1o-MP-qvS"/>
+                                                <constraint firstAttribute="height" constant="30" id="yTO-7D-KCI"/>
+                                            </constraints>
+                                        </view>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ColorSetName" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HQj-ew-a6c">
-                                            <rect key="frame" x="155" y="11" width="112" height="21"/>
+                                            <rect key="frame" x="137" y="22" width="112" height="21"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstItem="aOG-1Z-dE6" firstAttribute="centerY" secondItem="Lgc-GH-dMm" secondAttribute="centerY" id="Vlc-wX-XYz"/>
+                                        <constraint firstItem="wsS-p5-H4x" firstAttribute="centerY" secondItem="Lgc-GH-dMm" secondAttribute="centerY" id="A3Q-DK-W91"/>
+                                        <constraint firstItem="wsS-p5-H4x" firstAttribute="leading" secondItem="6Gx-LO-IBT" secondAttribute="trailing" constant="8" id="BiH-or-CEA"/>
+                                        <constraint firstItem="6Gx-LO-IBT" firstAttribute="leading" secondItem="Lgc-GH-dMm" secondAttribute="leadingMargin" id="Y9Z-Bm-TXD"/>
                                         <constraint firstItem="HQj-ew-a6c" firstAttribute="centerY" secondItem="Lgc-GH-dMm" secondAttribute="centerY" id="YPH-uU-Kwo"/>
-                                        <constraint firstItem="aOG-1Z-dE6" firstAttribute="leading" secondItem="Lgc-GH-dMm" secondAttribute="leadingMargin" id="g1t-CF-9NP"/>
-                                        <constraint firstItem="HQj-ew-a6c" firstAttribute="leading" secondItem="aOG-1Z-dE6" secondAttribute="trailing" constant="16" id="udG-u9-zQA"/>
+                                        <constraint firstItem="gT6-Ng-Xra" firstAttribute="centerY" secondItem="Lgc-GH-dMm" secondAttribute="centerY" id="eCS-MF-fb2"/>
+                                        <constraint firstItem="gT6-Ng-Xra" firstAttribute="leading" secondItem="wsS-p5-H4x" secondAttribute="trailing" constant="8" id="g4g-cg-uv1"/>
+                                        <constraint firstItem="HQj-ew-a6c" firstAttribute="leading" secondItem="gT6-Ng-Xra" secondAttribute="trailing" constant="15" id="ifL-ZV-zym"/>
+                                        <constraint firstItem="6Gx-LO-IBT" firstAttribute="centerY" secondItem="Lgc-GH-dMm" secondAttribute="centerY" id="lKo-Vg-Gkh"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <outlet property="themeImageView" destination="aOG-1Z-dE6" id="NVP-qa-nrf"/>
+                                    <outlet property="colorBad" destination="gT6-Ng-Xra" id="vKQ-De-EpX"/>
+                                    <outlet property="colorGood" destination="6Gx-LO-IBT" id="m6D-b3-kAi"/>
+                                    <outlet property="colorSoso" destination="wsS-p5-H4x" id="SEt-Fh-PzK"/>
                                     <outlet property="themeTitleLabel" destination="HQj-ew-a6c" id="RtY-Fy-Tmb"/>
                                 </connections>
                             </tableViewCell>
@@ -980,7 +1007,6 @@ Realm Core is also published under the Apache 2.0 license</string>
         </scene>
     </scenes>
     <resources>
-        <image name="basic" width="123" height="29"/>
         <image name="left" width="8" height="14"/>
         <image name="mealTime_morning" width="23" height="23"/>
         <image name="right" width="8" height="14"/>

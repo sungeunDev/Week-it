@@ -20,6 +20,8 @@ class PostCell: UICollectionViewCell {
         plusImageView.image = nil
         self.backgroundColor = cellBackgroundColor(of: postData.rating)
         
+        
+        
       } else {
         postLabel.text = ""
         plusImageView.image = UIImage(named: "plusIcon.png")
@@ -39,12 +41,18 @@ class PostCell: UICollectionViewCell {
   
   
   func cellBackgroundColor(of idx: Int) -> UIColor {
-    
     let themeKey = "ThemeNameRawValue"
     let currentTheme = UserDefaults.standard.value(forKey: themeKey) as? Int ?? 0
     
-    let colorSet = [ColorSet.basic, ColorSet.helsinki, ColorSet.marseille, ColorSet.newyork, ColorSet.horizon, ColorSet.orange, ColorSet.heaven]
+    let colorSet = [ColorSet.basic, ColorSet.sunset, ColorSet.macaron, ColorSet.redblue, ColorSet.jejuOcean, ColorSet.cherryBlossom, ColorSet.orange, ColorSet.heaven, ColorSet.cookieCream]
     let currentColor = colorSet[currentTheme].colors
+
+    // 테마에 따라 title label color도 변경
+    if currentTheme == 8 && idx == 2 { // 쿠키앤크림
+      postLabel.textColor = UIColor.white
+    } else {
+      postLabel.textColor = UIColor.black
+    }
     
     return currentColor[idx] // 0 - Good, 1 - Soso, 2 - Bad , 3 - BackgroundColor
   }
