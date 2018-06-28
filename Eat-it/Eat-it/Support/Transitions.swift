@@ -114,10 +114,10 @@ final class PostToMainAnimator: NSObject, UIViewControllerAnimatedTransitioning 
   }
   
   func animateTransition(using transitionContext: UIViewControllerContextTransitioning) {
-    guard
-      let fromVC = transitionContext.viewController(forKey: .from) as? PostViewController,
-      let toVC = transitionContext.viewController(forKey: .to) as? MainViewController
-      else { return }
+//    guard
+//      let fromVC = transitionContext.viewController(forKey: .from) as? PostViewController,
+//      let toVC = transitionContext.viewController(forKey: .to) as? MainViewController
+//      else { return }
   }
   
 }

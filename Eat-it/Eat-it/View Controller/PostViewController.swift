@@ -32,10 +32,14 @@ class PostViewController: UITableViewController {
     super.viewDidLoad()
     
     configuration()
+    setSegmentedControlText(seg)
     seg.tintColor = currentTheme[seg.selectedSegmentIndex]
     
     menuTextField.delegate = self
     menuTextField.becomeFirstResponder()
+    
+    // seg 폰트컬러 변경
+//    seg.setTitleTextAttributes([NSAttributedStringKey.foregroundColor: UIColor.lightGray], for: .normal)
   }
   
   override func viewWillAppear(_ animated: Bool) {
@@ -176,8 +180,33 @@ class PostViewController: UITableViewController {
   
   
   @IBAction func changeSegTintColor(_ sender: UISegmentedControl) {
-    
     sender.tintColor = self.currentTheme[sender.selectedSegmentIndex]
+    setSegmentedControlText(sender)
+  }
+  
+  
+  func setSegmentedControlText(_ sender: UISegmentedControl) {
+    var str = "⭐️⭐️⭐️"
+    for _ in 0..<sender.selectedSegmentIndex {
+      str = String(str.dropLast())
+    }
+    
+    seg.setTitle(str, forSegmentAt: sender.selectedSegmentIndex)
+    
+    switch sender.selectedSegmentIndex {
+    case 0:
+      seg.setTitle("★★", forSegmentAt: sender.selectedSegmentIndex+1)
+      seg.setTitle("★", forSegmentAt: sender.selectedSegmentIndex+2)
+    case 1:
+      seg.setTitle("★★★", forSegmentAt: sender.selectedSegmentIndex-1)
+      seg.setTitle("★", forSegmentAt: sender.selectedSegmentIndex+1)
+    case 2:
+      seg.setTitle("★★★", forSegmentAt: sender.selectedSegmentIndex-2)
+      seg.setTitle("★★", forSegmentAt: sender.selectedSegmentIndex-1)
+      
+    default:
+      print("out of range")
+    }
   }
   
   

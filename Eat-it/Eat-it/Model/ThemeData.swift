@@ -46,7 +46,7 @@ struct ColorSet {
 //  static var orange = ColorSet(id: 5, name: "orange", colors: ["ffaa39", "ffcd68", "fff1c4", "fff8eb"])
 //  static var heaven = ColorSet(id: 6, name: "heaven", colors: ["b6e2e6", "9ddae3", "93cad6", "f5f5f5"])
   
-  static var basic = ColorSet(id: 0, name: "basic", colors: ["ffcdc7", "fff1a7", "bae89b", "f8f8f8"])
+  static var basic = ColorSet(id: 0, name: "basic", colors: ["bae89b", "fff1a7", "ffcdc7", "f8f8f8"])
   static var sunset = ColorSet(id: 1, name: "sunset", colors: ["d1ed7d", "ffe87c", "fdb66b", "f8f8f8"])
   static var macaron = ColorSet(id: 2, name: "macaron", colors: ["ccf3f5", "fff5d8", "fec3bf", "f8f8f8"])
   static var redblue = ColorSet(id: 3, name: "redblue", colors: ["a8dee9", "d0d0d0", "faa198", "f8fbfb"])

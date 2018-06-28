@@ -67,7 +67,7 @@ class ThemeTableViewController: UITableViewController {
       themeCell.colorBad.backgroundColor = currentThemeColor[indexPath.row].bad
       
 //      themeCell.themeImageView.image = self.cellImageData[indexPath.row]
-      themeCell.themeTitleLabel.text = self.cellTitleData[indexPath.row].uppercased()
+      themeCell.themeTitleLabel.text = self.cellTitleData[indexPath.row].capitalized
       themeCell.setNeedsLayout()
     }    
     

@@ -24,6 +24,7 @@
 		6F1B933020E0D3060011BA2A /* SupportExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F1B932F20E0D3060011BA2A /* SupportExtension.swift */; };
 		6F1B933220E11F870011BA2A /* plusIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 6F1B933120E11F860011BA2A /* plusIcon.png */; };
 		6FABA5D920CE4297009DC835 /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FABA5D820CE4297009DC835 /* SettingViewController.swift */; };
+		6FB4676620E4DCC60013E0F1 /* TutorialPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FB4676520E4DCC60013E0F1 /* TutorialPageViewController.swift */; };
 		6FC46E1320C64DF800DAA40D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FC46E1220C64DF800DAA40D /* AppDelegate.swift */; };
 		6FC46E1520C64DF800DAA40D /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FC46E1420C64DF800DAA40D /* MainViewController.swift */; };
 		6FC46E1820C64DF800DAA40D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6FC46E1620C64DF800DAA40D /* Main.storyboard */; };
@@ -85,6 +86,7 @@
 		6F1B932F20E0D3060011BA2A /* SupportExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupportExtension.swift; sourceTree = "<group>"; };
 		6F1B933120E11F860011BA2A /* plusIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = plusIcon.png; path = "Eat-it/Assets/Assets.xcassets/plusIcon.imageset/plusIcon.png"; sourceTree = SOURCE_ROOT; };
 		6FABA5D820CE4297009DC835 /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
+		6FB4676520E4DCC60013E0F1 /* TutorialPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TutorialPageViewController.swift; path = "Eat-it/View Controller/TutorialPageViewController.swift"; sourceTree = SOURCE_ROOT; };
 		6FC46E0F20C64DF800DAA40D /* Eat-it.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Eat-it.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		6FC46E1220C64DF800DAA40D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		6FC46E1420C64DF800DAA40D /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
@@ -212,6 +214,7 @@
 				6F1AF1CF20D0C5FC00147898 /* ThemeTableViewController.swift */,
 				6F1AF1D520D23DB500147898 /* GraphTableViewController.swift */,
 				6F1AF1D120D0D6C800147898 /* CustomTableViewCell.swift */,
+				6FB4676520E4DCC60013E0F1 /* TutorialPageViewController.swift */,
 			);
 			path = "View Controller";
 			sourceTree = "<group>";
@@ -438,6 +441,7 @@
 				6FC46E3220C66B1E00DAA40D /* MealCell.swift in Sources */,
 				6FC46E2D20C6565300DAA40D /* Post.swift in Sources */,
 				1EB2D74C20D2140900933CAF /* Transitions.swift in Sources */,
+				6FB4676620E4DCC60013E0F1 /* TutorialPageViewController.swift in Sources */,
 				6FC46E3820C6722700DAA40D /* Extension.swift in Sources */,
 				6FABA5D920CE4297009DC835 /* SettingViewController.swift in Sources */,
 				6FC46E3420C66B2A00DAA40D /* DayCell.swift in Sources */,
