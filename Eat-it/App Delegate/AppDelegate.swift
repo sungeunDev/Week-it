@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import StoreKit
+
 import RealmSwift
 
 @UIApplicationMain
@@ -74,5 +76,27 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
   }
 
+}
+
+// MARK: - StoreKit
+extension AppDelegate {
+  
+  func requestReview() {
+    SKStoreReviewController.requestReview()
+  }
+  
+  func rateApp(appId: String, completion: @escaping ((_ success: Bool)->())) {
+    guard let url = URL(string : "itms-apps://itunes.apple.com/app/" + appId) else {
+      completion(false)
+      return
+    }
+    guard #available(iOS 10, *) else {
+      completion(UIApplication.shared.openURL(url))
+      return
+    }
+    UIApplication.shared.open(url, options: [:], completionHandler: completion)
+  }
+  
+  
 }
 

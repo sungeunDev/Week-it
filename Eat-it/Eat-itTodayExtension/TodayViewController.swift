@@ -40,7 +40,7 @@ class TodayViewController: UIViewController, NCWidgetProviding {
   // MARK: - Life Cycle
   override func viewDidLoad() {
     super.viewDidLoad()
-    
+    print("\n---------- [ viewDidLoad ] -----------\n")
     updateLayout()
     
   }

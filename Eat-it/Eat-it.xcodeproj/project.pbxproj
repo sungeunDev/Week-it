@@ -16,7 +16,6 @@
 		6F1B930920D75F9B0011BA2A /* NotificationCenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6F1B930820D75F9B0011BA2A /* NotificationCenter.framework */; };
 		6F1B930C20D75F9B0011BA2A /* TodayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F1B930B20D75F9B0011BA2A /* TodayViewController.swift */; };
 		6F1B930F20D75F9B0011BA2A /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6F1B930D20D75F9B0011BA2A /* MainInterface.storyboard */; };
-		6F1B931320D75F9B0011BA2A /* Eat-itTodayExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 6F1B930720D75F9A0011BA2A /* Eat-itTodayExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		6F1B932120D906CC0011BA2A /* Montserrat-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6F1B931F20D906CA0011BA2A /* Montserrat-SemiBold.ttf */; };
 		6F1B932220D906CC0011BA2A /* Montserrat-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6F1B932020D906CB0011BA2A /* Montserrat-Bold.ttf */; };
 		6F1B932C20DA07F40011BA2A /* mealTime_morning.png in Resources */ = {isa = PBXBuildFile; fileRef = 6F1B932920DA07F30011BA2A /* mealTime_morning.png */; };
@@ -25,6 +24,8 @@
 		6F1B933020E0D3060011BA2A /* SupportExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F1B932F20E0D3060011BA2A /* SupportExtension.swift */; };
 		6F1B933220E11F870011BA2A /* plusIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 6F1B933120E11F860011BA2A /* plusIcon.png */; };
 		6FABA5D920CE4297009DC835 /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FABA5D820CE4297009DC835 /* SettingViewController.swift */; };
+		6FB4634320E5CF0D004D65C6 /* Eat-itTodayExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 6F1B930720D75F9A0011BA2A /* Eat-itTodayExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		6FB4676620E4DCC60013E0F1 /* TutorialPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FB4676520E4DCC60013E0F1 /* TutorialPageViewController.swift */; };
 		6FC46E1320C64DF800DAA40D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FC46E1220C64DF800DAA40D /* AppDelegate.swift */; };
 		6FC46E1520C64DF800DAA40D /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FC46E1420C64DF800DAA40D /* MainViewController.swift */; };
 		6FC46E1820C64DF800DAA40D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6FC46E1620C64DF800DAA40D /* Main.storyboard */; };
@@ -50,13 +51,13 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		6F1B931720D75F9B0011BA2A /* Embed App Extensions */ = {
+		6FB4634420E5CF0D004D65C6 /* Embed App Extensions */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 13;
 			files = (
-				6F1B931320D75F9B0011BA2A /* Eat-itTodayExtension.appex in Embed App Extensions */,
+				6FB4634320E5CF0D004D65C6 /* Eat-itTodayExtension.appex in Embed App Extensions */,
 			);
 			name = "Embed App Extensions";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -97,6 +98,7 @@
 		6F1B932F20E0D3060011BA2A /* SupportExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupportExtension.swift; sourceTree = "<group>"; };
 		6F1B933120E11F860011BA2A /* plusIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = plusIcon.png; path = "Eat-it/Assets/Assets.xcassets/plusIcon.imageset/plusIcon.png"; sourceTree = SOURCE_ROOT; };
 		6FABA5D820CE4297009DC835 /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
+		6FB4676520E4DCC60013E0F1 /* TutorialPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TutorialPageViewController.swift; path = "Eat-it/View Controller/TutorialPageViewController.swift"; sourceTree = SOURCE_ROOT; };
 		6FC46E0F20C64DF800DAA40D /* Eat-it.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Eat-it.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		6FC46E1220C64DF800DAA40D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		6FC46E1420C64DF800DAA40D /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
@@ -224,6 +226,7 @@
 				6F1AF1CF20D0C5FC00147898 /* ThemeTableViewController.swift */,
 				6F1AF1D520D23DB500147898 /* GraphTableViewController.swift */,
 				6F1AF1D120D0D6C800147898 /* CustomTableViewCell.swift */,
+				6FB4676520E4DCC60013E0F1 /* TutorialPageViewController.swift */,
 			);
 			path = "View Controller";
 			sourceTree = "<group>";
@@ -296,7 +299,7 @@
 				6FC46E0D20C64DF800DAA40D /* Resources */,
 				6FC46E2A20C6543C00DAA40D /* Embed Frameworks */,
 				19AD5E0E5F758083174242C2 /* [CP] Embed Pods Frameworks */,
-				6F1B931720D75F9B0011BA2A /* Embed App Extensions */,
+				6FB4634420E5CF0D004D65C6 /* Embed App Extensions */,
 			);
 			buildRules = (
 			);
@@ -331,6 +334,12 @@
 						SystemCapabilities = {
 							com.apple.ApplicationGroups.iOS = {
 								enabled = 1;
+							};
+							com.apple.Push = {
+								enabled = 1;
+							};
+							com.apple.iCloud = {
+								enabled = 0;
 							};
 						};
 					};
@@ -445,6 +454,7 @@
 				6FC46E3220C66B1E00DAA40D /* MealCell.swift in Sources */,
 				6FC46E2D20C6565300DAA40D /* Post.swift in Sources */,
 				1EB2D74C20D2140900933CAF /* Transitions.swift in Sources */,
+				6FB4676620E4DCC60013E0F1 /* TutorialPageViewController.swift in Sources */,
 				6FC46E3820C6722700DAA40D /* Extension.swift in Sources */,
 				6FABA5D920CE4297009DC835 /* SettingViewController.swift in Sources */,
 				6FC46E3420C66B2A00DAA40D /* DayCell.swift in Sources */,
@@ -500,16 +510,20 @@
 			baseConfigurationReference = 9598529702C10E91B2A8E8A8 /* Pods-Eat-it.debug.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = "Eat-itTodayExtension/Eat-itTodayExtension.entitlements";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = WXH5CKM9TX;
 				INFOPLIST_FILE = "Eat-itTodayExtension/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.sungeun.Eat-it.Eat-itTodayExtension";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.sungeun.Eat-it.Eat-tiTodayExtension";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -521,16 +535,20 @@
 			baseConfigurationReference = 01509518E19B339B9E2064B1 /* Pods-Eat-it.release.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = "Eat-itTodayExtension/Eat-itTodayExtension.entitlements";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = WXH5CKM9TX;
 				INFOPLIST_FILE = "Eat-itTodayExtension/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.sungeun.Eat-it.Eat-itTodayExtension";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.sungeun.Eat-it.Eat-tiTodayExtension";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -588,7 +606,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -642,7 +660,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;
@@ -658,6 +676,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = "Eat-it/Eat-it.entitlements";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = WXH5CKM9TX;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -672,6 +691,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.sungeun.Eat-it";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -684,6 +705,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = "Eat-it/Eat-it.entitlements";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = WXH5CKM9TX;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -698,6 +720,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.sungeun.Eat-it";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

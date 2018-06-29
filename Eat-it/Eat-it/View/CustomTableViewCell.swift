@@ -11,8 +11,10 @@ import UIKit
 class CustomTableViewCell: UITableViewCell {
   
   //themeCell
-  @IBOutlet weak var themeImageView: UIImageView!
   @IBOutlet weak var themeTitleLabel: UILabel!
+  @IBOutlet weak var colorGood: UIView!
+  @IBOutlet weak var colorSoso: UIView!
+  @IBOutlet weak var colorBad: UIView!
   
   //graphCell
   @IBOutlet weak var graphDateLabel: UILabel!

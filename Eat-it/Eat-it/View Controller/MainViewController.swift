@@ -174,7 +174,7 @@ extension MainViewController {
     let themeKey = "ThemeNameRawValue"
     let currentTheme = shareDefaults.value(forKey: themeKey) as? Int ?? 0
     
-    let colorSet = [ColorSet.basic, ColorSet.helsinki, ColorSet.marseille, ColorSet.newyork, ColorSet.horizon, ColorSet.orange, ColorSet.heaven]
+    let colorSet = [ColorSet.basic, ColorSet.sunset, ColorSet.macaron, ColorSet.redblue, ColorSet.jejuOcean, ColorSet.cherryBlossom, ColorSet.orange, ColorSet.heaven, ColorSet.cookieCream]
     let currentColor = colorSet[currentTheme]
     
     print(currentTheme)
@@ -189,20 +189,20 @@ extension MainViewController {
   
   
   // MARK: - Gesture
-  @IBAction private func pressGesture(_ sender: UILongPressGestureRecognizer) {
-    let location = sender.location(in: postCollectionView)
-    switch sender.state {
-    case .began:
-      guard let itemIndexPath = postCollectionView.indexPathForItem(at: location) else { break }
-      postCollectionView.beginInteractiveMovementForItem(at: itemIndexPath)
-    case .changed:
-      postCollectionView.updateInteractiveMovementTargetPosition(location)
-    case .ended:
-      postCollectionView.endInteractiveMovement()
-    default:
-      postCollectionView.cancelInteractiveMovement()
-    }
-  }
+//  @IBAction private func pressGesture(_ sender: UILongPressGestureRecognizer) {
+//    let location = sender.location(in: postCollectionView)
+//    switch sender.state {
+//    case .began:
+//      guard let itemIndexPath = postCollectionView.indexPathForItem(at: location) else { break }
+//      postCollectionView.beginInteractiveMovementForItem(at: itemIndexPath)
+//    case .changed:
+//      postCollectionView.updateInteractiveMovementTargetPosition(location)
+//    case .ended:
+//      postCollectionView.endInteractiveMovement()
+//    default:
+//      postCollectionView.cancelInteractiveMovement()
+//    }
+//  }
   
   @IBAction private func leftSwipe(_ sender: UISwipeGestureRecognizer) {
     rightBtn()
@@ -219,7 +219,7 @@ extension MainViewController {
     let themeKey = "ThemeNameRawValue"
     let currentTheme = UserDefaults.standard.value(forKey: themeKey) as? Int ?? 0
     
-    let colorSet = [ColorSet.basic, ColorSet.helsinki, ColorSet.marseille, ColorSet.newyork, ColorSet.horizon, ColorSet.orange, ColorSet.heaven]
+    let colorSet = [ColorSet.basic, ColorSet.sunset, ColorSet.macaron, ColorSet.redblue, ColorSet.jejuOcean, ColorSet.cherryBlossom, ColorSet.orange, ColorSet.heaven, ColorSet.cookieCream]
     return colorSet[currentTheme].background
   }
 }
@@ -273,25 +273,25 @@ extension MainViewController: UICollectionViewDataSource {
   }
   
   // MARK: - move collectionView cell
-  func collectionView(_ collectionView: UICollectionView,
-                      moveItemAt sourceIndexPath: IndexPath,
-                      to destinationIndexPath: IndexPath) {
-    guard sourceIndexPath != destinationIndexPath else { return }
-    
-    //        collectionView.performBatchUpdates({
-    //            collectionView.moveItem(at: sourceIndexPath, to: destinationIndexPath)
-    //        }, completion: nil)
-    
-    if posts[destinationIndexPath.row] == nil {
-      let temp = posts[sourceIndexPath.row]
-      posts[destinationIndexPath.row] = temp
-      posts[sourceIndexPath.row] = temp
-    } else {
-      let temp = posts[sourceIndexPath.row]
-      posts[sourceIndexPath.row] = posts[destinationIndexPath.row]
-      posts[destinationIndexPath.row] = temp
-    }
-  }
+//  func collectionView(_ collectionView: UICollectionView,
+//                      moveItemAt sourceIndexPath: IndexPath,
+//                      to destinationIndexPath: IndexPath) {
+//    guard sourceIndexPath != destinationIndexPath else { return }
+//
+//    //        collectionView.performBatchUpdates({
+//    //            collectionView.moveItem(at: sourceIndexPath, to: destinationIndexPath)
+//    //        }, completion: nil)
+//
+//    if posts[destinationIndexPath.row] == nil {
+//      let temp = posts[sourceIndexPath.row]
+//      posts[destinationIndexPath.row] = temp
+//      posts[sourceIndexPath.row] = temp
+//    } else {
+//      let temp = posts[sourceIndexPath.row]
+//      posts[sourceIndexPath.row] = posts[destinationIndexPath.row]
+//      posts[destinationIndexPath.row] = temp
+//    }
+//  }
   
   //    func collectionView(_ collectionView: UICollectionView,
   //                        targetIndexPathForMoveFromItemAt originalIndexPath: IndexPath,

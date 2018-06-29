@@ -32,7 +32,7 @@ extension UIColor {
     let themeKey = "ThemeNameRawValue"
     let currentTheme = UserDefaults.standard.value(forKey: themeKey) as? Int ?? 0
     
-    let colorSet = [ColorSet.basic, ColorSet.helsinki, ColorSet.marseille, ColorSet.newyork, ColorSet.horizon, ColorSet.orange, ColorSet.heaven]
+    let colorSet = [ColorSet.basic, ColorSet.sunset, ColorSet.macaron, ColorSet.redblue, ColorSet.jejuOcean, ColorSet.cherryBlossom, ColorSet.orange, ColorSet.heaven, ColorSet.cookieCream]
     
     // 0 - Good, 1 - Soso, 2 - Bad , 3 - BackgroundColor
     return colorSet[currentTheme].colors
