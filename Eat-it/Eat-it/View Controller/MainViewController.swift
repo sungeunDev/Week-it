@@ -177,13 +177,12 @@ extension MainViewController {
     let colorSet = [ColorSet.basic, ColorSet.helsinki, ColorSet.marseille, ColorSet.newyork, ColorSet.horizon, ColorSet.orange, ColorSet.heaven]
     let currentColor = colorSet[currentTheme]
     
+    print(currentTheme)
+    
     // 공유 UserDefault에 저장
     shareDefaults.setColor(currentColor.good, forkey: "good")
     shareDefaults.setColor(currentColor.soso, forkey: "soso")
     shareDefaults.setColor(currentColor.bad, forkey: "bad")
-  
-    
-
   }
   
   

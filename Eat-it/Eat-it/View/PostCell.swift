@@ -42,7 +42,7 @@ class PostCell: UICollectionViewCell {
     
     let themeKey = "ThemeNameRawValue"
     let currentTheme = UserDefaults.standard.value(forKey: themeKey) as? Int ?? 0
-    
+    print(currentTheme)
     let colorSet = [ColorSet.basic, ColorSet.helsinki, ColorSet.marseille, ColorSet.newyork, ColorSet.horizon, ColorSet.orange, ColorSet.heaven]
     let currentColor = colorSet[currentTheme].colors
     

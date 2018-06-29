@@ -13,7 +13,12 @@ import RealmSwift
 
 class TodayViewController: UIViewController, NCWidgetProviding {
   
-  @IBOutlet weak var viewMorning: UIView!
+  @IBOutlet weak var viewMorning: UIView! {
+    didSet {
+        self.view.reloadInputViews()
+    }
+  }
+  
   @IBOutlet weak var viewNoon: UIView!
   @IBOutlet weak var viewNight: UIView!
   
@@ -100,6 +105,7 @@ class TodayViewController: UIViewController, NCWidgetProviding {
   }
   
   func ratingColorUIUpdate(rating: Int, view: UIView, colors: [UIColor]) {
+    self.view.layoutIfNeeded()
     switch rating {
     case 0:
       view.backgroundColor = colors[0]
