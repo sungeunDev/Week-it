@@ -58,7 +58,6 @@ class MainViewController: UIViewController {
     navigationController?.delegate = transition
     
     // Navigation Bar UI
-    naviBarTitleLayout()
     naviBarItemLayout()
   }
   
@@ -75,6 +74,9 @@ class MainViewController: UIViewController {
     
     // mealMatrix background color accroing to theme
     mealMatrixView.backgroundColor = mealMatrixViewBackgroundColor()
+    
+    // Navigation Bar UI
+    naviBarTitleLayout() // 테마 컬러에 따라 색이 바뀌어야 하므로 viewWillAppear에 위치
   }
 }
 
@@ -172,12 +174,10 @@ extension MainViewController {
     
     // 현재 테마 컬러셋 데이터
     let themeKey = "ThemeNameRawValue"
-    let currentTheme = shareDefaults.value(forKey: themeKey) as? Int ?? 0
+    let currentTheme = UserDefaults.standard.value(forKey: themeKey) as? Int ?? 0
     
     let colorSet = [ColorSet.basic, ColorSet.sunset, ColorSet.macaron, ColorSet.redblue, ColorSet.jejuOcean, ColorSet.cherryBlossom, ColorSet.orange, ColorSet.heaven, ColorSet.cookieCream]
     let currentColor = colorSet[currentTheme]
-    
-    print(currentTheme)
     
     // 공유 UserDefault에 저장
     shareDefaults.setColor(currentColor.good, forkey: "good")
@@ -189,20 +189,20 @@ extension MainViewController {
   
   
   // MARK: - Gesture
-//  @IBAction private func pressGesture(_ sender: UILongPressGestureRecognizer) {
-//    let location = sender.location(in: postCollectionView)
-//    switch sender.state {
-//    case .began:
-//      guard let itemIndexPath = postCollectionView.indexPathForItem(at: location) else { break }
-//      postCollectionView.beginInteractiveMovementForItem(at: itemIndexPath)
-//    case .changed:
-//      postCollectionView.updateInteractiveMovementTargetPosition(location)
-//    case .ended:
-//      postCollectionView.endInteractiveMovement()
-//    default:
-//      postCollectionView.cancelInteractiveMovement()
-//    }
-//  }
+  @IBAction private func pressGesture(_ sender: UILongPressGestureRecognizer) {
+    let location = sender.location(in: postCollectionView)
+    switch sender.state {
+    case .began:
+      guard let itemIndexPath = postCollectionView.indexPathForItem(at: location) else { break }
+      postCollectionView.beginInteractiveMovementForItem(at: itemIndexPath)
+    case .changed:
+      postCollectionView.updateInteractiveMovementTargetPosition(location)
+    case .ended:
+      postCollectionView.endInteractiveMovement()
+    default:
+      postCollectionView.cancelInteractiveMovement()
+    }
+  }
   
   @IBAction private func leftSwipe(_ sender: UISwipeGestureRecognizer) {
     rightBtn()
@@ -215,6 +215,15 @@ extension MainViewController {
   
   
   // MARK: - UI
+  func mealMatrixViewColorTheme() -> [UIColor] {
+    let themeKey = "ThemeNameRawValue"
+    let currentTheme = UserDefaults.standard.value(forKey: themeKey) as? Int ?? 0
+    
+    let colorSet = [ColorSet.basic, ColorSet.sunset, ColorSet.macaron, ColorSet.redblue, ColorSet.jejuOcean, ColorSet.cherryBlossom, ColorSet.orange, ColorSet.heaven, ColorSet.cookieCream]
+    return colorSet[currentTheme].colors
+  }
+  
+  
   func mealMatrixViewBackgroundColor() -> UIColor {
     let themeKey = "ThemeNameRawValue"
     let currentTheme = UserDefaults.standard.value(forKey: themeKey) as? Int ?? 0
@@ -273,25 +282,25 @@ extension MainViewController: UICollectionViewDataSource {
   }
   
   // MARK: - move collectionView cell
-//  func collectionView(_ collectionView: UICollectionView,
-//                      moveItemAt sourceIndexPath: IndexPath,
-//                      to destinationIndexPath: IndexPath) {
-//    guard sourceIndexPath != destinationIndexPath else { return }
-//
-//    //        collectionView.performBatchUpdates({
-//    //            collectionView.moveItem(at: sourceIndexPath, to: destinationIndexPath)
-//    //        }, completion: nil)
-//
-//    if posts[destinationIndexPath.row] == nil {
-//      let temp = posts[sourceIndexPath.row]
-//      posts[destinationIndexPath.row] = temp
-//      posts[sourceIndexPath.row] = temp
-//    } else {
-//      let temp = posts[sourceIndexPath.row]
-//      posts[sourceIndexPath.row] = posts[destinationIndexPath.row]
-//      posts[destinationIndexPath.row] = temp
-//    }
-//  }
+  func collectionView(_ collectionView: UICollectionView,
+                      moveItemAt sourceIndexPath: IndexPath,
+                      to destinationIndexPath: IndexPath) {
+    guard sourceIndexPath != destinationIndexPath else { return }
+    
+    //        collectionView.performBatchUpdates({
+    //            collectionView.moveItem(at: sourceIndexPath, to: destinationIndexPath)
+    //        }, completion: nil)
+    
+    if posts[destinationIndexPath.row] == nil {
+      let temp = posts[sourceIndexPath.row]
+      posts[destinationIndexPath.row] = temp
+      posts[sourceIndexPath.row] = temp
+    } else {
+      let temp = posts[sourceIndexPath.row]
+      posts[sourceIndexPath.row] = posts[destinationIndexPath.row]
+      posts[destinationIndexPath.row] = temp
+    }
+  }
   
   //    func collectionView(_ collectionView: UICollectionView,
   //                        targetIndexPathForMoveFromItemAt originalIndexPath: IndexPath,
@@ -525,20 +534,56 @@ extension MainViewController {
   // BarItem - Title
   func naviBarTitleLayout() {
     
-    let width: CGFloat = 90
-    let height: CGFloat = 40
+    let backViewSize: CGFloat = 29
+    let backViewMargin: CGFloat = 5
+    
+    let width: CGFloat = backViewSize * 3 + backViewMargin * 2
+    let height: CGFloat = backViewSize
     
     let containerButton = UIButton(frame: CGRect(x: 0, y: 0, width: width, height: height))
-    let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: width, height: height))
-    imageView.image = UIImage(named: "logo.png")
+    
+    let title: UILabel = UILabel()
+    title.frame = containerButton.frame
+    title.text = "Week-it"
+    title.font = UIFont(name: "Montserrat-SemiBold", size: 17)
+    title.textColor = UIColor.init(hex: "383838")
+    title.textAlignment = .center
+    
+    
+    let backView1: UIView = UIView(frame: CGRect(x: 0, y: 0, width: backViewSize, height: backViewSize))
+    let backView2: UIView = UIView(frame: CGRect(x: backViewSize+backViewMargin, y: 0, width: backViewSize, height: backViewSize))
+    let backView3: UIView = UIView(frame: CGRect(x: (backViewSize+backViewMargin)*2, y: 0, width: backViewSize, height: backViewSize))
+    backView1.isUserInteractionEnabled = false
+    backView2.isUserInteractionEnabled = false
+    backView3.isUserInteractionEnabled = false
+    
+    backView1.backgroundColor = mealMatrixViewColorTheme()[0]
+    backView2.backgroundColor = mealMatrixViewColorTheme()[1]
+    backView3.backgroundColor = mealMatrixViewColorTheme()[2]
+    
+    backView1.layer.cornerRadius = 4
+    backView2.layer.cornerRadius = 4
+    backView3.layer.cornerRadius = 4
+    
+    containerButton.addSubview(backView1)
+    containerButton.addSubview(backView2)
+    containerButton.addSubview(backView3)
+    containerButton.addSubview(title)
+    
+//    let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: width, height: height))
+//    imageView.image = UIImage(named: "logo.png")
     
     containerButton.addTarget(self, action: #selector(moveCalendarToday(_:)), for: .touchUpInside)
-    containerButton.addSubview(imageView)
+//    containerButton.addSubview(imageView)
+//    containerButton.addSubview(containerView)
     self.navigationItem.titleView = containerButton
+
   }
   
   // Title 누르면 현재 날짜로 돌아옴
   @objc func moveCalendarToday(_ : UIButton) {
+    
+    print("\n---------- [ moveCalendarToday ] -----------\n")
     self.date = Date()
     
     date = changeToMonday(of: date)

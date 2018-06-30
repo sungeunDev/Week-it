@@ -17,7 +17,6 @@
 		6F1B930C20D75F9B0011BA2A /* TodayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F1B930B20D75F9B0011BA2A /* TodayViewController.swift */; };
 		6F1B930F20D75F9B0011BA2A /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6F1B930D20D75F9B0011BA2A /* MainInterface.storyboard */; };
 		6F1B932120D906CC0011BA2A /* Montserrat-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6F1B931F20D906CA0011BA2A /* Montserrat-SemiBold.ttf */; };
-		6F1B932220D906CC0011BA2A /* Montserrat-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6F1B932020D906CB0011BA2A /* Montserrat-Bold.ttf */; };
 		6F1B932C20DA07F40011BA2A /* mealTime_morning.png in Resources */ = {isa = PBXBuildFile; fileRef = 6F1B932920DA07F30011BA2A /* mealTime_morning.png */; };
 		6F1B932D20DA07F40011BA2A /* mealTime_noon.png in Resources */ = {isa = PBXBuildFile; fileRef = 6F1B932A20DA07F30011BA2A /* mealTime_noon.png */; };
 		6F1B932E20DA07F40011BA2A /* mealTime_night.png in Resources */ = {isa = PBXBuildFile; fileRef = 6F1B932B20DA07F40011BA2A /* mealTime_night.png */; };
@@ -91,7 +90,6 @@
 		6F1B931D20D7E5CE0011BA2A /* Eat-itTodayExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Eat-itTodayExtension.entitlements"; sourceTree = "<group>"; };
 		6F1B931E20D7E5D50011BA2A /* Eat-it.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Eat-it.entitlements"; sourceTree = "<group>"; };
 		6F1B931F20D906CA0011BA2A /* Montserrat-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-SemiBold.ttf"; sourceTree = "<group>"; };
-		6F1B932020D906CB0011BA2A /* Montserrat-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-Bold.ttf"; sourceTree = "<group>"; };
 		6F1B932920DA07F30011BA2A /* mealTime_morning.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mealTime_morning.png; sourceTree = "<group>"; };
 		6F1B932A20DA07F30011BA2A /* mealTime_noon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mealTime_noon.png; sourceTree = "<group>"; };
 		6F1B932B20DA07F40011BA2A /* mealTime_night.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mealTime_night.png; sourceTree = "<group>"; };
@@ -165,7 +163,6 @@
 		6FABA5DA20CE480E009DC835 /* Assets */ = {
 			isa = PBXGroup;
 			children = (
-				6F1B932020D906CB0011BA2A /* Montserrat-Bold.ttf */,
 				6F1B931F20D906CA0011BA2A /* Montserrat-SemiBold.ttf */,
 				6FC46E1920C64DF900DAA40D /* Assets.xcassets */,
 				6FC46E1620C64DF800DAA40D /* Main.storyboard */,
@@ -381,7 +378,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6F1B932220D906CC0011BA2A /* Montserrat-Bold.ttf in Resources */,
 				6FC46E1D20C64DF900DAA40D /* LaunchScreen.storyboard in Resources */,
 				6FC46E1A20C64DF900DAA40D /* Assets.xcassets in Resources */,
 				6F1B932120D906CC0011BA2A /* Montserrat-SemiBold.ttf in Resources */,
