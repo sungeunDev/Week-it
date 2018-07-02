@@ -12,18 +12,18 @@
 		6F10322720E886DC00AFBF36 /* DevInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F10322620E886DC00AFBF36 /* DevInfoViewController.swift */; };
 		6F10322920E9B97F00AFBF36 /* GraphDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F10322820E9B97F00AFBF36 /* GraphDetailViewController.swift */; };
 		6F10322B20E9BF4B00AFBF36 /* CustomCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F10322A20E9BF4B00AFBF36 /* CustomCollectionViewCell.swift */; };
+		6F10322F20EA0ADC00AFBF36 /* TodayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F1B930B20D75F9B0011BA2A /* TodayViewController.swift */; };
+		6F10323020EA0ADC00AFBF36 /* SupportExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F1B932F20E0D3060011BA2A /* SupportExtension.swift */; };
 		6F1AF1D020D0C5FC00147898 /* ThemeTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F1AF1CF20D0C5FC00147898 /* ThemeTableViewController.swift */; };
 		6F1AF1D220D0D6C800147898 /* CustomTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F1AF1D120D0D6C800147898 /* CustomTableViewCell.swift */; };
 		6F1AF1D420D0E1BC00147898 /* ThemeData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F1AF1D320D0E1BC00147898 /* ThemeData.swift */; };
 		6F1AF1D620D23DB500147898 /* GraphTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F1AF1D520D23DB500147898 /* GraphTableViewController.swift */; };
 		6F1B930920D75F9B0011BA2A /* NotificationCenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6F1B930820D75F9B0011BA2A /* NotificationCenter.framework */; };
-		6F1B930C20D75F9B0011BA2A /* TodayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F1B930B20D75F9B0011BA2A /* TodayViewController.swift */; };
 		6F1B930F20D75F9B0011BA2A /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6F1B930D20D75F9B0011BA2A /* MainInterface.storyboard */; };
 		6F1B932120D906CC0011BA2A /* Montserrat-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6F1B931F20D906CA0011BA2A /* Montserrat-SemiBold.ttf */; };
 		6F1B932C20DA07F40011BA2A /* mealTime_morning.png in Resources */ = {isa = PBXBuildFile; fileRef = 6F1B932920DA07F30011BA2A /* mealTime_morning.png */; };
 		6F1B932D20DA07F40011BA2A /* mealTime_noon.png in Resources */ = {isa = PBXBuildFile; fileRef = 6F1B932A20DA07F30011BA2A /* mealTime_noon.png */; };
 		6F1B932E20DA07F40011BA2A /* mealTime_night.png in Resources */ = {isa = PBXBuildFile; fileRef = 6F1B932B20DA07F40011BA2A /* mealTime_night.png */; };
-		6F1B933020E0D3060011BA2A /* SupportExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F1B932F20E0D3060011BA2A /* SupportExtension.swift */; };
 		6F1B933220E11F870011BA2A /* plusIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 6F1B933120E11F860011BA2A /* plusIcon.png */; };
 		6FABA5D920CE4297009DC835 /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FABA5D820CE4297009DC835 /* SettingViewController.swift */; };
 		6FB4634320E5CF0D004D65C6 /* Eat-itTodayExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 6F1B930720D75F9A0011BA2A /* Eat-itTodayExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
@@ -83,6 +83,8 @@
 		6F10322620E886DC00AFBF36 /* DevInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DevInfoViewController.swift; sourceTree = "<group>"; };
 		6F10322820E9B97F00AFBF36 /* GraphDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphDetailViewController.swift; sourceTree = "<group>"; };
 		6F10322A20E9BF4B00AFBF36 /* CustomCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCollectionViewCell.swift; sourceTree = "<group>"; };
+		6F10323120EA0BF100AFBF36 /* RealmSwift.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = RealmSwift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		6F10323320EA0C0F00AFBF36 /* RealmSwift.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = RealmSwift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6F1AF1CF20D0C5FC00147898 /* ThemeTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeTableViewController.swift; sourceTree = "<group>"; };
 		6F1AF1D120D0D6C800147898 /* CustomTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CustomTableViewCell.swift; path = "Eat-it/View/CustomTableViewCell.swift"; sourceTree = SOURCE_ROOT; };
 		6F1AF1D320D0E1BC00147898 /* ThemeData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeData.swift; sourceTree = "<group>"; };
@@ -143,6 +145,8 @@
 		08CB7AC6DBCD8F09AE54AEDC /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				6F10323320EA0C0F00AFBF36 /* RealmSwift.framework */,
+				6F10323120EA0BF100AFBF36 /* RealmSwift.framework */,
 				6F1B931B20D7BBC10011BA2A /* Pods_Eat_it.framework */,
 				C50A0A2E30E78B17C3D300BE /* Pods_Eat_it.framework */,
 				6F1B930820D75F9B0011BA2A /* NotificationCenter.framework */,
@@ -444,8 +448,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6F1B930C20D75F9B0011BA2A /* TodayViewController.swift in Sources */,
-				6F1B933020E0D3060011BA2A /* SupportExtension.swift in Sources */,
+				6F10322F20EA0ADC00AFBF36 /* TodayViewController.swift in Sources */,
+				6F10323020EA0ADC00AFBF36 /* SupportExtension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -598,6 +602,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_BITCODE = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
@@ -614,6 +619,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				GENERATE_MASTER_OBJECT_FILE = NO;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -658,6 +664,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_BITCODE = NO;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
@@ -668,8 +675,10 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				GENERATE_MASTER_OBJECT_FILE = NO;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
+				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
@@ -683,6 +692,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_ENTITLEMENTS = "Eat-it/Eat-it.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
@@ -712,6 +722,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_ENTITLEMENTS = "Eat-it/Eat-it.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
