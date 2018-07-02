@@ -20,10 +20,12 @@ class CustomTableViewCell: UITableViewCell {
   @IBOutlet weak var graphDateLabel: UILabel!
   @IBOutlet weak var graphCountLabel: UILabel!
   
-  //graphMonthlyCell
-  @IBOutlet weak var graphMonthlyDateLabel: UILabel!
-  @IBOutlet weak var graphMonthlyCountLabel: UILabel!
+  //graphDetailTableCell
+  @IBOutlet weak var graphDetailTableLabel: UILabel!
+  @IBOutlet weak var graphDetailTableCountLabel: UILabel!
   
+  
+
   
   override func awakeFromNib() {
     super.awakeFromNib()

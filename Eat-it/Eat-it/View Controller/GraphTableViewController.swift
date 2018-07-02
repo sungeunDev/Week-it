@@ -20,7 +20,8 @@ class GraphTableViewController: UITableViewController {
   
   override func viewDidLoad() {
     super.viewDidLoad()
-      numOfposts = fetchPostResult()
+    numOfposts = fetchPostResult()
+    setNaviBackBtn()
   }
   
   func fetchPostResult() -> Results<NumOfPost> {
@@ -36,7 +37,7 @@ class GraphTableViewController: UITableViewController {
     return numOfPost.sorted(byKeyPath: "dateInt", ascending: false)
   }
   
-
+  
   
   // MARK: - Table view data source
   
@@ -63,7 +64,7 @@ class GraphTableViewController: UITableViewController {
   override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     
     let graphCell = tableView.dequeueReusableCell(withIdentifier: "graphCell", for: indexPath) as! CustomTableViewCell
-    let graphMonthlyCell = tableView.dequeueReusableCell(withIdentifier: "graphMonthlyCell", for: indexPath) as! CustomTableViewCell
+    //    let graphMonthlyCell = tableView.dequeueReusableCell(withIdentifier: "graphMonthlyCell", for: indexPath) as! CustomTableViewCell
     
     if indexPath.section == 0 {
       guard let posts = numOfposts else { return graphCell }
@@ -77,22 +78,43 @@ class GraphTableViewController: UITableViewController {
       graphCell.graphCountLabel.text = "\(all)개"
       return graphCell
     } else {
-      guard let posts = numOfposts else { return graphMonthlyCell }
+      guard let numOfposts = numOfposts else { return graphCell }
       
-      let dateStr = String(posts[indexPath.row].dateInt)
+      let dateStr = String(numOfposts[indexPath.row].dateInt)
       let year = dateStr.dropLast(4)
       let month = dateStr.dropFirst(4).dropLast(2)
       
-      graphMonthlyCell.graphMonthlyDateLabel.text = "\(year)년 \(month)월"
-      graphMonthlyCell.graphMonthlyCountLabel.text = "\(String(posts[indexPath.row].numOfpost))개"
-      return graphMonthlyCell
+      graphCell.graphDateLabel.text = "\(year)년 \(month)월"
+      graphCell.graphCountLabel.text = "\(String(numOfposts[indexPath.row].numOfpost))개"
+      return graphCell
     }
   }
   
-  
   override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-
+    tableView.deselectRow(at: indexPath, animated: true)
+    let nextVC = storyboard?.instantiateViewController(withIdentifier: "GraphDetailViewController") as! GraphDetailViewController
+    if indexPath.section == 0 {
+      let realm = try! Realm()
+      nextVC.posts = realm.objects(Post.self)
+    } else {
+      guard let numOfposts = numOfposts else { return }
+      nextVC.posts = fetchPosts(date: numOfposts[indexPath.row].dateInt)
+    }
+    self.navigationController?.pushViewController(nextVC, animated: true)
+    
   }
   
+  // 해당 date에 해당하는 post만 fetch
+  func fetchPosts(date: Int) -> Results<Post> {
+    let realm = try! Realm()
+    let posts = realm.objects(Post.self).filter("dateText >= %@", date).filter("dateText < %@", date + 100)
+    
+    let postsSorted = posts.sorted(by: [
+      SortDescriptor(keyPath: "dateText", ascending: true),
+      SortDescriptor(keyPath: "mealTime", ascending: true),
+      ])
+    
+    return postsSorted
+  }
   
 }

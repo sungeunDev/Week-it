@@ -20,7 +20,7 @@ class SettingViewController: UITableViewController {
   
     
     appVersionLabel.text = Bundle.main.infoDictionary!["CFBundleShortVersionString"] as? String
-    
+    setNaviBackBtn()
   }
   
   override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

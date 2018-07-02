@@ -104,3 +104,11 @@ extension UserDefaults {
     return color
   }
 }
+
+
+extension UIViewController {
+  func setNaviBackBtn() {
+    let backBtnString = UIBarButtonItem(title: " ", style: .plain, target: nil, action: nil)
+    self.navigationItem.backBarButtonItem = backBtnString
+  }
+}

@@ -59,6 +59,8 @@ class MainViewController: UIViewController {
     
     // Navigation Bar UI
     naviBarItemLayout()
+    
+    self.navigationController?.interactivePopGestureRecognizer?.delegate = nil
   }
   
   override func viewWillAppear(_ animated: Bool) {
@@ -417,7 +419,6 @@ extension MainViewController {
     if calendar.component(.weekday, from: date) != monday {
       
       var dateComponent = DateComponents()
-      
       var adjustDayCount = (calendar.component(.weekday, from: date) - monday) * (-1)
       
       // 일요일 보정
@@ -427,10 +428,8 @@ extension MainViewController {
       
       dateComponent.day = adjustDayCount
       let adjustDate = Calendar.current.date(byAdding: dateComponent, to: date)!
-      
       return adjustDate
     } else {
-      
       return date
     }
   }
