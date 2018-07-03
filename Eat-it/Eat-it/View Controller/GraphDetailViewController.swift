@@ -17,6 +17,11 @@ class GraphDetailViewController: UIViewController {
   @IBOutlet weak var descriptionLabel: UILabel!
   var posts: Results<Post>?
   let currentTheme = UIColor().currentTheme()
+  var naviTitle: String? {
+    willSet {
+      self.title = newValue
+    }
+  }
   
   override func viewDidLoad() {
     super.viewDidLoad()

@@ -95,11 +95,13 @@ class PostViewController: UITableViewController {
       }
       
     } else {
-      let alert = UIAlertController(title: "Post fail", message:
+      let alert = UIAlertController(title: "포스트 등록 실패", message:
         """
-        메뉴를 적어주세요.
+        내용을 적어주세요.
         """, preferredStyle: .alert)
-      let action = UIAlertAction(title: "확인", style: .default, handler: nil)
+      let action = UIAlertAction(title: "확인", style: .default) { (_) in
+       self.menuTextField.becomeFirstResponder()
+      }
       alert.addAction(action)
       self.present(alert, animated: true, completion: nil)
     }
@@ -166,7 +168,7 @@ class PostViewController: UITableViewController {
       }
       popVC()
     } else {
-      let alert = UIAlertController(title: "Delete fail", message:
+      let alert = UIAlertController(title: "삭제 실패", message:
         """
         삭제 할 포스트가 없습니다.
         포스트를 등록해 주세요.

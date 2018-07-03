@@ -25,14 +25,18 @@
 		6F1B932D20DA07F40011BA2A /* mealTime_noon.png in Resources */ = {isa = PBXBuildFile; fileRef = 6F1B932A20DA07F30011BA2A /* mealTime_noon.png */; };
 		6F1B932E20DA07F40011BA2A /* mealTime_night.png in Resources */ = {isa = PBXBuildFile; fileRef = 6F1B932B20DA07F40011BA2A /* mealTime_night.png */; };
 		6F1B933220E11F870011BA2A /* plusIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 6F1B933120E11F860011BA2A /* plusIcon.png */; };
+		6F5077E320EA16AA00B113A9 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6F5077E220EA16AA00B113A9 /* Launch Screen.storyboard */; };
+		6F5077E520EA171000B113A9 /* launchScreen.png in Resources */ = {isa = PBXBuildFile; fileRef = 6F5077E420EA171000B113A9 /* launchScreen.png */; };
+		6F5077E720EA176000B113A9 /* background.png in Resources */ = {isa = PBXBuildFile; fileRef = 6F5077E620EA176000B113A9 /* background.png */; };
+		6F5077E920EB193F00B113A9 /* TutorialImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F5077E820EB193F00B113A9 /* TutorialImageViewController.swift */; };
+		6F5077EB20EB19C200B113A9 /* TutorialPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F5077EA20EB19C200B113A9 /* TutorialPageViewController.swift */; };
+		6F5077ED20EB28B300B113A9 /* TutorialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F5077EC20EB28B300B113A9 /* TutorialViewController.swift */; };
 		6FABA5D920CE4297009DC835 /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FABA5D820CE4297009DC835 /* SettingViewController.swift */; };
 		6FB4634320E5CF0D004D65C6 /* Eat-itTodayExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 6F1B930720D75F9A0011BA2A /* Eat-itTodayExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
-		6FB4676620E4DCC60013E0F1 /* TutorialPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FB4676520E4DCC60013E0F1 /* TutorialPageViewController.swift */; };
 		6FC46E1320C64DF800DAA40D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FC46E1220C64DF800DAA40D /* AppDelegate.swift */; };
 		6FC46E1520C64DF800DAA40D /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FC46E1420C64DF800DAA40D /* MainViewController.swift */; };
 		6FC46E1820C64DF800DAA40D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6FC46E1620C64DF800DAA40D /* Main.storyboard */; };
 		6FC46E1A20C64DF900DAA40D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6FC46E1920C64DF900DAA40D /* Assets.xcassets */; };
-		6FC46E1D20C64DF900DAA40D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6FC46E1B20C64DF900DAA40D /* LaunchScreen.storyboard */; };
 		6FC46E2D20C6565300DAA40D /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FC46E2C20C6565300DAA40D /* Post.swift */; };
 		6FC46E3220C66B1E00DAA40D /* MealCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FC46E3120C66B1E00DAA40D /* MealCell.swift */; };
 		6FC46E3420C66B2A00DAA40D /* DayCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FC46E3320C66B2A00DAA40D /* DayCell.swift */; };
@@ -103,14 +107,18 @@
 		6F1B932B20DA07F40011BA2A /* mealTime_night.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mealTime_night.png; sourceTree = "<group>"; };
 		6F1B932F20E0D3060011BA2A /* SupportExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupportExtension.swift; sourceTree = "<group>"; };
 		6F1B933120E11F860011BA2A /* plusIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = plusIcon.png; path = "Eat-it/Assets/Assets.xcassets/plusIcon.imageset/plusIcon.png"; sourceTree = SOURCE_ROOT; };
+		6F5077E220EA16AA00B113A9 /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
+		6F5077E420EA171000B113A9 /* launchScreen.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = launchScreen.png; sourceTree = "<group>"; };
+		6F5077E620EA176000B113A9 /* background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = background.png; sourceTree = "<group>"; };
+		6F5077E820EB193F00B113A9 /* TutorialImageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorialImageViewController.swift; sourceTree = "<group>"; };
+		6F5077EA20EB19C200B113A9 /* TutorialPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorialPageViewController.swift; sourceTree = "<group>"; };
+		6F5077EC20EB28B300B113A9 /* TutorialViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorialViewController.swift; sourceTree = "<group>"; };
 		6FABA5D820CE4297009DC835 /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
-		6FB4676520E4DCC60013E0F1 /* TutorialPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TutorialPageViewController.swift; path = "Eat-it/View Controller/TutorialPageViewController.swift"; sourceTree = SOURCE_ROOT; };
 		6FC46E0F20C64DF800DAA40D /* Eat-it.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Eat-it.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		6FC46E1220C64DF800DAA40D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		6FC46E1420C64DF800DAA40D /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		6FC46E1720C64DF800DAA40D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		6FC46E1920C64DF900DAA40D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		6FC46E1C20C64DF900DAA40D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		6FC46E1E20C64DF900DAA40D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6FC46E2C20C6565300DAA40D /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
 		6FC46E3120C66B1E00DAA40D /* MealCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealCell.swift; sourceTree = "<group>"; };
@@ -176,8 +184,10 @@
 				6F1B931F20D906CA0011BA2A /* Montserrat-SemiBold.ttf */,
 				6FC46E1920C64DF900DAA40D /* Assets.xcassets */,
 				6FC46E1620C64DF800DAA40D /* Main.storyboard */,
-				6FC46E1B20C64DF900DAA40D /* LaunchScreen.storyboard */,
 				6FC46E1E20C64DF900DAA40D /* Info.plist */,
+				6F5077E420EA171000B113A9 /* launchScreen.png */,
+				6F5077E620EA176000B113A9 /* background.png */,
+				6F5077E220EA16AA00B113A9 /* Launch Screen.storyboard */,
 			);
 			path = Assets;
 			sourceTree = "<group>";
@@ -227,6 +237,9 @@
 		6FC46E2B20C6564300DAA40D /* View Controller */ = {
 			isa = PBXGroup;
 			children = (
+				6F5077EC20EB28B300B113A9 /* TutorialViewController.swift */,
+				6F5077EA20EB19C200B113A9 /* TutorialPageViewController.swift */,
+				6F5077E820EB193F00B113A9 /* TutorialImageViewController.swift */,
 				6FC46E1420C64DF800DAA40D /* MainViewController.swift */,
 				6FC46E3920C8F76300DAA40D /* PostViewController.swift */,
 				6F1AF1D520D23DB500147898 /* GraphTableViewController.swift */,
@@ -234,7 +247,6 @@
 				6FABA5D820CE4297009DC835 /* SettingViewController.swift */,
 				6F1AF1CF20D0C5FC00147898 /* ThemeTableViewController.swift */,
 				6F10322620E886DC00AFBF36 /* DevInfoViewController.swift */,
-				6FB4676520E4DCC60013E0F1 /* TutorialPageViewController.swift */,
 				6F1AF1D120D0D6C800147898 /* CustomTableViewCell.swift */,
 				6F10322A20E9BF4B00AFBF36 /* CustomCollectionViewCell.swift */,
 			);
@@ -391,9 +403,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6FC46E1D20C64DF900DAA40D /* LaunchScreen.storyboard in Resources */,
 				6FC46E1A20C64DF900DAA40D /* Assets.xcassets in Resources */,
+				6F5077E720EA176000B113A9 /* background.png in Resources */,
 				6F1B932120D906CC0011BA2A /* Montserrat-SemiBold.ttf in Resources */,
+				6F5077E520EA171000B113A9 /* launchScreen.png in Resources */,
+				6F5077E320EA16AA00B113A9 /* Launch Screen.storyboard in Resources */,
 				6FC46E1820C64DF800DAA40D /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -458,19 +472,21 @@
 			buildActionMask = 2147483647;
 			files = (
 				6FC46E3A20C8F76300DAA40D /* PostViewController.swift in Sources */,
+				6F5077ED20EB28B300B113A9 /* TutorialViewController.swift in Sources */,
 				6F1AF1D420D0E1BC00147898 /* ThemeData.swift in Sources */,
 				6F1AF1D620D23DB500147898 /* GraphTableViewController.swift in Sources */,
 				6FC46E3220C66B1E00DAA40D /* MealCell.swift in Sources */,
 				6FC46E2D20C6565300DAA40D /* Post.swift in Sources */,
 				1EB2D74C20D2140900933CAF /* Transitions.swift in Sources */,
+				6F5077EB20EB19C200B113A9 /* TutorialPageViewController.swift in Sources */,
 				6F10322B20E9BF4B00AFBF36 /* CustomCollectionViewCell.swift in Sources */,
-				6FB4676620E4DCC60013E0F1 /* TutorialPageViewController.swift in Sources */,
 				6FC46E3820C6722700DAA40D /* Extension.swift in Sources */,
 				6F10322720E886DC00AFBF36 /* DevInfoViewController.swift in Sources */,
 				6FABA5D920CE4297009DC835 /* SettingViewController.swift in Sources */,
 				6F10322920E9B97F00AFBF36 /* GraphDetailViewController.swift in Sources */,
 				6FC46E3420C66B2A00DAA40D /* DayCell.swift in Sources */,
 				1EB2D74E20D21D5500933CAF /* TransitionCoordinator.swift in Sources */,
+				6F5077E920EB193F00B113A9 /* TutorialImageViewController.swift in Sources */,
 				6F1AF1D220D0D6C800147898 /* CustomTableViewCell.swift in Sources */,
 				6FC46E1520C64DF800DAA40D /* MainViewController.swift in Sources */,
 				6F1AF1D020D0C5FC00147898 /* ThemeTableViewController.swift in Sources */,
@@ -504,14 +520,6 @@
 				6FC46E1720C64DF800DAA40D /* Base */,
 			);
 			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-		6FC46E1B20C64DF900DAA40D /* LaunchScreen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				6FC46E1C20C64DF900DAA40D /* Base */,
-			);
-			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -692,7 +700,6 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_ENTITLEMENTS = "Eat-it/Eat-it.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
@@ -722,7 +729,6 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_ENTITLEMENTS = "Eat-it/Eat-it.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;

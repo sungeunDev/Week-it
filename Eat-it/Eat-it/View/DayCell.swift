@@ -12,7 +12,7 @@ class DayCell: UICollectionViewCell {
   @IBOutlet weak var dayLabel: UILabel!
   public var dayData: String = "" {
     didSet {
-      dayLabel.text = dayData.capitalized
+      dayLabel.text = dayData
     }
   }
   

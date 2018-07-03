@@ -115,7 +115,6 @@ class TodayViewController: UIViewController, NCWidgetProviding {
       view.backgroundColor = colors[2]
     default:
       view.backgroundColor = UIColor.lightGray
-      print("no posts")
     }
   }
   
@@ -123,7 +122,7 @@ class TodayViewController: UIViewController, NCWidgetProviding {
   //MARK:-       Methods | IBAction           //
   /********************************************/
   
-  //Widget을 한번 탭하면 GitGet App 이 열리도록 설정
+  //Widget을 한번 탭하면 앱이 열리도록 설정
   @IBAction func toOpenApp(_ sender: UITapGestureRecognizer) {
     let myApp = URL(string: "main-weekit:")!
     extensionContext?.open(myApp, completionHandler: { (success) in

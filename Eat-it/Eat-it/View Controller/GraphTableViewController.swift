@@ -64,11 +64,10 @@ class GraphTableViewController: UITableViewController {
   override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     
     let graphCell = tableView.dequeueReusableCell(withIdentifier: "graphCell", for: indexPath) as! CustomTableViewCell
-    //    let graphMonthlyCell = tableView.dequeueReusableCell(withIdentifier: "graphMonthlyCell", for: indexPath) as! CustomTableViewCell
-    
+ 
     if indexPath.section == 0 {
       guard let posts = numOfposts else { return graphCell }
-      graphCell.graphDateLabel.text = "모든 포스트"
+      graphCell.graphDateLabel.text = naviTitleLabel(indexPath: indexPath)
       
       var all = 0
       for num in posts {
@@ -80,15 +79,13 @@ class GraphTableViewController: UITableViewController {
     } else {
       guard let numOfposts = numOfposts else { return graphCell }
       
-      let dateStr = String(numOfposts[indexPath.row].dateInt)
-      let year = dateStr.dropLast(4)
-      let month = dateStr.dropFirst(4).dropLast(2)
-      
-      graphCell.graphDateLabel.text = "\(year)년 \(month)월"
+      graphCell.graphDateLabel.text = naviTitleLabel(indexPath: indexPath)
       graphCell.graphCountLabel.text = "\(String(numOfposts[indexPath.row].numOfpost))개"
       return graphCell
     }
   }
+  
+
   
   override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
     tableView.deselectRow(at: indexPath, animated: true)
@@ -100,6 +97,7 @@ class GraphTableViewController: UITableViewController {
       guard let numOfposts = numOfposts else { return }
       nextVC.posts = fetchPosts(date: numOfposts[indexPath.row].dateInt)
     }
+    nextVC.naviTitle = naviTitleLabel(indexPath: indexPath)
     self.navigationController?.pushViewController(nextVC, animated: true)
     
   }
@@ -115,6 +113,20 @@ class GraphTableViewController: UITableViewController {
       ])
     
     return postsSorted
+  }
+  
+  // navi Title 설정
+  func naviTitleLabel(indexPath: IndexPath) -> String {
+    if indexPath.section == 0 {
+      return "모든 포스트"
+    } else {
+      guard let numOfposts = numOfposts else { return "" }
+      let dateStr = String(numOfposts[indexPath.row].dateInt)
+      let year = dateStr.dropLast(4)
+      let month = dateStr.dropFirst(4).dropLast(2)
+      
+      return "\(year)년 \(month)월"
+    }
   }
   
 }
