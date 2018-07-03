@@ -2,17 +2,17 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "helsinki.png",
+      "filename" : "tutorial05.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
-      "filename" : "helsinki@2x.png",
+      "filename" : "tutorial05@2x.png",
       "scale" : "2x"
     },
     {
       "idiom" : "universal",
-      "filename" : "helsinki@3x.png",
+      "filename" : "tutorial05@3x.png",
       "scale" : "3x"
     }
   ],

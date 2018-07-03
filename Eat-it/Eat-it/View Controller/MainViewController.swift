@@ -46,7 +46,7 @@ class MainViewController: UIViewController {
     super.viewDidLoad()
     print(NSHomeDirectory())
     
-    
+    presentTutorialView()
     
     // this week of monday date & label setting
     date = changeToMonday(of: date)
@@ -79,6 +79,18 @@ class MainViewController: UIViewController {
     
     // Navigation Bar UI
     naviBarTitleLayout() // 테마 컬러에 따라 색이 바뀌어야 하므로 viewWillAppear에 위치
+  }
+  
+  
+  //PRESENT TUTORIAL VIEW ON FIRST LAUNCH ONLY
+  func presentTutorialView() {
+    print("\n---------- [ presentTutorialView ] -----------\n")
+    if !UserDefaults.standard.bool(forKey: "didSee") {
+      UserDefaults.standard.set(true, forKey: "didSee")
+      let tutorialView = self.storyboard?.instantiateViewController(withIdentifier: "TutorialViewController") as! TutorialViewController
+      print("\n---------- [ present ] -----------\n")
+      self.present(tutorialView, animated: false, completion: nil)
+    }
   }
 }
 
