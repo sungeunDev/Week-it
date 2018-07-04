@@ -6,11 +6,11 @@
 <br>
 
 ## Contents
-1. [About Week-it](https://github.com/sungeunDev/EAT_IT#about-week-it)
-2. [Version Update](https://github.com/sungeunDev/EAT_IT#version-update)
-3. [Concept](https://github.com/sungeunDev/EAT_IT#concept)
-4. [Things to do next](https://github.com/sungeunDev/EAT_IT#things-to-do-next)
-5. [Contact](https://github.com/sungeunDev/EAT_IT#contact)
+1. [About Week-it](#about-week-it)
+2. [Version Update](#version-update)
+3. [Concept](#concept)
+4. [Things to do next](#things-to-do-next)
+5. [Contact](#contact)
 
 <br>
 
@@ -93,6 +93,6 @@
 
 <br>
 
-## 4. Contact
+## 5. Contact
 - phone: +82 10.5835.0602
 - mail: p.ssungnni@gmail.com
