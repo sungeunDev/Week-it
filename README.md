@@ -6,15 +6,15 @@
 <br>
 
 ## Contents
-1. [About Week-it](#1.-about-week-it)
-2. [Version Update](#2.-version-update)
-3. [Concept](#3.-concept)
-4. [Things to do next](#4.-things-to-do-next)
-5. [Contact](#5.-contact)
+1. [About Week-it](#about-week-it)
+2. [Version Update](#version-update)
+3. [Concept](#concept)
+4. [Things to do next](#things-to-do-next)
+5. [Contact](#contact)
 
 <br>
 
-## 1. About Week-it
+## About Week-it
 
 ![ver 1.0](./Scrennshot/ver%201.0.png) 
 <p align="center">
@@ -47,14 +47,14 @@
 
 <br>
 
-## 2. Version Update
+## Version Update
 > -. start: 2018.06.05 ~   
 > -. ver 1.0.0 : 1차 App Store release (18.07.04)   
 
 
 <br>
 
-## 3. Concept
+## Concept
 > -. Week-it은 2018년 1월에 Swift를 처음 접한 6개월차 초보 개발자의 첫번째 프로젝트입니다.  
 > -. 프로젝트 시작부터 출시까지를 모두 경험하는 것을 목표로 개발뿐만 아니라 기획, 디자인 모두 직접 진행하였습니다.
 
@@ -72,7 +72,7 @@
   
 <br>
 
-## 4. Things to do next 
+## Things to do next 
 > -. 앞으로 할일들. 하나씩 지워나가는 게 목표!
 
 - Refactoring 
@@ -93,6 +93,6 @@
 
 <br>
 
-## 5. Contact
+## Contact
 - phone: +82 10.5835.0602
 - mail: p.ssungnni@gmail.com
