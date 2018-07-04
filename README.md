@@ -6,11 +6,11 @@
 <br>
 
 ## Contents
-1. [About Week-it](#about-week-it)
-2. [Version Update](#version-update)
-3. [Concept](#concept)
-4. [Things to do next](#things-to-do-next)
-5. [Contact](#contact)
+1. [About Week-it](#1.-about-week-it)
+2. [Version Update](#2.-version-update)
+3. [Concept](#3.-concept)
+4. [Things to do next](#4.-things-to-do-next)
+5. [Contact](#5.-contact)
 
 <br>
 
