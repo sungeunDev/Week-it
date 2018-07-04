@@ -6,21 +6,30 @@
 <br>
 
 ## Contents
-1. About Week-it
-2. Concept
-3. Update
-4. Contact
+1. [About Week-it](https://github.com/sungeunDev/EAT_IT#about-week-it)
+2. [Version Update](https://github.com/sungeunDev/EAT_IT#version-update)
+3. [Concept](https://github.com/sungeunDev/EAT_IT#concept)
+4. [Things to do next](https://github.com/sungeunDev/EAT_IT#things-to-do-next)
+5. [Contact](https://github.com/sungeunDev/EAT_IT#contact)
 
 <br>
 
 ## 1. About Week-it
 
 ![ver 1.0](./Scrennshot/ver%201.0.png) 
+<p align="center">
+<img src="https://img.shields.io/badge/swift-4.1-blue.svg" />
+<img src="https://img.shields.io/badge/xcode-9.3-green.svg" />
+<img src="https://img.shields.io/badge/ios-11.0-yellow.svg" />
+<img src="https://img.shields.io/badge/contacts-@p.ssungnni-orange.svg" />
+<img src="https://img.shields.io/badge/licence-MIT-lightgrey.svg" /> <br><br>
+</p>
 
 >   - Post it! Week it!  
-    : 이번주 당신의 일상은 어떠셨나요?  
-    Week-it은 한 주를 의미있게 보냈는지 한 눈에 알 수 있는 주간 기록 어플입니다. 
->
+    이번주 당신의 일상은 어떠셨나요?  
+    Week-it은 한 주를 의미있게 보냈는지 한 눈에 알 수 있는 주간 기록 어플입니다.  
+>    
+>   - Rating
     아침, 점심, 저녁 마다 간단하게 일상 생활을 메모하고, 별점을 매겨 보세요.  
     할일을 기록하는 to-do 리스트나 식단 기록장으로 활용해도 좋아요.  
     하나 하나 기록이 쌓여 의미있는 한 주를 만들어 줄 거에요 :)  
@@ -39,8 +48,8 @@
 <br>
 
 ## 2. Version Update
-> - Start: 2018.06.05 ~ 
-> - ver 1.0.0 : 1차 App Store release (18.07.04) 
+> -. start: 2018.06.05 ~   
+> -. ver 1.0.0 : 1차 App Store release (18.07.04)   
 
 
 <br>
