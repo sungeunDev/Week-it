@@ -1,0 +1,58 @@
+/* 
+  Localizable.strings
+  Eat-it
+
+  Created by sungnni on 2018. 7. 5..
+  Copyright © 2018년 sungeun. All rights reserved.
+*/
+
+// 통계
+"All Posts" = "모든 포스트";
+"year" = "년";
+"space" = " ";
+"month" = "월";
+"count" = "개";
+"count2" = "회";
+
+// 통계 Detail
+"Total" = "총 ";
+"Total Description" = "의 포스트가 있습니다.";
+"MON" = "월";
+"TUE" = "화";
+"WED" = "수";
+"THU" = "목";
+"FRI" = "금";
+
+"Day of the week" = "요일별";
+"Time" = "시간별";
+
+
+// 새로운 포스트
+"Morning" = "아침";
+"Afternoon" = "점심";
+"Evening" = "저녁";
+
+// 새로운 포스트 Alert
+"Post Fail" = "포스트 등록 실패";
+"Please fill in the blank." = "내용을 적어주세요.";
+"OK" = "확인";
+"Delete Fail" = "삭제 실패";
+"There are no posts to delete.\nPlease register your post." = "삭제 할 포스트가 없습니다.\n포스트를 등록해 주세요.";
+
+
+
+// 설정
+"Reset Data" = "데이터 초기화";
+"If you reset the data,\n you can't recover it again.\n Do you really want to initialize it?" = "데이터를 초기화하면 다시 복구할 수 없습니다.\n정말 초기화할까요?";
+"reset" = "초기화";
+"cancle" = "취소";
+
+"Thank you for your feedback. I will update an app in future.\n" = "소중한 의견에 감사드립니다. ☺️ \n 추후 앱 업데이트시 반영하도록 하겠습니다 :)\n";
+
+
+// 튜튜리얼
+"tutorial01" = "tutorial01";
+"tutorial02" = "tutorial02";
+"tutorial03" = "tutorial03";
+"tutorial04" = "tutorial04";
+"tutorial05" = "tutorial05";
