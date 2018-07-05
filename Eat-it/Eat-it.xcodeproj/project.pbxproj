@@ -187,28 +187,17 @@
 			children = (
 				6F1B931F20D906CA0011BA2A /* Montserrat-SemiBold.ttf */,
 				6FC46E1920C64DF900DAA40D /* Assets.xcassets */,
-				6FC46E1620C64DF800DAA40D /* Main.storyboard */,
 				6FC46E1E20C64DF900DAA40D /* Info.plist */,
 				6F5077E420EA171000B113A9 /* launchScreen.png */,
 				6F5077E620EA176000B113A9 /* background.png */,
-				6F5077E220EA16AA00B113A9 /* LaunchScreen.storyboard */,
 			);
 			path = Assets;
-			sourceTree = "<group>";
-		};
-		6FABA5DB20CE5951009DC835 /* App Delegate */ = {
-			isa = PBXGroup;
-			children = (
-				6FC46E1220C64DF800DAA40D /* AppDelegate.swift */,
-			);
-			path = "App Delegate";
 			sourceTree = "<group>";
 		};
 		6FC46E0620C64DF800DAA40D = {
 			isa = PBXGroup;
 			children = (
 				6FC46E1120C64DF800DAA40D /* Eat-it */,
-				6FABA5DB20CE5951009DC835 /* App Delegate */,
 				6F1B930A20D75F9B0011BA2A /* Eat-itTodayExtension */,
 				6FC46E1020C64DF800DAA40D /* Products */,
 				9801C0E76837F2CDFB619058 /* Pods */,
@@ -229,7 +218,10 @@
 			isa = PBXGroup;
 			children = (
 				6F1B931E20D7E5D50011BA2A /* Eat-it.entitlements */,
+				6FC46E1220C64DF800DAA40D /* AppDelegate.swift */,
 				6FABA5DA20CE480E009DC835 /* Assets */,
+				6FC46E1620C64DF800DAA40D /* Main.storyboard */,
+				6F5077E220EA16AA00B113A9 /* LaunchScreen.storyboard */,
 				6FC46E3020C6569600DAA40D /* Support */,
 				6FC46E2E20C6565C00DAA40D /* Model */,
 				6FC46E2B20C6564300DAA40D /* View Controller */,
