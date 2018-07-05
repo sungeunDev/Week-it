@@ -83,8 +83,10 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		039AFA919984E37ED2563504 /* Pods-Eat-it.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Eat-it.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Eat-it/Pods-Eat-it.debug.xcconfig"; sourceTree = "<group>"; };
 		1EB2D74B20D2140900933CAF /* Transitions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Transitions.swift; sourceTree = "<group>"; };
 		1EB2D74D20D21D5500933CAF /* TransitionCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransitionCoordinator.swift; sourceTree = "<group>"; };
+		3D93F7DD16D3F47D7D6FA0D5 /* Pods-Eat-it.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Eat-it.release.xcconfig"; path = "Pods/Target Support Files/Pods-Eat-it/Pods-Eat-it.release.xcconfig"; sourceTree = "<group>"; };
 		6F10322620E886DC00AFBF36 /* DevInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DevInfoViewController.swift; sourceTree = "<group>"; };
 		6F10322820E9B97F00AFBF36 /* GraphDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphDetailViewController.swift; sourceTree = "<group>"; };
 		6F10322A20E9BF4B00AFBF36 /* CustomCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -134,8 +136,6 @@
 		6FC46E3720C6722700DAA40D /* Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extension.swift; sourceTree = "<group>"; };
 		6FC46E3920C8F76300DAA40D /* PostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostViewController.swift; sourceTree = "<group>"; };
 		8A12B071FCA68E607B45F371 /* Pods_Eat_it.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Eat_it.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		913763962DF64A28ADA8946D /* Pods-Eat-it.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Eat-it.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Eat-it/Pods-Eat-it.debug.xcconfig"; sourceTree = "<group>"; };
-		C7CF703FAF8B85C7927F6BAF /* Pods-Eat-it.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Eat-it.release.xcconfig"; path = "Pods/Target Support Files/Pods-Eat-it/Pods-Eat-it.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -288,8 +288,8 @@
 		9801C0E76837F2CDFB619058 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				913763962DF64A28ADA8946D /* Pods-Eat-it.debug.xcconfig */,
-				C7CF703FAF8B85C7927F6BAF /* Pods-Eat-it.release.xcconfig */,
+				039AFA919984E37ED2563504 /* Pods-Eat-it.debug.xcconfig */,
+				3D93F7DD16D3F47D7D6FA0D5 /* Pods-Eat-it.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -543,10 +543,10 @@
 /* Begin XCBuildConfiguration section */
 		6F1B931420D75F9B0011BA2A /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 913763962DF64A28ADA8946D /* Pods-Eat-it.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
 				CODE_SIGN_ENTITLEMENTS = "Eat-itTodayExtension/Eat-itTodayExtension.entitlements";
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = WXH5CKM9TX;
 				INFOPLIST_FILE = "Eat-itTodayExtension/Info.plist";
@@ -558,8 +558,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.sungeun.Eat-it.Eat-itTodayExtension";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "950c9df9-cec0-4b06-819d-607101135c68";
-				PROVISIONING_PROFILE_SPECIFIER = "eat-it today extension development";
+				PROVISIONING_PROFILE = "c95f7db7-bb8a-4682-8613-e07a20d52793";
+				PROVISIONING_PROFILE_SPECIFIER = "eat-it today extension distribution";
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -568,10 +568,10 @@
 		};
 		6F1B931520D75F9B0011BA2A /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = C7CF703FAF8B85C7927F6BAF /* Pods-Eat-it.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
 				CODE_SIGN_ENTITLEMENTS = "Eat-itTodayExtension/Eat-itTodayExtension.entitlements";
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = WXH5CKM9TX;
 				INFOPLIST_FILE = "Eat-itTodayExtension/Info.plist";
@@ -583,8 +583,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.sungeun.Eat-it.Eat-itTodayExtension";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "950c9df9-cec0-4b06-819d-607101135c68";
-				PROVISIONING_PROFILE_SPECIFIER = "eat-it today extension development";
+				PROVISIONING_PROFILE = "c95f7db7-bb8a-4682-8613-e07a20d52793";
+				PROVISIONING_PROFILE_SPECIFIER = "eat-it today extension distribution";
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -594,7 +594,6 @@
 		6FC46E1F20C64DF900DAA40D /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
@@ -657,7 +656,6 @@
 		6FC46E2020C64DF900DAA40D /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
@@ -714,12 +712,12 @@
 		};
 		6FC46E2220C64DF900DAA40D /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 913763962DF64A28ADA8946D /* Pods-Eat-it.debug.xcconfig */;
+			baseConfigurationReference = 039AFA919984E37ED2563504 /* Pods-Eat-it.debug.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = "Eat-it/Eat-it.entitlements";
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = WXH5CKM9TX;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -734,8 +732,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.sungeun.Eat-it";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "349907db-c0a4-493b-8c9d-c23d0169181e";
-				PROVISIONING_PROFILE_SPECIFIER = "eat-it development";
+				PROVISIONING_PROFILE = "9ccac3c0-9121-4082-b79c-cd2d35589e37";
+				PROVISIONING_PROFILE_SPECIFIER = "eat-it Distribution";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -743,12 +741,12 @@
 		};
 		6FC46E2320C64DF900DAA40D /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = C7CF703FAF8B85C7927F6BAF /* Pods-Eat-it.release.xcconfig */;
+			baseConfigurationReference = 3D93F7DD16D3F47D7D6FA0D5 /* Pods-Eat-it.release.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = "Eat-it/Eat-it.entitlements";
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = WXH5CKM9TX;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -763,8 +761,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.sungeun.Eat-it";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "349907db-c0a4-493b-8c9d-c23d0169181e";
-				PROVISIONING_PROFILE_SPECIFIER = "eat-it development";
+				PROVISIONING_PROFILE = "9ccac3c0-9121-4082-b79c-cd2d35589e37";
+				PROVISIONING_PROFILE_SPECIFIER = "eat-it Distribution";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
