@@ -74,13 +74,13 @@ class GraphTableViewController: UITableViewController {
         all += num.numOfpost
       }
       
-      graphCell.graphCountLabel.text = "\(all)개"
+      graphCell.graphCountLabel.text = "\(all)" + "count".localized
       return graphCell
     } else {
       guard let numOfposts = numOfposts else { return graphCell }
       
       graphCell.graphDateLabel.text = naviTitleLabel(indexPath: indexPath)
-      graphCell.graphCountLabel.text = "\(String(numOfposts[indexPath.row].numOfpost))개"
+      graphCell.graphCountLabel.text = "\(String(numOfposts[indexPath.row].numOfpost))" + "count".localized
       return graphCell
     }
   }
@@ -118,14 +118,14 @@ class GraphTableViewController: UITableViewController {
   // navi Title 설정
   func naviTitleLabel(indexPath: IndexPath) -> String {
     if indexPath.section == 0 {
-      return "모든 포스트"
+      return "All Posts".localized
     } else {
       guard let numOfposts = numOfposts else { return "" }
       let dateStr = String(numOfposts[indexPath.row].dateInt)
       let year = dateStr.dropLast(4)
       let month = dateStr.dropFirst(4).dropLast(2)
       
-      return "\(year)년 \(month)월"
+      return "\(year)" + "year".localized + "space".localized + "\(month)" + "month".localized
     }
   }
   

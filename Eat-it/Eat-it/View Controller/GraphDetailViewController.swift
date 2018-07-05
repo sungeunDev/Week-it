@@ -26,7 +26,7 @@ class GraphDetailViewController: UIViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
     
-    descriptionLabel.text = "총 \(posts!.count)개의 포스트가 있습니다."
+    descriptionLabel.text = "Total".localized + "\(posts!.count)" + "count".localized + "Total Description".localized
   }
   
   // GOOD / SOSO / BAD 별로 포스트 개수 세기
@@ -66,7 +66,7 @@ class GraphDetailViewController: UIViewController {
     }
     
     // String으로 나타내기
-    let day = ["월", "화", "수", "목", "금"]
+    let day = ["MON".localized, "TUE".localized, "WED".localized, "THU".localized, "FRI".localized]
     var str = ""
     
     for days in mostDaysOfWeek {
@@ -101,7 +101,7 @@ class GraphDetailViewController: UIViewController {
     }
     
     // String으로 나타내기
-    let day = ["아침", "점심", "저녁"]
+    let day = ["Morning".localized, "Afternoon".localized, "Evening".localized]
     var str = ""
     
     for days in mostOfMealTime {
@@ -127,7 +127,7 @@ extension GraphDetailViewController: UICollectionViewDelegateFlowLayout, UIColle
     graphDetailCollectionCell.backgroundColor = currentTheme[indexPath.item]
     graphDetailCollectionCell.layer.cornerRadius = 5
     graphDetailCollectionCell.graphDetailStarImageView.image = [#imageLiteral(resourceName: "star3"), #imageLiteral(resourceName: "star2"), #imageLiteral(resourceName: "star1")][indexPath.item]
-    graphDetailCollectionCell.graphDetailCountLabel.text = sortRatingCount(of: posts)[indexPath.item] + "개"
+    graphDetailCollectionCell.graphDetailCountLabel.text = sortRatingCount(of: posts)[indexPath.item] + "count".localized
     return graphDetailCollectionCell
   }
   
@@ -159,20 +159,20 @@ extension GraphDetailViewController: UITableViewDataSource, UITableViewDelegate 
       graphDetailTableCell.graphDetailTableLabel.text = "BEST (★★★)"
       if indexPath.section == 0 {
         let bestDaysOfWeek = countMostDaysOfWeek(of: posts!.filter("rating == 0"))
-        graphDetailTableCell.graphDetailTableCountLabel.text = "\(bestDaysOfWeek.1) - \(bestDaysOfWeek.0)회"
+        graphDetailTableCell.graphDetailTableCountLabel.text = "\(bestDaysOfWeek.1) - \(bestDaysOfWeek.0)" + "count2".localized
       } else {
         let bestMealTime = countMostOfMealtime(of: posts!.filter("rating == 0"))
-        graphDetailTableCell.graphDetailTableCountLabel.text = "\(bestMealTime.1) - \(bestMealTime.0)회"
+        graphDetailTableCell.graphDetailTableCountLabel.text = "\(bestMealTime.1) - \(bestMealTime.0)" + "count2".localized
       }
       
     } else {
       graphDetailTableCell.graphDetailTableLabel.text = "WORST (★)"
       if indexPath.section == 0 {
         let worstDaysOfWeek = countMostDaysOfWeek(of: posts!.filter("rating == 2"))
-        graphDetailTableCell.graphDetailTableCountLabel.text = "\(worstDaysOfWeek.1) - \(worstDaysOfWeek.0)회"
+        graphDetailTableCell.graphDetailTableCountLabel.text = "\(worstDaysOfWeek.1) - \(worstDaysOfWeek.0)" + "count2".localized
       } else {
         let worstMealTime = countMostOfMealtime(of: posts!.filter("rating == 2"))
-        graphDetailTableCell.graphDetailTableCountLabel.text = "\(worstMealTime.1) - \(worstMealTime.0)회"
+        graphDetailTableCell.graphDetailTableCountLabel.text = "\(worstMealTime.1) - \(worstMealTime.0)" + "count2".localized
       }
     }
       return graphDetailTableCell
@@ -180,9 +180,9 @@ extension GraphDetailViewController: UITableViewDataSource, UITableViewDelegate 
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
       if section == 0 {
-        return "요일별"
+        return "Day of the week".localized
       } else {
-        return "시간별"
+        return "Time".localized
       }
     }
     

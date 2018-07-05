@@ -17,7 +17,8 @@ protocol TutorialImagesPageViewControllerDelegate: class {
 
 class TutorialPageViewController: UIPageViewController {
 
-  var images: [UIImage]? = [#imageLiteral(resourceName: "tutorial01"), #imageLiteral(resourceName: "tutorial02"), #imageLiteral(resourceName: "tutorial03"), #imageLiteral(resourceName: "tutorial04"), #imageLiteral(resourceName: "tutorial05")]
+  var images: [UIImage]? = [UIImage(named: "tutorial01".localized)!, UIImage(named: "tutorial02".localized)!, UIImage(named: "tutorial03".localized)!, UIImage(named: "tutorial04".localized)!, UIImage(named: "tutorial05".localized)!]
+  
   weak var pageViewControllerDelegate: TutorialImagesPageViewControllerDelegate?
   
   struct StoryBoard {

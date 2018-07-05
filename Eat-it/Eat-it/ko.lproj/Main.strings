@@ -1,0 +1,132 @@
+
+/* Class = "UILabel"; text = "내용"; ObjectID = "4p1-bX-8Rq"; */
+"4p1-bX-8Rq.text" = "내용";
+
+/* Class = "UITableViewSection"; headerTitle = "setting"; ObjectID = "4pU-cW-MLX"; */
+"4pU-cW-MLX.headerTitle" = "setting";
+
+/* Class = "UIViewController"; title = "사용방법 다시보기"; ObjectID = "6y6-f9-OV0"; */
+"6y6-f9-OV0.title" = "사용방법 다시보기";
+
+/* Class = "UITableViewController"; title = "새로운 포스트"; ObjectID = "7Rq-qj-x6k"; */
+"7Rq-qj-x6k.title" = "새로운 포스트";
+
+/* Class = "UIViewController"; title = "개발자 소개"; ObjectID = "Adh-CS-MTe"; */
+"Adh-CS-MTe.title" = "개발자 소개";
+
+/* Class = "UILabel"; text = "BEST / WORST"; ObjectID = "CUP-Ex-inm"; */
+"CUP-Ex-inm.text" = "BEST / WORST";
+
+/* Class = "UIButton"; normalTitle = "WEEK IT"; ObjectID = "DAr-lg-T9O"; */
+"DAr-lg-T9O.normalTitle" = "WEEK IT";
+
+/* Class = "UILabel"; text = "메뉴이름"; ObjectID = "Dbk-XG-bKW"; */
+"Dbk-XG-bKW.text" = "메뉴이름";
+
+/* Class = "UILabel"; text = "데이터 초기화"; ObjectID = "G92-ES-IDC"; */
+"G92-ES-IDC.text" = "데이터 초기화";
+
+/* Class = "UILabel"; text = "Lv1. SsungNni"; ObjectID = "Gus-2H-vXE"; */
+"Gus-2H-vXE.text" = "Lv1. SsungNni";
+
+/* Class = "UITableViewController"; title = "설정"; ObjectID = "HCf-kf-BE9"; */
+"HCf-kf-BE9.title" = "설정";
+
+/* Class = "UILabel"; text = "ColorSetName"; ObjectID = "HQj-ew-a6c"; */
+"HQj-ew-a6c.text" = "ColorSetName";
+
+/* Class = "UIButton"; normalTitle = "DELETE"; ObjectID = "M7b-xe-27h"; */
+"M7b-xe-27h.normalTitle" = "DELETE";
+
+/* Class = "UILabel"; text = "의견 보내기"; ObjectID = "MaB-bD-IPk"; */
+"MaB-bD-IPk.text" = "의견 보내기";
+
+/* Class = "UITableViewSection"; headerTitle = "About week-it"; ObjectID = "OfN-sO-UFh"; */
+"OfN-sO-UFh.headerTitle" = "About week-it";
+
+/* Class = "UILabel"; text = "테마 변경"; ObjectID = "OrJ-Fs-o45"; */
+"OrJ-Fs-o45.text" = "테마 변경";
+
+/* Class = "UIBarButtonItem"; title = " "; ObjectID = "Oy6-6h-nl9"; */
+"Oy6-6h-nl9.title" = " ";
+
+/* Class = "UITableViewController"; title = "테마 변경"; ObjectID = "PQS-PP-dv1"; */
+"PQS-PP-dv1.title" = "테마 변경";
+
+/* Class = "UILabel"; text = "시간"; ObjectID = "QPz-y2-8zU"; */
+"QPz-y2-8zU.text" = "시간";
+
+/* Class = "UILabel"; text = "30개"; ObjectID = "ULS-CL-Rgq"; */
+"ULS-CL-Rgq.text" = "30개";
+
+/* Class = "UILabel"; text = "3개"; ObjectID = "UMF-Fo-DEf"; */
+"UMF-Fo-DEf.text" = "3개";
+
+/* Class = "UILabel"; text = "별점주기"; ObjectID = "V4y-Dv-o2S"; */
+"V4y-Dv-o2S.text" = "별점주기";
+
+/* Class = "UILabel"; text = "사용방법 다시보기"; ObjectID = "VA6-Te-gCE"; */
+"VA6-Te-gCE.text" = "사용방법 다시보기";
+
+/* Class = "UILabel"; text = "평가"; ObjectID = "YeT-9n-H4U"; */
+"YeT-9n-H4U.text" = "평가";
+
+/* Class = "UITableViewSection"; headerTitle = "feedback"; ObjectID = "cTi-dk-xW0"; */
+"cTi-dk-xW0.headerTitle" = "feedback";
+
+/* Class = "UILabel"; text = "버전정보"; ObjectID = "dYT-bW-Qf3"; */
+"dYT-bW-Qf3.text" = "버전정보";
+
+/* Class = "UITableViewController"; title = "통계"; ObjectID = "eO4-LS-UkO"; */
+"eO4-LS-UkO.title" = "통계";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "hfA-IF-SIf"; */
+"hfA-IF-SIf.text" = "Label";
+
+/* Class = "UILabel"; text = "2018-00-00"; ObjectID = "ibH-Bp-KKa"; */
+"ibH-Bp-KKa.text" = "2018-00-00";
+
+/* Class = "UILabel"; text = "개발자 소개"; ObjectID = "juV-Jo-lJ4"; */
+"juV-Jo-lJ4.text" = "개발자 소개";
+
+/* Class = "UISegmentedControl"; kL0-3t-33w.segmentTitles[0] = "★★★"; ObjectID = "kL0-3t-33w"; */
+"kL0-3t-33w.segmentTitles[0]" = "★★★";
+
+/* Class = "UISegmentedControl"; kL0-3t-33w.segmentTitles[1] = "★★"; ObjectID = "kL0-3t-33w"; */
+"kL0-3t-33w.segmentTitles[1]" = "★★";
+
+/* Class = "UISegmentedControl"; kL0-3t-33w.segmentTitles[2] = "★"; ObjectID = "kL0-3t-33w"; */
+"kL0-3t-33w.segmentTitles[2]" = "★";
+
+/* Class = "UILabel"; text = "아침"; ObjectID = "mxT-P1-tE2"; */
+"mxT-P1-tE2.text" = "아침";
+
+/* Class = "UILabel"; text = "전공인 도시공학을 뒤로하고\n개발자의 꿈을 찾아나선\n6개월차 🐣병아리🐥입니다."; ObjectID = "n6W-sg-Crs"; */
+"n6W-sg-Crs.text" = "전공인 도시공학을 뒤로하고\n개발자의 꿈을 찾아나선\n6개월차 🐣병아리🐥입니다.";
+
+/* Class = "UIViewController"; title = "2018년 06월"; ObjectID = "nEy-Vc-LAa"; */
+"nEy-Vc-LAa.title" = "2018년 06월";
+
+/* Class = "UILabel"; text = "Week-it Tutorial"; ObjectID = "qd1-UZ-2sg"; */
+"qd1-UZ-2sg.text" = "Week-it Tutorial";
+
+/* Class = "UILabel"; text = "2018년 06월"; ObjectID = "swZ-qu-5GT"; */
+"swZ-qu-5GT.text" = "2018년 06월";
+
+/* Class = "UITextField"; placeholder = "내용을 적어주세요"; ObjectID = "wgB-1Y-jkZ"; */
+"wgB-1Y-jkZ.placeholder" = "내용을 적어주세요";
+
+/* Class = "UILabel"; text = "날짜"; ObjectID = "x6l-f4-5MK"; */
+"x6l-f4-5MK.text" = "날짜";
+
+/* Class = "UILabel"; text = "총 N개의 포스트가 있습니다."; ObjectID = "x9i-pn-COV"; */
+"x9i-pn-COV.text" = "총 N개의 포스트가 있습니다.";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "xke-FV-iRt"; */
+"xke-FV-iRt.text" = "Label";
+
+/* Class = "UILabel"; text = "월 - 3회"; ObjectID = "z2Y-wd-5HP"; */
+"z2Y-wd-5HP.text" = "월 - 3회";
+
+/* Class = "UILabel"; text = "yyyy. mm. 1st Week"; ObjectID = "zWB-C6-33Z"; */
+"zWB-C6-33Z.text" = "yyyy. mm. 1st Week";

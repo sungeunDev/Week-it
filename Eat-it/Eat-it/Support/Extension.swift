@@ -106,9 +106,22 @@ extension UserDefaults {
 }
 
 
+// MARK: - UIViewController_ 내비바의 Back 버튼 공백으로 설정
 extension UIViewController {
   func setNaviBackBtn() {
     let backBtnString = UIBarButtonItem(title: " ", style: .plain, target: nil, action: nil)
     self.navigationItem.backBarButtonItem = backBtnString
+  }
+}
+
+
+//MARK: - String_특정 String을 한국어 localization 할고자 할 때 사용
+extension String {
+  var localized:String {
+    return NSLocalizedString(self, comment: "")
+  }
+  
+  func localizedWithComment(comment:String) -> String {
+    return NSLocalizedString(self, comment: comment)
   }
 }

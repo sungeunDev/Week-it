@@ -1,0 +1,29 @@
+/* 
+  Localizable.strings
+  Eat-it
+
+  Created by sungnni on 2018. 7. 5..
+  Copyright © 2018년 sungeun. All rights reserved.
+*/
+
+
+
+// 통계
+"year" = "";
+"space" = " - ";
+"month" = "";
+
+"count" = "";
+"count2" = "";
+
+// 통계 Detail
+"Total" = "There are ";
+"Total Description" = " posts in total.";
+
+
+// 튜토리얼
+"tutorial01" = "engTutorial01";
+"tutorial02" = "engTutorial02";
+"tutorial03" = "engTutorial03";
+"tutorial04" = "engTutorial04";
+"tutorial05" = "engTutorial05";

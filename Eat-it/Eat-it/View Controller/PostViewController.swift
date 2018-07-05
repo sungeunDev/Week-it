@@ -61,7 +61,7 @@ class PostViewController: UITableViewController {
     if let mealIdx = mealTime,
       let date = date {
       
-      let mealTime = ["아침", "점심", "저녁"]
+      let mealTime = ["Morning".localized, "Afternoon".localized, "Evening".localized]
       let mealImage = [#imageLiteral(resourceName: "mealTime_morning"), #imageLiteral(resourceName: "mealTime_noon"), #imageLiteral(resourceName: "mealTime_night")]
       mealLabel.text = mealTime[mealIdx]
       mealImageView.image = mealImage[mealIdx]
@@ -95,11 +95,9 @@ class PostViewController: UITableViewController {
       }
       
     } else {
-      let alert = UIAlertController(title: "포스트 등록 실패", message:
-        """
-        내용을 적어주세요.
-        """, preferredStyle: .alert)
-      let action = UIAlertAction(title: "확인", style: .default) { (_) in
+      let alert = UIAlertController(title: "Post Fail".localized, message:
+        "Please fill in the blank.".localized, preferredStyle: .alert)
+      let action = UIAlertAction(title: "OK".localized, style: .default) { (_) in
        self.menuTextField.becomeFirstResponder()
       }
       alert.addAction(action)
@@ -168,12 +166,9 @@ class PostViewController: UITableViewController {
       }
       popVC()
     } else {
-      let alert = UIAlertController(title: "삭제 실패", message:
-        """
-        삭제 할 포스트가 없습니다.
-        포스트를 등록해 주세요.
-        """, preferredStyle: .alert)
-      let action = UIAlertAction(title: "확인", style: .default, handler: nil)
+      let alert = UIAlertController(title: "Delete Fail".localized, message:
+        "There are no posts to delete.\nPlease register your post.".localized, preferredStyle: .alert)
+      let action = UIAlertAction(title: "OK".localized, style: .default, handler: nil)
       alert.addAction(action)
       self.present(alert, animated: true, completion: nil)
     }

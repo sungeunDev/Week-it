@@ -62,13 +62,10 @@ class SettingViewController: UITableViewController {
 extension SettingViewController {
   
   func resetData() {
-    let askAlert = UIAlertController(title: "데이터 초기화",
-                                     message: """
-                                        데이터를 초기화하면 다시 복구할 수 없습니다.
-                                        정말 초기화할까요?
-                                        """, preferredStyle: .alert)
+    let askAlert = UIAlertController(title: "Reset Data".localized,
+                                     message: "If you reset the data,\n you can't recover it again.\n Do you really want to initialize it?".localized, preferredStyle: .alert)
     
-    let okay = UIAlertAction(title: "초기화", style: .destructive) { (action) in
+    let okay = UIAlertAction(title: "reset".localized, style: .destructive) { (action) in
       let realm = try! Realm()
       try! realm.write {
         print("\n---------- [ RESET REALM DATA ] -----------\n")
@@ -76,7 +73,7 @@ extension SettingViewController {
       }
       self.navigationController?.popToRootViewController(animated: true)
     }
-    let cancle = UIAlertAction(title: "취소", style: .cancel, handler: nil)
+    let cancle = UIAlertAction(title: "cancle".localized, style: .cancel, handler: nil)
     
     askAlert.addAction(okay)
     askAlert.addAction(cancle)
@@ -103,9 +100,8 @@ extension SettingViewController {
     mailComposerVC.setToRecipients([emailAddress])
     mailComposerVC.setSubject("[WEEKIT] Feedback")
     mailComposerVC.setMessageBody(
+      "Thank you for your feedback. I will update an app in future.\n".localized +
       """
-      소중한 의견에 감사드립니다. ☺️
-      추후 앱 업데이트시 반영하도록 하겠습니다 :)
       
       -----------------------------
       - iOS Version: \(systemVersion)
