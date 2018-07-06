@@ -546,7 +546,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CODE_SIGN_ENTITLEMENTS = "Eat-itTodayExtension/Eat-itTodayExtension.entitlements";
-				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = WXH5CKM9TX;
 				INFOPLIST_FILE = "Eat-itTodayExtension/Info.plist";
@@ -558,8 +558,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.sungeun.Eat-it.Eat-itTodayExtension";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "c95f7db7-bb8a-4682-8613-e07a20d52793";
-				PROVISIONING_PROFILE_SPECIFIER = "eat-it today extension distribution";
+				PROVISIONING_PROFILE = "950c9df9-cec0-4b06-819d-607101135c68";
+				PROVISIONING_PROFILE_SPECIFIER = "eat-it today extension development";
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -571,7 +571,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CODE_SIGN_ENTITLEMENTS = "Eat-itTodayExtension/Eat-itTodayExtension.entitlements";
-				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = WXH5CKM9TX;
 				INFOPLIST_FILE = "Eat-itTodayExtension/Info.plist";
@@ -583,8 +583,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.sungeun.Eat-it.Eat-itTodayExtension";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "c95f7db7-bb8a-4682-8613-e07a20d52793";
-				PROVISIONING_PROFILE_SPECIFIER = "eat-it today extension distribution";
+				PROVISIONING_PROFILE = "950c9df9-cec0-4b06-819d-607101135c68";
+				PROVISIONING_PROFILE_SPECIFIER = "eat-it today extension development";
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -717,7 +717,7 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = "Eat-it/Eat-it.entitlements";
-				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = WXH5CKM9TX;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -732,8 +732,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.sungeun.Eat-it";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "9ccac3c0-9121-4082-b79c-cd2d35589e37";
-				PROVISIONING_PROFILE_SPECIFIER = "eat-it Distribution";
+				PROVISIONING_PROFILE = "349907db-c0a4-493b-8c9d-c23d0169181e";
+				PROVISIONING_PROFILE_SPECIFIER = "eat-it development";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -746,7 +746,7 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = "Eat-it/Eat-it.entitlements";
-				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = WXH5CKM9TX;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -761,8 +761,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.sungeun.Eat-it";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "9ccac3c0-9121-4082-b79c-cd2d35589e37";
-				PROVISIONING_PROFILE_SPECIFIER = "eat-it Distribution";
+				PROVISIONING_PROFILE = "349907db-c0a4-493b-8c9d-c23d0169181e";
+				PROVISIONING_PROFILE_SPECIFIER = "eat-it development";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
