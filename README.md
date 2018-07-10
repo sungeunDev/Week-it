@@ -1,14 +1,30 @@
 # Week-it <img src = "https://github.com/sungeunDev/EAT_IT/blob/master/Scrennshot/icon.png?raw=true" width = 50 align = right>
+<p align="center">
+<img src="https://img.shields.io/badge/swift-4.1-blue.svg" />
+<img src="https://img.shields.io/badge/xcode-9.3-green.svg" />
+<img src="https://img.shields.io/badge/ios-11.0-yellow.svg" />
+<img src="https://img.shields.io/badge/contacts-@p.ssungnni-orange.svg" />
+<img src="https://img.shields.io/badge/licence-MIT-lightgrey.svg" /> <br><br>
+ 
+ <a href="https://itunes.apple.com/us/app/week-it/id1406693210?mt=8" target="_blank">
+ <img src = "https://devimages-cdn.apple.com/app-store/marketing/guidelines/images/badge-download-on-the-app-store.svg"> 
+    </a>
+     <a href="https://itunes.apple.com/kr/app/week-it/id1406693210?mt=8" target="_blank">
+ <img src = "https://devimages-cdn.apple.com/app-store/marketing/guidelines/images/badge-download-on-the-app-store-kr.svg"> 
+    </a>
+</p>
+<br>
 
 > -. 첫번째 개인 앱 프로젝트  
 > -. 주간 단위로 일상을 기록하는 어플 Week-it 입니다.
+
 
 <br>
 
 ## Contents
 1. [About Week-it](#about-week-it)
 2. [Version Update](#version-update)
-3. [Concept](#concept)
+3. [What I Learned](#what-i-learned)
 4. [Things to do next](#things-to-do-next)
 5. [Contact](#contact)
 
@@ -17,13 +33,11 @@
 ## About Week-it
 
 ![ver 1.0](./Scrennshot/ver%201.0.png) 
-<p align="center">
-<img src="https://img.shields.io/badge/swift-4.1-blue.svg" />
-<img src="https://img.shields.io/badge/xcode-9.3-green.svg" />
-<img src="https://img.shields.io/badge/ios-11.0-yellow.svg" />
-<img src="https://img.shields.io/badge/contacts-@p.ssungnni-orange.svg" />
-<img src="https://img.shields.io/badge/licence-MIT-lightgrey.svg" /> <br><br>
-</p>
+
+- Week-it은 2018년 1월에 Swift를 처음 접한 6개월차 초보 개발자의 첫번째 프로젝트입니다.  
+- 프로젝트 시작부터 출시까지를 모두 경험하는 것을 목표로 개발뿐만 아니라 기획, 디자인 모두 직접 진행하였습니다.
+
+<br>
 
 >   - Post it! Week it!  
     이번주 당신의 일상은 어떠셨나요?  
@@ -48,19 +62,13 @@
 <br>
 
 ## Version Update
-> -. start: 2018.06.05 ~   
-> -. ver 1.0.0 : 1차 App Store release (18.07.04)   
-
+- start: 2018.06.05 ~   
+- ver 1.0.0 : US App Store release (18.07.04)
+- ver 1.1.0 : KR App Store realease. Localized KR (18.07.08)
 
 <br>
 
-## Concept
-> -. Week-it은 2018년 1월에 Swift를 처음 접한 6개월차 초보 개발자의 첫번째 프로젝트입니다.  
-> -. 프로젝트 시작부터 출시까지를 모두 경험하는 것을 목표로 개발뿐만 아니라 기획, 디자인 모두 직접 진행하였습니다.
-
-
-**ㅁ 이번 프로젝트를 통해 배운 것**  
-
+## What I Learned
 - Tech  
     - Realm: 데이터 베이스로 활용  
     - Today Extension: Widget 연동,   
