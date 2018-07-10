@@ -239,9 +239,6 @@
 		6FC46E2B20C6564300DAA40D /* View Controller */ = {
 			isa = PBXGroup;
 			children = (
-				6F5077EC20EB28B300B113A9 /* TutorialViewController.swift */,
-				6F5077EA20EB19C200B113A9 /* TutorialPageViewController.swift */,
-				6F5077E820EB193F00B113A9 /* TutorialImageViewController.swift */,
 				6FC46E1420C64DF800DAA40D /* MainViewController.swift */,
 				6FC46E3920C8F76300DAA40D /* PostViewController.swift */,
 				6F1AF1D520D23DB500147898 /* GraphTableViewController.swift */,
@@ -251,6 +248,9 @@
 				6F10322620E886DC00AFBF36 /* DevInfoViewController.swift */,
 				6F1AF1D120D0D6C800147898 /* CustomTableViewCell.swift */,
 				6F10322A20E9BF4B00AFBF36 /* CustomCollectionViewCell.swift */,
+				6F5077EC20EB28B300B113A9 /* TutorialViewController.swift */,
+				6F5077EA20EB19C200B113A9 /* TutorialPageViewController.swift */,
+				6F5077E820EB193F00B113A9 /* TutorialImageViewController.swift */,
 			);
 			path = "View Controller";
 			sourceTree = "<group>";

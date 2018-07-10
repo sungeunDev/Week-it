@@ -23,7 +23,7 @@ class MainViewController: UIViewController {
   // Data
   
   let meal = ["아침", "점심", "저녁"]
-  let day = ["MON", "TUE", "WED", "THU", "FRI"]
+  let day = ["MON", "TUE", "WED", "THU", "FRI", "SAT", "SUN"]
   
   var posts: Array<Post?> = [] {
     didSet {

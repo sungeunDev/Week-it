@@ -15,17 +15,31 @@ class SettingViewController: UITableViewController {
   
   @IBOutlet weak var appVersionLabel: UILabel!
   
+
+  
   override func viewDidLoad() {
     super.viewDidLoad()
   
-    
     appVersionLabel.text = Bundle.main.infoDictionary!["CFBundleShortVersionString"] as? String
     setNaviBackBtn()
   }
   
+  
+  // MARK: - includeWeekend Switch Action
+  @IBAction func isIncludeWeekend(_ sender: UISwitch) {
+    
+    // userDefault에 Bool값 저장
+    UserDefaults.standard.set(sender.isOn, forKey: "isIncludeWeekend")
+    
+    // On인 경우, 주말 포함해서 mainVC - CollectionView 생성
+    // Off인 경우, 평일만.
+    
+    // value change 될때만, mainVC의 CollectionView를 Reload 하고 싶음 -> Delegate로 알려주기? 옵저버?
+  }
+  
 
   
-  
+  // MARK: TableView DidSelect
   override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
     tableView.deselectRow(at: indexPath, animated: true)
     
