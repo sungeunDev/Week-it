@@ -26,15 +26,13 @@ class SettingViewController: UITableViewController {
   
   
   // MARK: - includeWeekend Switch Action
+  /// 일주일을 주말까지 포함할건지 조작하는 스위치.
+  /// 포함여부를 UserDefault에 Bool 타입으로 저장
+  /// - Parameter sender:
+  ///   - On인 경우, 주말 포함
+  ///   - Off인 경우, 평일만
   @IBAction func isIncludeWeekend(_ sender: UISwitch) {
-    
-    // userDefault에 Bool값 저장
     UserDefaults.standard.set(sender.isOn, forKey: "isIncludeWeekend")
-    
-    // On인 경우, 주말 포함해서 mainVC - CollectionView 생성
-    // Off인 경우, 평일만.
-    
-    // value change 될때만, mainVC의 CollectionView를 Reload 하고 싶음 -> Delegate로 알려주기? 옵저버?
   }
   
 

@@ -27,6 +27,7 @@
 		6F1B932E20DA07F40011BA2A /* mealTime_night.png in Resources */ = {isa = PBXBuildFile; fileRef = 6F1B932B20DA07F40011BA2A /* mealTime_night.png */; };
 		6F1B933220E11F870011BA2A /* plusIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 6F1B933120E11F860011BA2A /* plusIcon.png */; };
 		6F2AE62220EDCF39004EB513 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6F2AE62420EDCF39004EB513 /* Localizable.strings */; };
+		6F2AE63020F5AD97004EB513 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6FC46E1920C64DF900DAA40D /* Assets.xcassets */; };
 		6F5077E320EA16AA00B113A9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6F5077E220EA16AA00B113A9 /* LaunchScreen.storyboard */; };
 		6F5077E520EA171000B113A9 /* launchScreen.png in Resources */ = {isa = PBXBuildFile; fileRef = 6F5077E420EA171000B113A9 /* launchScreen.png */; };
 		6F5077E720EA176000B113A9 /* background.png in Resources */ = {isa = PBXBuildFile; fileRef = 6F5077E620EA176000B113A9 /* background.png */; };
@@ -398,6 +399,7 @@
 				6F1B932E20DA07F40011BA2A /* mealTime_night.png in Resources */,
 				6F1B933220E11F870011BA2A /* plusIcon.png in Resources */,
 				6F1B930F20D75F9B0011BA2A /* MainInterface.storyboard in Resources */,
+				6F2AE63020F5AD97004EB513 /* Assets.xcassets in Resources */,
 				6F1B932D20DA07F40011BA2A /* mealTime_noon.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

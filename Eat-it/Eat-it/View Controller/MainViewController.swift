@@ -12,7 +12,8 @@ import SnapKit
 
 class MainViewController: UIViewController {
   
-  // UI Properties
+  // MARK: - Properties
+  // MARK: -UI Properties
   @IBOutlet private weak var mealTimeCollectionView: UICollectionView! // 아침, 점심, 저녁
   @IBOutlet private weak var dayCollectionView: UICollectionView! // 요일 (월~금)
   @IBOutlet private weak var postCollectionView: UICollectionView! // mealTime * day
@@ -20,8 +21,18 @@ class MainViewController: UIViewController {
   
   @IBOutlet private weak var dateLabel: UILabel!
   
-  // Data
+  // MARK: -Constraints
+  @IBOutlet weak var dateViewTopConstraint: NSLayoutConstraint! // dateView Top - SafeArea Top Spacing
+  @IBOutlet weak var mealTableTopConstraint: NSLayoutConstraint! // dateView Bottom - mealTable Top Spacing
   
+  @IBOutlet weak var mealTimeCollectionViewTopConstraint: NSLayoutConstraint! // mealTable Top - mealTimeCollectionView Top Spacing
+  
+  @IBOutlet weak var mealTableBottomConstarint: NSLayoutConstraint! // mealTable Bottom - SafeArea Bottom Spacing
+  
+  
+  
+  
+  // MARK: -Data
   let meal = ["아침", "점심", "저녁"]
   let day = ["MON", "TUE", "WED", "THU", "FRI", "SAT", "SUN"]
   
@@ -36,10 +47,11 @@ class MainViewController: UIViewController {
   var selectedCellImg: UIView!
   let transition = TransitionCoordinator()
   
-  // Date Calculation Properties
+  // MARK: -Date Calculation Properties
   private var date: Date = Date()
   private var calendar: Calendar = Calendar.current
   
+
   
   // MARK: - LifeCycle
   override func viewDidLoad() {
@@ -377,33 +389,63 @@ extension MainViewController: UICollectionViewDelegateFlowLayout {
   // cell size
   func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
     
-    let tableWidth = mealMatrixView.frame.width - 10
-    let tableHeight = mealMatrixView.frame.height - 10
+    var width = (mealMatrixView.frame.width - 15) / 315
+    var height = (mealMatrixView.frame.height - 15) / 515
+    
+    // default
+    let postCellSize: CGSize = {
+      if true { // test
+        dateViewTopConstraint.constant = 28
+        mealTableTopConstraint.constant = 20
+        mealTableBottomConstarint.constant = 20
+//        mealTimeCollectionViewTopConstraint.constant = 0
+        
+        self.view.layoutIfNeeded()
+        
+//      if UserDefaults.standard.bool(forKey: "isIncludeWeekend") {
+          return CGSize(width: 75, height: 56)
+      } else {
+        return CGSize(width: 75, height: 65)
+      }
+    }()
+    
+    let mealCellSize = CGSize(width: postCellSize.width, height: 35)
+    let dayCellSize = CGSize(width: 60, height: postCellSize.height)
     
     switch collectionView.tag {
-    case 0:
-      let width = tableWidth * 75 / 315
-      let height = tableHeight * 40 / 413
-      let size = CGSize(width: width, height: height)
-      return size
-    case 1:
-      let width = tableWidth * 60 / 315
-      let height = tableHeight * 65 / 413
-      let size = CGSize(width: width, height: height)
-      return size
-    default:
-      let width = tableWidth * 75 / 315
-      let height = tableHeight * 65 / 413
-      let size = CGSize(width: width, height: height)
-      return size
+    case 0: // time
+      width *= mealCellSize.width
+      height *= mealCellSize.height
+      print("time: \(width), \(height)")
+//      let width = tableWidth * 75 / 315
+//      let height = tableHeight * 40 / 413
+//      let size = CGSize(width: width, height: height)
+//      return CGSize(width: width * mealCellSize.width, height: height * mealCellSize.height)
+    case 1: // weekday
+      width *= dayCellSize.width
+      height *= dayCellSize.height
+      print("weekday: \(width), \(height)")
+//      let width = tableWidth * 60 / 315
+//      let height = tableHeight * 65 / 413
+//      let size = CGSize(width: width, height: height)
+//      return CGSize(width: width * dayCellSize.width, height: height * dayCellSize.height)
+    default: // post
+      width *= postCellSize.width
+      height *= postCellSize.height
+      print("post: \(width), \(height)")
+//      let width = tableWidth * 75 / 315
+//      let height = tableHeight * 65 / 413
+//      let size = CGSize(width: width, height: height)
+//      return CGSize(width: width * postCellSize.width, height: height * postCellSize.height)
     }
+    return CGSize(width: width, height: height)
   }
   
   func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
     
-    var height = (postCollectionView.frame.height - 10)
-    let cellHeight = (mealMatrixView.frame.height - 10) * 65 / 413
-    height = (height - cellHeight * 5) / 4
+    var height = (postCollectionView.frame.height - 15)
+    let cellHeight = (mealMatrixView.frame.height - 15) * 56 / 515
+    height = (height - cellHeight * 7) / 6
     
     return height
   }
@@ -411,8 +453,8 @@ extension MainViewController: UICollectionViewDelegateFlowLayout {
   
   func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
     
-    var width = postCollectionView.frame.width - 10
-    let cellWidth = (mealMatrixView.frame.width - 10) * 75 / 315
+    var width = postCollectionView.frame.width - 15
+    let cellWidth = (mealMatrixView.frame.width - 15) * 75 / 315
     width = (width - cellWidth * 3) / 2
     
     return width

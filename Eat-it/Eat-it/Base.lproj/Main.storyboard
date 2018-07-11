@@ -87,13 +87,13 @@
                                 <rect key="frame" x="25" y="188.5" width="325" height="423.5"/>
                                 <subviews>
                                     <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" tag="2" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="evu-6c-PhI">
-                                        <rect key="frame" x="60" y="40.5" width="265" height="383.5"/>
+                                        <rect key="frame" x="60" y="29.5" width="265" height="394.5"/>
                                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                         <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="12" minimumInteritemSpacing="15" id="1Ec-il-2Av">
                                             <size key="itemSize" width="75" height="65"/>
                                             <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                             <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                                            <inset key="sectionInset" minX="3" minY="3" maxX="7" maxY="7"/>
+                                            <inset key="sectionInset" minX="3" minY="3" maxX="12" maxY="12"/>
                                         </collectionViewFlowLayout>
                                         <cells>
                                             <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="postCell" id="ZZv-I2-95l" customClass="PostCell" customModule="Eat_it" customModuleProvider="target">
@@ -141,7 +141,7 @@
                                         </connections>
                                     </collectionView>
                                     <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" tag="1" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="kg1-6m-X6X">
-                                        <rect key="frame" x="0.0" y="40.5" width="60" height="383.5"/>
+                                        <rect key="frame" x="0.0" y="29.5" width="60" height="394.5"/>
                                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                         <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="12" minimumInteritemSpacing="10" id="Pok-VQ-lWT">
                                             <size key="itemSize" width="60" height="65"/>
@@ -180,9 +180,9 @@
                                         </connections>
                                     </collectionView>
                                     <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="6W0-V9-IVj">
-                                        <rect key="frame" x="60" y="0.5" width="265" height="40"/>
+                                        <rect key="frame" x="60" y="0.5" width="265" height="29"/>
                                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="15" id="smo-zm-dUx">
+                                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="0.0" minimumInteritemSpacing="15" id="smo-zm-dUx">
                                             <size key="itemSize" width="75" height="40"/>
                                             <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                             <size key="footerReferenceSize" width="0.0" height="0.0"/>
@@ -190,16 +190,18 @@
                                         </collectionViewFlowLayout>
                                         <cells>
                                             <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="mealCell" id="vHC-Vk-Btl" customClass="MealCell" customModule="Eat_it" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="0.0" width="75" height="40"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="75" height="30"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
-                                                    <rect key="frame" x="0.0" y="0.0" width="75" height="40"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="75" height="30"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
                                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="mealTime_morning" translatesAutoresizingMaskIntoConstraints="NO" id="rNa-Wf-L3e">
-                                                            <rect key="frame" x="26" y="11.5" width="23" height="23"/>
+                                                            <rect key="frame" x="22.5" y="3" width="30" height="30"/>
                                                             <constraints>
+                                                                <constraint firstAttribute="height" constant="30" id="8Y0-gt-bcS"/>
                                                                 <constraint firstAttribute="width" secondItem="rNa-Wf-L3e" secondAttribute="height" multiplier="1:1" id="OgY-Da-cDO"/>
+                                                                <constraint firstAttribute="width" constant="30" id="eiv-dK-gd9"/>
                                                             </constraints>
                                                         </imageView>
                                                     </subviews>
@@ -208,7 +210,7 @@
                                                     <constraint firstItem="rNa-Wf-L3e" firstAttribute="centerX" secondItem="vHC-Vk-Btl" secondAttribute="centerX" id="T2h-8A-ylt"/>
                                                     <constraint firstItem="rNa-Wf-L3e" firstAttribute="centerY" secondItem="vHC-Vk-Btl" secondAttribute="centerY" constant="3" id="i4O-WI-lgR"/>
                                                 </constraints>
-                                                <size key="customSize" width="75" height="40"/>
+                                                <size key="customSize" width="75" height="30"/>
                                                 <connections>
                                                     <outlet property="mealTimeImageView" destination="rNa-Wf-L3e" id="eWH-cQ-u7G"/>
                                                 </connections>
@@ -225,7 +227,7 @@
                                 <constraints>
                                     <constraint firstAttribute="trailing" secondItem="evu-6c-PhI" secondAttribute="trailing" id="781-9Y-3bJ"/>
                                     <constraint firstItem="evu-6c-PhI" firstAttribute="top" secondItem="6W0-V9-IVj" secondAttribute="bottom" id="Dab-0o-ks8"/>
-                                    <constraint firstItem="6W0-V9-IVj" firstAttribute="height" secondItem="5tF-ep-BJw" secondAttribute="height" multiplier="40:423" id="HzT-RP-Ywm"/>
+                                    <constraint firstItem="6W0-V9-IVj" firstAttribute="height" secondItem="5tF-ep-BJw" secondAttribute="height" multiplier="35:515" id="HzT-RP-Ywm"/>
                                     <constraint firstAttribute="trailing" secondItem="6W0-V9-IVj" secondAttribute="trailing" id="InT-RE-Lb6"/>
                                     <constraint firstItem="kg1-6m-X6X" firstAttribute="width" secondItem="5tF-ep-BJw" secondAttribute="width" multiplier="60:325" id="Mfa-Wm-fSK"/>
                                     <constraint firstItem="6W0-V9-IVj" firstAttribute="top" secondItem="5tF-ep-BJw" secondAttribute="top" id="OtS-Yr-kPO"/>
@@ -267,8 +269,11 @@
                     </navigationItem>
                     <connections>
                         <outlet property="dateLabel" destination="zWB-C6-33Z" id="Tne-Lz-8bN"/>
+                        <outlet property="dateViewTopConstraint" destination="Or4-pW-3ju" id="Cje-gr-vBa"/>
                         <outlet property="dayCollectionView" destination="kg1-6m-X6X" id="hbr-lg-ISk"/>
                         <outlet property="mealMatrixView" destination="5tF-ep-BJw" id="xD7-M5-3IC"/>
+                        <outlet property="mealTableBottomConstarint" destination="gpG-F7-7n5" id="5iQ-aF-ntK"/>
+                        <outlet property="mealTableTopConstraint" destination="hZP-GN-xhp" id="MNd-x2-aqI"/>
                         <outlet property="mealTimeCollectionView" destination="6W0-V9-IVj" id="BgI-tA-ebk"/>
                         <outlet property="postCollectionView" destination="evu-6c-PhI" id="LL9-hg-RNw"/>
                     </connections>
@@ -1013,10 +1018,10 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="mealTime_morning" translatesAutoresizingMaskIntoConstraints="NO" id="jLR-3b-LoO">
-                                                    <rect key="frame" x="70" y="10.5" width="23" height="23"/>
+                                                    <rect key="frame" x="70" y="4.5" width="35" height="35"/>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="아침" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mxT-P1-tE2">
-                                                    <rect key="frame" x="100" y="13" width="26" height="18"/>
+                                                    <rect key="frame" x="112" y="13" width="26" height="18"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -1232,7 +1237,7 @@
         <image name="devInfo" width="375" height="352"/>
         <image name="left" width="8" height="14"/>
         <image name="logoGithub" width="78" height="19"/>
-        <image name="mealTime_morning" width="23" height="23"/>
+        <image name="mealTime_morning" width="35" height="35"/>
         <image name="right" width="8" height="14"/>
         <image name="star3" width="50" height="16"/>
         <image name="tutorial01" width="375" height="350"/>
