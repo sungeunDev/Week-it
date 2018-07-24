@@ -37,6 +37,7 @@
 		6F5077FB20EB831600B113A9 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6F5077FA20EB831600B113A9 /* StoreKit.framework */; };
 		6FABA5D920CE4297009DC835 /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FABA5D820CE4297009DC835 /* SettingViewController.swift */; };
 		6FB4634320E5CF0D004D65C6 /* Eat-itTodayExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 6F1B930720D75F9A0011BA2A /* Eat-itTodayExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		6FB771042106BF16005C62A9 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FB771032106BF16005C62A9 /* Settings.swift */; };
 		6FC46E1320C64DF800DAA40D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FC46E1220C64DF800DAA40D /* AppDelegate.swift */; };
 		6FC46E1520C64DF800DAA40D /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FC46E1420C64DF800DAA40D /* MainViewController.swift */; };
 		6FC46E1820C64DF800DAA40D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6FC46E1620C64DF800DAA40D /* Main.storyboard */; };
@@ -122,6 +123,7 @@
 		6F5077FE20EB831B00B113A9 /* RealmSwift.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = RealmSwift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6F50780020EB831B00B113A9 /* SnapKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = SnapKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6FABA5D820CE4297009DC835 /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
+		6FB771032106BF16005C62A9 /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
 		6FC46E0F20C64DF800DAA40D /* Eat-it.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Eat-it.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		6FC46E1220C64DF800DAA40D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		6FC46E1420C64DF800DAA40D /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
@@ -261,6 +263,7 @@
 			children = (
 				6FC46E2C20C6565300DAA40D /* Post.swift */,
 				6F1AF1D320D0E1BC00147898 /* ThemeData.swift */,
+				6FB771032106BF16005C62A9 /* Settings.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -497,6 +500,7 @@
 				6FC46E1520C64DF800DAA40D /* MainViewController.swift in Sources */,
 				6F1AF1D020D0C5FC00147898 /* ThemeTableViewController.swift in Sources */,
 				6FC46E1320C64DF800DAA40D /* AppDelegate.swift in Sources */,
+				6FB771042106BF16005C62A9 /* Settings.swift in Sources */,
 				6FC46E3620C66B3100DAA40D /* PostCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -44,7 +44,7 @@ class GraphDetailViewController: UIViewController {
   func countMostDaysOfWeek(of posts: Results<Post>) -> (Int, String) {
     
     // 요일별로 포스트가 몇개인지 count Array 만들기
-    var count = [0, 0, 0, 0, 0] // 월, 화, 수, 목, 금
+    var count = [0, 0, 0, 0, 0, 0, 0] // 월, 화, 수, 목, 금
     for post in posts {
       let calendar = Calendar.current
       let weekday = calendar.component(.weekday, from: post.date)
@@ -66,7 +66,9 @@ class GraphDetailViewController: UIViewController {
     }
     
     // String으로 나타내기
-    let day = ["MON".localized, "TUE".localized, "WED".localized, "THU".localized, "FRI".localized]
+//    guard let dayData = Settings.custom.dayData else { return (0, "없음") }
+//    let day = dayData
+    let day = ["MON".localized, "TUE".localized, "WED".localized, "THU".localized, "FRI".localized, "SAT".localized, "SUN".localized]
     var str = ""
     
     for days in mostDaysOfWeek {

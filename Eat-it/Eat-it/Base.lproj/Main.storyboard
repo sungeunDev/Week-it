@@ -87,7 +87,7 @@
                                 <rect key="frame" x="25" y="188.5" width="325" height="423.5"/>
                                 <subviews>
                                     <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" tag="2" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="evu-6c-PhI">
-                                        <rect key="frame" x="60" y="29.5" width="265" height="394.5"/>
+                                        <rect key="frame" x="60" y="31.5" width="265" height="392.5"/>
                                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                         <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="12" minimumInteritemSpacing="15" id="1Ec-il-2Av">
                                             <size key="itemSize" width="75" height="65"/>
@@ -141,7 +141,7 @@
                                         </connections>
                                     </collectionView>
                                     <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" tag="1" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="kg1-6m-X6X">
-                                        <rect key="frame" x="0.0" y="29.5" width="60" height="394.5"/>
+                                        <rect key="frame" x="0.0" y="31.5" width="60" height="392.5"/>
                                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                         <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="12" minimumInteritemSpacing="10" id="Pok-VQ-lWT">
                                             <size key="itemSize" width="60" height="65"/>
@@ -179,8 +179,8 @@
                                             <outlet property="delegate" destination="BYZ-38-t0r" id="gyb-BX-x3a"/>
                                         </connections>
                                     </collectionView>
-                                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="6W0-V9-IVj">
-                                        <rect key="frame" x="60" y="0.5" width="265" height="29"/>
+                                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="6W0-V9-IVj">
+                                        <rect key="frame" x="60" y="0.5" width="265" height="31"/>
                                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                         <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="0.0" minimumInteritemSpacing="15" id="smo-zm-dUx">
                                             <size key="itemSize" width="75" height="40"/>
@@ -190,10 +190,10 @@
                                         </collectionViewFlowLayout>
                                         <cells>
                                             <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="mealCell" id="vHC-Vk-Btl" customClass="MealCell" customModule="Eat_it" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="0.0" width="75" height="30"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="75" height="35"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
-                                                    <rect key="frame" x="0.0" y="0.0" width="75" height="30"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="75" height="35"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
                                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="mealTime_morning" translatesAutoresizingMaskIntoConstraints="NO" id="rNa-Wf-L3e">
@@ -208,9 +208,9 @@
                                                 </view>
                                                 <constraints>
                                                     <constraint firstItem="rNa-Wf-L3e" firstAttribute="centerX" secondItem="vHC-Vk-Btl" secondAttribute="centerX" id="T2h-8A-ylt"/>
-                                                    <constraint firstItem="rNa-Wf-L3e" firstAttribute="centerY" secondItem="vHC-Vk-Btl" secondAttribute="centerY" constant="3" id="i4O-WI-lgR"/>
+                                                    <constraint firstItem="rNa-Wf-L3e" firstAttribute="centerY" secondItem="vHC-Vk-Btl" secondAttribute="centerY" id="i4O-WI-lgR"/>
                                                 </constraints>
-                                                <size key="customSize" width="75" height="30"/>
+                                                <size key="customSize" width="75" height="35"/>
                                                 <connections>
                                                     <outlet property="mealTimeImageView" destination="rNa-Wf-L3e" id="eWH-cQ-u7G"/>
                                                 </connections>
@@ -227,7 +227,7 @@
                                 <constraints>
                                     <constraint firstAttribute="trailing" secondItem="evu-6c-PhI" secondAttribute="trailing" id="781-9Y-3bJ"/>
                                     <constraint firstItem="evu-6c-PhI" firstAttribute="top" secondItem="6W0-V9-IVj" secondAttribute="bottom" id="Dab-0o-ks8"/>
-                                    <constraint firstItem="6W0-V9-IVj" firstAttribute="height" secondItem="5tF-ep-BJw" secondAttribute="height" multiplier="35:515" id="HzT-RP-Ywm"/>
+                                    <constraint firstItem="6W0-V9-IVj" firstAttribute="height" secondItem="5tF-ep-BJw" secondAttribute="height" multiplier="33:515" priority="750" id="HzT-RP-Ywm"/>
                                     <constraint firstAttribute="trailing" secondItem="6W0-V9-IVj" secondAttribute="trailing" id="InT-RE-Lb6"/>
                                     <constraint firstItem="kg1-6m-X6X" firstAttribute="width" secondItem="5tF-ep-BJw" secondAttribute="width" multiplier="60:325" id="Mfa-Wm-fSK"/>
                                     <constraint firstItem="6W0-V9-IVj" firstAttribute="top" secondItem="5tF-ep-BJw" secondAttribute="top" id="OtS-Yr-kPO"/>
@@ -235,6 +235,7 @@
                                     <constraint firstAttribute="bottom" secondItem="evu-6c-PhI" secondAttribute="bottom" id="XsG-Nt-4Ju"/>
                                     <constraint firstItem="kg1-6m-X6X" firstAttribute="top" secondItem="6W0-V9-IVj" secondAttribute="bottom" id="YuR-D5-31G"/>
                                     <constraint firstItem="6W0-V9-IVj" firstAttribute="leading" secondItem="kg1-6m-X6X" secondAttribute="trailing" id="aYE-kb-l3p"/>
+                                    <constraint firstItem="6W0-V9-IVj" firstAttribute="height" secondItem="5tF-ep-BJw" secondAttribute="height" multiplier="30:413" id="dsD-yT-BAw"/>
                                     <constraint firstItem="kg1-6m-X6X" firstAttribute="leading" secondItem="5tF-ep-BJw" secondAttribute="leading" id="ifb-41-tCq"/>
                                     <constraint firstItem="evu-6c-PhI" firstAttribute="leading" secondItem="kg1-6m-X6X" secondAttribute="trailing" id="szu-7z-fel"/>
                                 </constraints>
@@ -276,6 +277,8 @@
                         <outlet property="mealTableTopConstraint" destination="hZP-GN-xhp" id="MNd-x2-aqI"/>
                         <outlet property="mealTimeCollectionView" destination="6W0-V9-IVj" id="BgI-tA-ebk"/>
                         <outlet property="postCollectionView" destination="evu-6c-PhI" id="LL9-hg-RNw"/>
+                        <outlet property="timeTablePropotinalHeight_isIncludeWeekend" destination="HzT-RP-Ywm" id="GJO-8P-NMR"/>
+                        <outlet property="timeTablePropotinalHeight_notIncludeWeekend" destination="dsD-yT-BAw" id="66z-Ir-cb0"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -712,6 +715,7 @@
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <connections>
                         <outlet property="appVersionLabel" destination="hfA-IF-SIf" id="PWL-GB-0WM"/>
+                        <outlet property="isIncludeWeekendSwitch" destination="fua-mP-Ihx" id="MX9-ra-X07"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="en1-p7-VIA" userLabel="First Responder" sceneMemberID="firstResponder"/>

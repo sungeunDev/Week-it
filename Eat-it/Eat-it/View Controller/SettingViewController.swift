@@ -14,16 +14,16 @@ import RealmSwift
 class SettingViewController: UITableViewController {
   
   @IBOutlet weak var appVersionLabel: UILabel!
-  
-
+  @IBOutlet weak var isIncludeWeekendSwitch: UISwitch!
   
   override func viewDidLoad() {
     super.viewDidLoad()
   
+    isIncludeWeekendSwitch.setOn(Settings.custom.isIncludeWeekend, animated: false)
+    
     appVersionLabel.text = Bundle.main.infoDictionary!["CFBundleShortVersionString"] as? String
     setNaviBackBtn()
   }
-  
   
   // MARK: - includeWeekend Switch Action
   /// 일주일을 주말까지 포함할건지 조작하는 스위치.
@@ -32,7 +32,7 @@ class SettingViewController: UITableViewController {
   ///   - On인 경우, 주말 포함
   ///   - Off인 경우, 평일만
   @IBAction func isIncludeWeekend(_ sender: UISwitch) {
-    UserDefaults.standard.set(sender.isOn, forKey: "isIncludeWeekend")
+    Settings.custom.setIsIncludeWeeknd(isIncludeWeekend: sender.isOn)
   }
   
 

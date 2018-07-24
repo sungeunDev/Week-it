@@ -25,16 +25,20 @@ class MainViewController: UIViewController {
   @IBOutlet weak var dateViewTopConstraint: NSLayoutConstraint! // dateView Top - SafeArea Top Spacing
   @IBOutlet weak var mealTableTopConstraint: NSLayoutConstraint! // dateView Bottom - mealTable Top Spacing
   
-  @IBOutlet weak var mealTimeCollectionViewTopConstraint: NSLayoutConstraint! // mealTable Top - mealTimeCollectionView Top Spacing
+  @IBOutlet weak var timeTablePropotinalHeight_isIncludeWeekend: NSLayoutConstraint!
+  @IBOutlet weak var timeTablePropotinalHeight_notIncludeWeekend: NSLayoutConstraint!
+  
+//  @IBOutlet weak var mealTimeCollectionViewTopConstraint: NSLayoutConstraint! // mealTable Top - mealTimeCollectionView Top Spacing
   
   @IBOutlet weak var mealTableBottomConstarint: NSLayoutConstraint! // mealTable Bottom - SafeArea Bottom Spacing
   
-  
+  // MARK:  -Settings
+  var userSetting = Settings.custom
   
   
   // MARK: -Data
   let meal = ["아침", "점심", "저녁"]
-  let day = ["MON", "TUE", "WED", "THU", "FRI", "SAT", "SUN"]
+  var day = ["MON", "TUE", "WED", "THU", "FRI", "SAT", "SUN"]
   
   var posts: Array<Post?> = [] {
     didSet {
@@ -86,11 +90,10 @@ class MainViewController: UIViewController {
     // save UserDefault Today's Post
     saveTodayExtensionData()
     
-    // mealMatrix background color accroing to theme
-    mealMatrixView.backgroundColor = mealMatrixViewBackgroundColor()
-    
-    // Navigation Bar UI
-    naviBarTitleLayout() // 테마 컬러에 따라 색이 바뀌어야 하므로 viewWillAppear에 위치
+    // Update UI
+    mealMatrixView.backgroundColor = mealMatrixViewBackgroundColor() // mealMatrix background color accroing to theme
+    naviBarTitleLayout() // Navigation Bar UI - 테마 컬러에 따라 색이 바뀌어야 하므로 viewWillAppear에 위치
+    updateAutoLayout() // 유저 세팅에 따라 레이아웃 변경
   }
   
   
@@ -145,7 +148,7 @@ extension MainViewController {
   
   // 3 * 5 개의 배열로 Post 생성
   func makePostMatrix(date: Date) -> Array<Post?> {
-    
+    print("\n---------- [ makePostMatrix ] -----------\n")
     var postArray = Array<Post?>(repeating: nil, count: meal.count * day.count) // 빈 배열 생성
     let thisWeekPosts = fetchThisWeekPosts(date: date) // 금주의 Post data fetch
     let currentDate = self.date.trasformInt(from: self.date)
@@ -257,20 +260,56 @@ extension MainViewController {
     let colorSet = [ColorSet.basic, ColorSet.sunset, ColorSet.macaron, ColorSet.redblue, ColorSet.jejuOcean, ColorSet.cherryBlossom, ColorSet.orange, ColorSet.heaven, ColorSet.cookieCream]
     return colorSet[currentTheme].background
   }
+  
+  func updateAutoLayout() {
+    userSetting.updateLayout(on: userSetting.isIncludeWeekend)
+  
+    guard let dateViewTop = userSetting.dateViewTopConstraint,
+      let mealTableTop = userSetting.mealTableTopConstraint,
+      let mealTableBottom = userSetting.mealTableBottomConstarint else { return }
+    dateViewTopConstraint.constant = dateViewTop
+    mealTableTopConstraint.constant = mealTableTop
+    mealTableBottomConstarint.constant = mealTableBottom
+    
+    if userSetting.isIncludeWeekend {
+      timeTablePropotinalHeight_isIncludeWeekend.priority = .defaultHigh
+      timeTablePropotinalHeight_notIncludeWeekend.priority = .defaultLow
+    } else {
+      timeTablePropotinalHeight_isIncludeWeekend.priority = .defaultLow
+      timeTablePropotinalHeight_notIncludeWeekend.priority = .defaultHigh
+    }
+    
+    dayCollectionView.reloadData()
+    postCollectionView.reloadData()
+    mealMatrixView.layoutSubviews()
+  }
+  
 }
+
+
 
 
 // MARK: - UICollectionView DataSource
 extension MainViewController: UICollectionViewDataSource {
   
   func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    let weekendCount = 2
+    
     switch collectionView.tag {
     case 0:
       return meal.count
     case 1:
-      return day.count
+      if userSetting.isIncludeWeekend {
+        return day.count
+      } else {
+        return day.count - weekendCount
+      }
     default:
-      return posts.count
+      if userSetting.isIncludeWeekend {
+        return posts.count
+      } else {
+        return posts.count - weekendCount * meal.count
+      }
     }
   }
   
@@ -389,25 +428,13 @@ extension MainViewController: UICollectionViewDelegateFlowLayout {
   // cell size
   func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
     
-    var width = (mealMatrixView.frame.width - 15) / 315
-    var height = (mealMatrixView.frame.height - 15) / 515
+    guard let basedHeight = userSetting.basedMealTableHeight,
+      let cellSize = userSetting.basedPostCellSize else { return CGSize(width: 75, height: 65) }
     
-    // default
-    let postCellSize: CGSize = {
-      if true { // test
-        dateViewTopConstraint.constant = 28
-        mealTableTopConstraint.constant = 20
-        mealTableBottomConstarint.constant = 20
-//        mealTimeCollectionViewTopConstraint.constant = 0
-        
-        self.view.layoutIfNeeded()
-        
-//      if UserDefaults.standard.bool(forKey: "isIncludeWeekend") {
-          return CGSize(width: 75, height: 56)
-      } else {
-        return CGSize(width: 75, height: 65)
-      }
-    }()
+    var width = (mealMatrixView.frame.width - 15) / 315
+    var height = (mealMatrixView.frame.height - 15) / basedHeight
+    let postCellSize: CGSize = cellSize
+    
     
     let mealCellSize = CGSize(width: postCellSize.width, height: 35)
     let dayCellSize = CGSize(width: 60, height: postCellSize.height)
@@ -416,37 +443,26 @@ extension MainViewController: UICollectionViewDelegateFlowLayout {
     case 0: // time
       width *= mealCellSize.width
       height *= mealCellSize.height
-      print("time: \(width), \(height)")
-//      let width = tableWidth * 75 / 315
-//      let height = tableHeight * 40 / 413
-//      let size = CGSize(width: width, height: height)
-//      return CGSize(width: width * mealCellSize.width, height: height * mealCellSize.height)
     case 1: // weekday
       width *= dayCellSize.width
       height *= dayCellSize.height
-      print("weekday: \(width), \(height)")
-//      let width = tableWidth * 60 / 315
-//      let height = tableHeight * 65 / 413
-//      let size = CGSize(width: width, height: height)
-//      return CGSize(width: width * dayCellSize.width, height: height * dayCellSize.height)
     default: // post
       width *= postCellSize.width
       height *= postCellSize.height
-      print("post: \(width), \(height)")
-//      let width = tableWidth * 75 / 315
-//      let height = tableHeight * 65 / 413
-//      let size = CGSize(width: width, height: height)
-//      return CGSize(width: width * postCellSize.width, height: height * postCellSize.height)
     }
     return CGSize(width: width, height: height)
   }
   
   func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
     
-    var height = (postCollectionView.frame.height - 15)
-    let cellHeight = (mealMatrixView.frame.height - 15) * 56 / 515
-    height = (height - cellHeight * 7) / 6
+    guard let basedHeight = userSetting.basedMealTableHeight,
+      let cellSize = userSetting.basedPostCellSize,
+      let dayData = userSetting.dayData else { return 0 }
     
+    var height = (postCollectionView.frame.height - 15)
+    let cellHeight = (mealMatrixView.frame.height - 15) * cellSize.height / basedHeight
+    
+    height = (height - cellHeight * CGFloat(dayData.count)) / CGFloat(dayData.count - 1)
     return height
   }
   
@@ -455,7 +471,7 @@ extension MainViewController: UICollectionViewDelegateFlowLayout {
     
     var width = postCollectionView.frame.width - 15
     let cellWidth = (mealMatrixView.frame.width - 15) * 75 / 315
-    width = (width - cellWidth * 3) / 2
+    width = (width - cellWidth * CGFloat(meal.count)) / CGFloat(meal.count - 1)
     
     return width
   }

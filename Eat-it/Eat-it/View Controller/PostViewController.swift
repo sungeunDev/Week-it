@@ -56,7 +56,7 @@ class PostViewController: UITableViewController {
     }
     
     let format = DateFormatter()
-    format.dateFormat = "yyyy-MM-dd"
+    format.dateFormat = "yyyy-MM-dd (E)"
     
     if let mealIdx = mealTime,
       let date = date {
