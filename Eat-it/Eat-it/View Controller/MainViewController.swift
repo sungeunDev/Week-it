@@ -169,8 +169,9 @@ extension MainViewController {
   func saveTodayExtensionData() {
     let dateText = Date().trasformInt(from: Date())
     let appIdentifier = "group.com.middd.TodayExtensionSharingDefaults"
-    
-    // 오늘의 포스트 데이터 저장 - mealTitle, mealTime, rating, color set
+    /***************************************************
+     오늘의 포스트 데이터 저장 - mealTitle, mealTime, rating, color set
+     ***************************************************/
     guard let realm = try? Realm(),
       let shareDefaults = UserDefaults(suiteName: appIdentifier) else { return }
     let todayPosts = realm.objects(Post.self).filter("dateText == %@", dateText).sorted(byKeyPath: "mealTime", ascending: true)
@@ -200,8 +201,9 @@ extension MainViewController {
     shareDefaults.set(postsTitle, forKey: "title")
     shareDefaults.set(postsRating, forKey: "rating")
     
-    
-    // 현재 테마 컬러셋 데이터
+    /***************************************************
+     현재 테마 컬러셋 데이터
+     ***************************************************/
     let themeKey = "ThemeNameRawValue"
     let currentTheme = UserDefaults.standard.value(forKey: themeKey) as? Int ?? 0
     
@@ -212,7 +214,13 @@ extension MainViewController {
     shareDefaults.setColor(currentColor.good, forkey: "good")
     shareDefaults.setColor(currentColor.soso, forkey: "soso")
     shareDefaults.setColor(currentColor.bad, forkey: "bad")
+    
+    /***************************************************
+     주말 포함 여부(Bool) 저장
+     ***************************************************/
+    shareDefaults.set(Settings.custom.isIncludeWeekend, forKey: "isIncludeWeekend")
   }
+
   
   
   

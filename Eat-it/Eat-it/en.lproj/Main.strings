@@ -30,7 +30,7 @@
 "Gus-2H-vXE.text" = "Lv1. SsungNni";
 
 /* Class = "UITableViewController"; title = "설정"; ObjectID = "HCf-kf-BE9"; */
-"HCf-kf-BE9.title" = "Setting";
+"HCf-kf-BE9.title" = "Settings";
 
 /* Class = "UILabel"; text = "ColorSetName"; ObjectID = "HQj-ew-a6c"; */
 "HQj-ew-a6c.text" = "ColorSetName";
