@@ -66,11 +66,7 @@ class MainViewController: UIViewController {
     
     // this week of monday date & label setting
     date = changeToMonday(of: date)
-    currentDateLabel(input: date)
-    
-    
-    
-    // mealMatrixView.layer.cornerRadius = 7
+
     navigationController?.delegate = transition
     
     // Navigation Bar UI
@@ -94,6 +90,7 @@ class MainViewController: UIViewController {
     mealMatrixView.backgroundColor = mealMatrixViewBackgroundColor() // mealMatrix background color accroing to theme
     naviBarTitleLayout() // Navigation Bar UI - 테마 컬러에 따라 색이 바뀌어야 하므로 viewWillAppear에 위치
     updateAutoLayout() // 유저 세팅에 따라 레이아웃 변경
+    currentDateLabel(input: date)
   }
   
   
@@ -123,7 +120,7 @@ extension MainViewController {
     let formatter = DateFormatter()
     formatter.dateFormat = "yyyyMMdd"
     
-    let minDateInt = date.trasformInt(from: self.date)
+    let minDateInt = self.date.trasformInt()
     let minDatestr = formatter.string(from: self.date)
     let minDate = formatter.date(from: minDatestr)!
     
@@ -132,14 +129,14 @@ extension MainViewController {
     dateComponent.day = timeIntervalDay
     
     let maxDate = Calendar.current.date(byAdding: dateComponent, to: minDate)!
-    let maxDateInt = maxDate.trasformInt(from: maxDate)
+    let maxDateInt = maxDate.trasformInt()
     
     posts = posts.filter("dateText >= %@", minDateInt).filter("dateText < %@", maxDateInt)
     
     // date(월 ~ 금), mealTime(아침 ~ 저녁) 순으로 sort
     let postsSorted = posts.sorted(by: [
       SortDescriptor(keyPath: "dateText", ascending: true),
-      SortDescriptor(keyPath: "mealTime", ascending: true),
+      SortDescriptor(keyPath: "mealTime", ascending: true)
       ])
     
     return postsSorted
@@ -151,13 +148,23 @@ extension MainViewController {
     print("\n---------- [ makePostMatrix ] -----------\n")
     var postArray = Array<Post?>(repeating: nil, count: meal.count * day.count) // 빈 배열 생성
     let thisWeekPosts = fetchThisWeekPosts(date: date) // 금주의 Post data fetch
-    let currentDate = self.date.trasformInt(from: self.date)
+    let currentDate = self.date.trasformInt()
+    
+    let lastDayOfThisMonth = date.lastDayOfMonth()
+    let lastDayInt = lastDayOfThisMonth.trasformInt()
+    let nextMonth = lastDayOfThisMonth.transformIntOnlyMonth() + 100
     
     // 알맞은 위치에 포스트 삽입
     for post in thisWeekPosts {
-      let dateDiff = post.dateText - currentDate
-      let mealTime = post.mealTime
+      var dateDiff = 0
+      if post.dateText > lastDayInt {
+//        print("\n---------- [ 월 변경 ] -----------\n")
+        dateDiff = post.dateText - nextMonth + lastDayInt - currentDate
+      } else {
+        dateDiff = post.dateText - currentDate
+      }
       
+      let mealTime = post.mealTime
       let idx = dateDiff * 3 + mealTime
       postArray[idx] = post
     }
@@ -167,7 +174,7 @@ extension MainViewController {
   
   // MARK: - TodayExtension
   func saveTodayExtensionData() {
-    let dateText = Date().trasformInt(from: Date())
+    let dateText = Date().trasformInt()
     let appIdentifier = "group.com.middd.TodayExtensionSharingDefaults"
     /***************************************************
      오늘의 포스트 데이터 저장 - mealTitle, mealTime, rating, color set
@@ -465,7 +472,7 @@ extension MainViewController: UICollectionViewDelegateFlowLayout {
     
     guard let basedHeight = userSetting.basedMealTableHeight,
       let cellSize = userSetting.basedPostCellSize,
-      let dayData = userSetting.dayData else { return 0 }
+      let dayData = userSetting.dayData else { return 1 }
     
     var height = (postCollectionView.frame.height - 15)
     let cellHeight = (mealMatrixView.frame.height - 15) * cellSize.height / basedHeight
@@ -514,31 +521,13 @@ extension MainViewController {
   
   
   func currentDateLabel(input: Date) {
-    let year = calendar.component(.year, from: input)
-    let month: String = {
-      let month = calendar.component(.month, from: input)
-      if month < 10 {
-        return "0\(month)"
-      } else {
-        return "\(month)"
-      }
-    }()
-    
-    let day: String = {
-      let day = calendar.component(.day, from: input)
-      if day < 10 {
-        return "0\(day)"
-      } else {
-        return "\(day)"
-      }
-    }()
-    
-    // 월 ~ 금 일자로 나타내기
-    let txt = "\(year). \(month). \(day) ~ "
-    dateLabel.text = txt
+    let dateFormatter = DateFormatter()
+    dateFormatter.dateFormat = userSetting.currentDateFormat
+    dateLabel.text = dateFormatter.string(from: input) + " ~"
     dateLabel.font = UIFont(name: "Montserrat-SemiBold", size: 16)
   }
   
+
   
   @IBAction private func leftBtn() {
     let prevWeekDay = -7

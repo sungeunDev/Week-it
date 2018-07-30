@@ -122,7 +122,7 @@ class PostViewController: UITableViewController {
     
     let realm = try! Realm()
     let allNumOfPost = realm.objects(NumOfPost.self)
-    let month = date.transformIntOnlyMonth(from: date)
+    let month = date.transformIntOnlyMonth()
     
     let numOfPost = allNumOfPost.filter("dateInt == %@", month)
     

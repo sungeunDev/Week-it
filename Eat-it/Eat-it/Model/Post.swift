@@ -30,7 +30,7 @@ class Post: Object {
     self.mealTime = mealTime
     self.mealTitle = mealTitle
     
-    self.dateText = date.trasformInt(from: date)
+    self.dateText = date.trasformInt()
   }
 }
 
@@ -85,7 +85,7 @@ class NumOfPost: Object {
   convenience init(date: Date) {
     self.init()
 
-    self.dateInt = date.transformIntOnlyMonth(from: date)
+    self.dateInt = date.transformIntOnlyMonth()
     self.numOfpost = 1
   }
   

@@ -133,3 +133,6 @@
 
 /* Class = "UILabel"; text = "주말 포함"; ObjectID = "FSU-OR-OTL" */
 "FSU-OR-OTL.text" = "Weekend included";
+
+/* Class = "UILabel"; text = "날짜 표기"; ObjectID = "a5r-FQ-htX" */
+"a5r-FQ-htX.text" = "Date Format";

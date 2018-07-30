@@ -6,6 +6,7 @@
 //  Copyright © 2018년 sungeun. All rights reserved.
 //
 
+import Foundation
 import UIKit
 import RealmSwift
 
@@ -125,6 +126,13 @@ class GraphTableViewController: UITableViewController {
       let year = dateStr.dropLast(4)
       let month = dateStr.dropFirst(4).dropLast(2)
       
+      if let currentLocale = Locale.current.languageCode {
+        if currentLocale == "ko" {
+          return "\(year)" + "year".localized + "space".localized + "\(month)" + "month".localized
+        } else {
+          return "\(month), \(year)"
+        }
+      }
       return "\(year)" + "year".localized + "space".localized + "\(month)" + "month".localized
     }
   }
