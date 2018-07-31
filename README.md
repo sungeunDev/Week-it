@@ -65,6 +65,7 @@
 - start: 2018.06.05 ~   
 - ver 1.0.0 : US App Store release (18.07.04)
 - ver 1.1.0 : KR App Store realease. Localized KR (18.07.08)
+- ver 1.2.0 : 주말 on/off 기능 추가. 날짜 형식 변경 가능 (18.07.31)
 
 <br>
 

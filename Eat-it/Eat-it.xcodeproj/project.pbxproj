@@ -552,7 +552,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CODE_SIGN_ENTITLEMENTS = "Eat-itTodayExtension/Eat-itTodayExtension.entitlements";
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = WXH5CKM9TX;
 				INFOPLIST_FILE = "Eat-itTodayExtension/Info.plist";
@@ -564,8 +564,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.sungeun.Eat-it.Eat-itTodayExtension";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "950c9df9-cec0-4b06-819d-607101135c68";
-				PROVISIONING_PROFILE_SPECIFIER = "eat-it today extension development";
+				PROVISIONING_PROFILE = "c95f7db7-bb8a-4682-8613-e07a20d52793";
+				PROVISIONING_PROFILE_SPECIFIER = "eat-it today extension distribution";
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -577,7 +577,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CODE_SIGN_ENTITLEMENTS = "Eat-itTodayExtension/Eat-itTodayExtension.entitlements";
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = WXH5CKM9TX;
 				INFOPLIST_FILE = "Eat-itTodayExtension/Info.plist";
@@ -589,8 +589,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.sungeun.Eat-it.Eat-itTodayExtension";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "950c9df9-cec0-4b06-819d-607101135c68";
-				PROVISIONING_PROFILE_SPECIFIER = "eat-it today extension development";
+				PROVISIONING_PROFILE = "c95f7db7-bb8a-4682-8613-e07a20d52793";
+				PROVISIONING_PROFILE_SPECIFIER = "eat-it today extension distribution";
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
