@@ -65,23 +65,34 @@ extension UIColor {
 // MARK: - Date
 extension Date {
   
-  public func trasformInt(from date: Date) -> Int {
+  public func trasformInt() -> Int {
     let dateFormatter = DateFormatter()
     
     dateFormatter.dateFormat = "yyyyMMdd"
-    let str = dateFormatter.string(from: date)
+    let str = dateFormatter.string(from: self)
     
     return Int(str)!
   }
   
-  public func transformIntOnlyMonth(from date: Date) -> Int {
+  public func transformIntOnlyMonth() -> Int {
     let dateFormatter = DateFormatter()
     
     dateFormatter.dateFormat = "yyyyMM00"
-    let str = dateFormatter.string(from: date)
+    let str = dateFormatter.string(from: self)
     
     return Int(str)!
   }
+  
+  func lastDayOfMonth() -> Date {
+    let calendar = Calendar(identifier: .gregorian)
+    let dayRange = calendar.range(of: .day, in: .month, for: self)
+    let dayCount = dayRange?.count
+    
+    var comp = calendar.dateComponents([.year, .month, .day], from: self)
+    comp.day = dayCount
+    return calendar.date(from: comp)!
+  }
+  
 }
 
 

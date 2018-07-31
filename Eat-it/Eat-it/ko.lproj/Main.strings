@@ -130,3 +130,6 @@
 
 /* Class = "UILabel"; text = "yyyy. mm. 1st Week"; ObjectID = "zWB-C6-33Z"; */
 "zWB-C6-33Z.text" = "yyyy. mm. 1st Week";
+
+/* Class = "UILabel"; text = "주말 포함"; ObjectID = "FSU-OR-OTL" */
+"FSU-OR-OTL.text" = "주말 포함";

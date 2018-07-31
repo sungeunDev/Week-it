@@ -12,7 +12,8 @@ import SnapKit
 
 class MainViewController: UIViewController {
   
-  // UI Properties
+  // MARK: - Properties
+  // MARK: -UI Properties
   @IBOutlet private weak var mealTimeCollectionView: UICollectionView! // 아침, 점심, 저녁
   @IBOutlet private weak var dayCollectionView: UICollectionView! // 요일 (월~금)
   @IBOutlet private weak var postCollectionView: UICollectionView! // mealTime * day
@@ -20,10 +21,24 @@ class MainViewController: UIViewController {
   
   @IBOutlet private weak var dateLabel: UILabel!
   
-  // Data
+  // MARK: -Constraints
+  @IBOutlet weak var dateViewTopConstraint: NSLayoutConstraint! // dateView Top - SafeArea Top Spacing
+  @IBOutlet weak var mealTableTopConstraint: NSLayoutConstraint! // dateView Bottom - mealTable Top Spacing
   
+  @IBOutlet weak var timeTablePropotinalHeight_isIncludeWeekend: NSLayoutConstraint!
+  @IBOutlet weak var timeTablePropotinalHeight_notIncludeWeekend: NSLayoutConstraint!
+  
+//  @IBOutlet weak var mealTimeCollectionViewTopConstraint: NSLayoutConstraint! // mealTable Top - mealTimeCollectionView Top Spacing
+  
+  @IBOutlet weak var mealTableBottomConstarint: NSLayoutConstraint! // mealTable Bottom - SafeArea Bottom Spacing
+  
+  // MARK:  -Settings
+  var userSetting = Settings.custom
+  
+  
+  // MARK: -Data
   let meal = ["아침", "점심", "저녁"]
-  let day = ["MON", "TUE", "WED", "THU", "FRI"]
+  var day = ["MON", "TUE", "WED", "THU", "FRI", "SAT", "SUN"]
   
   var posts: Array<Post?> = [] {
     didSet {
@@ -36,10 +51,11 @@ class MainViewController: UIViewController {
   var selectedCellImg: UIView!
   let transition = TransitionCoordinator()
   
-  // Date Calculation Properties
+  // MARK: -Date Calculation Properties
   private var date: Date = Date()
   private var calendar: Calendar = Calendar.current
   
+
   
   // MARK: - LifeCycle
   override func viewDidLoad() {
@@ -50,11 +66,7 @@ class MainViewController: UIViewController {
     
     // this week of monday date & label setting
     date = changeToMonday(of: date)
-    currentDateLabel(input: date)
-    
-    
-    
-    // mealMatrixView.layer.cornerRadius = 7
+
     navigationController?.delegate = transition
     
     // Navigation Bar UI
@@ -74,11 +86,11 @@ class MainViewController: UIViewController {
     // save UserDefault Today's Post
     saveTodayExtensionData()
     
-    // mealMatrix background color accroing to theme
-    mealMatrixView.backgroundColor = mealMatrixViewBackgroundColor()
-    
-    // Navigation Bar UI
-    naviBarTitleLayout() // 테마 컬러에 따라 색이 바뀌어야 하므로 viewWillAppear에 위치
+    // Update UI
+    mealMatrixView.backgroundColor = mealMatrixViewBackgroundColor() // mealMatrix background color accroing to theme
+    naviBarTitleLayout() // Navigation Bar UI - 테마 컬러에 따라 색이 바뀌어야 하므로 viewWillAppear에 위치
+    updateAutoLayout() // 유저 세팅에 따라 레이아웃 변경
+    currentDateLabel(input: date)
   }
   
   
@@ -108,7 +120,7 @@ extension MainViewController {
     let formatter = DateFormatter()
     formatter.dateFormat = "yyyyMMdd"
     
-    let minDateInt = date.trasformInt(from: self.date)
+    let minDateInt = self.date.trasformInt()
     let minDatestr = formatter.string(from: self.date)
     let minDate = formatter.date(from: minDatestr)!
     
@@ -117,14 +129,14 @@ extension MainViewController {
     dateComponent.day = timeIntervalDay
     
     let maxDate = Calendar.current.date(byAdding: dateComponent, to: minDate)!
-    let maxDateInt = maxDate.trasformInt(from: maxDate)
+    let maxDateInt = maxDate.trasformInt()
     
     posts = posts.filter("dateText >= %@", minDateInt).filter("dateText < %@", maxDateInt)
     
     // date(월 ~ 금), mealTime(아침 ~ 저녁) 순으로 sort
     let postsSorted = posts.sorted(by: [
       SortDescriptor(keyPath: "dateText", ascending: true),
-      SortDescriptor(keyPath: "mealTime", ascending: true),
+      SortDescriptor(keyPath: "mealTime", ascending: true)
       ])
     
     return postsSorted
@@ -133,16 +145,26 @@ extension MainViewController {
   
   // 3 * 5 개의 배열로 Post 생성
   func makePostMatrix(date: Date) -> Array<Post?> {
-    
+    print("\n---------- [ makePostMatrix ] -----------\n")
     var postArray = Array<Post?>(repeating: nil, count: meal.count * day.count) // 빈 배열 생성
     let thisWeekPosts = fetchThisWeekPosts(date: date) // 금주의 Post data fetch
-    let currentDate = self.date.trasformInt(from: self.date)
+    let currentDate = self.date.trasformInt()
+    
+    let lastDayOfThisMonth = date.lastDayOfMonth()
+    let lastDayInt = lastDayOfThisMonth.trasformInt()
+    let nextMonth = lastDayOfThisMonth.transformIntOnlyMonth() + 100
     
     // 알맞은 위치에 포스트 삽입
     for post in thisWeekPosts {
-      let dateDiff = post.dateText - currentDate
-      let mealTime = post.mealTime
+      var dateDiff = 0
+      if post.dateText > lastDayInt {
+//        print("\n---------- [ 월 변경 ] -----------\n")
+        dateDiff = post.dateText - nextMonth + lastDayInt - currentDate
+      } else {
+        dateDiff = post.dateText - currentDate
+      }
       
+      let mealTime = post.mealTime
       let idx = dateDiff * 3 + mealTime
       postArray[idx] = post
     }
@@ -152,10 +174,11 @@ extension MainViewController {
   
   // MARK: - TodayExtension
   func saveTodayExtensionData() {
-    let dateText = Date().trasformInt(from: Date())
+    let dateText = Date().trasformInt()
     let appIdentifier = "group.com.middd.TodayExtensionSharingDefaults"
-    
-    // 오늘의 포스트 데이터 저장 - mealTitle, mealTime, rating, color set
+    /***************************************************
+     오늘의 포스트 데이터 저장 - mealTitle, mealTime, rating, color set
+     ***************************************************/
     guard let realm = try? Realm(),
       let shareDefaults = UserDefaults(suiteName: appIdentifier) else { return }
     let todayPosts = realm.objects(Post.self).filter("dateText == %@", dateText).sorted(byKeyPath: "mealTime", ascending: true)
@@ -185,8 +208,9 @@ extension MainViewController {
     shareDefaults.set(postsTitle, forKey: "title")
     shareDefaults.set(postsRating, forKey: "rating")
     
-    
-    // 현재 테마 컬러셋 데이터
+    /***************************************************
+     현재 테마 컬러셋 데이터
+     ***************************************************/
     let themeKey = "ThemeNameRawValue"
     let currentTheme = UserDefaults.standard.value(forKey: themeKey) as? Int ?? 0
     
@@ -197,7 +221,13 @@ extension MainViewController {
     shareDefaults.setColor(currentColor.good, forkey: "good")
     shareDefaults.setColor(currentColor.soso, forkey: "soso")
     shareDefaults.setColor(currentColor.bad, forkey: "bad")
+    
+    /***************************************************
+     주말 포함 여부(Bool) 저장
+     ***************************************************/
+    shareDefaults.set(Settings.custom.isIncludeWeekend, forKey: "isIncludeWeekend")
   }
+
   
   
   
@@ -245,20 +275,56 @@ extension MainViewController {
     let colorSet = [ColorSet.basic, ColorSet.sunset, ColorSet.macaron, ColorSet.redblue, ColorSet.jejuOcean, ColorSet.cherryBlossom, ColorSet.orange, ColorSet.heaven, ColorSet.cookieCream]
     return colorSet[currentTheme].background
   }
+  
+  func updateAutoLayout() {
+    userSetting.updateLayout(on: userSetting.isIncludeWeekend)
+  
+    guard let dateViewTop = userSetting.dateViewTopConstraint,
+      let mealTableTop = userSetting.mealTableTopConstraint,
+      let mealTableBottom = userSetting.mealTableBottomConstarint else { return }
+    dateViewTopConstraint.constant = dateViewTop
+    mealTableTopConstraint.constant = mealTableTop
+    mealTableBottomConstarint.constant = mealTableBottom
+    
+    if userSetting.isIncludeWeekend {
+      timeTablePropotinalHeight_isIncludeWeekend.priority = .defaultHigh
+      timeTablePropotinalHeight_notIncludeWeekend.priority = .defaultLow
+    } else {
+      timeTablePropotinalHeight_isIncludeWeekend.priority = .defaultLow
+      timeTablePropotinalHeight_notIncludeWeekend.priority = .defaultHigh
+    }
+    
+    dayCollectionView.reloadData()
+    postCollectionView.reloadData()
+    mealMatrixView.layoutSubviews()
+  }
+  
 }
+
+
 
 
 // MARK: - UICollectionView DataSource
 extension MainViewController: UICollectionViewDataSource {
   
   func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    let weekendCount = 2
+    
     switch collectionView.tag {
     case 0:
       return meal.count
     case 1:
-      return day.count
+      if userSetting.isIncludeWeekend {
+        return day.count
+      } else {
+        return day.count - weekendCount
+      }
     default:
-      return posts.count
+      if userSetting.isIncludeWeekend {
+        return posts.count
+      } else {
+        return posts.count - weekendCount * meal.count
+      }
     }
   }
   
@@ -377,43 +443,50 @@ extension MainViewController: UICollectionViewDelegateFlowLayout {
   // cell size
   func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
     
-    let tableWidth = mealMatrixView.frame.width - 10
-    let tableHeight = mealMatrixView.frame.height - 10
+    guard let basedHeight = userSetting.basedMealTableHeight,
+      let cellSize = userSetting.basedPostCellSize else { return CGSize(width: 75, height: 65) }
+    
+    var width = (mealMatrixView.frame.width - 15) / 315
+    var height = (mealMatrixView.frame.height - 15) / basedHeight
+    let postCellSize: CGSize = cellSize
+    
+    
+    let mealCellSize = CGSize(width: postCellSize.width, height: 35)
+    let dayCellSize = CGSize(width: 60, height: postCellSize.height)
     
     switch collectionView.tag {
-    case 0:
-      let width = tableWidth * 75 / 315
-      let height = tableHeight * 40 / 413
-      let size = CGSize(width: width, height: height)
-      return size
-    case 1:
-      let width = tableWidth * 60 / 315
-      let height = tableHeight * 65 / 413
-      let size = CGSize(width: width, height: height)
-      return size
-    default:
-      let width = tableWidth * 75 / 315
-      let height = tableHeight * 65 / 413
-      let size = CGSize(width: width, height: height)
-      return size
+    case 0: // time
+      width *= mealCellSize.width
+      height *= mealCellSize.height
+    case 1: // weekday
+      width *= dayCellSize.width
+      height *= dayCellSize.height
+    default: // post
+      width *= postCellSize.width
+      height *= postCellSize.height
     }
+    return CGSize(width: width, height: height)
   }
   
   func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
     
-    var height = (postCollectionView.frame.height - 10)
-    let cellHeight = (mealMatrixView.frame.height - 10) * 65 / 413
-    height = (height - cellHeight * 5) / 4
+    guard let basedHeight = userSetting.basedMealTableHeight,
+      let cellSize = userSetting.basedPostCellSize,
+      let dayData = userSetting.dayData else { return 1 }
     
+    var height = (postCollectionView.frame.height - 15)
+    let cellHeight = (mealMatrixView.frame.height - 15) * cellSize.height / basedHeight
+    
+    height = (height - cellHeight * CGFloat(dayData.count)) / CGFloat(dayData.count - 1)
     return height
   }
   
   
   func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
     
-    var width = postCollectionView.frame.width - 10
-    let cellWidth = (mealMatrixView.frame.width - 10) * 75 / 315
-    width = (width - cellWidth * 3) / 2
+    var width = postCollectionView.frame.width - 15
+    let cellWidth = (mealMatrixView.frame.width - 15) * 75 / 315
+    width = (width - cellWidth * CGFloat(meal.count)) / CGFloat(meal.count - 1)
     
     return width
   }
@@ -448,31 +521,13 @@ extension MainViewController {
   
   
   func currentDateLabel(input: Date) {
-    let year = calendar.component(.year, from: input)
-    let month: String = {
-      let month = calendar.component(.month, from: input)
-      if month < 10 {
-        return "0\(month)"
-      } else {
-        return "\(month)"
-      }
-    }()
-    
-    let day: String = {
-      let day = calendar.component(.day, from: input)
-      if day < 10 {
-        return "0\(day)"
-      } else {
-        return "\(day)"
-      }
-    }()
-    
-    // 월 ~ 금 일자로 나타내기
-    let txt = "\(year). \(month). \(day) ~ "
-    dateLabel.text = txt
+    let dateFormatter = DateFormatter()
+    dateFormatter.dateFormat = userSetting.currentDateFormat
+    dateLabel.text = dateFormatter.string(from: input) + " ~"
     dateLabel.font = UIFont(name: "Montserrat-SemiBold", size: 16)
   }
   
+
   
   @IBAction private func leftBtn() {
     let prevWeekDay = -7

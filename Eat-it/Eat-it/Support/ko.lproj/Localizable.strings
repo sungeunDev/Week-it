@@ -22,6 +22,8 @@
 "WED" = "수";
 "THU" = "목";
 "FRI" = "금";
+"SAT" = "토";
+"SUN" = "일";
 
 "Day of the week" = "요일별";
 "Time" = "시간별";

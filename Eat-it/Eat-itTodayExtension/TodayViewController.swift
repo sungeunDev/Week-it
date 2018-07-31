@@ -13,12 +13,11 @@ import NotificationCenter
 
 class TodayViewController: UIViewController, NCWidgetProviding {
   
-  @IBOutlet weak var viewMorning: UIView! {
-    didSet {
-        self.view.reloadInputViews()
-    }
-  }
+  @IBOutlet weak var superViewMorning: UIView!
+  @IBOutlet weak var superViewNoon: UIView!
+  @IBOutlet weak var superViewNight: UIView!
   
+  @IBOutlet weak var viewMorning: UIView!
   @IBOutlet weak var viewNoon: UIView!
   @IBOutlet weak var viewNight: UIView!
   
@@ -34,9 +33,10 @@ class TodayViewController: UIViewController, NCWidgetProviding {
   @IBOutlet weak var plusIconNoon: UIImageView!
   @IBOutlet weak var plusIconNight: UIImageView!
   
+  @IBOutlet weak var weekendInfoLabel: UILabel!
+  
   let date = Date()
-  
-  
+
   // MARK: - Life Cycle
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -57,7 +57,6 @@ class TodayViewController: UIViewController, NCWidgetProviding {
     subViewNoon.cornerRoundOnlyTop(radius: radius)
     subViewNight.cornerRoundOnlyTop(radius: radius)
   }
-  
   
   // MARK: - Method
   func updateLayout() {
@@ -101,6 +100,24 @@ class TodayViewController: UIViewController, NCWidgetProviding {
       ratingColorUIUpdate(rating: ratings[0], view: viewMorning, colors: colors)
       ratingColorUIUpdate(rating: ratings[1], view: viewNoon, colors: colors)
       ratingColorUIUpdate(rating: ratings[2], view: viewNight, colors: colors)
+      
+      updateWeekendPost(isIncludeWeekend: shareDefaults.bool(forKey: "isIncludeWeekend"))
+    }
+  }
+  
+  // 평일만 이용하는 경우, 주말에 위젯 표기 변경
+  func updateWeekendPost(isIncludeWeekend: Bool) {
+    let weekday = Calendar(identifier: .gregorian).component(.weekday, from: self.date)
+    if !isIncludeWeekend && (weekday == 1 || weekday == 7) {
+      superViewMorning.isHidden = true
+      superViewNoon.isHidden = true
+      superViewNight.isHidden = true
+      weekendInfoLabel.isHidden = false
+    } else {
+      superViewMorning.isHidden = false
+      superViewNoon.isHidden = false
+      superViewNight.isHidden = false
+      weekendInfoLabel.isHidden = true
     }
   }
   

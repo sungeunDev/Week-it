@@ -30,7 +30,7 @@
 "Gus-2H-vXE.text" = "Lv1. SsungNni";
 
 /* Class = "UITableViewController"; title = "설정"; ObjectID = "HCf-kf-BE9"; */
-"HCf-kf-BE9.title" = "Setting";
+"HCf-kf-BE9.title" = "Settings";
 
 /* Class = "UILabel"; text = "ColorSetName"; ObjectID = "HQj-ew-a6c"; */
 "HQj-ew-a6c.text" = "ColorSetName";
@@ -130,3 +130,9 @@
 
 /* Class = "UILabel"; text = "yyyy. mm. 1st Week"; ObjectID = "zWB-C6-33Z"; */
 "zWB-C6-33Z.text" = "yyyy. mm. 1st Week";
+
+/* Class = "UILabel"; text = "주말 포함"; ObjectID = "FSU-OR-OTL" */
+"FSU-OR-OTL.text" = "Weekend included";
+
+/* Class = "UILabel"; text = "날짜 표기"; ObjectID = "a5r-FQ-htX" */
+"a5r-FQ-htX.text" = "Date Format";
