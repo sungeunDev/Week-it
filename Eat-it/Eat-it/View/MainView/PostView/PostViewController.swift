@@ -37,9 +37,6 @@ class PostViewController: UITableViewController {
     
     menuTextField.delegate = self
     menuTextField.becomeFirstResponder()
-    
-    // seg 폰트컬러 변경
-//    seg.setTitleTextAttributes([NSAttributedStringKey.foregroundColor: UIColor.lightGray], for: .normal)
   }
   
   override func viewWillAppear(_ animated: Bool) {
@@ -52,30 +49,24 @@ class PostViewController: UITableViewController {
     if let postData = postData {
       menuTextField.text = postData.mealTitle
       seg.selectedSegmentIndex = postData.rating
-      
     }
     
     let format = DateFormatter()
     format.dateFormat = "yyyy-MM-dd (E)"
     
-    if let mealIdx = mealTime,
-      let date = date {
-      
+    if let mealIdx = mealTime, let date = date {
       let mealTime = ["Morning".localized, "Afternoon".localized, "Evening".localized]
       let mealImage = [#imageLiteral(resourceName: "mealTime_morning"), #imageLiteral(resourceName: "mealTime_noon"), #imageLiteral(resourceName: "mealTime_night")]
       mealLabel.text = mealTime[mealIdx]
       mealImageView.image = mealImage[mealIdx]
-      
       dateLabel.text = format.string(from: date)
     }
-    
   }
   
   
   // MARK: - SAVE ACTION
   @IBAction private func saveBtn() {
     menuTextField.resignFirstResponder()
-    
     savePost()
     popVC()
   }
@@ -127,13 +118,13 @@ class PostViewController: UITableViewController {
     let numOfPost = allNumOfPost.filter("dateInt == %@", month)
     
     if allNumOfPost.count == 0 || numOfPost.count == 0 {
-      print("최초 추가")
+//      print("최초 추가")
       let monthPost = NumOfPost(date: date)
       try! realm.write {
         realm.add(monthPost)
       }
     } else {
-      print("기존거에 추가")
+//      print("기존거에 추가")
       let id = numOfPost[0].dateInt
       if let monthlyNumOfPost = realm.object(ofType: NumOfPost.self, forPrimaryKey: id) {
         try! realm.write {
@@ -154,7 +145,7 @@ class PostViewController: UITableViewController {
       
       try! realm.write {
 //        delete post
-        print("\n---------- [ 삭제 ] -----------\n")
+//        print("\n---------- [ 삭제 ] -----------\n")
         realm.delete(post)
         
 //        delete number of post

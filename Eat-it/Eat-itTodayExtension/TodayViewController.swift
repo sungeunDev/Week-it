@@ -113,11 +113,13 @@ class TodayViewController: UIViewController, NCWidgetProviding {
       superViewNoon.isHidden = true
       superViewNight.isHidden = true
       weekendInfoLabel.isHidden = false
+      weekendInfoLabel.alpha = 1
     } else {
       superViewMorning.isHidden = false
       superViewNoon.isHidden = false
       superViewNight.isHidden = false
       weekendInfoLabel.isHidden = true
+      weekendInfoLabel.alpha = 0
     }
   }
   

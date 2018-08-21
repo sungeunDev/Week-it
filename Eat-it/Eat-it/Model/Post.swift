@@ -9,7 +9,7 @@
 import Foundation
 import RealmSwift
 
-// realm model
+// MARK: - Post Model
 class Post: Object {
   
   @objc dynamic var postId = NSUUID().uuidString
@@ -72,7 +72,7 @@ extension Post {
 }
 
 
-
+// MARK: - 월별 Post의 개수 카운팅 Model
 class NumOfPost: Object {
   
   @objc dynamic var dateInt: Int = 0 // 20180300
@@ -88,6 +88,4 @@ class NumOfPost: Object {
     self.dateInt = date.transformIntOnlyMonth()
     self.numOfpost = 1
   }
-  
-  
 }

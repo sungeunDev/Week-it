@@ -46,11 +46,6 @@ class MainViewController: UIViewController {
     }
   }
   
-  // data for animations
-  var selectedCellRect: CGRect!
-  var selectedCellImg: UIView!
-  let transition = TransitionCoordinator()
-  
   // MARK: -Date Calculation Properties
   private var date: Date = Date()
   private var calendar: Calendar = Calendar.current
@@ -60,25 +55,19 @@ class MainViewController: UIViewController {
   // MARK: - LifeCycle
   override func viewDidLoad() {
     super.viewDidLoad()
-    print(NSHomeDirectory())
-    
+//    print(NSHomeDirectory())
     presentTutorialView()
     
     // this week of monday date & label setting
     date = changeToMonday(of: date)
-
-    navigationController?.delegate = transition
     
     // Navigation Bar UI
     naviBarItemLayout()
-    
     self.navigationController?.interactivePopGestureRecognizer?.delegate = nil
   }
   
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
-    
-    print("\n---------- [ viewWillAppear ] -----------\n")
     
     // fetch this week post data & sort
     posts = makePostMatrix(date: self.date)
@@ -96,11 +85,11 @@ class MainViewController: UIViewController {
   
   //PRESENT TUTORIAL VIEW ON FIRST LAUNCH ONLY
   func presentTutorialView() {
-    print("\n---------- [ presentTutorialView ] -----------\n")
+//    print("\n---------- [ presentTutorialView ] -----------\n")
     if !UserDefaults.standard.bool(forKey: "didSee") {
       UserDefaults.standard.set(true, forKey: "didSee")
       let tutorialView = self.storyboard?.instantiateViewController(withIdentifier: "TutorialViewController") as! TutorialViewController
-      print("\n---------- [ present ] -----------\n")
+//      print("\n---------- [ present ] -----------\n")
       self.present(tutorialView, animated: false, completion: nil)
     }
   }
@@ -145,7 +134,7 @@ extension MainViewController {
   
   // 3 * 5 개의 배열로 Post 생성
   func makePostMatrix(date: Date) -> Array<Post?> {
-    print("\n---------- [ makePostMatrix ] -----------\n")
+//    print("\n---------- [ makePostMatrix ] -----------\n")
     var postArray = Array<Post?>(repeating: nil, count: meal.count * day.count) // 빈 배열 생성
     let thisWeekPosts = fetchThisWeekPosts(date: date) // 금주의 Post data fetch
     let currentDate = self.date.trasformInt()
@@ -367,10 +356,6 @@ extension MainViewController: UICollectionViewDataSource {
                       to destinationIndexPath: IndexPath) {
     guard sourceIndexPath != destinationIndexPath else { return }
     
-    //        collectionView.performBatchUpdates({
-    //            collectionView.moveItem(at: sourceIndexPath, to: destinationIndexPath)
-    //        }, completion: nil)
-    
     if posts[destinationIndexPath.row] == nil {
       let temp = posts[sourceIndexPath.row]
       posts[destinationIndexPath.row] = temp
@@ -381,20 +366,6 @@ extension MainViewController: UICollectionViewDataSource {
       posts[destinationIndexPath.row] = temp
     }
   }
-  
-  //    func collectionView(_ collectionView: UICollectionView,
-  //                        targetIndexPathForMoveFromItemAt originalIndexPath: IndexPath,
-  //                        toProposedIndexPath proposedIndexPath: IndexPath) -> IndexPath {
-  //        if posts[proposedIndexPath.item] == nil {
-  //            defer {
-  //                posts[proposedIndexPath.item] = posts[originalIndexPath.item]
-  //            }
-  //                return originalIndexPath
-  //        } else {
-  //            return proposedIndexPath
-  //        }
-  //    }
-  
 }
 
 
@@ -409,16 +380,6 @@ extension MainViewController: UICollectionViewDelegateFlowLayout {
     let nextVC = storyBoard.instantiateViewController(withIdentifier: "PostViewController") as! PostViewController
     
     if collectionView.tag == 2 {
-      
-      // save selectedCell's frame to MainViewController.selectedCellRect
-      let attb = collectionView.layoutAttributesForItem(at: indexPath)
-      let frameWithinCollection = attb?.frame
-      let onScreenPos = collectionView.convert(frameWithinCollection!, to: self.view)
-      selectedCellRect = onScreenPos
-      
-      let cell = collectionView.cellForItem(at: indexPath)
-      selectedCellImg = (cell?.snapshotView(afterScreenUpdates: false))!
-      
       // 이전에 포스트를 입력해 놓은 경우, 해당 포스트를 불러옴
       if let post = posts[indexPath.item] {
         nextVC.postData = post

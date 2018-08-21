@@ -192,7 +192,7 @@
                                     <constraint firstItem="wyD-Th-KMO" firstAttribute="top" secondItem="rs7-5z-DHw" secondAttribute="top" constant="12" id="yLM-le-Y8C"/>
                                 </constraints>
                             </view>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iQQ-Dh-fpn">
+                            <label opaque="NO" userInteractionEnabled="NO" alpha="0.0" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iQQ-Dh-fpn">
                                 <rect key="frame" x="65.5" y="22" width="244.5" height="67"/>
                                 <string key="text">🌴😊🍕
 Today is weekend. Enjoy your holiday!
