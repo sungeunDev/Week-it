@@ -65,15 +65,18 @@
 - start: 2018.06.05 ~   
 - ver 1.0.0 : US App Store release (18.07.04)
 - ver 1.1.0 : KR App Store realease. Localized KR (18.07.08)
-- ver 1.2.0 : 주말 on/off 기능 추가. 날짜 형식 변경 가능 (18.07.31)
+- ver 1.2.0 : 주말 on/off 기능 추가. 날짜 형식 변경 가능. 8월 포스트 입력시 앱 종료되는 버그 수정. (18.07.31)
 
 <br>
 
 ## What I Learned
 - Tech  
     - Realm: 데이터 베이스로 활용  
-    - Today Extension: Widget 연동,   
+    - Today Extension: Widget 연동   
     - Date, Calendar 다루기  
+    - Frame based UI
+    - Custom Delegate 활용
+
 
 - Etc.  
     - 개발 전 설계에 대한 필요성  
@@ -84,10 +87,6 @@
 ## Things to do next 
 > -. 앞으로 할일들. 하나씩 지워나가는 게 목표!
 
-- Refactoring 
-    - MVC Pattern
-    - API 설계  
-
 - 기능 추가
     + DB Backup - Cloud Kit
     + Custom Animation
@@ -96,6 +95,7 @@
 
 - UI
     + Flexible Post Matrix -> 현재는 아침, 점심 저녁 / 월 ~ 금 고정. 행, 렬 커스텀화
+        * 주말 on/off 기능 추가 (7/31)
     + Recent Posts -> 최근 등록한 포스트 보여주기. drag로 복사, 붙여넣기 가능하도록.
     + Change Post Create View -> Present from bottom of MainView
 
