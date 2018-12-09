@@ -76,6 +76,9 @@ class GraphTableViewController: UITableViewController {
       }
       
       graphCell.graphCountLabel.text = "\(all)" + "count".localized
+        
+        EventTrackingManager.showGraphViewLog(totalPost: all)
+        
       return graphCell
     } else {
       guard let numOfposts = numOfposts else { return graphCell }

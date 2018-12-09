@@ -7,7 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		6A7D473D2F8EFF1D25A5E70E /* Pods_Eat_it.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A12B071FCA68E607B45F371 /* Pods_Eat_it.framework */; };
+		1862CADC5552BD5A3A3395BF /* Pods_Eat_itTodayExtension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9BD370C004C4531125C94E3F /* Pods_Eat_itTodayExtension.framework */; };
+		6B88D37F152C27F1048A566D /* Pods_Eat_it.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E3C3DDF4A8539C3DA59CA98F /* Pods_Eat_it.framework */; };
 		6F10322720E886DC00AFBF36 /* DevInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F10322620E886DC00AFBF36 /* DevInfoViewController.swift */; };
 		6F10322920E9B97F00AFBF36 /* GraphDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F10322820E9B97F00AFBF36 /* GraphDetailViewController.swift */; };
 		6F10322B20E9BF4B00AFBF36 /* CustomCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F10322A20E9BF4B00AFBF36 /* CustomCollectionViewCell.swift */; };
@@ -46,6 +47,9 @@
 		6FC46E3A20C8F76300DAA40D /* PostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FC46E3920C8F76300DAA40D /* PostViewController.swift */; };
 		6FFFA41A212C381100CF7E3E /* CustomTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FFFA419212C381100CF7E3E /* CustomTableViewCell.swift */; };
 		6FFFA41D212C388900CF7E3E /* plusIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 6FFFA41C212C388900CF7E3E /* plusIcon.png */; };
+		FE927A3121BD2DEF00C22A6C /* EventTrackingManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE927A3021BD2DEF00C22A6C /* EventTrackingManager.swift */; };
+		FEE23F9021BD113200E1938E /* MainViewUsecase.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEE23F8F21BD113200E1938E /* MainViewUsecase.swift */; };
+		FEE23F9221BD117500E1938E /* DBManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEE23F9121BD117500E1938E /* DBManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -83,8 +87,6 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		039AFA919984E37ED2563504 /* Pods-Eat-it.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Eat-it.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Eat-it/Pods-Eat-it.debug.xcconfig"; sourceTree = "<group>"; };
-		3D93F7DD16D3F47D7D6FA0D5 /* Pods-Eat-it.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Eat-it.release.xcconfig"; path = "Pods/Target Support Files/Pods-Eat-it/Pods-Eat-it.release.xcconfig"; sourceTree = "<group>"; };
 		6F10322620E886DC00AFBF36 /* DevInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DevInfoViewController.swift; sourceTree = "<group>"; };
 		6F10322820E9B97F00AFBF36 /* GraphDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphDetailViewController.swift; sourceTree = "<group>"; };
 		6F10322A20E9BF4B00AFBF36 /* CustomCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -134,7 +136,15 @@
 		6FC46E3920C8F76300DAA40D /* PostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostViewController.swift; sourceTree = "<group>"; };
 		6FFFA419212C381100CF7E3E /* CustomTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomTableViewCell.swift; sourceTree = "<group>"; };
 		6FFFA41C212C388900CF7E3E /* plusIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = plusIcon.png; sourceTree = "<group>"; };
-		8A12B071FCA68E607B45F371 /* Pods_Eat_it.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Eat_it.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		7540CAC31BB6E13A64F3BAEC /* Pods-Eat-itTodayExtension.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Eat-itTodayExtension.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Eat-itTodayExtension/Pods-Eat-itTodayExtension.debug.xcconfig"; sourceTree = "<group>"; };
+		79604A0FA10F87FA53BC7BF9 /* Pods-Eat-itTodayExtension.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Eat-itTodayExtension.release.xcconfig"; path = "Pods/Target Support Files/Pods-Eat-itTodayExtension/Pods-Eat-itTodayExtension.release.xcconfig"; sourceTree = "<group>"; };
+		96A9E26E54A0C7F8FFA4D584 /* Pods-Eat-it.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Eat-it.release.xcconfig"; path = "Pods/Target Support Files/Pods-Eat-it/Pods-Eat-it.release.xcconfig"; sourceTree = "<group>"; };
+		9BD370C004C4531125C94E3F /* Pods_Eat_itTodayExtension.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Eat_itTodayExtension.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		CE5BD613EE7A024D54F15811 /* Pods-Eat-it.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Eat-it.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Eat-it/Pods-Eat-it.debug.xcconfig"; sourceTree = "<group>"; };
+		E3C3DDF4A8539C3DA59CA98F /* Pods_Eat_it.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Eat_it.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		FE927A3021BD2DEF00C22A6C /* EventTrackingManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventTrackingManager.swift; sourceTree = "<group>"; };
+		FEE23F8F21BD113200E1938E /* MainViewUsecase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewUsecase.swift; sourceTree = "<group>"; };
+		FEE23F9121BD117500E1938E /* DBManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DBManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -143,6 +153,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				6F1B930920D75F9B0011BA2A /* NotificationCenter.framework in Frameworks */,
+				1862CADC5552BD5A3A3395BF /* Pods_Eat_itTodayExtension.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -151,7 +162,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				6F5077FB20EB831600B113A9 /* StoreKit.framework in Frameworks */,
-				6A7D473D2F8EFF1D25A5E70E /* Pods_Eat_it.framework in Frameworks */,
+				6B88D37F152C27F1048A566D /* Pods_Eat_it.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -166,7 +177,8 @@
 				6F50780020EB831B00B113A9 /* SnapKit.framework */,
 				6F5077FA20EB831600B113A9 /* StoreKit.framework */,
 				6F1B930820D75F9B0011BA2A /* NotificationCenter.framework */,
-				8A12B071FCA68E607B45F371 /* Pods_Eat_it.framework */,
+				E3C3DDF4A8539C3DA59CA98F /* Pods_Eat_it.framework */,
+				9BD370C004C4531125C94E3F /* Pods_Eat_itTodayExtension.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -203,8 +215,8 @@
 				6FC46E1120C64DF800DAA40D /* Eat-it */,
 				6F1B930A20D75F9B0011BA2A /* Eat-itTodayExtension */,
 				6FC46E1020C64DF800DAA40D /* Products */,
-				9801C0E76837F2CDFB619058 /* Pods */,
 				08CB7AC6DBCD8F09AE54AEDC /* Frameworks */,
+				BCA0A57EA69EC9C074CADDB3 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -222,9 +234,11 @@
 			children = (
 				6F1B931E20D7E5D50011BA2A /* Eat-it.entitlements */,
 				6FC46E1220C64DF800DAA40D /* AppDelegate.swift */,
+				FE927A3021BD2DEF00C22A6C /* EventTrackingManager.swift */,
 				6FABA5DA20CE480E009DC835 /* Assets */,
 				6FC46E2E20C6565C00DAA40D /* Model */,
 				6FFFA420212C3A4C00CF7E3E /* View */,
+				FEE23F9321BD118700E1938E /* SupportManager */,
 				6FC46E3020C6569600DAA40D /* Support */,
 			);
 			path = "Eat-it";
@@ -274,6 +288,7 @@
 				6FC46E3120C66B1E00DAA40D /* MealCell.swift */,
 				6FC46E3320C66B2A00DAA40D /* DayCell.swift */,
 				6FC46E3520C66B3100DAA40D /* PostCell.swift */,
+				FEE23F8F21BD113200E1938E /* MainViewUsecase.swift */,
 				6FFFA416212C36E900CF7E3E /* PostView */,
 			);
 			path = MainView;
@@ -347,13 +362,23 @@
 			path = View;
 			sourceTree = "<group>";
 		};
-		9801C0E76837F2CDFB619058 /* Pods */ = {
+		BCA0A57EA69EC9C074CADDB3 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				039AFA919984E37ED2563504 /* Pods-Eat-it.debug.xcconfig */,
-				3D93F7DD16D3F47D7D6FA0D5 /* Pods-Eat-it.release.xcconfig */,
+				CE5BD613EE7A024D54F15811 /* Pods-Eat-it.debug.xcconfig */,
+				96A9E26E54A0C7F8FFA4D584 /* Pods-Eat-it.release.xcconfig */,
+				7540CAC31BB6E13A64F3BAEC /* Pods-Eat-itTodayExtension.debug.xcconfig */,
+				79604A0FA10F87FA53BC7BF9 /* Pods-Eat-itTodayExtension.release.xcconfig */,
 			);
 			name = Pods;
+			sourceTree = "<group>";
+		};
+		FEE23F9321BD118700E1938E /* SupportManager */ = {
+			isa = PBXGroup;
+			children = (
+				FEE23F9121BD117500E1938E /* DBManager.swift */,
+			);
+			path = SupportManager;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -363,6 +388,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 6F1B931620D75F9B0011BA2A /* Build configuration list for PBXNativeTarget "Eat-itTodayExtension" */;
 			buildPhases = (
+				6A9CD8230668A7AC03674B9C /* [CP] Check Pods Manifest.lock */,
 				6F1B930320D75F9A0011BA2A /* Sources */,
 				6F1B930420D75F9A0011BA2A /* Frameworks */,
 				6F1B930520D75F9A0011BA2A /* Resources */,
@@ -380,13 +406,14 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 6FC46E2120C64DF900DAA40D /* Build configuration list for PBXNativeTarget "Eat-it" */;
 			buildPhases = (
-				7674CB1151EC6D73E1DBA4E4 /* [CP] Check Pods Manifest.lock */,
+				72419CA648510AD19147C031 /* [CP] Check Pods Manifest.lock */,
 				6FC46E0B20C64DF800DAA40D /* Sources */,
 				6FC46E0C20C64DF800DAA40D /* Frameworks */,
 				6FC46E0D20C64DF800DAA40D /* Resources */,
 				6FC46E2A20C6543C00DAA40D /* Embed Frameworks */,
-				19AD5E0E5F758083174242C2 /* [CP] Embed Pods Frameworks */,
 				6FB4634420E5CF0D004D65C6 /* Embed App Extensions */,
+				FEE23F9421BD20A800E1938E /* ShellScript */,
+				AAEC7FDCCA5524B8CEB003FF /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -410,6 +437,7 @@
 				TargetAttributes = {
 					6F1B930620D75F9A0011BA2A = {
 						CreatedOnToolsVersion = 9.4.1;
+						LastSwiftMigration = 1010;
 						SystemCapabilities = {
 							com.apple.ApplicationGroups.iOS = {
 								enabled = 1;
@@ -418,6 +446,7 @@
 					};
 					6FC46E0E20C64DF800DAA40D = {
 						CreatedOnToolsVersion = 9.4;
+						LastSwiftMigration = 1010;
 						SystemCapabilities = {
 							com.apple.ApplicationGroups.iOS = {
 								enabled = 1;
@@ -482,10 +511,56 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		19AD5E0E5F758083174242C2 /* [CP] Embed Pods Frameworks */ = {
+		6A9CD8230668A7AC03674B9C /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Eat-itTodayExtension-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		72419CA648510AD19147C031 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Eat-it-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		AAEC7FDCCA5524B8CEB003FF /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-Eat-it/Pods-Eat-it-frameworks.sh",
@@ -494,6 +569,8 @@
 				"${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+			);
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Realm.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RealmSwift.framework",
@@ -504,23 +581,23 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Eat-it/Pods-Eat-it-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		7674CB1151EC6D73E1DBA4E4 /* [CP] Check Pods Manifest.lock */ = {
+		FEE23F9421BD20A800E1938E /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
+			inputFileListPaths = (
 			);
-			name = "[CP] Check Pods Manifest.lock";
+			inputPaths = (
+				"$(BUILT_PRODUCTS_DIR)/$(INFOPLIST_PATH)",
+			);
+			outputFileListPaths = (
+			);
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-Eat-it-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
+			shellScript = "\"${PODS_ROOT}/Fabric/run\" 841cca36203cd7aa476a4a791146031d9268caba 3b83852e13ed68f307578ff9097fcf88494d92fb1767ff6e669a4dad6ca09be9\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -542,6 +619,7 @@
 				6F5077ED20EB28B300B113A9 /* TutorialViewController.swift in Sources */,
 				6F1AF1D420D0E1BC00147898 /* ColorSet.swift in Sources */,
 				6F1AF1D620D23DB500147898 /* GraphTableViewController.swift in Sources */,
+				FEE23F9021BD113200E1938E /* MainViewUsecase.swift in Sources */,
 				6FC46E3220C66B1E00DAA40D /* MealCell.swift in Sources */,
 				6FC46E2D20C6565300DAA40D /* Post.swift in Sources */,
 				6FFFA41A212C381100CF7E3E /* CustomTableViewCell.swift in Sources */,
@@ -549,6 +627,7 @@
 				6F10322B20E9BF4B00AFBF36 /* CustomCollectionViewCell.swift in Sources */,
 				6FC46E3820C6722700DAA40D /* Extension.swift in Sources */,
 				6F10322720E886DC00AFBF36 /* DevInfoViewController.swift in Sources */,
+				FE927A3121BD2DEF00C22A6C /* EventTrackingManager.swift in Sources */,
 				6FABA5D920CE4297009DC835 /* SettingViewController.swift in Sources */,
 				6F10322920E9B97F00AFBF36 /* GraphDetailViewController.swift in Sources */,
 				6FC46E3420C66B2A00DAA40D /* DayCell.swift in Sources */,
@@ -558,6 +637,7 @@
 				6FC46E1320C64DF800DAA40D /* AppDelegate.swift in Sources */,
 				6FB771042106BF16005C62A9 /* Settings.swift in Sources */,
 				6FC46E3620C66B3100DAA40D /* PostCell.swift in Sources */,
+				FEE23F9221BD117500E1938E /* DBManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -605,14 +685,15 @@
 /* Begin XCBuildConfiguration section */
 		6F1B931420D75F9B0011BA2A /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7540CAC31BB6E13A64F3BAEC /* Pods-Eat-itTodayExtension.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CODE_SIGN_ENTITLEMENTS = "Eat-itTodayExtension/Eat-itTodayExtension.entitlements";
-				CODE_SIGN_IDENTITY = "iPhone Distribution";
-				CODE_SIGN_STYLE = Manual;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = WXH5CKM9TX;
 				INFOPLIST_FILE = "Eat-itTodayExtension/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -621,23 +702,24 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.sungeun.Eat-it.Eat-itTodayExtension";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "c95f7db7-bb8a-4682-8613-e07a20d52793";
-				PROVISIONING_PROFILE_SPECIFIER = "eat-it today extension distribution";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
 		6F1B931520D75F9B0011BA2A /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 79604A0FA10F87FA53BC7BF9 /* Pods-Eat-itTodayExtension.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CODE_SIGN_ENTITLEMENTS = "Eat-itTodayExtension/Eat-itTodayExtension.entitlements";
-				CODE_SIGN_IDENTITY = "iPhone Distribution";
-				CODE_SIGN_STYLE = Manual;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = WXH5CKM9TX;
 				INFOPLIST_FILE = "Eat-itTodayExtension/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -646,9 +728,9 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.sungeun.Eat-it.Eat-itTodayExtension";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "c95f7db7-bb8a-4682-8613-e07a20d52793";
-				PROVISIONING_PROFILE_SPECIFIER = "eat-it today extension distribution";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
@@ -706,7 +788,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				GENERATE_MASTER_OBJECT_FILE = NO;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -762,7 +844,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				GENERATE_MASTER_OBJECT_FILE = NO;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -774,20 +856,21 @@
 		};
 		6FC46E2220C64DF900DAA40D /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 039AFA919984E37ED2563504 /* Pods-Eat-it.debug.xcconfig */;
+			baseConfigurationReference = CE5BD613EE7A024D54F15811 /* Pods-Eat-it.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = "Eat-it/Eat-it.entitlements";
-				CODE_SIGN_IDENTITY = "iPhone Distribution";
-				CODE_SIGN_STYLE = Manual;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = WXH5CKM9TX;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = "$(SRCROOT)/Eat-it/Assets/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -795,28 +878,29 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.sungeun.Eat-it";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "9ccac3c0-9121-4082-b79c-cd2d35589e37";
-				PROVISIONING_PROFILE_SPECIFIER = "eat-it Distribution";
-				SWIFT_VERSION = 4.0;
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
 		6FC46E2320C64DF900DAA40D /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 3D93F7DD16D3F47D7D6FA0D5 /* Pods-Eat-it.release.xcconfig */;
+			baseConfigurationReference = 96A9E26E54A0C7F8FFA4D584 /* Pods-Eat-it.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = "Eat-it/Eat-it.entitlements";
-				CODE_SIGN_IDENTITY = "iPhone Distribution";
-				CODE_SIGN_STYLE = Manual;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = WXH5CKM9TX;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = "$(SRCROOT)/Eat-it/Assets/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -824,8 +908,8 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.sungeun.Eat-it";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "9ccac3c0-9121-4082-b79c-cd2d35589e37";
-				PROVISIONING_PROFILE_SPECIFIER = "eat-it Distribution";
-				SWIFT_VERSION = 4.0;
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;

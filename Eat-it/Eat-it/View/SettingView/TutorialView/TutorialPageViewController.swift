@@ -53,7 +53,7 @@ class TutorialPageViewController: UIPageViewController {
   
   func turnToPage(index: Int) {
     let controller = controllers[index]
-    let direction = UIPageViewControllerNavigationDirection.forward
+    let direction = UIPageViewController.NavigationDirection.forward
     
     self.configureDisplaying(viewController: controller)
     setViewControllers([controller], direction: direction, animated: true, completion: nil)

@@ -162,7 +162,7 @@
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="10" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="I0h-tq-rEO">
-                                                            <rect key="frame" x="20.5" y="33" width="19" height="20"/>
+                                                            <rect key="frame" x="20.5" y="31" width="19" height="20"/>
                                                             <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
                                                             <color key="textColor" red="0.28231829404830933" green="0.28237283229827881" blue="0.28231483697891235" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <nil key="highlightedColor"/>
@@ -172,7 +172,7 @@
                                                 <constraints>
                                                     <constraint firstItem="xke-FV-iRt" firstAttribute="centerX" secondItem="9Ot-IH-5zx" secondAttribute="centerX" id="QXa-S8-g3j"/>
                                                     <constraint firstItem="I0h-tq-rEO" firstAttribute="centerX" secondItem="xke-FV-iRt" secondAttribute="centerX" id="XoE-q3-M7s"/>
-                                                    <constraint firstItem="I0h-tq-rEO" firstAttribute="top" secondItem="xke-FV-iRt" secondAttribute="bottom" constant="10" id="mIb-K7-NtQ"/>
+                                                    <constraint firstItem="I0h-tq-rEO" firstAttribute="top" secondItem="xke-FV-iRt" secondAttribute="bottom" constant="8" id="mIb-K7-NtQ"/>
                                                     <constraint firstItem="xke-FV-iRt" firstAttribute="top" secondItem="9Ot-IH-5zx" secondAttribute="top" constant="3" id="pOA-bc-4W0"/>
                                                     <constraint firstItem="xke-FV-iRt" firstAttribute="top" secondItem="9Ot-IH-5zx" secondAttribute="top" constant="3" id="tp9-HF-JPb"/>
                                                 </constraints>

@@ -83,6 +83,8 @@ class PostViewController: UITableViewController {
         try! realm.write {
           realm.add(post)
         }
+        
+        EventTrackingManager.createPostLog(time: mealTime!, rate: seg.selectedSegmentIndex, contents: menuTextField.text!)
       }
       
     } else {

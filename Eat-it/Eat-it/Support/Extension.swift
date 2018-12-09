@@ -92,6 +92,17 @@ extension Date {
     comp.day = dayCount
     return calendar.date(from: comp)!
   }
+    
+    func firstDayOfNextMonth() -> Date {
+        var last = lastDayOfMonth()
+        let oneDay: Double = 24 * 60 * 60
+       
+        last.addTimeInterval(oneDay)
+        
+        let calendar = Calendar(identifier: .gregorian)
+        let comp = calendar.dateComponents([.year, .month, .day], from: last)
+        return calendar.date(from: comp)!
+    }
   
 }
 

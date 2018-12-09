@@ -50,18 +50,24 @@ class MainViewController: UIViewController {
     private var firstDateOfThisWeek: [Int] = [] {
         didSet {
             dayCollectionView.reloadData()
-            
-            if firstDateOfThisWeek.count == 7 {
-                let dateFormatter = DateFormatter()
-                dateFormatter.dateFormat = "yyyyMMdd"
-                let date = dateFormatter.date(from: String(firstDateOfThisWeek.last!))
-                dateFormatter.dateFormat = userSetting.currentDateFormat
-                lastDate = dateFormatter.string(from: date!)
-            }
         }
     }
     
-    var lastDate = ""
+    func lastdateConfigure() {
+        if firstDateOfThisWeek.count == 7 {
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat = "yyyyMMdd"
+            let date = dateFormatter.date(from: String(firstDateOfThisWeek.last!))
+            dateFormatter.dateFormat = userSetting.currentDateFormat
+            lastDate = dateFormatter.string(from: date!)
+        }
+    }
+    
+    var lastDate = "" {
+        didSet {
+            dateLabel.reloadInputViews()
+        }
+    }
     
     // MARK: - LifeCycle
     override func viewDidLoad() {
@@ -100,6 +106,9 @@ class MainViewController: UIViewController {
             UserDefaults.standard.set(true, forKey: "didSee")
             let tutorialView = self.storyboard?.instantiateViewController(withIdentifier: "TutorialViewController") as! TutorialViewController
             self.present(tutorialView, animated: false, completion: nil)
+            
+            // 초기값 on으로 설정
+            Settings.custom.setIsIncludeWeeknd(isIncludeWeekend: true)
         }
     }
 }
@@ -129,9 +138,25 @@ extension MainViewController {
         let maxDateInt = maxDate.trasformInt()
         
         posts = posts.filter("dateText >= %@", minDateInt).filter("dateText < %@", maxDateInt)
+        firstDateOfThisWeek.removeAll()
         
-        firstDateOfThisWeek.append(contentsOf: minDateInt..<maxDateInt)
+        var nextMonthIdx = 0
+        var tempFirstDateOfThisWeek: [Int] = []
+        for idx in (0..<7) {
+            let dateInt = minDateInt + idx
+            if dateInt == minDate.lastDayOfMonth().trasformInt() {
+                nextMonthIdx = idx + 1
+                tempFirstDateOfThisWeek.append(dateInt)
+            } else if dateInt > minDate.lastDayOfMonth().trasformInt() {
+                let tempDate = minDate.firstDayOfNextMonth().trasformInt() + (idx - nextMonthIdx)
+                tempFirstDateOfThisWeek.append(tempDate)
+            } else {
+                tempFirstDateOfThisWeek.append(dateInt)
+            }
+        }
         
+        firstDateOfThisWeek = tempFirstDateOfThisWeek
+        lastdateConfigure()
         // date(월 ~ 금), mealTime(아침 ~ 저녁) 순으로 sort
         let postsSorted = posts.sorted(by: [
             SortDescriptor(keyPath: "dateText", ascending: true),
@@ -497,6 +522,8 @@ extension MainViewController {
         dateLabel.font = UIFont(name: "Montserrat-SemiBold", size: 16)
         dateLabel.text = "\(currentDateLabel(input: date)) ~"
         
+        lastdateConfigure()
+        
         if firstDateOfThisWeek.count == 7 {
             dateLabel.text = "\(currentDateLabel(input: date)) ~ \(lastDate)"
         }
@@ -511,17 +538,15 @@ extension MainViewController {
         dateComponent.day = prevWeekDay
         
         self.date = Calendar.current.date(byAdding: dateComponent, to: date)!
-        configureDateLabel(date: self.date)
-        
-        
         posts = makePostMatrix(date: self.date)
+        configureDateLabel(date: self.date)
     }
     
     @IBAction private func rightBtn() {
         let nextWeek = 60 * 60 * 24 * 7
         date = Date(timeInterval: TimeInterval(nextWeek), since: date)
-        configureDateLabel(date: date)
         posts = makePostMatrix(date: self.date)
+        configureDateLabel(date: date)
     }
     
 }
@@ -623,8 +648,8 @@ extension MainViewController {
         self.date = Date()
         
         date = changeToMonday(of: date)
-        configureDateLabel(date: self.date)
         self.posts = makePostMatrix(date: self.date)
+        configureDateLabel(date: self.date)
     }
     
 }
