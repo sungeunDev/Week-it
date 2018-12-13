@@ -175,13 +175,19 @@ extension MainViewController {
         
         let lastDayOfThisMonth = date.lastDayOfMonth()
         let lastDayInt = lastDayOfThisMonth.trasformInt()
-        let nextMonth = lastDayOfThisMonth.transformIntOnlyMonth() + 100
+        let nextMonth: Int = {
+            var nextMonth = lastDayOfThisMonth.transformIntOnlyMonth() + 100
+            if nextMonth/100 % 100 > 12 {
+                let year = nextMonth / 10000
+                nextMonth = (year + 1) * 10000 + 100
+            }
+            return nextMonth
+        }()
         
         // 알맞은 위치에 포스트 삽입
         for post in thisWeekPosts {
             var dateDiff = 0
             if post.dateText > lastDayInt {
-                //        print("\n---------- [ 월 변경 ] -----------\n")
                 dateDiff = post.dateText - nextMonth + lastDayInt - currentDate
             } else {
                 dateDiff = post.dateText - currentDate
@@ -189,6 +195,7 @@ extension MainViewController {
             
             let mealTime = post.mealTime
             let idx = dateDiff * 3 + mealTime
+            
             postArray[idx] = post
         }
         return postArray
