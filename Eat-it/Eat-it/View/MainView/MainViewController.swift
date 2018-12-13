@@ -237,7 +237,7 @@ extension MainViewController {
         let themeKey = "ThemeNameRawValue"
         let currentTheme = UserDefaults.standard.value(forKey: themeKey) as? Int ?? 0
         
-        let colorSet = [ColorSet.basic, ColorSet.sunset, ColorSet.macaron, ColorSet.redblue, ColorSet.jejuOcean, ColorSet.cherryBlossom, ColorSet.orange, ColorSet.heaven, ColorSet.cookieCream]
+        let colorSet = [ColorSet.christmas, ColorSet.christmasLight, ColorSet.basic, ColorSet.sunset, ColorSet.macaron, ColorSet.redblue, ColorSet.jejuOcean, ColorSet.cherryBlossom, ColorSet.orange, ColorSet.heaven, ColorSet.cookieCream]
         let currentColor = colorSet[currentTheme]
         
         // 공유 UserDefault에 저장
@@ -286,7 +286,7 @@ extension MainViewController {
         let themeKey = "ThemeNameRawValue"
         let currentTheme = UserDefaults.standard.value(forKey: themeKey) as? Int ?? 0
         
-        let colorSet = [ColorSet.basic, ColorSet.sunset, ColorSet.macaron, ColorSet.redblue, ColorSet.jejuOcean, ColorSet.cherryBlossom, ColorSet.orange, ColorSet.heaven, ColorSet.cookieCream]
+        let colorSet = [ColorSet.christmas, ColorSet.christmasLight, ColorSet.basic, ColorSet.sunset, ColorSet.macaron, ColorSet.redblue, ColorSet.jejuOcean, ColorSet.cherryBlossom, ColorSet.orange, ColorSet.heaven, ColorSet.cookieCream]
         return colorSet[currentTheme].colors
     }
     
@@ -295,7 +295,7 @@ extension MainViewController {
         let themeKey = "ThemeNameRawValue"
         let currentTheme = UserDefaults.standard.value(forKey: themeKey) as? Int ?? 0
         
-        let colorSet = [ColorSet.basic, ColorSet.sunset, ColorSet.macaron, ColorSet.redblue, ColorSet.jejuOcean, ColorSet.cherryBlossom, ColorSet.orange, ColorSet.heaven, ColorSet.cookieCream]
+        let colorSet = [ColorSet.christmas, ColorSet.christmasLight, ColorSet.basic, ColorSet.sunset, ColorSet.macaron, ColorSet.redblue, ColorSet.jejuOcean, ColorSet.cherryBlossom, ColorSet.orange, ColorSet.heaven, ColorSet.cookieCream]
         return colorSet[currentTheme].background
     }
     
@@ -562,7 +562,7 @@ extension MainViewController {
         
         // left Btn
         let leftBtn = UIButton(type: .custom)
-        leftBtn.setImage(UIImage(named: "graph.png"), for: .normal)
+        leftBtn.setImage(UIImage(named: "christmas_graph.png"), for: .normal)
         leftBtn.addTarget(self, action: #selector(moveGraphVC(_:)), for: .touchUpInside)
         let leftBarItem = UIBarButtonItem(customView: leftBtn)
         
@@ -573,7 +573,7 @@ extension MainViewController {
         
         // right Btn
         let rightBtn = UIButton(type: .custom)
-        rightBtn.setImage(UIImage(named: "setting.png"), for: .normal)
+        rightBtn.setImage(UIImage(named: "christmas_setting.png"), for: .normal)
         rightBtn.addTarget(self, action: #selector(moveSettingVC(_:)), for: .touchUpInside)
         let rightBarItem = UIBarButtonItem(customView: rightBtn)
         

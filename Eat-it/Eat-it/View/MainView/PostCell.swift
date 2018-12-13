@@ -43,12 +43,11 @@ class PostCell: UICollectionViewCell {
   func cellBackgroundColor(of idx: Int) -> UIColor {
     let themeKey = "ThemeNameRawValue"
     let currentTheme = UserDefaults.standard.value(forKey: themeKey) as? Int ?? 0
-    
-    let colorSet = [ColorSet.basic, ColorSet.sunset, ColorSet.macaron, ColorSet.redblue, ColorSet.jejuOcean, ColorSet.cherryBlossom, ColorSet.orange, ColorSet.heaven, ColorSet.cookieCream]
+    let colorSet = [ColorSet.christmas, ColorSet.christmasLight, ColorSet.basic, ColorSet.sunset, ColorSet.macaron, ColorSet.redblue, ColorSet.jejuOcean, ColorSet.cherryBlossom, ColorSet.orange, ColorSet.heaven, ColorSet.cookieCream]
     let currentColor = colorSet[currentTheme].colors
 
     // 테마에 따라 title label color도 변경
-    if currentTheme == 8 && idx == 2 { // 쿠키앤크림
+    if (currentTheme == 10 && idx == 2) || (currentTheme == 0 && idx != 1) || (currentTheme == 1 && idx != 1)  { // 쿠키앤크림
       postLabel.textColor = UIColor.white
     } else {
       postLabel.textColor = UIColor.black

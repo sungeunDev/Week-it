@@ -42,13 +42,8 @@ class MainViewUsecase: MainViewUsecaseProtocol {
             let timeInterval: Double = Double(idx * 60 * 60 * 24)
             
             let date = firstDate.addingTimeInterval(timeInterval)
-            
-            
             test.append(date)
         }
-        print(test)
-        
-        
         
         // 음? 그냥 하루하루 증가시켜도 되는거 아닌가?
         for idx in (0..<7) {
