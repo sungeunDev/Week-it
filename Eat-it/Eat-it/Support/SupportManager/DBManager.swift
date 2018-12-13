@@ -10,7 +10,7 @@ import Foundation
 import RealmSwift
 
 protocol DBManagerProtocol {
-    var db: Realm! { get }
+    var db: Realm { get }
     
     func getRealmPostsResults() -> Results<Post>
     func getNumOfPostsResults() -> Results<NumOfPost>
@@ -18,12 +18,9 @@ protocol DBManagerProtocol {
 
 class DBManager: DBManagerProtocol {
 
-    var db: Realm!
-    
-    init(db: Realm) {
-        self.db = db
+    var db: Realm {
+        return try! Realm()
     }
-    
     func getRealmPostsResults() -> Results<Post> {
         return db.objects(Post.self)
     }

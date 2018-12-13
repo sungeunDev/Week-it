@@ -33,8 +33,8 @@ class EventTrackingManager {
         
         //        print(timeStr, rateStr, contents)
         Answers.logCustomEvent(withName: "Create Post",
-                               customAttributes: ["time": time,
-                                                  "rate": rate,
+                               customAttributes: ["time": timeStr,
+                                                  "rate": rateStr,
                                                   "contents": contents])
     }
     
@@ -46,7 +46,7 @@ class EventTrackingManager {
             //            print(totalPost)
             Answers.logContentView(withName: "logContentView",
                                    contentType: "Graph View",
-                                   contentId: "userCountry: \(country ?? "unknown")",
+                                   contentId: "userCountry: \(country)",
                 customAttributes: ["totalPost": "\(totalPost)"])
         }
         
