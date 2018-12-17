@@ -81,6 +81,14 @@ class MainViewController: UIViewController {
         // Navigation Bar UI
         naviBarItemLayout()
         self.navigationController?.interactivePopGestureRecognizer?.delegate = nil
+        
+        
+    }
+    
+    func loadAll() {
+        let realm = try! Realm()
+        let allFixedPosts = realm.objects(RealmFixedPost.self)
+        print(allFixedPosts)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -97,6 +105,8 @@ class MainViewController: UIViewController {
         naviBarTitleLayout() // Navigation Bar UI - 테마 컬러에 따라 색이 바뀌어야 하므로 viewWillAppear에 위치
         updateAutoLayout() // 유저 세팅에 따라 레이아웃 변경
         configureDateLabel(date: date)
+        
+        loadAll()
     }
     
     

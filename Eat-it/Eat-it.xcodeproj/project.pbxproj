@@ -48,6 +48,7 @@
 		FE7C08E121BDE7BF00B07787 /* UserSetting.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE7C08E021BDE7BF00B07787 /* UserSetting.swift */; };
 		FE7C08EE21BDEB4D00B07787 /* Eat_itTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE7C08ED21BDEB4D00B07787 /* Eat_itTests.swift */; };
 		FE7C08F521BDEB5500B07787 /* MainViewUsecaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE7C08E221BDEAEB00B07787 /* MainViewUsecaseTests.swift */; };
+		FE7C08F921C3B5B600B07787 /* RealmFixedPost.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE7C08F821C3B5B600B07787 /* RealmFixedPost.swift */; };
 		FE927A3121BD2DEF00C22A6C /* EventTrackingManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE927A3021BD2DEF00C22A6C /* EventTrackingManager.swift */; };
 		FEE23F9021BD113200E1938E /* MainViewUsecase.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEE23F8F21BD113200E1938E /* MainViewUsecase.swift */; };
 		FEE23F9221BD117500E1938E /* DBManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEE23F9121BD117500E1938E /* DBManager.swift */; };
@@ -153,6 +154,7 @@
 		FE7C08EB21BDEB4D00B07787 /* Eat-itTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Eat-itTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		FE7C08ED21BDEB4D00B07787 /* Eat_itTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Eat_itTests.swift; sourceTree = "<group>"; };
 		FE7C08EF21BDEB4D00B07787 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FE7C08F821C3B5B600B07787 /* RealmFixedPost.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmFixedPost.swift; sourceTree = "<group>"; };
 		FE927A3021BD2DEF00C22A6C /* EventTrackingManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventTrackingManager.swift; sourceTree = "<group>"; };
 		FEE23F8F21BD113200E1938E /* MainViewUsecase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewUsecase.swift; sourceTree = "<group>"; };
 		FEE23F9121BD117500E1938E /* DBManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DBManager.swift; sourceTree = "<group>"; };
@@ -273,6 +275,7 @@
 			isa = PBXGroup;
 			children = (
 				6FC46E2C20C6565300DAA40D /* RealmPost.swift */,
+				FE7C08F821C3B5B600B07787 /* RealmFixedPost.swift */,
 				6FB771032106BF16005C62A9 /* Settings.swift */,
 				6F1AF1D320D0E1BC00147898 /* ColorSet.swift */,
 			);
@@ -698,6 +701,7 @@
 				6FC46E2D20C6565300DAA40D /* RealmPost.swift in Sources */,
 				6FFFA41A212C381100CF7E3E /* CustomTableViewCell.swift in Sources */,
 				6F5077EB20EB19C200B113A9 /* TutorialPageViewController.swift in Sources */,
+				FE7C08F921C3B5B600B07787 /* RealmFixedPost.swift in Sources */,
 				FE7C08E121BDE7BF00B07787 /* UserSetting.swift in Sources */,
 				6F10322B20E9BF4B00AFBF36 /* CustomCollectionViewCell.swift in Sources */,
 				6FC46E3820C6722700DAA40D /* Extension.swift in Sources */,

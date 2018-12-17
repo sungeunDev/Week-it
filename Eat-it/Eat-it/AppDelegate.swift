@@ -15,10 +15,9 @@ import Answers
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
-    
     var window: UIWindow?
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-
+        
         startFabric()
         return true
     }
@@ -27,7 +26,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         Fabric.with([Answers.self])
     }
 }
+
+// MARK: - Realm Migration
+extension AppDelegate {
     
+    fileprivate func realmMigration() {
+        
+    }
+}
+
 // MARK: - StoreKit
 extension AppDelegate {
     func requestReview() {
@@ -41,7 +48,7 @@ extension AppDelegate {
         }
     }
     
-    func rateApp(appId: String, completion: @escaping ((_ success: Bool)->())) {
+    fileprivate func rateApp(appId: String, completion: @escaping ((_ success: Bool)->())) {
         guard let url = URL(string : "itms-apps://itunes.apple.com/app/" + appId) else {
             completion(false)
             return
@@ -52,9 +59,10 @@ extension AppDelegate {
         }
         UIApplication.shared.open(url, options: convertToUIApplicationOpenExternalURLOptionsKeyDictionary([:]), completionHandler: completion)
     }
+    
+    // Helper function inserted by Swift 4.2 migrator.
+    fileprivate func convertToUIApplicationOpenExternalURLOptionsKeyDictionary(_ input: [String: Any]) -> [UIApplication.OpenExternalURLOptionsKey: Any] {
+        return Dictionary(uniqueKeysWithValues: input.map { key, value in (UIApplication.OpenExternalURLOptionsKey(rawValue: key), value)})
+    }
 }
 
-// Helper function inserted by Swift 4.2 migrator.
-fileprivate func convertToUIApplicationOpenExternalURLOptionsKeyDictionary(_ input: [String: Any]) -> [UIApplication.OpenExternalURLOptionsKey: Any] {
-    return Dictionary(uniqueKeysWithValues: input.map { key, value in (UIApplication.OpenExternalURLOptionsKey(rawValue: key), value)})
-}
