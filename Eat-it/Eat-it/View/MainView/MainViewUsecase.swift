@@ -93,4 +93,36 @@ class MainViewUsecase: MainViewUsecaseProtocol {
     }
     
     
+    func getAllFixedPosts() -> Results<RealmFixedPost> {
+        let realm = try! Realm()
+        let allFixedPosts = realm.objects(RealmFixedPost.self)
+//        print(allFixedPosts)
+        return allFixedPosts
+    }
+    
+    // 아-점-저 * 일주일
+    func sortFixedPostsByTime() -> [RealmFixedPost] {
+        let allFixedPosts = self.getAllFixedPosts()
+        let sortedFixedPosts = allFixedPosts.sorted(by: [
+            SortDescriptor(keyPath: "weekDay", ascending: true),
+            SortDescriptor(keyPath: "time", ascending: true)
+            ])
+        
+//        print("------------< sortedFixedPosts: \(sortedFixedPosts.count) >------------")
+        
+        var returnResult = [RealmFixedPost]()
+        var sundayFixedPosts = [RealmFixedPost]()
+        for fixedPosts in sortedFixedPosts {
+            returnResult.append(fixedPosts)
+            if fixedPosts.weekDay == 1 { // sunday
+                sundayFixedPosts.append(fixedPosts)
+                returnResult.removeLast()
+            }
+        }
+        
+        returnResult.append(contentsOf: sundayFixedPosts)
+        return returnResult
+    }
+    
+    
 }

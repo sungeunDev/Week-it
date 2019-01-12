@@ -28,6 +28,7 @@ class PostViewController: UITableViewController {
     
     
     @IBOutlet private weak var checkboxImageView: UIImageView!
+    var _isFixedPost: Bool = false
     var isFixedPost: Bool = false {
         willSet {
             let imageName = newValue ? "clickedCheckbox" : "emptyCheckbox"
@@ -50,6 +51,7 @@ class PostViewController: UITableViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
+        self.isFixedPost = self._isFixedPost
     }
     
     // MARK: - CONFIGURATION
@@ -99,9 +101,7 @@ class PostViewController: UITableViewController {
                 
                 EventTrackingManager.createPostLog(time: mealTime!, rate: seg.selectedSegmentIndex, contents: menuTextField.text!)
             }
-            
-            if isFixedPost { saveFixedPost() }
-            
+            saveFixedPost()
         } else {
             let alert = UIAlertController(title: "Post Fail".localized, message:
                 "Please fill in the blank.".localized, preferredStyle: .alert)
@@ -155,22 +155,37 @@ class PostViewController: UITableViewController {
         let allFixedPosts = realm.objects(RealmFixedPost.self)
         
         let weekDay = Calendar.current.component(.weekday, from: date!)
+        print("------------< weekDay: \(weekDay) >------------")
+        
         let numOfPost = allFixedPosts.filter("weekDay == %@ AND time == %@", weekDay, mealTime!)
+        print("------------< numOfPost: \(numOfPost) >------------")
         
         if numOfPost.count > 0 {
+            print("------------< already have fixed posts >------------")
             let id = numOfPost.first?.fixedPostId
             if let existFixedPost = realm.object(ofType: RealmFixedPost.self, forPrimaryKey: id) {
-                existFixedPost.title = menuTextField.text!
-                existFixedPost.rating = seg.selectedSegmentIndex
-                existFixedPost.setDate = Date()
+                if self.isFixedPost {
+                    try! realm.write {
+                        existFixedPost.title = menuTextField.text!
+                        existFixedPost.rating = seg.selectedSegmentIndex
+                        existFixedPost.setDate = Date()
+                    }
+                } else {
+                    try! realm.write {
+                      realm.delete(existFixedPost)
+                    }
+                }
             }
         } else {
+            print("------------< new fixed post >------------")
+            print("------------< weekday: \(weekDay    ) >------------")
             let fixedPost = RealmFixedPost(title: menuTextField.text!,
                                            rating: seg.selectedSegmentIndex,
                                            time: mealTime!,
                                            weekDay: weekDay)
             try! realm.write {
                 realm.add(fixedPost)
+                print("------------< fixedPost: \(fixedPost) >------------")
             }
         }
     }
@@ -262,8 +277,9 @@ extension PostViewController {
         tableView.deselectRow(at: indexPath, animated: true)
         switch indexPath.row {
         case 4:
+            print("------------< isSelected >------------")
+            self.isFixedPost = !self.isFixedPost
             print("------------< indexPath: \(indexPath.row), isFixed: \(isFixedPost) >------------")
-            isFixedPost = !isFixedPost
         default:
             ()
         }

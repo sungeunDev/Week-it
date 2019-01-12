@@ -15,7 +15,7 @@ class RealmFixedPost: Object {
     @objc dynamic var title: String = ""
     @objc dynamic var rating: Int = 0
     @objc dynamic var time: Int = 0
-    @objc dynamic var weekDay: Int = 0 // 0 - 일 ~ 6 - 토
+    @objc dynamic var weekDay: Int = 0 // 1 - 일 ~ 7 - 토
     @objc dynamic var setDate: Date = Date()
     
     override class func primaryKey() -> String? {
@@ -27,6 +27,7 @@ class RealmFixedPost: Object {
         self.title = title
         self.rating = rating
         self.time = time
+        self.weekDay = weekDay
         self.setDate = Date()
     }
 }

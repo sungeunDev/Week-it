@@ -33,7 +33,6 @@ class MainViewController: UIViewController {
     // MARK:  -Settings
     var userSetting = Settings.custom
     
-    
     // MARK: -Data
     let meal = ["아침", "점심", "저녁"]
     var day = ["MON", "TUE", "WED", "THU", "FRI", "SAT", "SUN"]
@@ -43,6 +42,8 @@ class MainViewController: UIViewController {
             self.postCollectionView.reloadData()
         }
     }
+    
+    var fixedPosts: [RealmFixedPost?] = []
     
     // MARK: -Date Calculation Properties
     private var date: Date = Date()
@@ -88,7 +89,10 @@ class MainViewController: UIViewController {
     func loadAll() {
         let realm = try! Realm()
         let allFixedPosts = realm.objects(RealmFixedPost.self)
-        print(allFixedPosts)
+//        print(allFixedPosts)
+        
+        let mainuse = MainViewUsecase()
+//        print(mainuse.sortFixedPostsByTime())
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -394,6 +398,25 @@ extension MainViewController: UICollectionViewDataSource {
             cell.layer.masksToBounds = false
             cell.layer.shadowPath = UIBezierPath(roundedRect:cell.bounds, cornerRadius:cell.contentView.layer.cornerRadius).cgPath
             
+            let mainuse = MainViewUsecase()
+            self.fixedPosts = mainuse.sortFixedPostsByTime()
+            // 셀 데이터가 있는 경우.
+//            if let postdata = cell.postData {
+                for fixed in fixedPosts {
+                    if let fixed = fixed {
+                        let column = indexPath.item % 3
+                        if fixed.weekDay == indexPath.row && fixed.time == column {
+                            print("------------< fixed: \(fixed) >------------")
+                            let postData = Post(date: self.date,
+                                                rating: fixed.rating,
+                                                mealTime: fixed.time,
+                                                mealTitle: fixed.title)
+                            cell.postData = postData
+                            cell.backgroundColor = .blue
+                        }
+                    }
+                }
+//            }
             return cell
         }
     }
@@ -431,6 +454,15 @@ extension MainViewController: UICollectionViewDelegateFlowLayout {
             // 이전에 포스트를 입력해 놓은 경우, 해당 포스트를 불러옴
             if let post = posts[indexPath.item] {
                 nextVC.postData = post
+                
+                for fixedPost in self.fixedPosts {
+                    if fixedPost?.title == posts[indexPath.item]?.mealTitle {
+                        nextVC._isFixedPost = true
+                        break
+                    } else {
+                        nextVC._isFixedPost = false
+                    }
+                }
             }
             
             // Send Info of mealTime, date
