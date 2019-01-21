@@ -26,6 +26,7 @@ class PostViewController: UITableViewController {
     
     let currentTheme: [UIColor] = UIColor().currentTheme()
     
+    var postUsecase: PostUsecase = PostUsecase()
     
     @IBOutlet private weak var checkboxImageView: UIImageView!
     var _isFixedPost: Bool = false
@@ -80,119 +81,90 @@ class PostViewController: UITableViewController {
     // MARK: - SAVE ACTION
     @IBAction private func saveBtn() {
         menuTextField.resignFirstResponder()
-        savePost()
+        saveBtnClicked()
         popVC()
     }
+ 
+    func saveBtnClicked() {
+        guard menuTextField.text?.count != 0 else {
+            showAlert()
+            return
+        }
+        savePostProcess()
+        saveMonthlyNumOfPostProcess()
+        saveFixedPostProcess()
+    }
     
-    
-    
-    func savePost() {
-        if menuTextField.text?.count != 0 {
-            if let _ = postData {
-                updateTask(title: menuTextField.text!, rating: seg.selectedSegmentIndex)
-            } else {
-                let realm = try! Realm()
-                let post = Post(date: date!, rating: seg.selectedSegmentIndex, mealTime: mealTime!, mealTitle: menuTextField.text!)
-                saveMonthlyNumOfPost(date: date!)
-                
-                try! realm.write {
-                    realm.add(post)
-                }
-                
-                EventTrackingManager.createPostLog(time: mealTime!, rate: seg.selectedSegmentIndex, contents: menuTextField.text!)
-            }
-            saveFixedPost()
+    func savePostProcess() {
+        if postData != nil {
+            guard let id = self.postData?.postId else { return }
+            postUsecase.updatePost(keyId: id,
+                                   title: menuTextField.text!,
+                                   rating: seg.selectedSegmentIndex)
         } else {
-            let alert = UIAlertController(title: "Post Fail".localized, message:
-                "Please fill in the blank.".localized, preferredStyle: .alert)
-            let action = UIAlertAction(title: "OK".localized, style: .default) { (_) in
-                self.menuTextField.becomeFirstResponder()
-            }
-            alert.addAction(action)
-            self.present(alert, animated: true, completion: nil)
+            let post = postUsecase.createPost(date: date!,
+                                              rating: seg.selectedSegmentIndex,
+                                              time: mealTime!,
+                                              title: menuTextField.text!)
+            postUsecase.savePost(post)
+            EventTrackingManager.createPostLog(time: mealTime!,
+                                               rate: seg.selectedSegmentIndex,
+                                               contents: menuTextField.text!)
         }
     }
     
-    func updateTask(title: String, rating: Int) {
-        if let realm = try? Realm(),
-            let id = self.postData?.postId,
-            let post = realm.object(ofType: Post.self, forPrimaryKey: id) {
-            
-            try! realm.write {
-                post.mealTitle = title
-                post.rating = rating
-            }
-        }
-    }
-    
-    
-    func saveMonthlyNumOfPost(date: Date) {
-        let realm = try! Realm()
-        let allNumOfPost = realm.objects(NumOfPost.self)
-        let month = date.transformIntOnlyMonth()
-        
-        let numOfPost = allNumOfPost.filter("dateInt == %@", month)
-        
-        if allNumOfPost.count == 0 || numOfPost.count == 0 {
-            //      print("최초 추가")
-            let monthPost = NumOfPost(date: date)
-            try! realm.write {
-                realm.add(monthPost)
-            }
-        } else {
-            //      print("기존거에 추가")
-            let id = numOfPost[0].dateInt
-            if let monthlyNumOfPost = realm.object(ofType: NumOfPost.self, forPrimaryKey: id) {
-                try! realm.write {
-                    monthlyNumOfPost.numOfpost += 1
-                }
-            }
-        }
-    }
-    
-    func saveFixedPost() {
-        let realm = try! Realm()
-        let allFixedPosts = realm.objects(RealmFixedPost.self)
-        
+    func saveFixedPostProcess() {
         let weekDay = Calendar.current.component(.weekday, from: date!)
-        print("------------< weekDay: \(weekDay) >------------")
+        let numOfFixedPost = postUsecase
+            .allFixedPost
+            .filter("weekDay == %@ AND time == %@", weekDay, mealTime!)
         
-        let numOfPost = allFixedPosts.filter("weekDay == %@ AND time == %@", weekDay, mealTime!)
-        print("------------< numOfPost: \(numOfPost) >------------")
-        
-        if numOfPost.count > 0 {
-            print("------------< already have fixed posts >------------")
-            let id = numOfPost.first?.fixedPostId
-            if let existFixedPost = realm.object(ofType: RealmFixedPost.self, forPrimaryKey: id) {
-                if self.isFixedPost {
-                    try! realm.write {
-                        existFixedPost.title = menuTextField.text!
-                        existFixedPost.rating = seg.selectedSegmentIndex
-                        existFixedPost.setDate = Date()
-                    }
-                } else {
-                    try! realm.write {
-                      realm.delete(existFixedPost)
-                    }
-                }
+        if numOfFixedPost.count > 0 {
+            guard let id = numOfFixedPost.first?.fixedPostId else { return }
+            if self.isFixedPost {
+                postUsecase.updateFixedPost(keyId: id,
+                                            title: menuTextField.text!,
+                                            rating: seg.selectedSegmentIndex)
+            } else {
+                postUsecase.deleteFixedPost(keyId: id)
             }
         } else {
-            print("------------< new fixed post >------------")
-            print("------------< weekday: \(weekDay    ) >------------")
-            let fixedPost = RealmFixedPost(title: menuTextField.text!,
-                                           rating: seg.selectedSegmentIndex,
-                                           time: mealTime!,
-                                           weekDay: weekDay)
-            try! realm.write {
-                realm.add(fixedPost)
-                print("------------< fixedPost: \(fixedPost) >------------")
-            }
+            let fixedPost = postUsecase.createFixedPost(title: menuTextField.text!,
+                                                        rating: seg.selectedSegmentIndex,
+                                                        time: mealTime!,
+                                                        weekDay: weekDay)
+            postUsecase.saveFixedPost(fixedPost)
         }
+    }
+    
+    func saveMonthlyNumOfPostProcess() {
+        let month = date!.transformIntOnlyMonth()
+        let numOfMonthlyPost = postUsecase
+            .allNumOfPost
+            .filter("dateInt == %@", month)
+        if postUsecase.allNumOfPost.count == 0 || numOfMonthlyPost.count == 0 {
+            let monthPost = postUsecase.createNumOfPost(date: date!)
+            postUsecase.saveMonthlyNumOfPost(monthPost)
+        } else {
+            let id = numOfMonthlyPost[0].dateInt // numOfMonthlyPost는 항상 1개만 존재
+            postUsecase.updateMonthlyNumOfPost(keyId: id, addNum: 1)
+        }
+    }
+    
+    func showAlert() {
+        let alert = UIAlertController(title: "Post Fail".localized,
+                                      message: "Please fill in the blank.".localized,
+                                      preferredStyle: .alert)
+        let action = UIAlertAction(title: "OK".localized,
+                                   style: .default) { (_) in
+            self.menuTextField.becomeFirstResponder()
+        }
+        alert.addAction(action)
+        self.present(alert, animated: true, completion: nil)
     }
     
     // MARK: - DELETE ACTION
     @IBAction private func deleteBtn() {
-        
         if let realm = try? Realm(),
             let id = self.postData?.postId,
             let post = realm.object(ofType: Post.self, forPrimaryKey: id),
@@ -200,10 +172,7 @@ class PostViewController: UITableViewController {
             let numOfPost = realm.object(ofType: NumOfPost.self, forPrimaryKey: month) {
             
             try! realm.write {
-                //        delete post
                 realm.delete(post)
-                
-                //        delete number of post
                 if numOfPost.numOfpost == 1 {
                     realm.delete(numOfPost)
                 } else {
@@ -218,24 +187,23 @@ class PostViewController: UITableViewController {
             alert.addAction(action)
             self.present(alert, animated: true, completion: nil)
         }
-        
     }
     
+    func deleteClicked() {
+        
+    }
     
     @IBAction func changeSegTintColor(_ sender: UISegmentedControl) {
         sender.tintColor = self.currentTheme[sender.selectedSegmentIndex]
         setSegmentedControlText(sender)
     }
     
-    
     func setSegmentedControlText(_ sender: UISegmentedControl) {
         var str = "⭐️⭐️⭐️"
         for _ in 0..<sender.selectedSegmentIndex {
             str = String(str.dropLast())
         }
-        
         seg.setTitle(str, forSegmentAt: sender.selectedSegmentIndex)
-        
         switch sender.selectedSegmentIndex {
         case 0:
             seg.setTitle("★★", forSegmentAt: sender.selectedSegmentIndex+1)
@@ -246,7 +214,6 @@ class PostViewController: UITableViewController {
         case 2:
             seg.setTitle("★★★", forSegmentAt: sender.selectedSegmentIndex-2)
             seg.setTitle("★★", forSegmentAt: sender.selectedSegmentIndex-1)
-            
         default:
             print("out of range")
         }
@@ -255,13 +222,10 @@ class PostViewController: UITableViewController {
 
 // MARK: TextField Delegate
 extension PostViewController: UITextFieldDelegate {
-    
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         menuTextField.resignFirstResponder()
-        
-        savePost()
+        saveBtnClicked()
         popVC()
-        
         return true
     }
     
@@ -277,9 +241,7 @@ extension PostViewController {
         tableView.deselectRow(at: indexPath, animated: true)
         switch indexPath.row {
         case 4:
-            print("------------< isSelected >------------")
             self.isFixedPost = !self.isFixedPost
-            print("------------< indexPath: \(indexPath.row), isFixed: \(isFixedPost) >------------")
         default:
             ()
         }
