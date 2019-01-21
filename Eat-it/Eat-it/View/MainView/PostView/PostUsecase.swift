@@ -14,9 +14,11 @@ protocol PostUsecaseProtocol {
     var allNumOfPost: Results<NumOfPost> { get }
     var allFixedPost: Results<RealmFixedPost> { get }
     
-    func savePost(_ post: Post)
-    func saveMonthlyNumOfPost(_ numOfPost: NumOfPost)
-    func saveFixedPost(_ fixedPost: RealmFixedPost)
+    func getPost(keyId: String) -> Post?
+    
+//    func savePost(_ post: Post)
+//    func saveMonthlyNumOfPost(_ numOfPost: NumOfPost)
+//    func saveFixedPost(_ fixedPost: RealmFixedPost)
     
     func updatePost(keyId: String, title: String, rating: Int)
     func updateMonthlyNumOfPost(keyId: Int, addNum: Int)
@@ -44,22 +46,15 @@ class PostUsecase: PostUsecaseProtocol {
         return realm.objects(RealmFixedPost.self)
     }
     
+    // MARK: - GET
+    func getPost(keyId: String) -> Post? {
+        return realm.object(ofType: Post.self, forPrimaryKey: keyId)
+    }
+    
     // MARK: - SAVE
-    func savePost(_ post: Post) {
+    func saveRealmDB<E: Object>(_ data: E) {
         try! self.realm.write {
-            realm.add(post)
-        }
-    }
-    
-    func saveMonthlyNumOfPost(_ numOfPost: NumOfPost) {
-        try! self.realm.write {
-            realm.add(numOfPost)
-        }
-    }
-    
-    func saveFixedPost(_ fixedPost: RealmFixedPost) {
-        try! self.realm.write {
-            realm.add(fixedPost)
+            realm.add(data)
         }
     }
     

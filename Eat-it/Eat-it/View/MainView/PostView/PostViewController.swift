@@ -87,7 +87,9 @@ class PostViewController: UITableViewController {
  
     func saveBtnClicked() {
         guard menuTextField.text?.count != 0 else {
-            showAlert()
+            showAlert(alertTitle: "Post Fail".localized,
+                      message: "Please fill in the blank.".localized,
+                      actionTitle: "OK".localized)
             return
         }
         savePostProcess()
@@ -106,7 +108,7 @@ class PostViewController: UITableViewController {
                                               rating: seg.selectedSegmentIndex,
                                               time: mealTime!,
                                               title: menuTextField.text!)
-            postUsecase.savePost(post)
+            postUsecase.saveRealmDB(post)
             EventTrackingManager.createPostLog(time: mealTime!,
                                                rate: seg.selectedSegmentIndex,
                                                contents: menuTextField.text!)
@@ -133,7 +135,7 @@ class PostViewController: UITableViewController {
                                                         rating: seg.selectedSegmentIndex,
                                                         time: mealTime!,
                                                         weekDay: weekDay)
-            postUsecase.saveFixedPost(fixedPost)
+            postUsecase.saveRealmDB(fixedPost)
         }
     }
     
@@ -144,18 +146,18 @@ class PostViewController: UITableViewController {
             .filter("dateInt == %@", month)
         if postUsecase.allNumOfPost.count == 0 || numOfMonthlyPost.count == 0 {
             let monthPost = postUsecase.createNumOfPost(date: date!)
-            postUsecase.saveMonthlyNumOfPost(monthPost)
+            postUsecase.saveRealmDB(monthPost)
         } else {
             let id = numOfMonthlyPost[0].dateInt // numOfMonthlyPost는 항상 1개만 존재
             postUsecase.updateMonthlyNumOfPost(keyId: id, addNum: 1)
         }
     }
     
-    func showAlert() {
-        let alert = UIAlertController(title: "Post Fail".localized,
-                                      message: "Please fill in the blank.".localized,
+    func showAlert(alertTitle: String, message: String, actionTitle: String) {
+        let alert = UIAlertController(title: alertTitle,
+                                      message: message,
                                       preferredStyle: .alert)
-        let action = UIAlertAction(title: "OK".localized,
+        let action = UIAlertAction(title: actionTitle,
                                    style: .default) { (_) in
             self.menuTextField.becomeFirstResponder()
         }
@@ -180,17 +182,17 @@ class PostViewController: UITableViewController {
                 }
             }
             popVC()
-        } else {
-            let alert = UIAlertController(title: "Delete Fail".localized, message:
-                "There are no posts to delete.\nPlease register your post.".localized, preferredStyle: .alert)
-            let action = UIAlertAction(title: "OK".localized, style: .default, handler: nil)
-            alert.addAction(action)
-            self.present(alert, animated: true, completion: nil)
         }
     }
     
     func deleteClicked() {
-        
+        if let id = self.postData?.postId {
+            postUsecase.deletePost(keyId: id)
+        } else {
+            showAlert(alertTitle: "Delete Fail".localized,
+                      message: "There are no posts to delete.\nPlease register your post.".localized,
+                      actionTitle: "OK".localized)
+        }
     }
     
     @IBAction func changeSegTintColor(_ sender: UISegmentedControl) {
