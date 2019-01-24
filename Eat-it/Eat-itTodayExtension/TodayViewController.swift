@@ -8,7 +8,6 @@
 
 import UIKit
 import NotificationCenter
-
 //import RealmSwift
 
 class TodayViewController: UIViewController, NCWidgetProviding {

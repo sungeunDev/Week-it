@@ -32,7 +32,7 @@ extension UIColor {
     let themeKey = "ThemeNameRawValue"
     let currentTheme = UserDefaults.standard.value(forKey: themeKey) as? Int ?? 0
     
-    let colorSet = [ColorSet.basic, ColorSet.sunset, ColorSet.macaron, ColorSet.redblue, ColorSet.jejuOcean, ColorSet.cherryBlossom, ColorSet.orange, ColorSet.heaven, ColorSet.cookieCream]
+    let colorSet = [ColorSet.christmas, ColorSet.christmasLight, ColorSet.basic, ColorSet.sunset, ColorSet.macaron, ColorSet.redblue, ColorSet.jejuOcean, ColorSet.cherryBlossom, ColorSet.orange, ColorSet.heaven, ColorSet.cookieCream]
     
     // 0 - Good, 1 - Soso, 2 - Bad , 3 - BackgroundColor
     return colorSet[currentTheme].colors
@@ -92,6 +92,17 @@ extension Date {
     comp.day = dayCount
     return calendar.date(from: comp)!
   }
+    
+    func firstDayOfNextMonth() -> Date {
+        var last = lastDayOfMonth()
+        let oneDay: Double = 24 * 60 * 60
+       
+        last.addTimeInterval(oneDay)
+        
+        let calendar = Calendar(identifier: .gregorian)
+        let comp = calendar.dateComponents([.year, .month, .day], from: last)
+        return calendar.date(from: comp)!
+    }
   
 }
 

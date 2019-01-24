@@ -9,6 +9,8 @@
 import UIKit
 
 enum ThemeName: Int {
+    case christmas
+    case christmasLight
   case basic
   case sunset
   case macaron
@@ -19,6 +21,7 @@ enum ThemeName: Int {
   case orange
   case heaven
   case cookieCream
+  
 }
 
 
@@ -26,7 +29,7 @@ class ThemeTableViewController: UITableViewController {
   
 
   
-  let cellTitleData: [String] = ["BASIC", "SUNSET", "MACARON", "RED & BLUE", "JEJU OCEAN", "CHERRY BLOSSOM", "ORANGE", "HEAVEN", "COOKIE & CREAM"]
+  let cellTitleData: [String] = ["CHRISTMAS", "CHRISTMAS LIGHT", "BASIC", "SUNSET", "MACARON", "RED & BLUE", "JEJU OCEAN", "CHERRY BLOSSOM", "ORANGE", "HEAVEN", "COOKIE & CREAM"]
   
   var currentTheme = ThemeName(rawValue: (UserDefaults.standard.value(forKey: "ThemeNameRawValue") as? Int) ?? 0) {
     willSet {
@@ -57,7 +60,7 @@ class ThemeTableViewController: UITableViewController {
       themeCell.accessoryType = .none
     }
     
-    let currentThemeColor = [ColorSet.basic, ColorSet.sunset, ColorSet.macaron, ColorSet.redblue, ColorSet.jejuOcean, ColorSet.cherryBlossom, ColorSet.orange, ColorSet.heaven, ColorSet.cookieCream]
+    let currentThemeColor = [ColorSet.christmas, ColorSet.christmasLight, ColorSet.basic, ColorSet.sunset, ColorSet.macaron, ColorSet.redblue, ColorSet.jejuOcean, ColorSet.cherryBlossom, ColorSet.orange, ColorSet.heaven, ColorSet.cookieCream]
     
     
     DispatchQueue.main.async {

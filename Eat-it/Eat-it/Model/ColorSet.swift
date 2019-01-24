@@ -37,6 +37,9 @@ struct ColorSet {
     self.background = self.colors[3]
   }
 
+    static var christmas = ColorSet(id: -2, name: "christmas", colors: ["086F55", "E5E5E1", "D21725", "FAFAFA"])
+    static var christmasLight = ColorSet(id: -1, name: "christmas Light", colors: ["6B9E42", "F8E19E", "FF563F", "FAFAFA"])
+    
   static var basic = ColorSet(id: 0, name: "basic", colors: ["bae89b", "fff1a7", "ffcdc7", "f8f8f8"])
   static var sunset = ColorSet(id: 1, name: "sunset", colors: ["d1ed7d", "ffe87c", "fdb66b", "f8f8f8"])
   static var macaron = ColorSet(id: 2, name: "macaron", colors: ["ccf3f5", "fff5d8", "fec3bf", "f8f8f8"])
