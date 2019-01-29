@@ -59,13 +59,6 @@
 			remoteGlobalIDString = 6F1B930620D75F9A0011BA2A;
 			remoteInfo = "Eat-itTodayExtension";
 		};
-		FE7C08F021BDEB4D00B07787 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 6FC46E0720C64DF800DAA40D /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 6FC46E0E20C64DF800DAA40D;
-			remoteInfo = "Eat-it";
-		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -147,8 +140,6 @@
 		CE5BD613EE7A024D54F15811 /* Pods-Eat-it.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Eat-it.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Eat-it/Pods-Eat-it.debug.xcconfig"; sourceTree = "<group>"; };
 		E3C3DDF4A8539C3DA59CA98F /* Pods_Eat_it.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Eat_it.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FE7C08E021BDE7BF00B07787 /* UserSetting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSetting.swift; sourceTree = "<group>"; };
-		FE7C08EB21BDEB4D00B07787 /* Eat-itTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Eat-itTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		FE7C08EF21BDEB4D00B07787 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FE927A3021BD2DEF00C22A6C /* EventTrackingManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventTrackingManager.swift; sourceTree = "<group>"; };
 		FEE23F8F21BD113200E1938E /* MainViewUsecase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewUsecase.swift; sourceTree = "<group>"; };
 		FEE23F9121BD117500E1938E /* DBManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DBManager.swift; sourceTree = "<group>"; };
@@ -170,13 +161,6 @@
 			files = (
 				6F5077FB20EB831600B113A9 /* StoreKit.framework in Frameworks */,
 				6B88D37F152C27F1048A566D /* Pods_Eat_it.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		FE7C08E821BDEB4D00B07787 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -225,7 +209,6 @@
 			children = (
 				6FC46E1120C64DF800DAA40D /* Eat-it */,
 				6F1B930A20D75F9B0011BA2A /* Eat-itTodayExtension */,
-				FE7C08EC21BDEB4D00B07787 /* Eat-itTests */,
 				6FC46E1020C64DF800DAA40D /* Products */,
 				08CB7AC6DBCD8F09AE54AEDC /* Frameworks */,
 				BCA0A57EA69EC9C074CADDB3 /* Pods */,
@@ -237,7 +220,6 @@
 			children = (
 				6FC46E0F20C64DF800DAA40D /* Eat-it.app */,
 				6F1B930720D75F9A0011BA2A /* Eat-itTodayExtension.appex */,
-				FE7C08EB21BDEB4D00B07787 /* Eat-itTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -385,14 +367,6 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
-		FE7C08EC21BDEB4D00B07787 /* Eat-itTests */ = {
-			isa = PBXGroup;
-			children = (
-				FE7C08EF21BDEB4D00B07787 /* Info.plist */,
-			);
-			path = "Eat-itTests";
-			sourceTree = "<group>";
-		};
 		FE82A8D721BDE3AA002858AF /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
@@ -465,24 +439,6 @@
 			productReference = 6FC46E0F20C64DF800DAA40D /* Eat-it.app */;
 			productType = "com.apple.product-type.application";
 		};
-		FE7C08EA21BDEB4D00B07787 /* Eat-itTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = FE7C08F221BDEB4D00B07787 /* Build configuration list for PBXNativeTarget "Eat-itTests" */;
-			buildPhases = (
-				FE7C08E721BDEB4D00B07787 /* Sources */,
-				FE7C08E821BDEB4D00B07787 /* Frameworks */,
-				FE7C08E921BDEB4D00B07787 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				FE7C08F121BDEB4D00B07787 /* PBXTargetDependency */,
-			);
-			name = "Eat-itTests";
-			productName = "Eat-itTests";
-			productReference = FE7C08EB21BDEB4D00B07787 /* Eat-itTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -517,10 +473,6 @@
 							};
 						};
 					};
-					FE7C08EA21BDEB4D00B07787 = {
-						CreatedOnToolsVersion = 10.1;
-						TestTargetID = 6FC46E0E20C64DF800DAA40D;
-					};
 				};
 			};
 			buildConfigurationList = 6FC46E0A20C64DF800DAA40D /* Build configuration list for PBXProject "Eat-it" */;
@@ -538,7 +490,6 @@
 			targets = (
 				6FC46E0E20C64DF800DAA40D /* Eat-it */,
 				6F1B930620D75F9A0011BA2A /* Eat-itTodayExtension */,
-				FE7C08EA21BDEB4D00B07787 /* Eat-itTests */,
 			);
 		};
 /* End PBXProject section */
@@ -566,13 +517,6 @@
 				6F2AE62220EDCF39004EB513 /* Localizable.strings in Resources */,
 				6F5077E320EA16AA00B113A9 /* LaunchScreen.storyboard in Resources */,
 				6FC46E1820C64DF800DAA40D /* Main.storyboard in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		FE7C08E921BDEB4D00B07787 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -710,13 +654,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		FE7C08E721BDEB4D00B07787 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -724,11 +661,6 @@
 			isa = PBXTargetDependency;
 			target = 6F1B930620D75F9A0011BA2A /* Eat-itTodayExtension */;
 			targetProxy = 6F1B931120D75F9B0011BA2A /* PBXContainerItemProxy */;
-		};
-		FE7C08F121BDEB4D00B07787 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 6FC46E0E20C64DF800DAA40D /* Eat-it */;
-			targetProxy = FE7C08F021BDEB4D00B07787 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -995,53 +927,6 @@
 			};
 			name = Release;
 		};
-		FE7C08F321BDEB4D00B07787 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = WXH5CKM9TX;
-				INFOPLIST_FILE = "Eat-itTests/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
-				MTL_FAST_MATH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.sungeun.Eat-itTests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Eat-it.app/Eat-it";
-			};
-			name = Debug;
-		};
-		FE7C08F421BDEB4D00B07787 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = WXH5CKM9TX;
-				INFOPLIST_FILE = "Eat-itTests/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				MTL_FAST_MATH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.sungeun.Eat-itTests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Eat-it.app/Eat-it";
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -1068,15 +953,6 @@
 			buildConfigurations = (
 				6FC46E2220C64DF900DAA40D /* Debug */,
 				6FC46E2320C64DF900DAA40D /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		FE7C08F221BDEB4D00B07787 /* Build configuration list for PBXNativeTarget "Eat-itTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				FE7C08F321BDEB4D00B07787 /* Debug */,
-				FE7C08F421BDEB4D00B07787 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
