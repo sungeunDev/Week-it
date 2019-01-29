@@ -14,10 +14,10 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "6FC46E0E20C64DF800DAA40D"
-               BuildableName = "Eat-it.app"
-               BlueprintName = "Eat-it"
-               ReferencedContainer = "container:Eat-it.xcodeproj">
+               BlueprintIdentifier = "266E469FBB39ADBA158A45CF63260EC1"
+               BuildableName = "Pods_Eat_itTodayExtension.framework"
+               BlueprintName = "Pods-Eat-itTodayExtension"
+               ReferencedContainer = "container:Pods.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -28,26 +28,7 @@
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
-         <TestableReference
-            skipped = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "FE7C08EA21BDEB4D00B07787"
-               BuildableName = "Eat-itTests.xctest"
-               BlueprintName = "Eat-itTests"
-               ReferencedContainer = "container:Eat-it.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
       </Testables>
-      <MacroExpansion>
-         <BuildableReference
-            BuildableIdentifier = "primary"
-            BlueprintIdentifier = "6FC46E0E20C64DF800DAA40D"
-            BuildableName = "Eat-it.app"
-            BlueprintName = "Eat-it"
-            ReferencedContainer = "container:Eat-it.xcodeproj">
-         </BuildableReference>
-      </MacroExpansion>
       <AdditionalOptions>
       </AdditionalOptions>
    </TestAction>
@@ -61,16 +42,15 @@
       debugDocumentVersioning = "YES"
       debugServiceExtension = "internal"
       allowLocationSimulation = "YES">
-      <BuildableProductRunnable
-         runnableDebuggingMode = "0">
+      <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "6FC46E0E20C64DF800DAA40D"
-            BuildableName = "Eat-it.app"
-            BlueprintName = "Eat-it"
-            ReferencedContainer = "container:Eat-it.xcodeproj">
+            BlueprintIdentifier = "266E469FBB39ADBA158A45CF63260EC1"
+            BuildableName = "Pods_Eat_itTodayExtension.framework"
+            BlueprintName = "Pods-Eat-itTodayExtension"
+            ReferencedContainer = "container:Pods.xcodeproj">
          </BuildableReference>
-      </BuildableProductRunnable>
+      </MacroExpansion>
       <AdditionalOptions>
       </AdditionalOptions>
    </LaunchAction>
@@ -80,16 +60,15 @@
       savedToolIdentifier = ""
       useCustomWorkingDirectory = "NO"
       debugDocumentVersioning = "YES">
-      <BuildableProductRunnable
-         runnableDebuggingMode = "0">
+      <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "6FC46E0E20C64DF800DAA40D"
-            BuildableName = "Eat-it.app"
-            BlueprintName = "Eat-it"
-            ReferencedContainer = "container:Eat-it.xcodeproj">
+            BlueprintIdentifier = "266E469FBB39ADBA158A45CF63260EC1"
+            BuildableName = "Pods_Eat_itTodayExtension.framework"
+            BlueprintName = "Pods-Eat-itTodayExtension"
+            ReferencedContainer = "container:Pods.xcodeproj">
          </BuildableReference>
-      </BuildableProductRunnable>
+      </MacroExpansion>
    </ProfileAction>
    <AnalyzeAction
       buildConfiguration = "Debug">
