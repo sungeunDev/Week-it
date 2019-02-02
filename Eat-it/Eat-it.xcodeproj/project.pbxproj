@@ -45,14 +45,13 @@
 		6FC46E3A20C8F76300DAA40D /* PostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FC46E3920C8F76300DAA40D /* PostViewController.swift */; };
 		6FFFA41A212C381100CF7E3E /* CustomTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FFFA419212C381100CF7E3E /* CustomTableViewCell.swift */; };
 		6FFFA41D212C388900CF7E3E /* plusIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 6FFFA41C212C388900CF7E3E /* plusIcon.png */; };
-		FE52417621F602EB00E89C91 /* PostUsecase.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE52417521F602EB00E89C91 /* PostUsecase.swift */; };
+		FE52417621F602EB00E89C91 /* DBManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE52417521F602EB00E89C91 /* DBManager.swift */; };
 		FE7C08E121BDE7BF00B07787 /* UserSetting.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE7C08E021BDE7BF00B07787 /* UserSetting.swift */; };
 		FE7C08EE21BDEB4D00B07787 /* Eat_itTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE7C08ED21BDEB4D00B07787 /* Eat_itTests.swift */; };
 		FE7C08F521BDEB5500B07787 /* MainViewUsecaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE7C08E221BDEAEB00B07787 /* MainViewUsecaseTests.swift */; };
 		FE7C08F921C3B5B600B07787 /* RealmFixedPost.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE7C08F821C3B5B600B07787 /* RealmFixedPost.swift */; };
 		FE927A3121BD2DEF00C22A6C /* EventTrackingManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE927A3021BD2DEF00C22A6C /* EventTrackingManager.swift */; };
 		FEE23F9021BD113200E1938E /* MainViewUsecase.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEE23F8F21BD113200E1938E /* MainViewUsecase.swift */; };
-		FEE23F9221BD117500E1938E /* DBManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEE23F9121BD117500E1938E /* DBManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -150,7 +149,7 @@
 		9BD370C004C4531125C94E3F /* Pods_Eat_itTodayExtension.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Eat_itTodayExtension.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE5BD613EE7A024D54F15811 /* Pods-Eat-it.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Eat-it.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Eat-it/Pods-Eat-it.debug.xcconfig"; sourceTree = "<group>"; };
 		E3C3DDF4A8539C3DA59CA98F /* Pods_Eat_it.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Eat_it.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		FE52417521F602EB00E89C91 /* PostUsecase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostUsecase.swift; sourceTree = "<group>"; };
+		FE52417521F602EB00E89C91 /* DBManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DBManager.swift; sourceTree = "<group>"; };
 		FE7C08E021BDE7BF00B07787 /* UserSetting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSetting.swift; sourceTree = "<group>"; };
 		FE7C08E221BDEAEB00B07787 /* MainViewUsecaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewUsecaseTests.swift; sourceTree = "<group>"; };
 		FE7C08EB21BDEB4D00B07787 /* Eat-itTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Eat-itTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -159,7 +158,6 @@
 		FE7C08F821C3B5B600B07787 /* RealmFixedPost.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmFixedPost.swift; sourceTree = "<group>"; };
 		FE927A3021BD2DEF00C22A6C /* EventTrackingManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventTrackingManager.swift; sourceTree = "<group>"; };
 		FEE23F8F21BD113200E1938E /* MainViewUsecase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewUsecase.swift; sourceTree = "<group>"; };
-		FEE23F9121BD117500E1938E /* DBManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DBManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -320,7 +318,6 @@
 			isa = PBXGroup;
 			children = (
 				6FC46E3920C8F76300DAA40D /* PostViewController.swift */,
-				FE52417521F602EB00E89C91 /* PostUsecase.swift */,
 			);
 			path = PostView;
 			sourceTree = "<group>";
@@ -426,8 +423,8 @@
 		FEE23F9321BD118700E1938E /* SupportManager */ = {
 			isa = PBXGroup;
 			children = (
+				FE52417521F602EB00E89C91 /* DBManager.swift */,
 				FE927A3021BD2DEF00C22A6C /* EventTrackingManager.swift */,
-				FEE23F9121BD117500E1938E /* DBManager.swift */,
 				FE7C08E021BDE7BF00B07787 /* UserSetting.swift */,
 			);
 			path = SupportManager;
@@ -708,7 +705,7 @@
 				FE7C08E121BDE7BF00B07787 /* UserSetting.swift in Sources */,
 				6F10322B20E9BF4B00AFBF36 /* CustomCollectionViewCell.swift in Sources */,
 				6FC46E3820C6722700DAA40D /* Extension.swift in Sources */,
-				FE52417621F602EB00E89C91 /* PostUsecase.swift in Sources */,
+				FE52417621F602EB00E89C91 /* DBManager.swift in Sources */,
 				6F10322720E886DC00AFBF36 /* DevInfoViewController.swift in Sources */,
 				FE927A3121BD2DEF00C22A6C /* EventTrackingManager.swift in Sources */,
 				6FABA5D920CE4297009DC835 /* SettingViewController.swift in Sources */,
@@ -720,7 +717,6 @@
 				6FC46E1320C64DF800DAA40D /* AppDelegate.swift in Sources */,
 				6FB771042106BF16005C62A9 /* Settings.swift in Sources */,
 				6FC46E3620C66B3100DAA40D /* PostCell.swift in Sources */,
-				FEE23F9221BD117500E1938E /* DBManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
