@@ -46,9 +46,9 @@
 		6FFFA41A212C381100CF7E3E /* CustomTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FFFA419212C381100CF7E3E /* CustomTableViewCell.swift */; };
 		6FFFA41D212C388900CF7E3E /* plusIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 6FFFA41C212C388900CF7E3E /* plusIcon.png */; };
 		FE52417621F602EB00E89C91 /* DBManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE52417521F602EB00E89C91 /* DBManager.swift */; };
+		FE64EFA12205F98700B14DAB /* MainViewUsecaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE7C08E221BDEAEB00B07787 /* MainViewUsecaseTests.swift */; };
 		FE7C08E121BDE7BF00B07787 /* UserSetting.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE7C08E021BDE7BF00B07787 /* UserSetting.swift */; };
 		FE7C08EE21BDEB4D00B07787 /* Eat_itTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE7C08ED21BDEB4D00B07787 /* Eat_itTests.swift */; };
-		FE7C08F521BDEB5500B07787 /* MainViewUsecaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE7C08E221BDEAEB00B07787 /* MainViewUsecaseTests.swift */; };
 		FE7C08F921C3B5B600B07787 /* RealmFixedPost.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE7C08F821C3B5B600B07787 /* RealmFixedPost.swift */; };
 		FE927A3121BD2DEF00C22A6C /* EventTrackingManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE927A3021BD2DEF00C22A6C /* EventTrackingManager.swift */; };
 		FEE23F9021BD113200E1938E /* MainViewUsecase.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEE23F8F21BD113200E1938E /* MainViewUsecase.swift */; };
@@ -725,7 +725,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				FE7C08EE21BDEB4D00B07787 /* Eat_itTests.swift in Sources */,
-				FE7C08F521BDEB5500B07787 /* MainViewUsecaseTests.swift in Sources */,
+				FE64EFA12205F98700B14DAB /* MainViewUsecaseTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
