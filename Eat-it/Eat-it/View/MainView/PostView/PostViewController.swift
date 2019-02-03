@@ -117,11 +117,13 @@ class PostViewController: UITableViewController {
     }
     
     func saveFixedPostProcess() {
-        let weekDay = Calendar.current.component(.weekday, from: date!)
+        var weekDay = Calendar.current.component(.weekday, from: date!)
+        print(weekDay)
         let numOfFixedPost = dbManager
             .getAllObject(of: RealmFixedPost.self)
             .filter("weekDay == %@ AND time == %@", weekDay, mealTime!)
-        
+        print("------------< save fixed post process >------------")
+        print(numOfFixedPost)
         if numOfFixedPost.count > 0 {
             guard let id = numOfFixedPost.first?.fixedPostId else { return }
             if self.isFixedPost {
@@ -132,6 +134,9 @@ class PostViewController: UITableViewController {
                 dbManager.deleteDB(realmData: RealmFixedPost.self, keyId: id)
             }
         } else {
+            if weekDay == 1 {
+                weekDay = 8
+            }
             let fixedPost = dbManager.createFixedPost(title: menuTextField.text!,
                                                       rating: seg.selectedSegmentIndex,
                                                       time: mealTime!,

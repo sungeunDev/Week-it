@@ -43,7 +43,7 @@ class MainViewController: UIViewController {
         }
     }
     
-    var fixedPosts: [RealmFixedPost?] = []
+    var fixedPosts: [RealmFixedPost] = []
     
     // MARK: -Date Calculation Properties
     private var date: Date = Date()
@@ -81,24 +81,21 @@ class MainViewController: UIViewController {
         
         // Navigation Bar UI
         naviBarItemLayout()
-        self.navigationController?.interactivePopGestureRecognizer?.delegate = nil
-        
-        
+        self.navigationController?.interactivePopGestureRecognizer?.delegate = nil        
     }
     
     func loadAll() {
-        let realm = try! Realm()
-        let allFixedPosts = realm.objects(RealmFixedPost.self)
-//        print(allFixedPosts)
-        
-        let mainuse = MainViewUsecase()
-//        print(mainuse.sortFixedPostsByTime())
+        let dbmanager = DBManager()
+        let fixedPosts = dbmanager.getAllObject(of: RealmFixedPost.self)
+        print(fixedPosts.count)
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
         // fetch this week post data & sort
+        posts = makePostMatrix(date: self.date)
+        createPostsByFixed()
         posts = makePostMatrix(date: self.date)
         
         // save UserDefault Today's Post
@@ -113,6 +110,41 @@ class MainViewController: UIViewController {
         loadAll()
     }
     
+    func createPostsByFixed() {
+        self.fixedPosts = MainViewUsecase().sortFixedPostsByTime()
+        for fixed in fixedPosts {
+            let index = (fixed.weekDay - 2) * 3 + fixed.time
+            if posts[index] == nil {
+                var dateComponent = DateComponents()
+                dateComponent.day = fixed.weekDay - 2
+                let adjustDate = Calendar.current.date(byAdding: dateComponent, to: date)!
+                
+                let dbm = DBManager()
+                let post = dbm.createPost(date: adjustDate,
+                                          rating: fixed.rating,
+                                          time: fixed.time,
+                                          title: fixed.title)
+                dbm.saveRealmDB(post)
+                saveMonthlyNumOfPostProcess(date: adjustDate)
+            }
+        }
+    }
+    
+    func saveMonthlyNumOfPostProcess(date: Date) {
+        let month = date.transformIntOnlyMonth()
+        let dbManager = DBManager()
+        
+        let numOfMonthlyPost = dbManager
+            .getAllObject(of: NumOfPost.self)
+            .filter("dateInt == %@", month)
+        if dbManager.getAllObject(of: NumOfPost.self).count == 0 || numOfMonthlyPost.count == 0 {
+            let monthPost = dbManager.createNumOfPost(date: date)
+            dbManager.saveRealmDB(monthPost)
+        } else {
+            let id = numOfMonthlyPost[0].dateInt // numOfMonthlyPost는 항상 1개만 존재
+            dbManager.updateMonthlyNumOfPost(keyId: id, addNum: 1)
+        }
+    }
     
     //PRESENT TUTORIAL VIEW ON FIRST LAUNCH ONLY
     private func presentTutorialView() {
@@ -398,25 +430,13 @@ extension MainViewController: UICollectionViewDataSource {
             cell.layer.masksToBounds = false
             cell.layer.shadowPath = UIBezierPath(roundedRect:cell.bounds, cornerRadius:cell.contentView.layer.cornerRadius).cgPath
             
-            let mainuse = MainViewUsecase()
-            self.fixedPosts = mainuse.sortFixedPostsByTime()
-            // 셀 데이터가 있는 경우.
-//            if let postdata = cell.postData {
-                for fixed in fixedPosts {
-                    if let fixed = fixed {
-                        let column = indexPath.item % 3
-                        if fixed.weekDay == indexPath.row && fixed.time == column {
-                            print("------------< fixed: \(fixed) >------------")
-                            let postData = Post(date: self.date,
-                                                rating: fixed.rating,
-                                                mealTime: fixed.time,
-                                                mealTitle: fixed.title)
-                            cell.postData = postData
-                            cell.backgroundColor = .blue
-                        }
-                    }
+            for fixed in fixedPosts {
+                let row = indexPath.item / 3 + 2
+                let column = indexPath.item % 3
+                if fixed.weekDay == row && fixed.time == column {
+                    cell.backgroundColor = .blue
                 }
-//            }
+            }
             return cell
         }
     }
@@ -456,7 +476,7 @@ extension MainViewController: UICollectionViewDelegateFlowLayout {
                 nextVC.postData = post
                 
                 for fixedPost in self.fixedPosts {
-                    if fixedPost?.title == posts[indexPath.item]?.mealTitle {
+                    if fixedPost.title == posts[indexPath.item]?.mealTitle {
                         nextVC._isFixedPost = true
                         break
                     } else {
@@ -588,12 +608,16 @@ extension MainViewController {
         
         self.date = Calendar.current.date(byAdding: dateComponent, to: date)!
         posts = makePostMatrix(date: self.date)
+        createPostsByFixed()
+        posts = makePostMatrix(date: self.date)
         configureDateLabel(date: self.date)
     }
     
     @IBAction private func rightBtn() {
         let nextWeek = 60 * 60 * 24 * 7
         date = Date(timeInterval: TimeInterval(nextWeek), since: date)
+        posts = makePostMatrix(date: self.date)
+        createPostsByFixed()
         posts = makePostMatrix(date: self.date)
         configureDateLabel(date: date)
     }
