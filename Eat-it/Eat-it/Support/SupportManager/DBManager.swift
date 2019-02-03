@@ -12,12 +12,10 @@ import RealmSwift
 
 protocol DBManagerProtocol {
     var realm: Realm { get }
-    var allPosts: Results<Post> { get }
-    var allNumOfPosts: Results<NumOfPost> { get }
-    var allFixedPosts: Results<RealmFixedPost> { get }
-    
-    func getRealmDB<E: Object, Key: Equatable>(keyId: Key) -> E?
-//    func saveRealmDB<E: Object>(_ data: E)
+    func getAllObject<E: Object>(of type: E.Type) -> Results<E>
+   
+    func getObject<E: Object, Key: Equatable>(of type: E.Type, keyId: Key) -> E?
+    func saveRealmDB<E: Object>(_ data: E)
     func deleteDB<E: Object, key: Equatable>(realmData: E.Type, keyId: key)
     
     func updatePost(keyId: String, title: String, rating: Int)
@@ -34,53 +32,23 @@ class DBManager: DBManagerProtocol {
         return try! Realm()
     }
     
-    var allPosts: Results<Post> {
-        return realm.objects(Post.self)
-    }
-    
-    var allNumOfPosts: Results<NumOfPost> {
-        return realm.objects(NumOfPost.self)
-    }
-    
-    var allFixedPosts: Results<RealmFixedPost> {
-        return realm.objects(RealmFixedPost.self)
+    func getAllObject<E: Object>(of type: E.Type) -> Results<E> {
+        return realm.objects(type)
     }
     
     // MARK: - GET
-    func getRealmDB<E: Object, Key: Equatable>(keyId: Key) -> E? {
-        return realm.object(ofType: E.self, forPrimaryKey: keyId)
+    func getObject<E: Object, Key: Equatable>(of type: E.Type,
+                                               keyId: Key) -> E? {
+        return realm.object(ofType: type, forPrimaryKey: keyId)
     }
-    
-    func saveRealmDB<T: Object>(ofType: T.Type, data: T) {
+
+    // MARK: - SAVE
+    func saveRealmDB<T: Object>(_ data: T) {
         let data = data as T
         try! self.realm.write {
             realm.add(data)
         }
     }
-    
-    // MARK: - SAVE
-//    func saveRealmDB<T: Object>(_ data: E) {
-//
-//        try! self.realm.write {
-//            realm.add(data as! E)
-//        }
-//
-////        if E is Post.Type {
-//            try! self.realm.write {
-//                realm.add(data as! Post.Type)
-//            }
-//        } else if E() is NumOfPost {
-//            try! self.realm.write {
-//                realm.add(data as! NumOfPost)
-//            }
-//        } else if E() is RealmFixedPost {
-//            try! self.realm.write {
-//                realm.add(data as! RealmFixedPost)
-//            }
-//        } else {
-//            print("------------< other type >------------")
-//        }
-//    }
     
     // MARK: - DELETE
     func deleteDB<E: Object, key: Equatable>(realmData: E.Type, keyId: key) {
@@ -93,7 +61,7 @@ class DBManager: DBManagerProtocol {
     
     // MARK: - UPDATE
     func updatePost(keyId: String, title: String, rating: Int) {
-        if let post = self.getRealmDB(keyId: keyId) as? Post {
+        if let post = self.getObject(of: Post.self, keyId: keyId){
             try! realm.write {
                 post.mealTitle = title
                 post.rating = rating
@@ -102,15 +70,15 @@ class DBManager: DBManagerProtocol {
     }
     
     func updateMonthlyNumOfPost(keyId: Int, addNum: Int) {
-        if let monthlyNumOfPost = self.getRealmDB(keyId: keyId) as? NumOfPost {
+        if let monthlyNumOfPost = self.getObject(of: NumOfPost.self, keyId: keyId) {
             try! realm.write {
                 monthlyNumOfPost.numOfpost += addNum
             }
         }
     }
-    
+
     func updateFixedPost(keyId: String, title: String, rating: Int) {
-        if let fixedPost = self.getRealmDB(keyId: keyId) as? RealmFixedPost {
+        if let fixedPost = self.getObject(of: RealmFixedPost.self, keyId: keyId) {
             try! realm.write {
                 fixedPost.title = title
                 fixedPost.rating = rating

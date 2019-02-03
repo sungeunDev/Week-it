@@ -22,7 +22,7 @@ protocol MainViewUsecaseProtocol {
 
 class MainViewUsecase: MainViewUsecaseProtocol {
     func getWeeklyPosts(date: Date) -> Results<Post> {
-        return DBManager().allPosts
+        return DBManager().allRealmObject(of: Post.self)
     }
     
     func getPostMatrix(postData: Results<Post>, weekData: [Date]) -> [Post?] {

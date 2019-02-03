@@ -84,7 +84,7 @@ class PostViewController: UITableViewController {
         saveBtnClicked()
         popVC()
     }
- 
+    
     func saveBtnClicked() {
         guard menuTextField.text?.count != 0 else {
             showAlert(alertTitle: "Post Fail".localized,
@@ -94,22 +94,22 @@ class PostViewController: UITableViewController {
         }
         // 아래 3개가 post usecase로 빠져야 함.
         savePostProcess()
-//        saveMonthlyNumOfPostProcess()
-//        saveFixedPostProcess()
+        saveMonthlyNumOfPostProcess()
+        saveFixedPostProcess()
     }
     
     func savePostProcess() {
         if postData != nil {
             guard let id = self.postData?.postId else { return }
             dbManager.updatePost(keyId: id,
-                                   title: menuTextField.text!,
-                                   rating: seg.selectedSegmentIndex)
+                                 title: menuTextField.text!,
+                                 rating: seg.selectedSegmentIndex)
         } else {
             let post = dbManager.createPost(date: date!,
-                                              rating: seg.selectedSegmentIndex,
-                                              time: mealTime!,
-                                              title: menuTextField.text!)
-            dbManager.saveRealmDB(ofType: Post.self, data: post)
+                                            rating: seg.selectedSegmentIndex,
+                                            time: mealTime!,
+                                            title: menuTextField.text!)
+            dbManager.saveRealmDB(post)
             EventTrackingManager.createPostLog(time: mealTime!,
                                                rate: seg.selectedSegmentIndex,
                                                contents: menuTextField.text!)
@@ -119,35 +119,35 @@ class PostViewController: UITableViewController {
     func saveFixedPostProcess() {
         let weekDay = Calendar.current.component(.weekday, from: date!)
         let numOfFixedPost = dbManager
-            .allFixedPosts
+            .getAllObject(of: RealmFixedPost.self)
             .filter("weekDay == %@ AND time == %@", weekDay, mealTime!)
         
         if numOfFixedPost.count > 0 {
             guard let id = numOfFixedPost.first?.fixedPostId else { return }
             if self.isFixedPost {
                 dbManager.updateFixedPost(keyId: id,
-                                            title: menuTextField.text!,
-                                            rating: seg.selectedSegmentIndex)
+                                          title: menuTextField.text!,
+                                          rating: seg.selectedSegmentIndex)
             } else {
                 dbManager.deleteDB(realmData: RealmFixedPost.self, keyId: id)
             }
         } else {
             let fixedPost = dbManager.createFixedPost(title: menuTextField.text!,
-                                                        rating: seg.selectedSegmentIndex,
-                                                        time: mealTime!,
-                                                        weekDay: weekDay)
-            dbManager.saveRealmDB(ofType: RealmFixedPost.self, data: fixedPost)
+                                                      rating: seg.selectedSegmentIndex,
+                                                      time: mealTime!,
+                                                      weekDay: weekDay)
+            dbManager.saveRealmDB(fixedPost)
         }
     }
     
     func saveMonthlyNumOfPostProcess() {
         let month = date!.transformIntOnlyMonth()
         let numOfMonthlyPost = dbManager
-            .allNumOfPosts
+            .getAllObject(of: NumOfPost.self)
             .filter("dateInt == %@", month)
-        if dbManager.allNumOfPosts.count == 0 || numOfMonthlyPost.count == 0 {
+        if dbManager.getAllObject(of: NumOfPost.self).count == 0 || numOfMonthlyPost.count == 0 {
             let monthPost = dbManager.createNumOfPost(date: date!)
-            dbManager.saveRealmDB(ofType: NumOfPost.self, data: monthPost)
+            dbManager.saveRealmDB(monthPost)
         } else {
             let id = numOfMonthlyPost[0].dateInt // numOfMonthlyPost는 항상 1개만 존재
             dbManager.updateMonthlyNumOfPost(keyId: id, addNum: 1)
@@ -160,7 +160,7 @@ class PostViewController: UITableViewController {
                                       preferredStyle: .alert)
         let action = UIAlertAction(title: actionTitle,
                                    style: .default) { (_) in
-            self.menuTextField.becomeFirstResponder()
+                                    self.menuTextField.becomeFirstResponder()
         }
         alert.addAction(action)
         self.present(alert, animated: true, completion: nil)
@@ -188,7 +188,7 @@ class PostViewController: UITableViewController {
     
     func deleteClicked() {
         if let id = self.postData?.postId {
-            if let post = dbManager.getRealmDB(keyId: id) as? Post,
+            if let post = dbManager.getObject(of: Post.self, keyId: id),
                 let month = Int(String(post.dateText).dropLast(2) + "00") {
                 dbManager.deleteDB(realmData: Post.self, keyId: id)
                 dbManager.deleteDB(realmData: NumOfPost.self, keyId: month)
