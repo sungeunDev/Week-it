@@ -15,6 +15,7 @@ class PostViewController: UITableViewController {
     public var date: Date?
     
     public var postData: Post?
+    public var fixedPostsData: RealmFixedPost?
     
     @IBOutlet private weak var dateLabel: UILabel!
     
@@ -118,12 +119,12 @@ class PostViewController: UITableViewController {
     
     func saveFixedPostProcess() {
         var weekDay = Calendar.current.component(.weekday, from: date!)
-        print(weekDay)
+//        print(weekDay)
         let numOfFixedPost = dbManager
             .getAllObject(of: RealmFixedPost.self)
             .filter("weekDay == %@ AND time == %@", weekDay, mealTime!)
-        print("------------< save fixed post process >------------")
-        print(numOfFixedPost)
+//        print("------------< is fixed >------------")
+//        print(isFixedPost)
         if numOfFixedPost.count > 0 {
             guard let id = numOfFixedPost.first?.fixedPostId else { return }
             if self.isFixedPost {
@@ -131,17 +132,36 @@ class PostViewController: UITableViewController {
                                           title: menuTextField.text!,
                                           rating: seg.selectedSegmentIndex)
             } else {
+                
+                let deleteDateInt = self.date!.trasformInt()
+                
+                var posts = dbManager.getAllObject(of: Post.self)
+                // 1차 필터링
+                posts = posts.filter("dateText >= %@ AND mealTime == %@", deleteDateInt, mealTime!)
+                
+                for post in posts {
+                    let fixed = dbManager.getObject(of: RealmFixedPost.self, keyId: id)
+//                    post.dateText -> trans date -> weekday == 일치해야됨.
+//                    fixed?.weekDay
+                    // 요일도 같아야 삭제. (2차 필터링)
+                }
+                
                 dbManager.deleteDB(realmData: RealmFixedPost.self, keyId: id)
+                print("------------< delete fixed posts >------------")
+                print(deleteDateInt)
+                print(posts.count)
             }
         } else {
-            if weekDay == 1 {
-                weekDay = 8
+            if self.isFixedPost {
+                if weekDay == 1 {
+                    weekDay = 8
+                }
+                let fixedPost = dbManager.createFixedPost(title: menuTextField.text!,
+                                                          rating: seg.selectedSegmentIndex,
+                                                          time: mealTime!,
+                                                          weekDay: weekDay)
+                dbManager.saveRealmDB(fixedPost)
             }
-            let fixedPost = dbManager.createFixedPost(title: menuTextField.text!,
-                                                      rating: seg.selectedSegmentIndex,
-                                                      time: mealTime!,
-                                                      weekDay: weekDay)
-            dbManager.saveRealmDB(fixedPost)
         }
     }
     
@@ -186,6 +206,9 @@ class PostViewController: UITableViewController {
                 } else {
                     numOfPost.numOfpost -= 1
                 }
+            }
+            if let fixedId = self.fixedPostsData?.fixedPostId {
+                dbManager.deleteDB(realmData: RealmFixedPost.self, keyId: fixedId)
             }
             popVC()
         }

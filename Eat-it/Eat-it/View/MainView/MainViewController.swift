@@ -476,11 +476,11 @@ extension MainViewController: UICollectionViewDelegateFlowLayout {
                 nextVC.postData = post
                 
                 for fixedPost in self.fixedPosts {
-                    if fixedPost.title == posts[indexPath.item]?.mealTitle {
+                    // 요일도 체크해야함
+                    if fixedPost.title == post.mealTitle && fixedPost.time == post.mealTime {
                         nextVC._isFixedPost = true
+                        nextVC.fixedPostsData = fixedPost
                         break
-                    } else {
-                        nextVC._isFixedPost = false
                     }
                 }
             }
