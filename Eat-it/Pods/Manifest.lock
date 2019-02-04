@@ -1,6 +1,9 @@
 PODS:
   - Answers (1.4.0):
     - Fabric (~> 1.8.0)
+  - ChameleonFramework/Default (2.1.0)
+  - ChameleonFramework/Swift (2.1.0):
+    - ChameleonFramework/Default
   - Fabric (1.8.2)
   - Realm (3.3.0):
     - Realm/Headers (= 3.3.0)
@@ -11,6 +14,7 @@ PODS:
 
 DEPENDENCIES:
   - Answers
+  - ChameleonFramework/Swift
   - Fabric
   - Realm
   - RealmSwift
@@ -19,6 +23,7 @@ DEPENDENCIES:
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
     - Answers
+    - ChameleonFramework
     - Fabric
     - Realm
     - RealmSwift
@@ -26,11 +31,12 @@ SPEC REPOS:
 
 SPEC CHECKSUMS:
   Answers: e7317ccd30e7bf55c3bacfe28adbe2304b082e49
+  ChameleonFramework: d21a3cc247abfe5e37609a283a8238b03575cf64
   Fabric: d2b22f443ba195d8a7cc204da230977c72733b40
   Realm: 7d74ad6c5020432f58fe5e1df90bb6d97b2c7fef
   RealmSwift: b2fa31a09c22e246026766557405505eeaad2b01
   SnapKit: fe8a619752f3f27075cc9a90244d75c6c3f27e2a
 
-PODFILE CHECKSUM: 51eef89f1f5913ef88ceeab3e5766c33f0c00747
+PODFILE CHECKSUM: acaa2c23c3e3e52ffca687daa96690bb9f10d69d
 
 COCOAPODS: 1.5.3
