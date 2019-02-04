@@ -110,6 +110,11 @@ class MainViewController: UIViewController {
         loadAll()
     }
     
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        postCollectionView.collectionViewLayout.invalidateLayout()
+    }
+    
     func createPostsByFixed() {
         self.fixedPosts = MainViewUsecase().sortFixedPostsByTime()
         for fixed in fixedPosts {
@@ -123,7 +128,8 @@ class MainViewController: UIViewController {
                 let post = dbm.createPost(date: adjustDate,
                                           rating: fixed.rating,
                                           time: fixed.time,
-                                          title: fixed.title)
+                                          title: fixed.title,
+                                          isFixed: true)
                 dbm.saveRealmDB(post)
                 saveMonthlyNumOfPostProcess(date: adjustDate)
             }
@@ -430,13 +436,13 @@ extension MainViewController: UICollectionViewDataSource {
             cell.layer.masksToBounds = false
             cell.layer.shadowPath = UIBezierPath(roundedRect:cell.bounds, cornerRadius:cell.contentView.layer.cornerRadius).cgPath
             
-            for fixed in fixedPosts {
-                let row = indexPath.item / 3 + 2
-                let column = indexPath.item % 3
-                if fixed.weekDay == row && fixed.time == column {
-                    cell.backgroundColor = .blue
-                }
-            }
+//            for fixed in fixedPosts {
+//                let row = indexPath.item / 3 + 2
+//                let column = indexPath.item % 3
+//                if fixed.weekDay == row && fixed.time == column {
+////                    cell.backgroundColor = .blue
+//                }
+//            }
             return cell
         }
     }
@@ -476,8 +482,7 @@ extension MainViewController: UICollectionViewDelegateFlowLayout {
                 nextVC.postData = post
                 
                 for fixedPost in self.fixedPosts {
-                    // 요일도 체크해야함
-                    if fixedPost.title == post.mealTitle && fixedPost.time == post.mealTime {
+                    if fixedPost.weekDay == post.weekDay && fixedPost.time == post.mealTime {
                         nextVC._isFixedPost = true
                         nextVC.fixedPostsData = fixedPost
                         break
@@ -635,7 +640,7 @@ extension MainViewController {
         
         // left Btn
         let leftBtn = UIButton(type: .custom)
-        leftBtn.setImage(UIImage(named: "christmas_graph.png"), for: .normal)
+        leftBtn.setImage(UIImage(named: "graph.png"), for: .normal)
         leftBtn.addTarget(self, action: #selector(moveGraphVC(_:)), for: .touchUpInside)
         let leftBarItem = UIBarButtonItem(customView: leftBtn)
         
@@ -646,7 +651,7 @@ extension MainViewController {
         
         // right Btn
         let rightBtn = UIButton(type: .custom)
-        rightBtn.setImage(UIImage(named: "christmas_setting.png"), for: .normal)
+        rightBtn.setImage(UIImage(named: "setting.png"), for: .normal)
         rightBtn.addTarget(self, action: #selector(moveSettingVC(_:)), for: .touchUpInside)
         let rightBarItem = UIBarButtonItem(customView: rightBtn)
         

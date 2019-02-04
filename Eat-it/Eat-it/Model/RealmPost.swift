@@ -18,12 +18,15 @@ class Post: Object {
   @objc dynamic var rating: Int = 0
   @objc dynamic var mealTime: Int = 0
   @objc dynamic var mealTitle: String = ""
-  
+    
+  @objc dynamic var weekDay: Int = 0
+  @objc dynamic var isFixed: Bool = false
+    
   override class func primaryKey() -> String? {
     return "postId"
   }
   
-  convenience init(date: Date, rating: Int, mealTime: Int, mealTitle: String) {
+    convenience init(date: Date, rating: Int, mealTime: Int, mealTitle: String, isFixed: Bool) {
     self.init()
     self.date = date
     self.rating = rating
@@ -31,9 +34,10 @@ class Post: Object {
     self.mealTitle = mealTitle
     
     self.dateText = date.trasformInt()
+    self.weekDay = Calendar.current.component(.weekday, from: date)
+    self.isFixed = isFixed
   }
 }
-
 
 // support
 extension Post {

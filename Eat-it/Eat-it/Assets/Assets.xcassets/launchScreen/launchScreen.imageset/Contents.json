@@ -2,7 +2,7 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "christmasLaunchScreen.png",
+      "filename" : "launchScreen.png",
       "scale" : "1x"
     },
     {

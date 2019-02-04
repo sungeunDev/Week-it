@@ -12,13 +12,18 @@ import RealmSwift
 class PostViewController: UITableViewController {
     
     public var mealTime: Int?
-    public var date: Date?
+    public var date: Date? {
+        willSet {
+            guard let date = newValue else { return }
+            weekDay = Calendar.current.component(.weekday, from: date)
+        }
+    }
+    public var weekDay: Int = 0
     
     public var postData: Post?
     public var fixedPostsData: RealmFixedPost?
     
     @IBOutlet private weak var dateLabel: UILabel!
-    
     @IBOutlet weak var mealImageView: UIImageView!
     @IBOutlet private weak var mealLabel: UILabel!
     
@@ -109,7 +114,8 @@ class PostViewController: UITableViewController {
             let post = dbManager.createPost(date: date!,
                                             rating: seg.selectedSegmentIndex,
                                             time: mealTime!,
-                                            title: menuTextField.text!)
+                                            title: menuTextField.text!,
+                                            isFixed: self.isFixedPost)
             dbManager.saveRealmDB(post)
             EventTrackingManager.createPostLog(time: mealTime!,
                                                rate: seg.selectedSegmentIndex,
@@ -119,37 +125,41 @@ class PostViewController: UITableViewController {
     
     func saveFixedPostProcess() {
         var weekDay = Calendar.current.component(.weekday, from: date!)
-//        print(weekDay)
         let numOfFixedPost = dbManager
             .getAllObject(of: RealmFixedPost.self)
             .filter("weekDay == %@ AND time == %@", weekDay, mealTime!)
-//        print("------------< is fixed >------------")
-//        print(isFixedPost)
         if numOfFixedPost.count > 0 {
-            guard let id = numOfFixedPost.first?.fixedPostId else { return }
+            guard let id = numOfFixedPost.first?.fixedPostId,
+                let fixedPost = dbManager.getObject(of: RealmFixedPost.self, keyId: id) else { return }
+            
             if self.isFixedPost {
                 dbManager.updateFixedPost(keyId: id,
                                           title: menuTextField.text!,
                                           rating: seg.selectedSegmentIndex)
             } else {
-                
+                // fixed post를 삭제한 날짜 이후의 post들은 모두 삭제함
                 let deleteDateInt = self.date!.trasformInt()
-                
-                var posts = dbManager.getAllObject(of: Post.self)
-                // 1차 필터링
-                posts = posts.filter("dateText >= %@ AND mealTime == %@", deleteDateInt, mealTime!)
-                
-                for post in posts {
-                    let fixed = dbManager.getObject(of: RealmFixedPost.self, keyId: id)
-//                    post.dateText -> trans date -> weekday == 일치해야됨.
-//                    fixed?.weekDay
-                    // 요일도 같아야 삭제. (2차 필터링)
+                let allPosts = dbManager.getAllObject(of: Post.self)
+                let afterPosts = allPosts.filter("dateText > %@ AND mealTime == %@ AND weekDay == %@", deleteDateInt, mealTime!, weekDay)
+                for afterPost in afterPosts {
+                    dbManager.updateMonthlyNumOfPost(keyId: afterPost.date.transformIntOnlyMonth(), addNum: -1)
+                    dbManager.deleteDB(realmData: Post.self, keyId: afterPost.postId)
+                }
+                // fixed post를 삭제한 날짜 이전 & 현재의 post는 isFixed를 변경
+                let beforePosts = allPosts
+                    .filter("mealTitle == %@ AND dateText < %@ AND dateText > %@ AND mealTime == %@ AND weekDay == %@",
+                            fixedPost.title,
+                            deleteDateInt,
+                            fixedPost.setDate.trasformInt(),
+                            mealTime!,
+                            weekDay)
+                for beforePost in beforePosts {
+                    dbManager.updatePostIsFixed(keyId: beforePost.postId, isFixed: isFixedPost)
                 }
                 
+                let nowPost = allPosts.filter("dateText == %@ AND mealTime == %@ AND weekDay == %@", deleteDateInt, mealTime!, weekDay).first
+                dbManager.updatePostIsFixed(keyId: nowPost!.postId, isFixed: isFixedPost)
                 dbManager.deleteDB(realmData: RealmFixedPost.self, keyId: id)
-                print("------------< delete fixed posts >------------")
-                print(deleteDateInt)
-                print(posts.count)
             }
         } else {
             if self.isFixedPost {
@@ -160,6 +170,8 @@ class PostViewController: UITableViewController {
                                                           rating: seg.selectedSegmentIndex,
                                                           time: mealTime!,
                                                           weekDay: weekDay)
+                let post = dbManager.getAllObject(of: Post.self).filter("dateText == %@", date!.trasformInt()).first
+                dbManager.updatePostIsFixed(keyId: post!.postId, isFixed: isFixedPost)
                 dbManager.saveRealmDB(fixedPost)
             }
         }

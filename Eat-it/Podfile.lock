@@ -14,7 +14,7 @@ PODS:
 
 DEPENDENCIES:
   - Answers
-  - ChameleonFramework/Swift
+  - ChameleonFramework/Swift (from `https://github.com/ViccAlexander/Chameleon.git`)
   - Fabric
   - Realm
   - RealmSwift
@@ -23,11 +23,19 @@ DEPENDENCIES:
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
     - Answers
-    - ChameleonFramework
     - Fabric
     - Realm
     - RealmSwift
     - SnapKit
+
+EXTERNAL SOURCES:
+  ChameleonFramework:
+    :git: https://github.com/ViccAlexander/Chameleon.git
+
+CHECKOUT OPTIONS:
+  ChameleonFramework:
+    :commit: 6dd284bde21ea2e7f9fd89bc36f40df16e16369d
+    :git: https://github.com/ViccAlexander/Chameleon.git
 
 SPEC CHECKSUMS:
   Answers: e7317ccd30e7bf55c3bacfe28adbe2304b082e49
@@ -37,6 +45,6 @@ SPEC CHECKSUMS:
   RealmSwift: b2fa31a09c22e246026766557405505eeaad2b01
   SnapKit: fe8a619752f3f27075cc9a90244d75c6c3f27e2a
 
-PODFILE CHECKSUM: acaa2c23c3e3e52ffca687daa96690bb9f10d69d
+PODFILE CHECKSUM: 079a7aa911cb85aec13d4a51bc8ad397bd516edf
 
 COCOAPODS: 1.5.3

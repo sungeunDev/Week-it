@@ -102,7 +102,7 @@
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="메뉴이름" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Dbk-XG-bKW">
-                                                            <rect key="frame" x="11.5" y="0.0" width="52" height="65"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="75" height="65"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                             <color key="textColor" red="0.21960784310000001" green="0.21960784310000001" blue="0.21960784310000001" alpha="1" colorSpace="calibratedRGB"/>
                                                             <nil key="highlightedColor"/>
@@ -118,14 +118,12 @@
                                                 </view>
                                                 <color key="backgroundColor" red="0.94901960780000005" green="0.36078431370000003" blue="0.38431372549999998" alpha="0.91218964039999995" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="bottom" secondItem="Dbk-XG-bKW" secondAttribute="bottom" id="1HQ-f4-NVu"/>
                                                     <constraint firstItem="MY2-u9-fBU" firstAttribute="centerX" secondItem="ZZv-I2-95l" secondAttribute="centerX" id="5re-qM-x94"/>
-                                                    <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="Dbk-XG-bKW" secondAttribute="trailing" id="Cif-1z-3Bm"/>
                                                     <constraint firstItem="MY2-u9-fBU" firstAttribute="centerY" secondItem="ZZv-I2-95l" secondAttribute="centerY" id="Jdq-6U-6Zc"/>
-                                                    <constraint firstItem="Dbk-XG-bKW" firstAttribute="top" secondItem="ZZv-I2-95l" secondAttribute="top" id="ZZk-RS-ZCB"/>
                                                     <constraint firstItem="Dbk-XG-bKW" firstAttribute="centerX" secondItem="ZZv-I2-95l" secondAttribute="centerX" id="cod-6b-GVX"/>
                                                     <constraint firstItem="Dbk-XG-bKW" firstAttribute="centerY" secondItem="ZZv-I2-95l" secondAttribute="centerY" id="esJ-en-DA0"/>
-                                                    <constraint firstItem="Dbk-XG-bKW" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="ZZv-I2-95l" secondAttribute="leading" id="g47-lu-e7T"/>
+                                                    <constraint firstItem="Dbk-XG-bKW" firstAttribute="height" secondItem="ZZv-I2-95l" secondAttribute="height" id="mvz-Ys-S6q"/>
+                                                    <constraint firstItem="Dbk-XG-bKW" firstAttribute="width" secondItem="ZZv-I2-95l" secondAttribute="width" id="tb8-RI-qdg"/>
                                                 </constraints>
                                                 <connections>
                                                     <outlet property="plusImageView" destination="MY2-u9-fBU" id="gfy-ZU-5vi"/>
@@ -1154,10 +1152,10 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="emptyCheckbox" translatesAutoresizingMaskIntoConstraints="NO" id="HXH-b6-0d5">
-                                                    <rect key="frame" x="334" y="9.5" width="25" height="25"/>
+                                                    <rect key="frame" x="337" y="11" width="22" height="22"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="height" constant="25" id="FlW-fr-1Ie"/>
-                                                        <constraint firstAttribute="width" constant="25" id="rgk-ga-EkD"/>
+                                                        <constraint firstAttribute="height" constant="22" id="FlW-fr-1Ie"/>
+                                                        <constraint firstAttribute="width" constant="22" id="rgk-ga-EkD"/>
                                                     </constraints>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="해당 포스트를 고정으로 설정하시겠습니까?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yYh-5N-Dxc">

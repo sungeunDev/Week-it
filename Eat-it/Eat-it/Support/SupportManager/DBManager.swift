@@ -22,7 +22,7 @@ protocol DBManagerProtocol {
     func updateMonthlyNumOfPost(keyId: Int, addNum: Int)
     func updateFixedPost(keyId: String, title: String, rating: Int)
     
-    func createPost(date: Date, rating: Int, time: Int, title: String) -> Post
+    func createPost(date: Date, rating: Int, time: Int, title: String, isFixed: Bool) -> Post
     func createNumOfPost(date: Date) -> NumOfPost
     func createFixedPost(title: String, rating: Int, time: Int, weekDay: Int) -> RealmFixedPost
 }
@@ -69,6 +69,14 @@ class DBManager: DBManagerProtocol {
         }
     }
     
+    func updatePostIsFixed(keyId: String, isFixed: Bool) {
+        if let post = self.getObject(of: Post.self, keyId: keyId){
+            try! realm.write {
+                post.isFixed = isFixed
+            }
+        }
+    }
+    
     func updateMonthlyNumOfPost(keyId: Int, addNum: Int) {
         if let monthlyNumOfPost = self.getObject(of: NumOfPost.self, keyId: keyId) {
             try! realm.write {
@@ -89,8 +97,8 @@ class DBManager: DBManagerProtocol {
     
     
     // MARK: - CREATE
-    func createPost(date: Date, rating: Int, time: Int, title: String) -> Post {
-        return Post(date: date, rating: rating, mealTime: time, mealTitle: title)
+    func createPost(date: Date, rating: Int, time: Int, title: String, isFixed: Bool) -> Post {
+        return Post(date: date, rating: rating, mealTime: time, mealTitle: title, isFixed: isFixed)
     }
     
     func createNumOfPost(date: Date) -> NumOfPost {

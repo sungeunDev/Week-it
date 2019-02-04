@@ -19,6 +19,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
 //        startFabric()
+        configureRealmMigration()
         return true
     }
     
@@ -29,9 +30,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 // MARK: - Realm Migration
 extension AppDelegate {
-    
-    fileprivate func realmMigration() {
-        
+    fileprivate func configureRealmMigration() {
+        let migrationBlock: MigrationBlock = { (migration, oldSchemaVersion) in
+            migration.enumerateObjects(ofType: Post.className(), { (oldObject, newObject) in
+                if newObject?["weekDay"] == nil {
+                    let date = oldObject?["date"] as! Date
+                    newObject?["weekDay"] = Calendar.current.component(.weekday, from: date)
+                    newObject?["isFixed"] = false
+                    print(newObject?["weekDay"], newObject?["isFixed"])
+                }
+            })
+            print("Migration complete.")
+        }
+        Realm.Configuration.defaultConfiguration = Realm.Configuration(schemaVersion: 3, migrationBlock: migrationBlock)
     }
 }
 

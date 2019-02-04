@@ -24,9 +24,6 @@ class CustomTableViewCell: UITableViewCell {
   @IBOutlet weak var graphDetailTableLabel: UILabel!
   @IBOutlet weak var graphDetailTableCountLabel: UILabel!
   
-  
-
-  
   override func awakeFromNib() {
     super.awakeFromNib()
     // Initialization code
