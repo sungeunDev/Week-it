@@ -21,7 +21,7 @@ class PostCell: UICollectionViewCell {
                 postLabel.text = String(postData.mealTitle)
                 plusImageView.image = nil
                 self.backgroundColor = cellBackgroundColor(of: postData.rating)
-                isFixedView.isHidden = !postData.isFixed
+                isFixedView.isHidden = (postData.fixedPostId != nil)
                 isFixedView.backgroundColor = self.backgroundColor?.darken(byPercentage: 0.15)
             } else {
                 postLabel.text = ""

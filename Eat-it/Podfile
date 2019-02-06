@@ -12,6 +12,10 @@ target 'Eat-it' do
   pod 'Answers'
   pod 'ChameleonFramework/Swift', :git => 'https://github.com/ViccAlexander/Chameleon.git'
   # Pods for Eat-it
+
+  target 'Eat-itTests' do
+  inherit! :search_paths
+  end
 end
 
 target 'Eat-itTodayExtension' do

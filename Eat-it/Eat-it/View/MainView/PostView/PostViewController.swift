@@ -22,6 +22,7 @@ class PostViewController: UITableViewController {
     
     public var postData: Post?
     public var fixedPostsData: RealmFixedPost?
+    var afterPosts: Results<Post>?
     
     @IBOutlet private weak var dateLabel: UILabel!
     @IBOutlet weak var mealImageView: UIImageView!
@@ -43,6 +44,8 @@ class PostViewController: UITableViewController {
         }
     }
     
+    let postViewUsecase = PostViewUsecase()
+    
     // MARK: - LIFE CYCLE
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -59,9 +62,20 @@ class PostViewController: UITableViewController {
         super.viewWillAppear(animated)
         
         self.isFixedPost = self._isFixedPost
+        setAfterPosts()
+        configurePostViewUsecase()
     }
     
     // MARK: - CONFIGURATION
+    func configurePostViewUsecase() {
+        postViewUsecase.mealTime = mealTime
+        postViewUsecase.date = date
+        postViewUsecase.weekDay = weekDay
+        postViewUsecase.isFixedPost = isFixedPost
+        postViewUsecase.postData = postData
+        postViewUsecase.fixedPostsData = fixedPostsData
+    }
+    
     func configuration() {
         if let postData = postData {
             menuTextField.text = postData.mealTitle
@@ -101,6 +115,7 @@ class PostViewController: UITableViewController {
         // 아래 3개가 post usecase로 빠져야 함.
         savePostProcess()
         saveMonthlyNumOfPostProcess()
+        setAfterPosts()
         saveFixedPostProcess()
     }
     
@@ -109,18 +124,26 @@ class PostViewController: UITableViewController {
             guard let id = self.postData?.postId else { return }
             dbManager.updatePost(keyId: id,
                                  title: menuTextField.text!,
-                                 rating: seg.selectedSegmentIndex)
+                                 rating: seg.selectedSegmentIndex, fixedPostId: "")
         } else {
             let post = dbManager.createPost(date: date!,
                                             rating: seg.selectedSegmentIndex,
                                             time: mealTime!,
-                                            title: menuTextField.text!,
-                                            isFixed: self.isFixedPost)
+                                            title: menuTextField.text!)
             dbManager.saveRealmDB(post)
             EventTrackingManager.createPostLog(time: mealTime!,
                                                rate: seg.selectedSegmentIndex,
                                                contents: menuTextField.text!)
         }
+    }
+    
+    func setAfterPosts() {
+        let deleteDateInt = self.date!.trasformInt()
+        let allPosts = dbManager.getAllObject(of: Post.self)
+        self.afterPosts = allPosts.filter("dateText > %@ AND mealTime == %@ AND weekDay == %@",
+                                          deleteDateInt,
+                                          mealTime!,
+                                          weekDay)
     }
     
     func saveFixedPostProcess() {
@@ -130,7 +153,7 @@ class PostViewController: UITableViewController {
             .filter("weekDay == %@ AND time == %@", weekDay, mealTime!)
         if numOfFixedPost.count > 0 {
             guard let id = numOfFixedPost.first?.fixedPostId,
-                let fixedPost = dbManager.getObject(of: RealmFixedPost.self, keyId: id) else { return }
+                let afterPosts = afterPosts else { return }
             
             if self.isFixedPost {
                 dbManager.updateFixedPost(keyId: id,
@@ -140,23 +163,11 @@ class PostViewController: UITableViewController {
                 // fixed post를 삭제한 날짜 이후의 post들은 모두 삭제함
                 let deleteDateInt = self.date!.trasformInt()
                 let allPosts = dbManager.getAllObject(of: Post.self)
-                let afterPosts = allPosts.filter("dateText > %@ AND mealTime == %@ AND weekDay == %@", deleteDateInt, mealTime!, weekDay)
                 for afterPost in afterPosts {
                     dbManager.updateMonthlyNumOfPost(keyId: afterPost.date.transformIntOnlyMonth(), addNum: -1)
                     dbManager.deleteDB(realmData: Post.self, keyId: afterPost.postId)
                 }
-                // fixed post를 삭제한 날짜 이전 & 현재의 post는 isFixed를 변경
-                let beforePosts = allPosts
-                    .filter("mealTitle == %@ AND dateText < %@ AND dateText > %@ AND mealTime == %@ AND weekDay == %@",
-                            fixedPost.title,
-                            deleteDateInt,
-                            fixedPost.setDate.trasformInt(),
-                            mealTime!,
-                            weekDay)
-                for beforePost in beforePosts {
-                    dbManager.updatePostIsFixed(keyId: beforePost.postId, isFixed: isFixedPost)
-                }
-                
+                // fixed post를 삭제한 현재의 post는 isFixed를 변경
                 let nowPost = allPosts.filter("dateText == %@ AND mealTime == %@ AND weekDay == %@", deleteDateInt, mealTime!, weekDay).first
                 dbManager.updatePostIsFixed(keyId: nowPost!.postId, isFixed: isFixedPost)
                 dbManager.deleteDB(realmData: RealmFixedPost.self, keyId: id)
@@ -205,33 +216,74 @@ class PostViewController: UITableViewController {
     
     // MARK: - DELETE ACTION
     @IBAction private func deleteBtn() {
-        if let realm = try? Realm(),
-            let id = self.postData?.postId,
-            let post = realm.object(ofType: Post.self, forPrimaryKey: id),
-            let month = Int(String(post.dateText).dropLast(2) + "00"),
-            let numOfPost = realm.object(ofType: NumOfPost.self, forPrimaryKey: month) {
-            
-            try! realm.write {
-                realm.delete(post)
-                if numOfPost.numOfpost == 1 {
-                    realm.delete(numOfPost)
-                } else {
-                    numOfPost.numOfpost -= 1
-                }
-            }
-            if let fixedId = self.fixedPostsData?.fixedPostId {
-                dbManager.deleteDB(realmData: RealmFixedPost.self, keyId: fixedId)
-            }
-            popVC()
-        }
+//        if let realm = try? Realm(),
+//            let id = self.postData?.postId,
+//            let post = realm.object(ofType: Post.self, forPrimaryKey: id),
+//            let month = Int(String(post.dateText).dropLast(2) + "00"),
+//            let numOfPost = realm.object(ofType: NumOfPost.self, forPrimaryKey: month) {
+//
+//            try! realm.write {
+//                realm.delete(post)
+//                if numOfPost.numOfpost == 1 {
+//                    realm.delete(numOfPost)
+//                } else {
+//                    numOfPost.numOfpost -= 1
+//                }
+//            }
+//            if let fixedId = self.fixedPostsData?.fixedPostId {
+//                dbManager.deleteDB(realmData: RealmFixedPost.self, keyId: fixedId)
+//            }
+        self.deleteClicked()
+//            popVC()
+//        }
     }
     
     func deleteClicked() {
         if let id = self.postData?.postId {
             if let post = dbManager.getObject(of: Post.self, keyId: id),
                 let month = Int(String(post.dateText).dropLast(2) + "00") {
-                dbManager.deleteDB(realmData: Post.self, keyId: id)
-                dbManager.deleteDB(realmData: NumOfPost.self, keyId: month)
+                if (post.fixedPostId != nil) {
+                    let alert = UIAlertController(title: "고정 포스트 삭제",
+                                                  message: "이후의 고정 포스트들도 함께 삭제하시겠습니까?",
+                                                  preferredStyle: .alert)
+                    let yesAction = UIAlertAction(title: "네", style: .default) { (_) in
+                        // 이후 포스트들도 삭제
+                        print("------------< yes >------------")
+                        guard let afterPosts = self.afterPosts else { return }
+                        for afterPost in afterPosts {
+                            self.dbManager.updateMonthlyNumOfPost(keyId: afterPost.date.transformIntOnlyMonth(), addNum: -1)
+                            self.dbManager.deleteDB(realmData: Post.self, keyId: afterPost.postId)
+                        }
+                        self.popVC()
+                    }
+                    let noAction = UIAlertAction(title: "아니오 (현재 포스트만 삭제)", style: .default) { (_) in
+                        // 이후 포스트들은 isfixed만 해제
+                        print("------------< no >------------")
+                        guard let afterPosts = self.afterPosts else { return }
+                        for afterPost in afterPosts {
+                            self.dbManager.updatePostIsFixed(keyId: afterPost.postId,
+                                                             isFixed: false)
+                        }
+                        self.popVC()
+                    }
+                    alert.addAction(yesAction)
+                    alert.addAction(noAction)
+                    self.present(alert, animated: true, completion: {
+                        print("------------< present >------------")
+                        // 현재 포스트 삭제
+                        self.dbManager.deleteDB(realmData: Post.self, keyId: id)
+                        self.dbManager.deleteDB(realmData: NumOfPost.self, keyId: month)
+                        
+                        let weekDay = Calendar.current.component(.weekday, from: self.date!)
+                        let numOfFixedPost = self.dbManager
+                            .getAllObject(of: RealmFixedPost.self)
+                            .filter("weekDay == %@ AND time == %@", weekDay, self.mealTime!)
+                        if numOfFixedPost.count > 0 {
+                            guard let id = numOfFixedPost.first?.fixedPostId else { return }
+                            self.dbManager.deleteDB(realmData: RealmFixedPost.self, keyId: id)
+                        }
+                    })
+                }
             } else {
                 showAlert(alertTitle: "Delete Fail".localized,
                           message: "There are no posts to delete.\nPlease register your post.".localized,

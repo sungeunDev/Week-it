@@ -124,14 +124,16 @@ class MainViewController: UIViewController {
                 dateComponent.day = fixed.weekDay - 2
                 let adjustDate = Calendar.current.date(byAdding: dateComponent, to: date)!
                 
-                let dbm = DBManager()
-                let post = dbm.createPost(date: adjustDate,
-                                          rating: fixed.rating,
-                                          time: fixed.time,
-                                          title: fixed.title,
-                                          isFixed: true)
-                dbm.saveRealmDB(post)
-                saveMonthlyNumOfPostProcess(date: adjustDate)
+                // fixed post를 설정한 날짜보다 이전은 post생성하지 않음
+                if fixed.setDate <= adjustDate {
+                    let dbm = DBManager()
+                    let post = dbm.createPost(date: adjustDate,
+                                              rating: fixed.rating,
+                                              time: fixed.time,
+                                              title: fixed.title)
+                    dbm.saveRealmDB(post)
+                    saveMonthlyNumOfPostProcess(date: adjustDate)
+                }
             }
         }
     }
@@ -482,7 +484,7 @@ extension MainViewController: UICollectionViewDelegateFlowLayout {
                 nextVC.postData = post
                 
                 for fixedPost in self.fixedPosts {
-                    if fixedPost.weekDay == post.weekDay && fixedPost.time == post.mealTime {
+                    if fixedPost.time == post.mealTime {
                         nextVC._isFixedPost = true
                         nextVC.fixedPostsData = fixedPost
                         break

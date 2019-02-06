@@ -45,8 +45,11 @@
 		6FC46E3A20C8F76300DAA40D /* PostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FC46E3920C8F76300DAA40D /* PostViewController.swift */; };
 		6FFFA41A212C381100CF7E3E /* CustomTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FFFA419212C381100CF7E3E /* CustomTableViewCell.swift */; };
 		6FFFA41D212C388900CF7E3E /* plusIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 6FFFA41C212C388900CF7E3E /* plusIcon.png */; };
+		7111E3BC0440427A1AF58A5B /* Pods_Eat_itTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 92FE3FB87D345544B2C1A1CB /* Pods_Eat_itTests.framework */; };
 		FE52417621F602EB00E89C91 /* DBManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE52417521F602EB00E89C91 /* DBManager.swift */; };
 		FE64EFA12205F98700B14DAB /* MainViewUsecaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE7C08E221BDEAEB00B07787 /* MainViewUsecaseTests.swift */; };
+		FE64EFB7220AD48100B14DAB /* PostViewUsecase.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE64EFB6220AD48100B14DAB /* PostViewUsecase.swift */; };
+		FE64EFB9220AD9EC00B14DAB /* PostViewUsecaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE64EFB8220AD9EC00B14DAB /* PostViewUsecaseTests.swift */; };
 		FE7C08E121BDE7BF00B07787 /* UserSetting.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE7C08E021BDE7BF00B07787 /* UserSetting.swift */; };
 		FE7C08EE21BDEB4D00B07787 /* Eat_itTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE7C08ED21BDEB4D00B07787 /* Eat_itTests.swift */; };
 		FE7C08F921C3B5B600B07787 /* RealmFixedPost.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE7C08F821C3B5B600B07787 /* RealmFixedPost.swift */; };
@@ -96,6 +99,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		32BBE00C24D60467984B2E69 /* Pods-Eat-itTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Eat-itTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Eat-itTests/Pods-Eat-itTests.debug.xcconfig"; sourceTree = "<group>"; };
+		38EB94C39EBEEACE3705352A /* Pods-Eat-itTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Eat-itTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Eat-itTests/Pods-Eat-itTests.release.xcconfig"; sourceTree = "<group>"; };
 		6F10322620E886DC00AFBF36 /* DevInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DevInfoViewController.swift; sourceTree = "<group>"; };
 		6F10322820E9B97F00AFBF36 /* GraphDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphDetailViewController.swift; sourceTree = "<group>"; };
 		6F10322A20E9BF4B00AFBF36 /* CustomCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -145,11 +150,14 @@
 		6FFFA41C212C388900CF7E3E /* plusIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = plusIcon.png; sourceTree = "<group>"; };
 		7540CAC31BB6E13A64F3BAEC /* Pods-Eat-itTodayExtension.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Eat-itTodayExtension.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Eat-itTodayExtension/Pods-Eat-itTodayExtension.debug.xcconfig"; sourceTree = "<group>"; };
 		79604A0FA10F87FA53BC7BF9 /* Pods-Eat-itTodayExtension.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Eat-itTodayExtension.release.xcconfig"; path = "Pods/Target Support Files/Pods-Eat-itTodayExtension/Pods-Eat-itTodayExtension.release.xcconfig"; sourceTree = "<group>"; };
+		92FE3FB87D345544B2C1A1CB /* Pods_Eat_itTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Eat_itTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		96A9E26E54A0C7F8FFA4D584 /* Pods-Eat-it.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Eat-it.release.xcconfig"; path = "Pods/Target Support Files/Pods-Eat-it/Pods-Eat-it.release.xcconfig"; sourceTree = "<group>"; };
 		9BD370C004C4531125C94E3F /* Pods_Eat_itTodayExtension.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Eat_itTodayExtension.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE5BD613EE7A024D54F15811 /* Pods-Eat-it.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Eat-it.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Eat-it/Pods-Eat-it.debug.xcconfig"; sourceTree = "<group>"; };
 		E3C3DDF4A8539C3DA59CA98F /* Pods_Eat_it.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Eat_it.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FE52417521F602EB00E89C91 /* DBManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DBManager.swift; sourceTree = "<group>"; };
+		FE64EFB6220AD48100B14DAB /* PostViewUsecase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostViewUsecase.swift; sourceTree = "<group>"; };
+		FE64EFB8220AD9EC00B14DAB /* PostViewUsecaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostViewUsecaseTests.swift; sourceTree = "<group>"; };
 		FE7C08E021BDE7BF00B07787 /* UserSetting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSetting.swift; sourceTree = "<group>"; };
 		FE7C08E221BDEAEB00B07787 /* MainViewUsecaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewUsecaseTests.swift; sourceTree = "<group>"; };
 		FE7C08EB21BDEB4D00B07787 /* Eat-itTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Eat-itTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -183,6 +191,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7111E3BC0440427A1AF58A5B /* Pods_Eat_itTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -199,6 +208,7 @@
 				6F1B930820D75F9B0011BA2A /* NotificationCenter.framework */,
 				E3C3DDF4A8539C3DA59CA98F /* Pods_Eat_it.framework */,
 				9BD370C004C4531125C94E3F /* Pods_Eat_itTodayExtension.framework */,
+				92FE3FB87D345544B2C1A1CB /* Pods_Eat_itTests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -318,6 +328,8 @@
 			isa = PBXGroup;
 			children = (
 				6FC46E3920C8F76300DAA40D /* PostViewController.swift */,
+				FE64EFB6220AD48100B14DAB /* PostViewUsecase.swift */,
+				FE64EFB8220AD9EC00B14DAB /* PostViewUsecaseTests.swift */,
 			);
 			path = PostView;
 			sourceTree = "<group>";
@@ -388,6 +400,8 @@
 				96A9E26E54A0C7F8FFA4D584 /* Pods-Eat-it.release.xcconfig */,
 				7540CAC31BB6E13A64F3BAEC /* Pods-Eat-itTodayExtension.debug.xcconfig */,
 				79604A0FA10F87FA53BC7BF9 /* Pods-Eat-itTodayExtension.release.xcconfig */,
+				32BBE00C24D60467984B2E69 /* Pods-Eat-itTests.debug.xcconfig */,
+				38EB94C39EBEEACE3705352A /* Pods-Eat-itTests.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -478,6 +492,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = FE7C08F221BDEB4D00B07787 /* Build configuration list for PBXNativeTarget "Eat-itTests" */;
 			buildPhases = (
+				86E985068B1DAAC40FDC0F27 /* [CP] Check Pods Manifest.lock */,
 				FE7C08E721BDEB4D00B07787 /* Sources */,
 				FE7C08E821BDEB4D00B07787 /* Frameworks */,
 				FE7C08E921BDEB4D00B07787 /* Resources */,
@@ -632,6 +647,28 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
+		86E985068B1DAAC40FDC0F27 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Eat-itTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
 		AAEC7FDCCA5524B8CEB003FF /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -714,6 +751,7 @@
 				6F10322920E9B97F00AFBF36 /* GraphDetailViewController.swift in Sources */,
 				6FC46E3420C66B2A00DAA40D /* DayCell.swift in Sources */,
 				6F5077E920EB193F00B113A9 /* TutorialImageViewController.swift in Sources */,
+				FE64EFB7220AD48100B14DAB /* PostViewUsecase.swift in Sources */,
 				6FC46E1520C64DF800DAA40D /* MainViewController.swift in Sources */,
 				6F1AF1D020D0C5FC00147898 /* ThemeTableViewController.swift in Sources */,
 				6FC46E1320C64DF800DAA40D /* AppDelegate.swift in Sources */,
@@ -726,6 +764,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FE64EFB9220AD9EC00B14DAB /* PostViewUsecaseTests.swift in Sources */,
 				FE7C08EE21BDEB4D00B07787 /* Eat_itTests.swift in Sources */,
 				FE64EFA12205F98700B14DAB /* MainViewUsecaseTests.swift in Sources */,
 			);
@@ -1011,6 +1050,7 @@
 		};
 		FE7C08F321BDEB4D00B07787 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 32BBE00C24D60467984B2E69 /* Pods-Eat-itTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -1035,6 +1075,7 @@
 		};
 		FE7C08F421BDEB4D00B07787 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 38EB94C39EBEEACE3705352A /* Pods-Eat-itTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				BUNDLE_LOADER = "$(TEST_HOST)";

@@ -33,16 +33,12 @@ extension AppDelegate {
     fileprivate func configureRealmMigration() {
         let migrationBlock: MigrationBlock = { (migration, oldSchemaVersion) in
             migration.enumerateObjects(ofType: Post.className(), { (oldObject, newObject) in
-                if newObject?["weekDay"] == nil {
-                    let date = oldObject?["date"] as! Date
-                    newObject?["weekDay"] = Calendar.current.component(.weekday, from: date)
-                    newObject?["isFixed"] = false
-                    print(newObject?["weekDay"], newObject?["isFixed"])
-                }
+                print("Migration complete.")
             })
-            print("Migration complete.")
         }
-        Realm.Configuration.defaultConfiguration = Realm.Configuration(schemaVersion: 3, migrationBlock: migrationBlock)
+        let config = Realm.Configuration(schemaVersion: 4,
+                                         migrationBlock: migrationBlock)
+        Realm.Configuration.defaultConfiguration = config
     }
 }
 
