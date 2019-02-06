@@ -33,6 +33,7 @@ extension AppDelegate {
     fileprivate func configureRealmMigration() {
         let migrationBlock: MigrationBlock = { (migration, oldSchemaVersion) in
             migration.enumerateObjects(ofType: Post.className(), { (oldObject, newObject) in
+//                oldObject["weekDay"]
                 print("Migration complete.")
             })
         }

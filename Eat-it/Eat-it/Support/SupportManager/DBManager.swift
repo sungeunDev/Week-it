@@ -60,7 +60,7 @@ class DBManager: DBManagerProtocol {
     }
     
     // MARK: - UPDATE
-    func updatePost(keyId: String, title: String, rating: Int, fixedPostId: String) {
+    func updatePost(keyId: String, title: String, rating: Int, fixedPostId: String?) {
         if let post = self.getObject(of: Post.self, keyId: keyId){
             try! realm.write {
                 post.mealTitle = title
@@ -70,10 +70,10 @@ class DBManager: DBManagerProtocol {
         }
     }
     
-    func updatePostIsFixed(keyId: String, isFixed: Bool) {
+    func updatePostIsFixed(keyId: String, fixedPostId: String?) {
         if let post = self.getObject(of: Post.self, keyId: keyId){
             try! realm.write {
-//                post.isFixed = isFixed
+                post.fixedPostId = fixedPostId
             }
         }
     }

@@ -73,7 +73,7 @@ class MainViewController: UIViewController {
     // MARK: - LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        //    print(NSHomeDirectory())
+            print(NSHomeDirectory())
         presentTutorialView()
         
         // this week of monday date & label setting
@@ -130,7 +130,8 @@ class MainViewController: UIViewController {
                     let post = dbm.createPost(date: adjustDate,
                                               rating: fixed.rating,
                                               time: fixed.time,
-                                              title: fixed.title)
+                                              title: fixed.title,
+                                              fixedPostId: fixed.fixedPostId)
                     dbm.saveRealmDB(post)
                     saveMonthlyNumOfPostProcess(date: adjustDate)
                 }
@@ -484,7 +485,7 @@ extension MainViewController: UICollectionViewDelegateFlowLayout {
                 nextVC.postData = post
                 
                 for fixedPost in self.fixedPosts {
-                    if fixedPost.time == post.mealTime {
+                    if fixedPost.fixedPostId == post.fixedPostId {
                         nextVC._isFixedPost = true
                         nextVC.fixedPostsData = fixedPost
                         break

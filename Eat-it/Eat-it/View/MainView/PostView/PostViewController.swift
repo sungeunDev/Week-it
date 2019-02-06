@@ -45,6 +45,7 @@ class PostViewController: UITableViewController {
     }
     
     let postViewUsecase = PostViewUsecase()
+    var fixedPostId: String?
     
     // MARK: - LIFE CYCLE
     override func viewDidLoad() {
@@ -113,37 +114,53 @@ class PostViewController: UITableViewController {
             return
         }
         // 아래 3개가 post usecase로 빠져야 함.
-        savePostProcess()
-        saveMonthlyNumOfPostProcess()
-        setAfterPosts()
         saveFixedPostProcess()
+        savePostProcess()
+        setAfterPosts()
+        
     }
     
     func savePostProcess() {
+        // 기존 포스트를 업데이트 하는 경우
         if postData != nil {
             guard let id = self.postData?.postId else { return }
-            dbManager.updatePost(keyId: id,
-                                 title: menuTextField.text!,
-                                 rating: seg.selectedSegmentIndex, fixedPostId: "")
+            if isFixedPost {
+                guard let fixedPostId = self.fixedPostId else { return }
+                dbManager.updatePost(keyId: id,
+                                     title: menuTextField.text!,
+                                     rating: seg.selectedSegmentIndex,
+                                     fixedPostId: fixedPostId)
+            }
+        // 새로 포스트를 만드는 경우
         } else {
-            let post = dbManager.createPost(date: date!,
-                                            rating: seg.selectedSegmentIndex,
-                                            time: mealTime!,
-                                            title: menuTextField.text!)
-            dbManager.saveRealmDB(post)
-            EventTrackingManager.createPostLog(time: mealTime!,
-                                               rate: seg.selectedSegmentIndex,
-                                               contents: menuTextField.text!)
+            if isFixedPost {
+                guard let fixedPostId = self.fixedPostId else { return }
+                let post = dbManager.createPost(date: date!,
+                                                rating: seg.selectedSegmentIndex,
+                                                time: mealTime!,
+                                                title: menuTextField.text!,
+                                                fixedPostId: fixedPostId)
+                dbManager.saveRealmDB(post)
+            } else {
+                let post = dbManager.createPost(date: date!,
+                                                rating: seg.selectedSegmentIndex,
+                                                time: mealTime!,
+                                                title: menuTextField.text!)
+                dbManager.saveRealmDB(post)
+            }
+            self.saveMonthlyNumOfPostProcess()
         }
+        EventTrackingManager.createPostLog(time: mealTime!,
+                                           rate: seg.selectedSegmentIndex,
+                                           contents: menuTextField.text!)
     }
     
     func setAfterPosts() {
         let deleteDateInt = self.date!.trasformInt()
         let allPosts = dbManager.getAllObject(of: Post.self)
-        self.afterPosts = allPosts.filter("dateText > %@ AND mealTime == %@ AND weekDay == %@",
+        self.afterPosts = allPosts.filter("dateText > %@ AND mealTime == %@",
                                           deleteDateInt,
-                                          mealTime!,
-                                          weekDay)
+                                          mealTime!)
     }
     
     func saveFixedPostProcess() {
@@ -151,29 +168,43 @@ class PostViewController: UITableViewController {
         let numOfFixedPost = dbManager
             .getAllObject(of: RealmFixedPost.self)
             .filter("weekDay == %@ AND time == %@", weekDay, mealTime!)
+        
+        // 해당 요일, 시간에 고정포스트가 있을 경우
         if numOfFixedPost.count > 0 {
-            guard let id = numOfFixedPost.first?.fixedPostId,
-                let afterPosts = afterPosts else { return }
+            guard let id = numOfFixedPost.first?.fixedPostId else { return }
             
+            // 현재 고정 포스트를 선택한 경우 -> 현재꺼 삭제 후 새로 생성 & 포스트 id도 변경
             if self.isFixedPost {
-                dbManager.updateFixedPost(keyId: id,
-                                          title: menuTextField.text!,
-                                          rating: seg.selectedSegmentIndex)
+                dbManager.deleteDB(realmData: RealmFixedPost.self, keyId: id)
+                let newFixedPost = dbManager.createFixedPost(title: menuTextField.text!,
+                                          rating: seg.selectedSegmentIndex,
+                                          time: mealTime!,
+                                          weekDay: weekDay)
+                dbManager.saveRealmDB(newFixedPost)
+                self.fixedPostId = newFixedPost.fixedPostId
+                
+            // 선택 안한경우 -> 이후 포스트들 & fixed post 삭제
             } else {
                 // fixed post를 삭제한 날짜 이후의 post들은 모두 삭제함
-                let deleteDateInt = self.date!.trasformInt()
+                let currentDateInt = self.date!.trasformInt()
+                
                 let allPosts = dbManager.getAllObject(of: Post.self)
+                let afterPosts = allPosts.filter("fixedPostId == %@ AND dateText > %@",
+                                                 id,
+                                                 currentDateInt)
                 for afterPost in afterPosts {
                     dbManager.updateMonthlyNumOfPost(keyId: afterPost.date.transformIntOnlyMonth(), addNum: -1)
                     dbManager.deleteDB(realmData: Post.self, keyId: afterPost.postId)
                 }
-                // fixed post를 삭제한 현재의 post는 isFixed를 변경
-                let nowPost = allPosts.filter("dateText == %@ AND mealTime == %@ AND weekDay == %@", deleteDateInt, mealTime!, weekDay).first
-                dbManager.updatePostIsFixed(keyId: nowPost!.postId, isFixed: isFixedPost)
+                
+                // fixed post 삭제
                 dbManager.deleteDB(realmData: RealmFixedPost.self, keyId: id)
             }
+        // 해당 요일, 시간에 해당하는 고정포스트가 없을 경우
         } else {
+            // isFixed로 체크했을 경우에는 새로 생성해서 저장
             if self.isFixedPost {
+                // 일요일인 경우 sort 편의를 위해 8로 변경
                 if weekDay == 1 {
                     weekDay = 8
                 }
@@ -181,8 +212,7 @@ class PostViewController: UITableViewController {
                                                           rating: seg.selectedSegmentIndex,
                                                           time: mealTime!,
                                                           weekDay: weekDay)
-                let post = dbManager.getAllObject(of: Post.self).filter("dateText == %@", date!.trasformInt()).first
-                dbManager.updatePostIsFixed(keyId: post!.postId, isFixed: isFixedPost)
+                self.fixedPostId = fixedPost.fixedPostId
                 dbManager.saveRealmDB(fixedPost)
             }
         }
@@ -261,8 +291,8 @@ class PostViewController: UITableViewController {
                         print("------------< no >------------")
                         guard let afterPosts = self.afterPosts else { return }
                         for afterPost in afterPosts {
-                            self.dbManager.updatePostIsFixed(keyId: afterPost.postId,
-                                                             isFixed: false)
+//                            self.dbManager.updatePostIsFixed(keyId: afterPost.postId,
+//                                                             fixedPostId: false)
                         }
                         self.popVC()
                     }

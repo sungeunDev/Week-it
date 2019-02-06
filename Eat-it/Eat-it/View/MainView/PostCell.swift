@@ -21,7 +21,7 @@ class PostCell: UICollectionViewCell {
                 postLabel.text = String(postData.mealTitle)
                 plusImageView.image = nil
                 self.backgroundColor = cellBackgroundColor(of: postData.rating)
-                isFixedView.isHidden = (postData.fixedPostId != nil)
+                isFixedView.isHidden = !hasFixedPostId(postData.fixedPostId)
                 isFixedView.backgroundColor = self.backgroundColor?.darken(byPercentage: 0.15)
             } else {
                 postLabel.text = ""
@@ -40,6 +40,10 @@ class PostCell: UICollectionViewCell {
     override func layoutSubviews() {
         super.layoutSubviews()
         configureIsFixedView()
+    }
+    
+    private func hasFixedPostId(_ id: String?) -> Bool {
+        return DBManager().getAllObject(of: RealmFixedPost.self).contains { $0.fixedPostId == id }
     }
     
     private func configureIsFixedView() {
