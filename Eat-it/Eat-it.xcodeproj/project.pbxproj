@@ -46,6 +46,7 @@
 		6FFFA41A212C381100CF7E3E /* CustomTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FFFA419212C381100CF7E3E /* CustomTableViewCell.swift */; };
 		6FFFA41D212C388900CF7E3E /* plusIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 6FFFA41C212C388900CF7E3E /* plusIcon.png */; };
 		FE282F4122105BE4008AB4E6 /* AlertService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE282F4022105BE3008AB4E6 /* AlertService.swift */; };
+		FE282F4922107909008AB4E6 /* Eat_itTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE282F4822107909008AB4E6 /* Eat_itTests.swift */; };
 		FE52417621F602EB00E89C91 /* DBManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE52417521F602EB00E89C91 /* DBManager.swift */; };
 		FE7C08E121BDE7BF00B07787 /* UserSetting.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE7C08E021BDE7BF00B07787 /* UserSetting.swift */; };
 		FE7C08F921C3B5B600B07787 /* RealmFixedPost.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE7C08F821C3B5B600B07787 /* RealmFixedPost.swift */; };
@@ -60,6 +61,13 @@
 			proxyType = 1;
 			remoteGlobalIDString = 6F1B930620D75F9A0011BA2A;
 			remoteInfo = "Eat-itTodayExtension";
+		};
+		FE282F4B22107909008AB4E6 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 6FC46E0720C64DF800DAA40D /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 6FC46E0E20C64DF800DAA40D;
+			remoteInfo = "Eat-it";
 		};
 /* End PBXContainerItemProxy section */
 
@@ -88,8 +96,6 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		32BBE00C24D60467984B2E69 /* Pods-Eat-itTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Eat-itTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Eat-itTests/Pods-Eat-itTests.debug.xcconfig"; sourceTree = "<group>"; };
-		38EB94C39EBEEACE3705352A /* Pods-Eat-itTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Eat-itTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Eat-itTests/Pods-Eat-itTests.release.xcconfig"; sourceTree = "<group>"; };
 		6F10322620E886DC00AFBF36 /* DevInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DevInfoViewController.swift; sourceTree = "<group>"; };
 		6F10322820E9B97F00AFBF36 /* GraphDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphDetailViewController.swift; sourceTree = "<group>"; };
 		6F10322A20E9BF4B00AFBF36 /* CustomCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -139,12 +145,14 @@
 		6FFFA41C212C388900CF7E3E /* plusIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = plusIcon.png; sourceTree = "<group>"; };
 		7540CAC31BB6E13A64F3BAEC /* Pods-Eat-itTodayExtension.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Eat-itTodayExtension.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Eat-itTodayExtension/Pods-Eat-itTodayExtension.debug.xcconfig"; sourceTree = "<group>"; };
 		79604A0FA10F87FA53BC7BF9 /* Pods-Eat-itTodayExtension.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Eat-itTodayExtension.release.xcconfig"; path = "Pods/Target Support Files/Pods-Eat-itTodayExtension/Pods-Eat-itTodayExtension.release.xcconfig"; sourceTree = "<group>"; };
-		92FE3FB87D345544B2C1A1CB /* Pods_Eat_itTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Eat_itTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		96A9E26E54A0C7F8FFA4D584 /* Pods-Eat-it.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Eat-it.release.xcconfig"; path = "Pods/Target Support Files/Pods-Eat-it/Pods-Eat-it.release.xcconfig"; sourceTree = "<group>"; };
 		9BD370C004C4531125C94E3F /* Pods_Eat_itTodayExtension.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Eat_itTodayExtension.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE5BD613EE7A024D54F15811 /* Pods-Eat-it.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Eat-it.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Eat-it/Pods-Eat-it.debug.xcconfig"; sourceTree = "<group>"; };
 		E3C3DDF4A8539C3DA59CA98F /* Pods_Eat_it.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Eat_it.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FE282F4022105BE3008AB4E6 /* AlertService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertService.swift; sourceTree = "<group>"; };
+		FE282F4622107909008AB4E6 /* Eat-itTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Eat-itTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		FE282F4822107909008AB4E6 /* Eat_itTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Eat_itTests.swift; sourceTree = "<group>"; };
+		FE282F4A22107909008AB4E6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FE52417521F602EB00E89C91 /* DBManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DBManager.swift; sourceTree = "<group>"; };
 		FE7C08E021BDE7BF00B07787 /* UserSetting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSetting.swift; sourceTree = "<group>"; };
 		FE7C08F821C3B5B600B07787 /* RealmFixedPost.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmFixedPost.swift; sourceTree = "<group>"; };
@@ -171,6 +179,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		FE282F4322107909008AB4E6 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -184,7 +199,6 @@
 				6F1B930820D75F9B0011BA2A /* NotificationCenter.framework */,
 				E3C3DDF4A8539C3DA59CA98F /* Pods_Eat_it.framework */,
 				9BD370C004C4531125C94E3F /* Pods_Eat_itTodayExtension.framework */,
-				92FE3FB87D345544B2C1A1CB /* Pods_Eat_itTests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -217,6 +231,7 @@
 			children = (
 				6FC46E1120C64DF800DAA40D /* Eat-it */,
 				6F1B930A20D75F9B0011BA2A /* Eat-itTodayExtension */,
+				FE282F4722107909008AB4E6 /* Eat-itTests */,
 				6FC46E1020C64DF800DAA40D /* Products */,
 				08CB7AC6DBCD8F09AE54AEDC /* Frameworks */,
 				BCA0A57EA69EC9C074CADDB3 /* Pods */,
@@ -228,6 +243,7 @@
 			children = (
 				6FC46E0F20C64DF800DAA40D /* Eat-it.app */,
 				6F1B930720D75F9A0011BA2A /* Eat-itTodayExtension.appex */,
+				FE282F4622107909008AB4E6 /* Eat-itTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -372,10 +388,17 @@
 				96A9E26E54A0C7F8FFA4D584 /* Pods-Eat-it.release.xcconfig */,
 				7540CAC31BB6E13A64F3BAEC /* Pods-Eat-itTodayExtension.debug.xcconfig */,
 				79604A0FA10F87FA53BC7BF9 /* Pods-Eat-itTodayExtension.release.xcconfig */,
-				32BBE00C24D60467984B2E69 /* Pods-Eat-itTests.debug.xcconfig */,
-				38EB94C39EBEEACE3705352A /* Pods-Eat-itTests.release.xcconfig */,
 			);
 			name = Pods;
+			sourceTree = "<group>";
+		};
+		FE282F4722107909008AB4E6 /* Eat-itTests */ = {
+			isa = PBXGroup;
+			children = (
+				FE282F4822107909008AB4E6 /* Eat_itTests.swift */,
+				FE282F4A22107909008AB4E6 /* Info.plist */,
+			);
+			path = "Eat-itTests";
 			sourceTree = "<group>";
 		};
 		FE82A8D721BDE3AA002858AF /* Fonts */ = {
@@ -451,6 +474,24 @@
 			productReference = 6FC46E0F20C64DF800DAA40D /* Eat-it.app */;
 			productType = "com.apple.product-type.application";
 		};
+		FE282F4522107909008AB4E6 /* Eat-itTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = FE282F4D22107909008AB4E6 /* Build configuration list for PBXNativeTarget "Eat-itTests" */;
+			buildPhases = (
+				FE282F4222107909008AB4E6 /* Sources */,
+				FE282F4322107909008AB4E6 /* Frameworks */,
+				FE282F4422107909008AB4E6 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				FE282F4C22107909008AB4E6 /* PBXTargetDependency */,
+			);
+			name = "Eat-itTests";
+			productName = "Eat-itTests";
+			productReference = FE282F4622107909008AB4E6 /* Eat-itTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -485,6 +526,10 @@
 							};
 						};
 					};
+					FE282F4522107909008AB4E6 = {
+						CreatedOnToolsVersion = 10.1;
+						TestTargetID = 6FC46E0E20C64DF800DAA40D;
+					};
 				};
 			};
 			buildConfigurationList = 6FC46E0A20C64DF800DAA40D /* Build configuration list for PBXProject "Eat-it" */;
@@ -502,6 +547,7 @@
 			targets = (
 				6FC46E0E20C64DF800DAA40D /* Eat-it */,
 				6F1B930620D75F9A0011BA2A /* Eat-itTodayExtension */,
+				FE282F4522107909008AB4E6 /* Eat-itTests */,
 			);
 		};
 /* End PBXProject section */
@@ -529,6 +575,13 @@
 				6F2AE62220EDCF39004EB513 /* Localizable.strings in Resources */,
 				6F5077E320EA16AA00B113A9 /* LaunchScreen.storyboard in Resources */,
 				6FC46E1820C64DF800DAA40D /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FE282F4422107909008AB4E6 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -670,6 +723,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		FE282F4222107909008AB4E6 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FE282F4922107909008AB4E6 /* Eat_itTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -677,6 +738,11 @@
 			isa = PBXTargetDependency;
 			target = 6F1B930620D75F9A0011BA2A /* Eat-itTodayExtension */;
 			targetProxy = 6F1B931120D75F9B0011BA2A /* PBXContainerItemProxy */;
+		};
+		FE282F4C22107909008AB4E6 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 6FC46E0E20C64DF800DAA40D /* Eat-it */;
+			targetProxy = FE282F4B22107909008AB4E6 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -945,6 +1011,53 @@
 			};
 			name = Release;
 		};
+		FE282F4E22107909008AB4E6 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = WXH5CKM9TX;
+				INFOPLIST_FILE = "Eat-itTests/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.sungeun.Eat-itTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Eat-it.app/Eat-it";
+			};
+			name = Debug;
+		};
+		FE282F4F22107909008AB4E6 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = WXH5CKM9TX;
+				INFOPLIST_FILE = "Eat-itTests/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.sungeun.Eat-itTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Eat-it.app/Eat-it";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -971,6 +1084,15 @@
 			buildConfigurations = (
 				6FC46E2220C64DF900DAA40D /* Debug */,
 				6FC46E2320C64DF900DAA40D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		FE282F4D22107909008AB4E6 /* Build configuration list for PBXNativeTarget "Eat-itTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FE282F4E22107909008AB4E6 /* Debug */,
+				FE282F4F22107909008AB4E6 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
