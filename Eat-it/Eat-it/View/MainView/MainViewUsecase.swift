@@ -111,11 +111,12 @@ class MainViewUsecase: MainViewUsecaseProtocol {
         
         var returnResult = [RealmFixedPost]()
         var sundayFixedPosts = [RealmFixedPost]()
+        
         for fixedPosts in sortedFixedPosts {
-            returnResult.append(fixedPosts)
             if fixedPosts.weekDay == 1 { // sunday
                 sundayFixedPosts.append(fixedPosts)
-                returnResult.removeLast()
+            } else {
+                returnResult.append(fixedPosts)
             }
         }
         

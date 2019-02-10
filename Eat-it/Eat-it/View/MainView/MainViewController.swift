@@ -110,10 +110,18 @@ class MainViewController: UIViewController {
     func createPostsByFixed() {
         self.fixedPosts = MainViewUsecase().sortFixedPostsByTime()
         for fixed in fixedPosts {
-            let index = (fixed.weekDay - 2) * 3 + fixed.time
+            let fixedWeekday: Int = {
+                if fixed.weekDay == 1 {
+                    return 8
+                } else {
+                    return fixed.weekDay
+                }
+            }()
+            let index = (fixedWeekday - 2) * 3 + fixed.time
+            
             if posts[index] == nil {
                 var dateComponent = DateComponents()
-                dateComponent.day = fixed.weekDay - 2
+                dateComponent.day = fixedWeekday - 2
                 let adjustDate = Calendar.current.date(byAdding: dateComponent, to: date)!
                 
                 // fixed post를 설정한 날짜보다 이전은 post생성하지 않음

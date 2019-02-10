@@ -43,7 +43,7 @@
 "Delete Fail" = "삭제 실패";
 "There are no posts to delete.\nPlease register your post." = "삭제 할 포스트가 없습니다.\n포스트를 등록해 주세요.";
 "Delete pinned post" = "고정 포스트 삭제";
-"Other posts created with the pinning feature will not be deleted." = "고정 기능으로 생성된 다른 포스트들은 삭제되지 않습니다.";
+"Other posts created with the pinning feature will not be deleted." = "고정 기능으로 생성된 다른 포스트들은\n삭제되지 않습니다.";
 
 // 설정
 "Reset Data" = "데이터 초기화";

@@ -153,7 +153,6 @@ class PostViewController: UITableViewController, AlertService {
     }
     
     func saveFixedPostProcess() {
-        var weekDay = Calendar.current.component(.weekday, from: date!)
         let numOfFixedPost = dbManager
             .getAllObject(of: RealmFixedPost.self)
             .filter("weekDay == %@ AND time == %@", weekDay, mealTime!)
@@ -183,8 +182,10 @@ class PostViewController: UITableViewController, AlertService {
                                                  id,
                                                  currentDateInt)
                 for afterPost in afterPosts {
-                    dbManager.updateMonthlyNumOfPost(keyId: afterPost.date.transformIntOnlyMonth(), addNum: -1)
-                    dbManager.deleteDB(realmData: Post.self, keyId: afterPost.postId)
+                    let numOfPostKey = afterPost.date.transformIntOnlyMonth()
+                    if let numOfPost = dbManager.getObject(of: NumOfPost.self, keyId: numOfPostKey) {
+                        deletePostProcess(post: afterPost, numOfPost: numOfPost)
+                    }
                 }
                 
                 // fixed post 삭제
@@ -194,10 +195,6 @@ class PostViewController: UITableViewController, AlertService {
         } else {
             // isFixed로 체크했을 경우에는 새로 생성해서 저장
             if self.isFixedPost {
-                // 일요일인 경우 sort 편의를 위해 8로 변경
-                if weekDay == 1 {
-                    weekDay = 8
-                }
                 let fixedPost = dbManager.createFixedPost(title: menuTextField.text!,
                                                           rating: seg.selectedSegmentIndex,
                                                           time: mealTime!,
@@ -251,12 +248,12 @@ class PostViewController: UITableViewController, AlertService {
         // 삭제하려는 포스트가 고정일때
         if dbManager.isCurrentFixedPost(post: post) {
             let alert = showTwoAlert(alertTitle: "Delete pinned post".localized,
-                         message: "Other posts created with the pinning feature will not be deleted.".localized,
-                         firstAction: "OK".localized, firstCompletion: { (action) in
-                            self.dbManager.deleteDB(realmData: RealmFixedPost.self, keyId: post.fixedPostId)
-                            self.deletePostProcess(post: post, numOfPost: numOfPost)
-                            self.popVC()
-            }, secondAction: "Cancel".localized, secondCompletion: nil)
+                                     message: "Other posts created with the pinning feature will not be deleted.".localized,
+                                     firstAction: "Cancel".localized, firstCompletion: nil,
+                                     secondAction: "OK".localized) { [weak self] action in
+                                        self?.dbManager.deleteDB(realmData: RealmFixedPost.self, keyId: post.fixedPostId)
+                                        self?.deletePostProcess(post: post, numOfPost: numOfPost)
+                                        self?.popVC() }
             self.present(alert, animated: true, completion: nil)
         } else {
             deletePostProcess(post: post, numOfPost: numOfPost)
