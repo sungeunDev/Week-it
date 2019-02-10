@@ -109,10 +109,10 @@ extension SettingViewController {
       }
       self.navigationController?.popToRootViewController(animated: true)
     }
-    let cancle = UIAlertAction(title: "cancle".localized, style: .cancel, handler: nil)
+    let cancel = UIAlertAction(title: "Cancel".localized, style: .cancel, handler: nil)
     
     askAlert.addAction(okay)
-    askAlert.addAction(cancle)
+    askAlert.addAction(cancel)
     
     self.present(askAlert, animated: true, completion: nil)
   }

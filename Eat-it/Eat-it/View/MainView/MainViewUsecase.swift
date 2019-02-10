@@ -22,7 +22,15 @@ protocol MainViewUsecaseProtocol {
 
 class MainViewUsecase: MainViewUsecaseProtocol {
     func getWeeklyPosts(date: Date) -> Results<Post> {
-        return DBManager().getRealmPostsResults()
+        
+        
+        
+        
+        
+        
+        
+        
+        return DBManager().getAllObject(of: Post.self)
     }
     
     func getPostMatrix(postData: Results<Post>, weekData: [Date]) -> [Post?] {
@@ -90,6 +98,30 @@ class MainViewUsecase: MainViewUsecaseProtocol {
         } else {
             return date
         }
+    }
+    
+    // 아-점-저 * 일주일
+    func sortFixedPostsByTime() -> [RealmFixedPost] {
+        let allFixedPosts = DBManager().getAllObject(of: RealmFixedPost.self)
+        
+        let sortedFixedPosts = allFixedPosts.sorted(by: [
+            SortDescriptor(keyPath: "weekDay", ascending: true),
+            SortDescriptor(keyPath: "time", ascending: true)
+            ])
+        
+        var returnResult = [RealmFixedPost]()
+        var sundayFixedPosts = [RealmFixedPost]()
+        
+        for fixedPosts in sortedFixedPosts {
+            if fixedPosts.weekDay == 1 { // sunday
+                sundayFixedPosts.append(fixedPosts)
+            } else {
+                returnResult.append(fixedPosts)
+            }
+        }
+        
+        returnResult.append(contentsOf: sundayFixedPosts)
+        return returnResult
     }
     
     

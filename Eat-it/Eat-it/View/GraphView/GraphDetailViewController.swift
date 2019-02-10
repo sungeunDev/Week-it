@@ -53,7 +53,6 @@ class GraphDetailViewController: UIViewController {
       }
       let monday = 2
       count[weekday-monday] += 1
-//      print(count)
     }
     
     // 가장 포스트가 많은 요일 세기(중복 허용)

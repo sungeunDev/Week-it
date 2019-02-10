@@ -33,7 +33,6 @@ class MainViewController: UIViewController {
     // MARK:  -Settings
     var userSetting = Settings.custom
     
-    
     // MARK: -Data
     let meal = ["아침", "점심", "저녁"]
     var day = ["MON", "TUE", "WED", "THU", "FRI", "SAT", "SUN"]
@@ -43,6 +42,8 @@ class MainViewController: UIViewController {
             self.postCollectionView.reloadData()
         }
     }
+    
+    var fixedPosts: [RealmFixedPost] = []
     
     // MARK: -Date Calculation Properties
     private var date: Date = Date()
@@ -72,7 +73,7 @@ class MainViewController: UIViewController {
     // MARK: - LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        //    print(NSHomeDirectory())
+            print(NSHomeDirectory())
         presentTutorialView()
         
         // this week of monday date & label setting
@@ -80,13 +81,15 @@ class MainViewController: UIViewController {
         
         // Navigation Bar UI
         naviBarItemLayout()
-        self.navigationController?.interactivePopGestureRecognizer?.delegate = nil
+        self.navigationController?.interactivePopGestureRecognizer?.delegate = nil        
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
         // fetch this week post data & sort
+        posts = makePostMatrix(date: self.date)
+        createPostsByFixed()
         posts = makePostMatrix(date: self.date)
         
         // save UserDefault Today's Post
@@ -99,6 +102,58 @@ class MainViewController: UIViewController {
         configureDateLabel(date: date)
     }
     
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        postCollectionView.collectionViewLayout.invalidateLayout()
+    }
+    
+    func createPostsByFixed() {
+        self.fixedPosts = MainViewUsecase().sortFixedPostsByTime()
+        for fixed in fixedPosts {
+            let fixedWeekday: Int = {
+                if fixed.weekDay == 1 {
+                    return 8
+                } else {
+                    return fixed.weekDay
+                }
+            }()
+            let index = (fixedWeekday - 2) * 3 + fixed.time
+            
+            if posts[index] == nil {
+                var dateComponent = DateComponents()
+                dateComponent.day = fixedWeekday - 2
+                let adjustDate = Calendar.current.date(byAdding: dateComponent, to: date)!
+                
+                // fixed post를 설정한 날짜보다 이전은 post생성하지 않음
+                if fixed.setDate <= adjustDate {
+                    let dbm = DBManager()
+                    let post = dbm.createPost(date: adjustDate,
+                                              rating: fixed.rating,
+                                              time: fixed.time,
+                                              title: fixed.title,
+                                              fixedPostId: fixed.fixedPostId)
+                    dbm.saveRealmDB(post)
+                    saveMonthlyNumOfPostProcess(date: adjustDate)
+                }
+            }
+        }
+    }
+    
+    func saveMonthlyNumOfPostProcess(date: Date) {
+        let month = date.transformIntOnlyMonth()
+        let dbManager = DBManager()
+        
+        let numOfMonthlyPost = dbManager
+            .getAllObject(of: NumOfPost.self)
+            .filter("dateInt == %@", month)
+        if dbManager.getAllObject(of: NumOfPost.self).count == 0 || numOfMonthlyPost.count == 0 {
+            let monthPost = dbManager.createNumOfPost(date: date)
+            dbManager.saveRealmDB(monthPost)
+        } else {
+            let id = numOfMonthlyPost[0].dateInt // numOfMonthlyPost는 항상 1개만 존재
+            dbManager.updateMonthlyNumOfPost(keyId: id, addNum: 1)
+        }
+    }
     
     //PRESENT TUTORIAL VIEW ON FIRST LAUNCH ONLY
     private func presentTutorialView() {
@@ -384,6 +439,13 @@ extension MainViewController: UICollectionViewDataSource {
             cell.layer.masksToBounds = false
             cell.layer.shadowPath = UIBezierPath(roundedRect:cell.bounds, cornerRadius:cell.contentView.layer.cornerRadius).cgPath
             
+//            for fixed in fixedPosts {
+//                let row = indexPath.item / 3 + 2
+//                let column = indexPath.item % 3
+//                if fixed.weekDay == row && fixed.time == column {
+////                    cell.backgroundColor = .blue
+//                }
+//            }
             return cell
         }
     }
@@ -421,6 +483,14 @@ extension MainViewController: UICollectionViewDelegateFlowLayout {
             // 이전에 포스트를 입력해 놓은 경우, 해당 포스트를 불러옴
             if let post = posts[indexPath.item] {
                 nextVC.postData = post
+                
+                for fixedPost in self.fixedPosts {
+                    if fixedPost.fixedPostId == post.fixedPostId {
+                        nextVC._isFixedPost = true
+                        nextVC.fixedPostsData = fixedPost
+                        break
+                    }
+                }
             }
             
             // Send Info of mealTime, date
@@ -546,12 +616,16 @@ extension MainViewController {
         
         self.date = Calendar.current.date(byAdding: dateComponent, to: date)!
         posts = makePostMatrix(date: self.date)
+        createPostsByFixed()
+        posts = makePostMatrix(date: self.date)
         configureDateLabel(date: self.date)
     }
     
     @IBAction private func rightBtn() {
         let nextWeek = 60 * 60 * 24 * 7
         date = Date(timeInterval: TimeInterval(nextWeek), since: date)
+        posts = makePostMatrix(date: self.date)
+        createPostsByFixed()
         posts = makePostMatrix(date: self.date)
         configureDateLabel(date: date)
     }
@@ -569,7 +643,7 @@ extension MainViewController {
         
         // left Btn
         let leftBtn = UIButton(type: .custom)
-        leftBtn.setImage(UIImage(named: "christmas_graph.png"), for: .normal)
+        leftBtn.setImage(UIImage(named: "graph.png"), for: .normal)
         leftBtn.addTarget(self, action: #selector(moveGraphVC(_:)), for: .touchUpInside)
         let leftBarItem = UIBarButtonItem(customView: leftBtn)
         
@@ -580,7 +654,7 @@ extension MainViewController {
         
         // right Btn
         let rightBtn = UIButton(type: .custom)
-        rightBtn.setImage(UIImage(named: "christmas_setting.png"), for: .normal)
+        rightBtn.setImage(UIImage(named: "setting.png"), for: .normal)
         rightBtn.addTarget(self, action: #selector(moveSettingVC(_:)), for: .touchUpInside)
         let rightBarItem = UIBarButtonItem(customView: rightBtn)
         
@@ -650,10 +724,7 @@ extension MainViewController {
     
     // Title 누르면 현재 날짜로 돌아옴
     @objc func moveCalendarToday(_ : UIButton) {
-        
-        print("\n---------- [ moveCalendarToday ] -----------\n")
-        self.date = Date()
-        
+        self.date = Date()        
         date = changeToMonday(of: date)
         self.posts = makePostMatrix(date: self.date)
         configureDateLabel(date: self.date)

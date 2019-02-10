@@ -31,7 +31,6 @@ class EventTrackingManager {
             ()
         }
         
-        //        print(timeStr, rateStr, contents)
         Answers.logCustomEvent(withName: "Create Post",
                                customAttributes: ["time": timeStr,
                                                   "rate": rateStr,
@@ -42,14 +41,10 @@ class EventTrackingManager {
         let countryLocale = NSLocale.current
         if let countryCode = countryLocale.regionCode,
             let country = (countryLocale as NSLocale).displayName(forKey: NSLocale.Key.countryCode, value: countryCode) {
-            //            print(country)
-            //            print(totalPost)
             Answers.logContentView(withName: "logContentView",
                                    contentType: "Graph View",
                                    contentId: "userCountry: \(country)",
                 customAttributes: ["totalPost": "\(totalPost)"])
         }
-        
-    }
-    
+    }    
 }
