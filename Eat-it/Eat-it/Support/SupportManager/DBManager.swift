@@ -24,7 +24,7 @@ protocol DBManagerProtocol {
     
 //    func createPost(date: Date, rating: Int, time: Int, title: String, isFixed: Bool) -> Post
     func createNumOfPost(date: Date) -> NumOfPost
-    func createFixedPost(title: String, rating: Int, time: Int, weekDay: Int) -> RealmFixedPost
+    func createFixedPost(title: String, rating: Int, time: Int, weekDay: Int, setDate: Date) -> RealmFixedPost
 }
 
 class DBManager: DBManagerProtocol {
@@ -107,14 +107,18 @@ class DBManager: DBManagerProtocol {
     }
     
     func createFixedPost(title: String, rating: Int,
-                         time: Int, weekDay: Int) -> RealmFixedPost {
+                         time: Int, weekDay: Int, setDate: Date) -> RealmFixedPost {
         return RealmFixedPost(title: title, rating: rating,
-                              time: time, weekDay: weekDay)
+                              time: time, weekDay: weekDay, setDate: setDate)
     }
 }
 
 
 // MARK: - Fixed post
 extension DBManager {
-    
+    func isCurrentFixedPost(post: Post) -> Bool {
+        return DBManager()
+            .getAllObject(of: RealmFixedPost.self)
+            .contains { $0.fixedPostId == post.fixedPostId }
+    }
 }

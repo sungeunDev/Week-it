@@ -9,7 +9,7 @@
 import UIKit
 import RealmSwift
 
-class PostViewController: UITableViewController {
+class PostViewController: UITableViewController, AlertService {
     
     public var mealTime: Int?
     public var date: Date? {
@@ -43,8 +43,7 @@ class PostViewController: UITableViewController {
             checkboxImageView.image = UIImage(named: imageName)
         }
     }
-    
-    let postViewUsecase = PostViewUsecase()
+
     var fixedPostId: String?
     
     // MARK: - LIFE CYCLE
@@ -64,19 +63,9 @@ class PostViewController: UITableViewController {
         
         self.isFixedPost = self._isFixedPost
         setAfterPosts()
-        configurePostViewUsecase()
     }
     
     // MARK: - CONFIGURATION
-    func configurePostViewUsecase() {
-        postViewUsecase.mealTime = mealTime
-        postViewUsecase.date = date
-        postViewUsecase.weekDay = weekDay
-        postViewUsecase.isFixedPost = isFixedPost
-        postViewUsecase.postData = postData
-        postViewUsecase.fixedPostsData = fixedPostsData
-    }
-    
     func configuration() {
         if let postData = postData {
             menuTextField.text = postData.mealTitle
@@ -179,7 +168,8 @@ class PostViewController: UITableViewController {
                 let newFixedPost = dbManager.createFixedPost(title: menuTextField.text!,
                                           rating: seg.selectedSegmentIndex,
                                           time: mealTime!,
-                                          weekDay: weekDay)
+                                          weekDay: weekDay,
+                                          setDate: self.date!)
                 dbManager.saveRealmDB(newFixedPost)
                 self.fixedPostId = newFixedPost.fixedPostId
                 
@@ -211,7 +201,8 @@ class PostViewController: UITableViewController {
                 let fixedPost = dbManager.createFixedPost(title: menuTextField.text!,
                                                           rating: seg.selectedSegmentIndex,
                                                           time: mealTime!,
-                                                          weekDay: weekDay)
+                                                          weekDay: weekDay,
+                                                          setDate: self.date!)
                 self.fixedPostId = fixedPost.fixedPostId
                 dbManager.saveRealmDB(fixedPost)
             }
@@ -246,79 +237,39 @@ class PostViewController: UITableViewController {
     
     // MARK: - DELETE ACTION
     @IBAction private func deleteBtn() {
-//        if let realm = try? Realm(),
-//            let id = self.postData?.postId,
-//            let post = realm.object(ofType: Post.self, forPrimaryKey: id),
-//            let month = Int(String(post.dateText).dropLast(2) + "00"),
-//            let numOfPost = realm.object(ofType: NumOfPost.self, forPrimaryKey: month) {
-//
-//            try! realm.write {
-//                realm.delete(post)
-//                if numOfPost.numOfpost == 1 {
-//                    realm.delete(numOfPost)
-//                } else {
-//                    numOfPost.numOfpost -= 1
-//                }
-//            }
-//            if let fixedId = self.fixedPostsData?.fixedPostId {
-//                dbManager.deleteDB(realmData: RealmFixedPost.self, keyId: fixedId)
-//            }
-        self.deleteClicked()
-//            popVC()
-//        }
+        guard let postData = self.postData else {
+            showAlert(alertTitle: "Delete Fail".localized,
+                      message: "There are no posts to delete.\nPlease register your post.".localized,
+                      actionTitle: "OK".localized)
+            return }
+        
+        guard let post = dbManager.getObject(of: Post.self, keyId: postData.postId),
+            let month = Int("\(post.dateText)".dropLast(2) + "00"),
+            let numOfPost = dbManager.getObject(of: NumOfPost.self, keyId: month)
+            else { return }
+        
+        // 삭제하려는 포스트가 고정일때
+        if dbManager.isCurrentFixedPost(post: post) {
+            let alert = showTwoAlert(alertTitle: "Delete pinned post".localized,
+                         message: "Other posts created with the pinning feature will not be deleted.".localized,
+                         firstAction: "OK".localized, firstCompletion: { (action) in
+                            self.dbManager.deleteDB(realmData: RealmFixedPost.self, keyId: post.fixedPostId)
+                            self.deletePostProcess(post: post, numOfPost: numOfPost)
+                            self.popVC()
+            }, secondAction: "Cancel".localized, secondCompletion: nil)
+            self.present(alert, animated: true, completion: nil)
+        } else {
+            deletePostProcess(post: post, numOfPost: numOfPost)
+            popVC()
+        }
     }
     
-    func deleteClicked() {
-        if let id = self.postData?.postId {
-            if let post = dbManager.getObject(of: Post.self, keyId: id),
-                let month = Int(String(post.dateText).dropLast(2) + "00") {
-                if (post.fixedPostId != nil) {
-                    let alert = UIAlertController(title: "고정 포스트 삭제",
-                                                  message: "이후의 고정 포스트들도 함께 삭제하시겠습니까?",
-                                                  preferredStyle: .alert)
-                    let yesAction = UIAlertAction(title: "네", style: .default) { (_) in
-                        // 이후 포스트들도 삭제
-                        print("------------< yes >------------")
-                        guard let afterPosts = self.afterPosts else { return }
-                        for afterPost in afterPosts {
-                            self.dbManager.updateMonthlyNumOfPost(keyId: afterPost.date.transformIntOnlyMonth(), addNum: -1)
-                            self.dbManager.deleteDB(realmData: Post.self, keyId: afterPost.postId)
-                        }
-                        self.popVC()
-                    }
-                    let noAction = UIAlertAction(title: "아니오 (현재 포스트만 삭제)", style: .default) { (_) in
-                        // 이후 포스트들은 isfixed만 해제
-                        print("------------< no >------------")
-                        guard let afterPosts = self.afterPosts else { return }
-                        for afterPost in afterPosts {
-//                            self.dbManager.updatePostIsFixed(keyId: afterPost.postId,
-//                                                             fixedPostId: false)
-                        }
-                        self.popVC()
-                    }
-                    alert.addAction(yesAction)
-                    alert.addAction(noAction)
-                    self.present(alert, animated: true, completion: {
-                        print("------------< present >------------")
-                        // 현재 포스트 삭제
-                        self.dbManager.deleteDB(realmData: Post.self, keyId: id)
-                        self.dbManager.deleteDB(realmData: NumOfPost.self, keyId: month)
-                        
-                        let weekDay = Calendar.current.component(.weekday, from: self.date!)
-                        let numOfFixedPost = self.dbManager
-                            .getAllObject(of: RealmFixedPost.self)
-                            .filter("weekDay == %@ AND time == %@", weekDay, self.mealTime!)
-                        if numOfFixedPost.count > 0 {
-                            guard let id = numOfFixedPost.first?.fixedPostId else { return }
-                            self.dbManager.deleteDB(realmData: RealmFixedPost.self, keyId: id)
-                        }
-                    })
-                }
-            } else {
-                showAlert(alertTitle: "Delete Fail".localized,
-                          message: "There are no posts to delete.\nPlease register your post.".localized,
-                          actionTitle: "OK".localized)
-            }
+    func deletePostProcess(post: Post, numOfPost: NumOfPost) {
+        dbManager.deleteDB(realmData: Post.self, keyId: post.postId)
+        if numOfPost.numOfpost == 1 {
+            dbManager.deleteDB(realmData: NumOfPost.self, keyId: numOfPost.dateInt)
+        } else {
+            dbManager.updateMonthlyNumOfPost(keyId: numOfPost.dateInt, addNum: -1)
         }
     }
     

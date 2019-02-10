@@ -136,3 +136,6 @@
 
 /* Class = "UILabel"; text = "날짜 표기"; ObjectID = "a5r-FQ-htX" */
 "a5r-FQ-htX.text" = "Date Format";
+
+/* Class = "UILabel"; text = "해당 포스트를 고정으로 설정하시겠습니까?"; ObjectID = "yYh-5N-Dxc" */
+"yYh-5N-Dxc.text" = "Are you sure you want to pin this post?";

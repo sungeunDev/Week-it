@@ -84,12 +84,6 @@ class MainViewController: UIViewController {
         self.navigationController?.interactivePopGestureRecognizer?.delegate = nil        
     }
     
-    func loadAll() {
-        let dbmanager = DBManager()
-        let fixedPosts = dbmanager.getAllObject(of: RealmFixedPost.self)
-        print(fixedPosts.count)
-    }
-    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
@@ -106,8 +100,6 @@ class MainViewController: UIViewController {
         naviBarTitleLayout() // Navigation Bar UI - 테마 컬러에 따라 색이 바뀌어야 하므로 viewWillAppear에 위치
         updateAutoLayout() // 유저 세팅에 따라 레이아웃 변경
         configureDateLabel(date: date)
-        
-        loadAll()
     }
     
     override func viewDidLayoutSubviews() {
@@ -724,10 +716,7 @@ extension MainViewController {
     
     // Title 누르면 현재 날짜로 돌아옴
     @objc func moveCalendarToday(_ : UIButton) {
-        
-        print("\n---------- [ moveCalendarToday ] -----------\n")
-        self.date = Date()
-        
+        self.date = Date()        
         date = changeToMonday(of: date)
         self.posts = makePostMatrix(date: self.date)
         configureDateLabel(date: self.date)

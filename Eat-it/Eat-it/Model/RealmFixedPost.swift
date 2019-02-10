@@ -22,12 +22,12 @@ class RealmFixedPost: Object {
         return "fixedPostId"
     }
     
-    convenience init(title: String, rating: Int, time: Int, weekDay: Int) {
+    convenience init(title: String, rating: Int, time: Int, weekDay: Int, setDate: Date) {
         self.init()
         self.title = title
         self.rating = rating
         self.time = time
         self.weekDay = weekDay
-        self.setDate = Date()
+        self.setDate = setDate
     }
 }

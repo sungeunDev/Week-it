@@ -46,7 +46,6 @@ extension Settings {
   func setIsIncludeWeeknd(isIncludeWeekend: Bool) {
     UserDefaults.standard.set(isIncludeWeekend, forKey: "isIncludeWeekend")
     _isIncludeWeekend = isIncludeWeekend
-//    print("isInclueWeekend: \(isIncludeWeekend)")
   }
   
   // 주말 포함 여부에 따라 UI update
@@ -72,6 +71,5 @@ extension Settings {
   func setCurrentDateFormat(with format: String) {
     UserDefaults.standard.set(format, forKey: "currentDateFormat")
     _currentDateFormat = format
-    print("currentDateFormat: \(format)")
   }
 }

@@ -133,3 +133,6 @@
 
 /* Class = "UILabel"; text = "주말 포함"; ObjectID = "FSU-OR-OTL" */
 "FSU-OR-OTL.text" = "주말 포함";
+
+/* Class = "UILabel"; text = "해당 포스트를 고정으로 설정하시겠습니까?"; ObjectID = "yYh-5N-Dxc" */
+"yYh-5N-Dxc.text" = "해당 포스트를 고정으로 설정하시겠습니까?";
