@@ -60,12 +60,15 @@ class DBManager: DBManagerProtocol {
     }
     
     // MARK: - UPDATE
-    func updatePost(keyId: String, title: String, rating: Int, fixedPostId: String?) {
+    func updatePost(keyId: String, title: String, rating: Int, fixedPostId: String? = nil) {
         if let post = self.getObject(of: Post.self, keyId: keyId){
             try! realm.write {
                 post.mealTitle = title
                 post.rating = rating
-                post.fixedPostId = fixedPostId
+                
+                if let fixedPostId = fixedPostId {
+                    post.fixedPostId = fixedPostId
+                }
             }
         }
     }

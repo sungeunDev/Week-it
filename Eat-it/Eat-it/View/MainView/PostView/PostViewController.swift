@@ -119,6 +119,10 @@ class PostViewController: UITableViewController, AlertService {
                                      title: menuTextField.text!,
                                      rating: seg.selectedSegmentIndex,
                                      fixedPostId: fixedPostId)
+            } else {
+                dbManager.updatePost(keyId: id,
+                                     title: menuTextField.text!,
+                                     rating: seg.selectedSegmentIndex)
             }
         // 새로 포스트를 만드는 경우
         } else {
